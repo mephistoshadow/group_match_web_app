@@ -34,14 +34,14 @@ body {
   box-shadow: 3px 4px;
   margin-top: 20px;
   margin-left: 40px;
-  width: 150px;
+  width: 200px;
   font-weight:bold;
   font-size: 50px;
 }
 
 .student{
   margin-top: 30px;
-  margin-left:40px;
+  margin-left:20px;
   margin-bottom: 20px;
   width:auto;
   max-width: 400px;
@@ -70,7 +70,7 @@ body {
 
 
 .profileStats{
- margin-left: 20px;
+ margin-left: -10px;
 }
 
 .profileStats ul {
@@ -267,6 +267,16 @@ body {
   transform: scale(1.2);
 
 }
+
+.searchForm {
+  transition: transform .3s;
+}
+.searchForm:hover{
+  color: orange;
+  transform: scale(1.05);
+}
+
+
 
 
 

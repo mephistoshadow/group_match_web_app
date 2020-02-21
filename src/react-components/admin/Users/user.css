@@ -1,0 +1,280 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #FAF6F6;
+  font-size: 20px;
+  margin: 0px;
+    
+}
+
+.exsistingStudent{
+  float: left;
+  width: 500px;
+}
+
+.outer {
+  height: 200px;
+}
+
+.card {
+  border-width:5px;  
+  border-style:double;
+  position: relative;
+  min-height: 500px;
+  height: auto;
+  width: 1100px;
+  margin-top: 74px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-bottom: 74px;
+  box-shadow: 5px 10px;
+  color: #2d545e;
+}
+
+.header{
+  box-shadow: 3px 4px;
+  margin-top: 20px;
+  margin-left: 40px;
+  width: 150px;
+  font-weight:bold;
+  font-size: 50px;
+}
+
+.student{
+  margin-top: 30px;
+  margin-left:40px;
+  margin-bottom: 20px;
+  width:auto;
+  max-width: 400px;
+  min-height:100px;
+  height:auto;
+  border-style: ridge;
+  border-width:5px; 
+  border-color: #98AFC7;
+  color: #2d545e;
+  box-shadow: 3px 4px #504A4B;
+  transition: transform .4s;
+  float: left;
+}
+
+
+.student:hover{
+  transform: scale(1.1,1.1);
+}
+
+.icon {
+   font-size: 40px;
+   margin-top: 10px;
+   margin-left: 10px;
+   float: left;
+}
+
+
+.profileStats{
+ margin-left: 20px;
+}
+
+.profileStats ul {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.profileStats ul li {
+  padding: 5px;
+  font-size: 120%;
+  font-weight: bold;
+  list-style: none; 
+}
+
+.profileStatsNumber {
+  margin-left: 10px;
+}
+
+.number {
+  transition: transform .3s;
+}
+.number:hover{
+  color: orange;
+  transform: scale(1.05,1.05);
+}
+
+.button {
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 350px;
+  border-color:;
+  border-style:double;
+  text-align: center;
+  transition: transform .3s;
+  box-shadow: 3px 4px;
+}
+
+
+.button:hover{
+  color: orange;
+  transform: scale(1.2);
+
+}
+
+.button2{
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 350px;
+  width: 125px;
+  border-color:;
+  border-style:double;
+  text-align: center;
+  transition: transform .3s;
+  box-shadow: 3px 4px;
+}
+
+
+.button2:hover{
+   color: orange;
+  transform: scale(1.2);
+
+}
+
+.newStudent{
+  position: absolute;
+  min-height: 100px;
+  width: 490px;
+  box-shadow: 3px 4px;
+  border-width:5px;  
+  border-style:double;
+   z-index: 1;
+   background-color: #98AFC7;
+}
+
+.studentinfo{
+}
+.studentinfo ul {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.studentinfo ul li {
+  padding: 5px;
+  font-size: 100%;
+  font-weight: bold;
+  list-style: none; 
+}
+
+.button3:hover{
+  color: orange;
+  transform: scale(1.2);
+
+}
+
+.button3{
+  margin-top: 15px;
+  margin-left: 150px;
+  margin-bottom: 10px;
+  width: 125px;
+  border-color:;
+  border-style:double;
+  text-align: center;
+  transition: transform .3s;
+  box-shadow: 3px 4px;
+}
+
+
+.popup {
+  background-color: #FAF6F6;
+  z-index: 1;
+  position:fixed;
+  top: 100px;
+  left:200px;
+  width: 800px; 
+  height: 300px;
+  border-width:5px;  
+  border-style:double;
+  box-shadow: 3px 4px;
+  display: none;
+}
+
+.popupcontent{
+  position: absolute;
+  color: #DC143C;
+  margin-top: 80px;
+  margin-left: 250px;
+  font-weight: bold;
+  font-size: 200%;
+}
+
+
+.cross{
+   transition: transform .3s;
+   margin-left:95%;
+   margin-top:3%;
+}
+
+
+.cross:hover{
+  color: orange;
+  transform: scale(2,2);
+}
+
+.operation {
+  position: fixed;
+  margin-top: -50px;
+  margin-left:550px;
+  min-height: 300px;
+  width: 500px;
+ /* box-shadow: 3px 4px;
+  border-width:5px;  */
+  /*border-style:double;*/
+}
+
+.searchStudent{
+  position: absolute;
+  margin-top: 150px;
+  min-height: 100px;
+  width: 490px;
+  box-shadow: 3px 4px;
+  border-width:5px;  
+  border-style:double;
+  z-index: 1;
+  background-color: #98AFC7;
+}
+
+.searchForm{
+  font-weight: bold;
+  margin-left: 40px;
+  margin-top: 15px;
+}
+
+.searchText{
+  transition: transform .3s;
+  box-shadow: 3px 4px #504A4B;
+}
+
+.searchText:hover{
+  transform: scale(1.1,1.1);
+}
+
+.button4{
+  margin-top: 15px;
+  margin-left: 150px;
+  margin-bottom: 10px;
+  width: 125px;
+  border-color:;
+  border-style:double;
+  text-align: center;
+  transition: transform .3s;
+  box-shadow: 3px 4px;
+}
+
+.button4:hover{
+  color: orange;
+  transform: scale(1.2);
+
+}
+
+.searchForm {
+  transition: transform .3s;
+}
+.searchForm:hover{
+  color: orange;
+  transform: scale(1.05);
+}
+
+
+
