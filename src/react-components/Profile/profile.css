@@ -94,8 +94,8 @@ body {
   position:fixed;
   top: 200px;
   left:200px;
-  width: 70%; 
-  height: 40%;
+  width: 800px; 
+  height: 300px;
   border-width:5px;  
   border-style:double;
   box-shadow: 3px 4px;
@@ -103,10 +103,10 @@ body {
 }
 
 .popupcontent{
-  color: #DC143C;
   position: absolute;
-  margin-top: 50px;
-  margin-left: 200px;
+  color: #DC143C;
+  margin-top: 80px;
+  margin-left: 250px;
   font-weight: bold;
   font-size: 200%;
 }
