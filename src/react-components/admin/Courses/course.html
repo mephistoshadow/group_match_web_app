@@ -10,8 +10,55 @@
     <script type="text/javascript" src="course.js"></script>
 </head>
 
-<body>
-    <div class="card">
+<body>  
+	<div class="hamburgerMenu">
+		<a class="hamburgerMenuLink" href="">Course</a>
+		<a class="hamburgerMenuLink" href="">User</a>
+		<a class="hamburgerMenuLink" href="">Logout</a>
+	</div>
+	<div id="navbar">
+		<i class="fa fa-bars hamburger-toggle" onclick="hamburgerClick()"></i>
+		<span id="logo">GROUPIE Admin</span>
+
+		<!-- We should not have dropdownMenu in Admin Page
+
+		<div class="dropdownMenu">
+		<span class="dropdownButton">COURSES <i class="fas fa-chevron-down"></i></span>
+		<div class="dropdownContent">
+			<a class="dropdownCourse" href="">CSC309</a>
+			<a class="dropdownCourse" href="">CSC369</a>
+			<a class="dropdownCourse" href="">CSC373</a>
+		</div>
+		</div>
+
+		<div class="notificationBell">
+		<a><i class="fas fa-bell"></i></a>
+		</div>
+		-->
+	</div>
+	<div class="collapsedMenu">
+		<div class="tooltip">
+			<span class="tooltipText">Course</span>
+			<a class="collapsedMenuIcon" href="">
+				<i class="far fa-user-circle"></i>
+			</a>
+		</div>
+	
+		<div class="tooltip">
+			<span class="tooltipText">User</span>
+			<a class="collapsedMenuIcon" href="">
+				<i class="far fa-user-circle"></i>
+			</a>
+		</div>
+
+		<div class="tooltip">
+			<span class="tooltipText">Logout</span>
+			<a class="collapsedMenuIcon" href="">
+				<i class="fas fa-sign-out-alt"></i>
+			</a>
+		</div>
+	</div>
+	<div class="card">
         <div class="header">
             <h>Courses</h>
         </div>
@@ -98,7 +145,7 @@
         </div>
         <span class="popupcontent">Changes Saved!</span>
     </div>
-
+	
 </body>
 
 </html>
