@@ -1,0 +1,245 @@
+body {
+	font-family: "Roboto", sans-serif;
+	background-color: white;
+	color: lightgray;
+	font-size: 20px;
+	margin: 0px;
+    
+}
+
+a {
+	color: lightgray;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.hamburger-toggle {
+    position: absolute;
+    cursor: pointer;
+    color: lightgray;
+    transition-duration: 0.5s;
+    font-size: 23px;
+}
+
+.hamburger-toggle:hover {
+    color: orange;
+}
+
+.collapsedMenu {
+    height: 100%;
+    background-color: #333;
+    width: 50px;
+    position: absolute;
+    transition: margin-left .5s;
+}
+
+.collapsedMenuIcon {
+    padding: 12px 8px 6px 10px;
+    font-size: 28px;
+    color: lightgray;
+    display: block;
+    transition: 0.3s;
+    text-align:left;
+}
+
+.collapsedMenu a:hover {
+    color: orange;
+}
+
+.hamburgerMenu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+/*  z-index: 1; */
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.hamburgerMenuLink {
+    padding: 5px 8px 12px 32px;
+    font-size: 25px;
+    color: lightgray;
+    display: block;
+    transition: 0.3s;
+    text-align:right;
+}
+
+.hamburgerMenuLink:hover {
+    color: orange;
+    
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltipText {
+  visibility: hidden;
+  width: 100px;
+  background-color: orange;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-weight: bold;
+  
+  /* Position the tooltip */
+  position: absolute;
+  /*  z-index: 1;*/
+  top: 8px;
+  left: 105%;
+}
+
+.tooltip:hover .tooltipText {
+  visibility: visible;
+}
+
+#navbar {
+	width: 100%;
+	padding: 15px;
+	background-color: #333;
+}
+
+#logo {
+	display: inline-block;
+	transform: translateX(15vw);
+	font-weight: 700;
+    cursor: default;
+}
+
+#logo:hover {
+	color: orange;
+}
+
+.dropdownMenu {
+	float: right;
+	margin-right: 150px;
+    cursor: pointer;
+}
+
+.dropdownMenu:hover .dropdownButton {
+	color: orange;
+}
+
+.dropdownMenu:hover .dropdownContent {
+	display: block;
+}
+
+.dropdownButton {
+	font-weight: 400;
+	padding: 15px;
+}
+
+.dropdownContent {
+	display: none;
+	margin-top: 15px;
+	position: absolute;
+}
+
+.dropdownCourse {
+	display: block;
+	min-width: 100px;
+	padding: 15px;
+	text-align: center;
+	background-color: #333;
+}
+
+.dropdownCourse:hover {
+	background-color: orange;
+    color: #333;
+}
+
+.notificationBell {
+    display: inline-block;
+    transform: translateX(85vw);
+    position: relative;
+    transition: margin-right .5s;
+}
+
+.fas.fa-bell:after {
+    content: "2";
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 10px;
+
+    position: absolute;
+    top: -6;
+    left: 12;
+
+    border-radius: 50%;
+    padding: 2px;
+    min-width: 10px;
+    min-height: 10px;
+    width: auto;
+    height: auto;
+
+    background-color: orange;
+    color: #333;
+}
+
+.courseContainer {
+	transition: margin-left 0.5s;
+	margin-left: 150px;
+	position: absolute;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+
+.courseItem {
+	
+	height: 200px;
+	width: 500px;
+	margin: 10px;
+	background-color: whitesmoke;
+}
+
+.courseName {
+	padding: 5px 8px 12px 32px;
+	font-size: 25px;
+	color: black;
+	display: block;
+	transition: 0.3s;
+	text-align:left;
+}
+.student {
+	padding: 5px 8px 12px 32px;
+	font-size: 25px;
+	color: black;
+	display: block;
+	transition: 0.3s;
+	text-align:left;
+
+}
+.joinClassButton {
+	margin-left: 40px;
+	margin-top: 40px;
+	height: 40px;
+	width: 80px;
+	font-size: 25px;
+	color: gray;
+	display: inline-block;
+}
+.dropClassButton {
+	margin-left: 200px;
+	margin-top: 40px;
+	height: 40px;
+	width: 80px;
+	font-size: 25px;
+	color: gray;
+	display: inline-block;
+}
+
+.courseNumber {
+	display: inline-block;
+	color: black;
+}
+
+.studentNumber {
+	display: inline-block;
+	color: lightblue;
+}

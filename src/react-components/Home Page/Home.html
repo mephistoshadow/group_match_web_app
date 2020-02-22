@@ -1,0 +1,89 @@
+</!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Header</title>
+    <script type="text/javascript" src="HomePage.js"></script>
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/09137d2d1c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="hamburgerMenu">
+        <a class="hamburgerMenuLink" href="">Profile</a>
+        <a class="hamburgerMenuLink" href="">Logout</a>
+    </div>
+
+    <div id="navbar">
+        <i class="fa fa-bars hamburger-toggle" onclick="hamburgerClick()"></i>
+
+        <span id="logo">GROUPIE</span>
+
+        <div class="dropdownMenu">
+            <span class="dropdownButton">COURSES <i class="fas fa-chevron-down"></i></span>
+            <div class="dropdownContent">
+                <a class="dropdownCourse" href="">CSC309</a>
+                <a class="dropdownCourse" href="">CSC369</a>
+                <a class="dropdownCourse" href="">CSC373</a>
+            </div>
+        </div>
+
+        <div class="notificationBell">
+            <a><i class="fas fa-bell"></i></a>
+        </div>
+    </div>
+
+    <div class="collapsedMenu">
+        <div class="tooltip">
+            <span class="tooltipText">Profile</span>
+            <a class="collapsedMenuIcon" href="">
+                <i class="far fa-user-circle"></i>
+            </a>
+        </div>
+
+        <div class="tooltip">
+            <span class="tooltipText">Logout</span>
+            <a class="collapsedMenuIcon" href="">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+    </div>
+
+	<div class="courseContainer">
+		<div class="courseItem">
+			<div class="courseName">
+				Course: <div class="courseNumber">CSC369</div>
+			</div>
+			<div class="student">
+				Current Students: <div class="studentNumber">100</div>
+			</div>
+			<input type="submit" class="joinClassButton" onclick="joinClassClick()" value="Join">
+			<input type="submit" class="dropClassButton" onclick="dropClassClick()" value="Drop">
+		</div>
+		<div class="courseItem">
+			<div class="courseName">
+				Course: <div class="courseNumber">CSC309</div>
+			</div>
+			<div class="student">
+				Current Students: <div class="studentNumber">200</div>
+			</div>
+			<input type="submit" class="joinClassButton" onclick="joinClassClick()" value="Join">
+			<input type="submit" class="dropClassButton" onclick="dropClassClick()" value="Drop">
+		</div>
+		<div class="courseItem">
+			<div class="courseName">
+				Course: <div class="courseNumber">CSC373</div>
+			</div>
+			<div class="student">
+				Current Students: <div class="studentNumber">300</div>
+			</div>
+			<input type="submit" class="joinClassButton" onclick="joinClassClick()" value="Join">
+			<input type="submit" class="dropClassButton" onclick="dropClassClick()" value="Drop">
+		</div>
+	
+	</div>
+
+</body>
+</html>
