@@ -9,27 +9,68 @@
     <script src="https://kit.fontawesome.com/09137d2d1c.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="profile.js"></script>
  </head>
- <body>
- 	<div class = "card">
- 		<div class = "icon">
- 			<a class="usericon" href="">
-                <i class="far fa-user-circle"></i>
-        	</a>
-        </div>
-        <div class="profileStats">
- 			<ul>
- 				<li class = "number">Name:<span contenteditable="true" class="profileStatsNumber">Pikachu</span></li>
- 				<li class = "number">Email:<span contenteditable="true" class="profileStatsNumber">Pikachu@gmail.com</span></li>
- 				<li class = "number">Year:<span contenteditable="true" class="profileStatsNumber">two</span></li>
- 				<li class = "number">Current Course:<span contenteditable="true" class="profileStatsNumber">CSC309</span></li>
- 				<li class = "number">Past Course:<span contenteditable="true" class="profileStatsNumber">CSC121 CSC100</span></li>
- 				<li class = "number">Password:<span contenteditable="true" class="profileStatsNumber">12345678</span></li>
- 			</ul>
- 		</div>
- 		<div class = "button">
- 			<a  onclick="showpop()" class = "text">Save Changes</a>
- 		</div>
- 	</div>
+<body>
+	<div class="hamburgerMenu">
+		<a class="hamburgerMenuLink" href="">Profile</a>
+		<a class="hamburgerMenuLink" href="">Logout</a>
+	</div>
+
+	<div id="navbar">
+		<i class="fa fa-bars hamburger-toggle" onclick="hamburgerClick()"></i>
+
+		<span id="logo">GROUPIE</span>
+
+		<div class="dropdownMenu">
+			<span class="dropdownButton">COURSES <i class="fas fa-chevron-down"></i></span>
+			<div class="dropdownContent">
+				<a class="dropdownCourse" href="">CSC309</a>
+				<a class="dropdownCourse" href="">CSC369</a>
+				<a class="dropdownCourse" href="">CSC373</a>
+			</div>
+		</div>
+
+		<div class="notificationBell">
+			<a><i class="fas fa-bell"></i></a>
+		</div>
+	</div>
+
+	<div class="collapsedMenu">
+		<div class="tooltip">
+			<span class="tooltipText">Profile</span>
+			<a class="collapsedMenuIcon" href="">
+				<i class="far fa-user-circle"></i>
+			</a>
+		</div>
+
+		<div class="tooltip">
+			<span class="tooltipText">Logout</span>
+			<a class="collapsedMenuIcon" href="">
+				<i class="fas fa-sign-out-alt"></i>
+			</a>
+		</div>
+	</div>
+
+	<div class = "card">
+		<div class = "icon">
+			<a class="usericon" href="">
+				<i class="far fa-user-circle"></i>
+			</a>
+		</div>
+		<div class="profileStats">
+			<ul>
+				<li class = "number">Name:<span contenteditable="true" class="profileStatsNumber">Pikachu</span></li>
+				<li class = "number">Email:<span contenteditable="true" class="profileStatsNumber">Pikachu@gmail.com</span></li>
+				<li class = "number">Year:<span contenteditable="true" class="profileStatsNumber">two</span></li>
+				<li class = "number">Current Course:<span contenteditable="true" class="profileStatsNumber">CSC309</span></li>
+				<li class = "number">Past Course:<span contenteditable="true" class="profileStatsNumber">CSC121 CSC100</span></li>
+				<li class = "number">Password:<span contenteditable="true" class="profileStatsNumber">12345678</span></li>
+			</ul>
+		</div>
+		<div class = "button">
+			<a  onclick="showpop()" class = "text">Save Changes</a>
+		</div>
+	</div>
+
  	<div class="popup" >
  		<div class = "cross" onclick = "closepop()">
  			<i class="fas fa-times-circle"></i>
