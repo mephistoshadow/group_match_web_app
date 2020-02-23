@@ -22,8 +22,8 @@ body {
   min-height: 500px;
   height: auto;
   width: 1100px;
-  margin-top: 74px;
-  margin-left: 150px;
+ margin-top: 20px;
+  margin-left: 70px;
   margin-right: 70px;
   margin-bottom: 74px;
   box-shadow: 5px 10px;
@@ -282,11 +282,11 @@ body {
 /*
 These are features of side bar
 */
-a {
+/*a {
 	color: lightgray;
 	text-decoration: none;
 	cursor: pointer;
-}
+}*/
 
 .hamburger-toggle {
     position: absolute;
