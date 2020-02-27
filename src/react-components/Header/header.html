@@ -11,43 +11,41 @@
 </head>
 
 <body>
-    <div class="hamburgerMenu">
-        <a class="hamburgerMenuLink" href="">Profile</a>
-        <a class="hamburgerMenuLink" href="">Logout</a>
+
+    <div id="hamburgerMenu">
+        <div class="hamburgerContent">
+            <a href="#">Profile</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <div id="collapsedMenu">
+        <a class="hamburgerMenuButton">
+            <i class="fa fa-bars hamburger-toggle" onclick="hamburgerClick()"></i>
+        </a>
+
+        <div class="hamburgerContent">
+            <a href="#"><i class="far fa-user-circle"></i></a>
+            <a href="#"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
     </div>
 
     <div id="navbar">
-        <i class="fa fa-bars hamburger-toggle" onclick="hamburgerClick()"></i>
-
         <span id="logo">GROUPIE</span>
 
-        <div class="dropdownMenu">
-            <span class="dropdownButton">COURSES <i class="fas fa-chevron-down"></i></span>
-            <div class="dropdownContent">
+        <div id="dropdownMenu">
+            <span id="dropdownButton">
+                COURSES <i class="fas fa-chevron-down"></i>
+            </span>
+            <div id="dropdownContent">
                 <a class="dropdownCourse" href="">CSC309</a>
                 <a class="dropdownCourse" href="">CSC369</a>
                 <a class="dropdownCourse" href="">CSC373</a>
             </div>
         </div>
 
-        <div class="notificationBell">
-            <a><i class="fas fa-bell"></i></a>
-        </div>
-    </div>
-
-    <div class="collapsedMenu">
-        <div class="tooltip">
-            <span class="tooltipText">Profile</span>
-            <a class="collapsedMenuIcon" href="">
-                <i class="far fa-user-circle"></i>
-            </a>
-        </div>
-
-        <div class="tooltip">
-            <span class="tooltipText">Logout</span>
-            <a class="collapsedMenuIcon" href="">
-                <i class="fas fa-sign-out-alt"></i>
-            </a>
+        <div id="notificationBell">
+            <i class="fas fa-bell"></i>
         </div>
     </div>
 
