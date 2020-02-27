@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>User</title>
+    <link rel="stylesheet" type="text/css" href="User.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/09137d2d1c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="User.js"></script>
+</head>
+
+<body>
+	<div class="hamburgerMenu">
+		<a class="hamburgerMenuLink" href="">Course</a>
+		<a class="hamburgerMenuLink" href="">User</a>
+		<a class="hamburgerMenuLink" href="">Logout</a>
+	</div>
+	<div id="navbar">
+		<i class="fa fa-bars hamburger-toggle" onclick="hamburgerClick()"></i>
+		<span id="logo">GROUPIE Admin</span>
+
+		<!-- We should not have dropdownMenu in Admin Page
+		<div class="dropdownMenu">
+		<span class="dropdownButton">COURSES <i class="fas fa-chevron-down"></i></span>
+		<div class="dropdownContent">
+			<a class="dropdownCourse" href="">CSC309</a>
+			<a class="dropdownCourse" href="">CSC369</a>
+			<a class="dropdownCourse" href="">CSC373</a>
+		</div>
+		</div>
+		<div class="notificationBell">
+			<a><i class="fas fa-bell"></i></a>
+		</div>
+		-->
+	</div>
+	<div class="collapsedMenu">
+		<div class="tooltip">
+			<span class="tooltipText">Course</span>
+			<a class="collapsedMenuIcon" href="">
+				<i class="far fa-user-circle"></i>
+			</a>
+		</div>
+	
+		<div class="tooltip">
+			<span class="tooltipText">User</span>
+			<a class="collapsedMenuIcon" href="">
+				<i class="far fa-user-circle"></i>
+			</a>
+		</div>
+
+		<div class="tooltip">
+			<span class="tooltipText">Logout</span>
+			<a class="collapsedMenuIcon" href="">
+				<i class="fas fa-sign-out-alt"></i>
+			</a>
+		</div>
+	</div>
+	<div class="card">
+        <div class="header">
+            <h>Users</h>
+        </div>
+        <div class="exsistingStudent">
+            <div class="outer">
+                <div class="student" onclick="jump()">
+                    <div class="icon">
+                        <i class="far fa-user-circle"></i>
+                    </div>
+                    <div class="profileStats">
+                        <ul>
+                            <li class="number">UserId:<span  class="profileStatsNumber">1</span></li>
+                            <li class="number">UserName:<span contenteditable="true" class="profileStatsNumber">Pika</span></li>
+                            <li class="number">Password:<span contenteditable="true" class="profileStatsNumber">12345</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="button">
+                    <a onclick="showpop()" class="text">Save Changes</a>
+                </div>
+                <div class="button2">
+                    <a onclick="showpop()" class="text">Delete</a>
+                </div>
+            </div>
+            <div class="outer">
+                <div class="student" onclick="jump()">
+                    <div class="icon">
+                        <i class="far fa-user-circle"></i>
+                    </div>
+                    <div class="profileStats">
+                        <ul>
+                            <li class="number">UserId:<span class="profileStatsNumber">2</span></li>
+                            <li class="number">UserName:<span contenteditable="true" class="profileStatsNumber">Pika</span></li>
+                            <li class="number">Password:<span contenteditable="true" class="profileStatsNumber">12345</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="button">
+                    <a onclick="showpop()" class="text">Save Changes</a>
+                </div>
+                <div class="button2">
+                    <a onclick="showpop()" class="text">Delete</a>
+                </div>
+            </div>
+            <div class="outer">
+                <div class="student" onclick="jump()">
+                    <div class="icon">
+                        <i class="far fa-user-circle"></i>
+                    </div>
+                    <div class="profileStats">
+                        <ul>
+                            <li class="number">UserId:<span class="profileStatsNumber">2</span></li>
+                            <li class="number">UserName:<span contenteditable="true" class="profileStatsNumber">Pika</span></li>
+                            <li class="number">Password:<span contenteditable="true" class="profileStatsNumber">12345</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="button">
+                    <a onclick="showpop()" class="text">Save Changes</a>
+                </div>
+                <div class="button2">
+                    <a onclick="showpop()" class="text">Delete</a>
+                </div>
+            </div>
+            <div class="outer">
+                <div class="student" onclick="jump()">
+                    <div class="icon">
+                        <i class="far fa-user-circle"></i>
+                    </div>
+                    <div class="profileStats">
+                        <ul>
+                            <li class="number">UserId:<span class="profileStatsNumber">2</span></li>
+                            <li class="number">UserName:<span contenteditable="true" class="profileStatsNumber">Pika</span></li>
+                            <li class="number">Password:<span contenteditable="true" class="profileStatsNumber">12345</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="button">
+                    <a onclick="showpop()" class="text">Save Changes</a>
+                </div>
+                <div class="button2">
+                    <a onclick="showpop()" class="text">Delete</a>
+                </div>
+            </div>
+            <div class="outer">
+                <div class="student" onclick="jump()">
+                    <div class="icon">
+                        <i class="far fa-user-circle"></i>
+                    </div>
+                    <div class="profileStats">
+                        <ul>
+                            <li class="number">UserId:<span class="profileStatsNumber">2</span></li>
+                            <li class="number">UserName:<span contenteditable="true" class="profileStatsNumber">Pika</span></li>
+                            <li class="number">Password:<span contenteditable="true" class="profileStatsNumber">12345</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="button">
+                    <a onclick="showpop()" class="text">Save Changes</a>
+                </div>
+                <div class="button2">
+                    <a onclick="showpop()" class="text">Delete</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="operation">
+            <div class="newStudent">
+                <div class="studentinfo">
+                    <ul>
+                        <li class="number">UserName:<input class="searchText" type="text"></li>
+                        <li class="number">Password:<input class="searchText" type="text"></li>
+                    </ul>
+                </div>
+                <div class="button3">
+                    <a onclick="showpop()" class="text">Add User</a>
+                </div>
+            </div>
+            <div class="searchStudent">
+                <form class="searchForm">
+                    <label class = "labelText">UserID:</label>
+                    <input class="searchText" type="text">
+                </form>
+                <div class="button4">
+                    <a onclick="" class="text">Search User</a>
+                </div>
+                <div class="outer">
+                    <div class="student" onclick="jump()">
+                        <div class="icon">
+                            <i class="far fa-user-circle"></i>
+                        </div>
+                        <div class="profileStats">
+                            <ul>
+                                <li class="number">UserId:<span class="profileStatsNumber">2</span></li>
+                                <li class="number">UserName:<span contenteditable="true" class="profileStatsNumber">Pika</span></li>
+                                <li class="number">Password:<span contenteditable="true" class="profileStatsNumber">12345</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <a onclick="showpop()" class="text">Save Changes</a>
+                    </div>
+                    <div class="button2">
+                        <a onclick="showpop()" class="text">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="popup">
+        <div class="cross" onclick="closepop()">
+            <i class="fas fa-times-circle"></i>
+        </div>
+        <span class="popupcontent">Changes Saved!</span>
+    </div>
+
+</body>
+
+</html>
