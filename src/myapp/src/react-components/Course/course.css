@@ -6,9 +6,10 @@ body {
     
 }
 
-.exsistingStudent{
+.exsistingCourse{
   float: left;
   width: 500px;
+  margin-left:-40px;
 }
 
 .outer {
@@ -74,7 +75,7 @@ body {
 .profileStats ul li {
   padding: 5px;
   font-size: 120%;
-  font-weight: bold;
+  /*font-weight: bold;*/
   list-style: none; 
 }
 
@@ -96,10 +97,10 @@ body {
   transform: scale(1.05,1.05);
 }
 
-.button {
+.coursebutton {
   position: absolute;
-  margin-top: 20px;
-  margin-left: 350px;
+  margin-top: 50px;
+  margin-left: 400px;
   text-align: center;
   transition: transform .3s;
 }
@@ -135,7 +136,6 @@ body {
 }
 
 .studentinfo{
- /* border-top: 1px solid #d3d3d3;*/
 }
 .studentinfo ul {
   margin-top: 10px;
@@ -215,15 +215,15 @@ body {
   transform: scale(2,2);
 }
 
-.operation {
+.courseoperation {
   position: fixed;
   margin-top: -50px;
   margin-left:600px;
   min-height: 300px;
-  width: 590px;
+  width: 640px;
  /* box-shadow: 3px 4px;
   border-width:5px;  */
-  border: 1px solid #d3d3d3;
+  border-style:double;
 }
 
 .searchStudent{

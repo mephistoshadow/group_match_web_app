@@ -1,5 +1,5 @@
 
-import './user.css';
+import './course.css';
 import React from "react";
 import Card from "../CourseCard/CourseCard"
 import CourseOperation from "../CourseOperation/CourseOperation"
@@ -59,7 +59,7 @@ class Course extends React.Component {
             <div className="header">
                Courses
             </div>
-            <div className="exsistingStudent">
+            <div className="exsistingCourse">
                  {this.props.state.courses.map(course => (
                     <Card  key={uid(course)} student = {course} usercomponents = {this.props.app}/>
                 ))}

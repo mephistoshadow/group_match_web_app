@@ -77,7 +77,7 @@ class CourseOperation extends React.Component {
 
     render() {
         return (
-          <div className="operation">
+          <div className="courseoperation">
             <div className="newStudent">
                 <div className="studentinfo">
                     <ul>

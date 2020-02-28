@@ -77,7 +77,7 @@ class Card extends React.Component {
                     </div>
                 </div>
 
-                <div className="button">
+                <div className="coursebutton">
                 <form >
                      <label>
                         CourseName:
