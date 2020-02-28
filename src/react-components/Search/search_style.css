@@ -1,13 +1,14 @@
 body {
     font-family: "Roboto", sans-serif;
-    background-color: white;
+    background-color: #FFFFFF;
     font-size: 20px;
     margin: 0px;
+    
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: #000000;
 }
 
 #hamburgerMenu {
@@ -75,8 +76,7 @@ a {
     display: inline-block;
     width: 900px;
     margin-left: 200px;
-    margin-right: 100px;
-    font-size: 25px;
+    margin-right: 150px;
     font-weight: 700;
     color: #d3d3d3;
     text-align: center;
@@ -86,7 +86,6 @@ a {
 #dropdownMenu {
     display:inline-block;
     color: #d3d3d3;
-    min-width: 150px;
 }
 
 #dropdownButton {
@@ -126,6 +125,7 @@ a {
 
 #notificationBell {
     display: inline-block;
+    transition: margin-right .5s;
     color: #d3d3d3;
     cursor: pointer;
 }
@@ -221,6 +221,21 @@ a {
 .hamburger-toggle:hover {
     color: orange;
 }
+
+
+#userSearchBar {
+    margin-bottom: 10px;
+    border: 1px solid #d3d3d3;
+    padding: 10px;
+    font-size: 20px;
+    width: 100%;
+}
+
+#userSearchBar:focus{
+    outline: none;
+    border: 1px solid orange;
+}
+
 
 .fa-bell:after {
     content: "2";

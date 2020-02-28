@@ -3,10 +3,11 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Search Posts</title>
+	<title>Header</title>
     <script type="text/javascript" src="search.js"></script>
     <link rel="stylesheet" type="text/css" href="search_style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <script src="https://kit.fontawesome.com/09137d2d1c.js" crossorigin="anonymous"></script>
 </head>
 
@@ -43,6 +44,7 @@
                 <a class="dropdownCourse" href="">CSC369</a>
                 <a class="dropdownCourse" href="">CSC373</a>
             </div>
+
         </div>
 
         <div id="notificationBell">
@@ -51,6 +53,11 @@
     </div>
     
     <div id="posts">
+        
+
+        <input type="text" id= "userSearchBar" onkeyup = "searchClick()"placeholder="Enter a name...">
+
+        
         <button id="addPostButton" type="submit">ADD POST</button>
         
         <ul id="studentList">
