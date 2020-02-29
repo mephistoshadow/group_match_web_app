@@ -4,7 +4,10 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 // Importing the Queue and our simple Home Page
 import User from './react-components/User/user';
 import Course from './react-components/Course/course';
-import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import Login from './react-components/Login'
+import SignUp from './react-components/SignUp'
+
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 import React from 'react';
 // import Home from './react-components/Home';
 
@@ -30,7 +33,9 @@ class App extends React.Component {
     return (
         <div>
         <BrowserRouter>
-          <Switch> 
+          <Switch>
+            <Route exact path="/" component={Login}/>
+            <Route exact path="/signup" component={SignUp}/>
             <Route exact path='/AdminUser' render={() => 
                           (<User state={this.state} app = {this}/>)}/>
             <Route exact path='/Admincourse' render={() => 
