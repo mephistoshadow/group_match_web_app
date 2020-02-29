@@ -38,14 +38,13 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Login}/>
             <Route exact path="/signup" component={SignUp}/>
-            <Route exact path="/dashboard" component={Header}/>
+		    <Route exact path="/dashboard" render={() =>
+						(<HomePage state={this.state} app={this} />)}/>
             <Route exact path='/AdminUser' render={() => 
                           (<User state={this.state} app = {this}/>)}/>
             <Route exact path='/Admincourse' render={() => 
 						(<Course state={this.state} app={this} />)} />
-			<Route exact path='/HomePage' render={() =>
-						(<HomePage state={this.state} app={this} />)} />
-          </Switch>
+</Switch>
         </BrowserRouter>
       </div>
     );  

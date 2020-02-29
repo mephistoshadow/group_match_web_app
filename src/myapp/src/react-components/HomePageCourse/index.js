@@ -23,11 +23,11 @@ class HomePageCourse extends React.Component {
 
 	render() {
 		return (
-			<div class="courseItem">
-				<div class="number">Course: <span class="profileStatsNumber"> {this.props.course.name}</span></div>
-				<div class="number">Number Studens: <span class="profileStatsNumber"> {this.props.course.people}</span></div>
-				<button class="homeButton" onClick={this.join}>Join </button>
-				<button class="homeButton" onClick={this.join}>Drop </button>
+			<div class="HomePagecourseItem">
+				<div class="HomePageText">Course: <span class="HomePageStateText"> {this.props.course.name}</span></div>
+				<div class="HomePageText">Number Studens: <span class="HomePageStateText"> {this.props.course.people}</span></div>
+				<button class="HomePageButton" onClick={this.join}>Join </button>
+				<button class="HomePageButton" onClick={this.join}>Drop </button>
 			</div>
 			);
 	}
