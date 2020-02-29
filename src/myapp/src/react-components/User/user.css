@@ -32,12 +32,14 @@ body {
 }
 
 .outer {
+
   margin-left: -20px;
   height: 200px;
   float: left;
 }
 
 .card {
+   z-index: -1;
   position: relative;
   min-height: 550px;
   width: 1170px;

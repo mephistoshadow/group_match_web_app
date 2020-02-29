@@ -4,6 +4,7 @@ import React from "react";
 import Card from "../CourseCard/CourseCard"
 import CourseOperation from "../CourseOperation/CourseOperation"
 import { uid } from "react-uid";
+import Header from "../Header/index"
 const log = console.log
 let state = 0;
 
@@ -55,6 +56,8 @@ class Course extends React.Component {
 
     render() {
         return (
+            <div>
+            <Header/>
         <div className = "card">
             <div className="header">
                Courses
@@ -67,6 +70,7 @@ class Course extends React.Component {
             <CourseOperation student = {this.props.state.courses} usercomponents = {this.props.app}/>
             {this.show(this.props.state.pop)}
            
+        </div>
         </div>
         );
     }

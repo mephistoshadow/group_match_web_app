@@ -3,6 +3,7 @@ import './user.css';
 import React from "react";
 import Student from "../StudentCard/StudentCard"
 import Operation from "../Operation/Operation"
+import Header from "../Header/index"
 import { uid } from "react-uid";
 const log = console.log
 let state = 0;
@@ -55,6 +56,8 @@ class User extends React.Component {
 
     render() {
         return (
+        <div>
+        <Header/>
         <div className = "card">
             <div className="header">
                Users
@@ -67,6 +70,7 @@ class User extends React.Component {
             <Operation student = {this.props.state.students} usercomponents = {this.props.app}/>
             {this.show(this.props.state.pop)}
            
+        </div>
         </div>
         );
     }
