@@ -40,10 +40,10 @@ class HomePage extends React.Component {
 
 	render() {
 		return (
-			<div class="outer"> 
+			<div class="HomePageouter"> 
 				<Header></Header> 
-				<h3 class="title">Choose Your Course</h3>
-				<div class="courseContainer">
+				<h3 class="HomePagetitle">Choose Your Course</h3>
+				<div class="HomePageCourseContainer">
 					{this.props.state.courses.map(course =>
 						(<HomePageCourse key={uid(course)} course={course} student={this.props.state.students}></HomePageCourse>)
 				)} 
