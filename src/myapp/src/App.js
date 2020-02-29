@@ -8,6 +8,7 @@ import Login from './react-components/Login'
 import SignUp from './react-components/SignUp'
 import Header from './react-components/Header'
 import HomePage from './react-components/HomePage/HomePage'
+import Profile from './react-components/Profile/profile'
 
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import React from 'react';
@@ -44,6 +45,8 @@ class App extends React.Component {
                           (<User state={this.state} app = {this}/>)}/>
             <Route exact path='/Admincourse' render={() => 
 						(<Course state={this.state} app={this} />)} />
+            <Route exact path='/Profile' render={() => 
+            (<Profile state={this.state} app={this} />)} />
 </Switch>
         </BrowserRouter>
       </div>

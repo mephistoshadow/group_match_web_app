@@ -41,7 +41,6 @@ body {
 }
 
 .card {
-   z-index: -1;
   position: relative;
   min-height: 550px;
   width:100%;
