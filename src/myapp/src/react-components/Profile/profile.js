@@ -2,8 +2,8 @@
 import './profile.css';
 import React from "react";
 import Header from "../Header/index"
-const log = console.log
-let state = 0;
+// const log = console.log
+// let state = 0;
 
 
 
@@ -25,8 +25,9 @@ class Profile extends React.Component {
     super(props);
       this.state = {
         pop: false,
+        
     }
-     const { state, app} = this.props;
+     // const { state, app} = this.props;
 
    }
 
@@ -63,13 +64,13 @@ class Profile extends React.Component {
                 </div>
                 <div className="Stats">
                     <ul>
-                        <li className = "profilenumber">Id:<span className="profileStatsNumber">1</span></li>
-                        <li className = "profilenumber">Name:<span  className="profileStatsNumber">Pikachu</span></li>
-                        <li className = "profilenumber">Email:<span  className="profileStatsNumber">Pikachu@gmail.com</span></li>
-                        <li className = "profilenumber">Year:<span  className="profileStatsNumber">two</span></li>
+                        <li className = "profilenumber">Id: <span  className="profileStatsNumber">1</span> </li>
+                        <li className = "profilenumber">Name:<span  className="profileStatsNumber">Pikachu</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
+                        <li className = "profilenumber">Email:<span  className="profileStatsNumber">Pikachu@gmail.com</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
+                        <li className = "profilenumber">Year:<span  className="profileStatsNumber">two</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
                         <li className = "profilenumber">Current Course:<span className="profileStatsNumber">CSC309</span></li>
                         <li className = "profilenumber">Past Course:<span className="profileStatsNumber">CSC121 CSC100</span></li>
-                        <li className = "profilenumber">Password:<span  className="profileStatsNumber">12345678</span></li>
+                        <li className = "profilenumber">Password:<span  className="profileStatsNumber">12345678</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
                     </ul>
                 </div>
                 <div className = "profilebutton">

@@ -24,7 +24,7 @@ class CourseOperation extends React.Component {
             searchId:'',
             searchOne:''
         }
-        const { students, usercomponents } = this.props;
+        // const { students, usercomponents } = this.props;
     
     }
 
@@ -50,7 +50,8 @@ class CourseOperation extends React.Component {
             array.push(course);
             user.setState({
             courses: array,
-            countCourse:this.props.usercomponents.state.countCourse+1
+            countCourse:this.props.usercomponents.state.countCourse+1,
+            pop:true
             });
             console.log()
          }else {

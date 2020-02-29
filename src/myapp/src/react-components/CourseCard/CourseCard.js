@@ -22,7 +22,7 @@ class Card extends React.Component {
         newName:'',
         newPassword:''
     }
-     const { student, usercomponents } = this.props;
+     // const { student, usercomponents } = this.props;
    }
 
     delete = (student,user) => {
@@ -49,7 +49,7 @@ class Card extends React.Component {
         const array = user.state.courses;
         for(let i = 0; i<array.length; i ++) {
             console.log(array.length);
-            if(array[i].id == student.id ) {
+            if(array[i].id === student.id ) {
                 if(this.state.newName.length <=0 || this.state.newName.length >5) {
                      alert("Please in range 1 to 4");
                 }else {
@@ -59,7 +59,8 @@ class Card extends React.Component {
             }
         } 
         user.setState({
-            courses: array
+            courses: array,
+            pop:true
         });
     }
 

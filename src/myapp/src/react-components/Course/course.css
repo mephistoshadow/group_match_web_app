@@ -190,49 +190,6 @@ body {
 
 }
 
-
-
-.popup {
-  background-color: #FAF6F6;
-  z-index: 1;
-  position:fixed;
-  top: 100px;
-  left:200px;
-  width: 800px; 
-  height: 300px;
-  border-width:5px;  
-  border-style:double;
-  box-shadow: 3px 4px;
-}
-
-.popupcontent{
-  position: absolute;
-  color: #DC143C;
-  margin-top: 80px;
-  margin-left: 250px;
-  font-weight: bold;
-  font-size: 200%;
-}
-
-
-.cross{
-   transition: transform .3s;
-   margin-left:95%;
-   margin-top:3%;
-}
-
-.searchbox  {
-  margin-top: 20px;
-  margin-left:-20px;
-  
-}
-
-
-.cross:hover{
-  color: orange;
-  transform: scale(2,2);
-}
-
 .courseoperation {
   position: fixed;
   margin-top: -50px;

@@ -5,8 +5,6 @@ import Student from "../StudentCard/StudentCard"
 import Operation from "../Operation/Operation"
 import Header from "../Header/index"
 import { uid } from "react-uid";
-const log = console.log
-let state = 0;
 
 
 
@@ -15,17 +13,18 @@ class User extends React.Component {
    constructor(props) {
     super(props);
       this.state = {
-        pop: false,
+    
     }
-     const { state, app} = this.props;
+     // const { state, app} = this.props;
+     // console.log(this.props);
 
    }
 
   show= (e) => {
+        console.log(e);
         if (!e) {
             return null;
         }
-
         return (
            <div className="popup">
                 <div className="cross" onClick={this.closepop}>
@@ -56,11 +55,13 @@ class User extends React.Component {
                 ))}
             </div>
             <Operation student = {this.props.state.students} usercomponents = {this.props.app}/>
-            {this.show(this.props.state.pop)}
-           
         </div>
+         {this.show(this.props.state.pop)}
         </div>
+         
         );
+
+
     }
 
 

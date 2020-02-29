@@ -5,9 +5,6 @@ import Card from "../CourseCard/CourseCard"
 import CourseOperation from "../CourseOperation/CourseOperation"
 import { uid } from "react-uid";
 import Header from "../Header/index"
-const log = console.log
-let state = 0;
-
 
 
 // function showpop() {
@@ -29,7 +26,7 @@ class Course extends React.Component {
       this.state = {
         pop: false,
     }
-     const { state, app} = this.props;
+     // const { state, app} = this.props;
 
    }
 

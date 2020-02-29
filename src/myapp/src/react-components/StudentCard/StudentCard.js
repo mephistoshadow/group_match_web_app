@@ -22,22 +22,10 @@ class Student extends React.Component {
         newName:'',
         newPassword:''
     }
-     const { student, usercomponents } = this.props;
+     // const { student, usercomponents } = this.props;
    }
 
     delete = (student,user) => {
-       const deletestudent = user.state.students.filter(s => {
-        return s !== student;
-        });
-
-        user.setState({
-        students: deletestudent,
-        pop:true
-         });
-
-    }
-
-    change = (student,user) => {
        const deletestudent = user.state.students.filter(s => {
         return s !== student;
         });
@@ -65,7 +53,7 @@ class Student extends React.Component {
         const array = user.state.students;
         for(let i = 0; i<array.length; i ++) {
             console.log(array.length);
-            if(array[i].id == student.id ) {
+            if(array[i].id === student.id ) {
                 if(this.state.newName.length <=0 || this.state.newName.length >5) {
                      alert("Please in range 1 to 4");
                 }else {
@@ -76,7 +64,8 @@ class Student extends React.Component {
             }
         } 
         user.setState({
-            students: array
+            students: array,
+            pop:true
         });
     }
     updatePassword = () => {
@@ -86,7 +75,7 @@ class Student extends React.Component {
         const array = user.state.students;
         for(let i = 0; i<array.length; i ++) {
             console.log(array.length);
-            if(array[i].id == student.id ||this.state.newPassword.length <0) {
+            if(array[i].id === student.id ||this.state.newPassword.length <0) {
                 if(this.state.newPassword.length <=0 || this.state.newPassword.length >5) {
                      alert("Please in range 1 to 4");
                 }else {
@@ -96,7 +85,8 @@ class Student extends React.Component {
             }
         } 
         user.setState({
-            students: array
+            students: array,
+            pop:true
         });
     }
 

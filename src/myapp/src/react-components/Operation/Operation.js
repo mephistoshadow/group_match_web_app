@@ -24,7 +24,7 @@ class Operation extends React.Component {
             searchId:'',
             searchOne:''
         }
-        const { students, usercomponents } = this.props;
+        // const { students, usercomponents } = this.props;
     
     }
 
@@ -52,7 +52,8 @@ class Operation extends React.Component {
             array.push(student);
             user.setState({
             students: array,
-            countStudent:this.props.usercomponents.state.countStudent+1
+            countStudent:this.props.usercomponents.state.countStudent+1,
+            pop:true
             });
             console.log()
          }else {
@@ -72,7 +73,7 @@ class Operation extends React.Component {
 
                 })
                 find = true;
-                console.log(array[i].id);
+                console.log(this.state.searchOne);
             }
          }
          if(!find) {

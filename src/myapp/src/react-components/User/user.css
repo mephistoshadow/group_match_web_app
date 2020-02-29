@@ -222,8 +222,10 @@ body {
 
 .cross{
    transition: transform .3s;
-   margin-left:95%;
+   margin-left:96%;
    margin-top:3%;
+   min-height: 30px;
+   
 }
 
 .searchbox  {
