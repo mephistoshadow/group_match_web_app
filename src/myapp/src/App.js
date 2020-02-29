@@ -18,39 +18,57 @@ class App extends React.Component {
 
   // a 'global' state that you can pass through to any child componenets of App.
   //   In the Routes below they are passed to both the Home and Queue states.
-  state = {
-    countCourse:2,
-    countStudent:2,
-    courses: [
-      { id: 1, name: "CSC373",people:"123" },
-       { id: 2, name: "CSC309",people:"35" },
-    ],
-    students: [
-      { id: 1, name: "jerry",password:"12345" },
-       { id: 2, name: "happy",password:"1235" },
-    ],
-     pop: false
-  }
-
-  render() {
-    return (
-        <div>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Login}/>
-            <Route exact path="/signup" component={SignUp}/>
-		    <Route exact path="/dashboard" render={() =>
-						(<HomePage state={this.state} app={this} />)}/>
-            <Route exact path='/AdminUser' render={() => 
-                          (<User state={this.state} app = {this}/>)}/>
-            <Route exact path='/Admincourse' render={() => 
+	state = {
+		countCourse: 2,
+		countStudent: 2,
+		courses: [
+			{ id: 1, name: "CSC373", people: "123" },
+			{ id: 2, name: "CSC309", people: "35" },
+			{ id: 3, name: "CSC369", people: "300" },
+		],
+		students: [
+			{ id: 1,
+			  name: "jerry",
+			  password: "12345",
+			  current_courses: [],
+			  past_courses: []
+			},
+			{
+			  id: 2,
+			  name: "happy",
+			  password: "1235",
+			  current_courses: [],
+			  past_courses: []
+			},
+			{
+			  id: 3,
+			  name: "user",
+			  password: "user",
+			  current_courses: ["CSC373", "CSC309", "CSC369"],
+			  past_courses: []
+			}
+		],
+		pop: false
+	}
+	render() {
+		return (
+			<div>
+				<BrowserRouter>
+				<Switch>
+					<Route exact path="/" component={Login} />
+					<Route exact path="/signup" component={SignUp} />
+					<Route exact path="/dashboard" render={() =>
+						(<HomePage state={this.state} app={this} />)} />
+					<Route exact path='/AdminUser' render={() =>
+						(<User state={this.state} app={this} />)} />
+					<Route exact path='/Admincourse' render={() =>
 						(<Course state={this.state} app={this} />)} />
-            <Route exact path='/Profile' render={() => 
-            (<Profile state={this.state} app={this} />)} />
-</Switch>
-        </BrowserRouter>
-      </div>
-    );  
-  }
+					<Route exact path='/Profile' render={() =>
+						(<Profile state={this.state} app={this} />)} />
+				</Switch>
+				</BrowserRouter>
+		</div>
+);
+}
 }
 export default App;
