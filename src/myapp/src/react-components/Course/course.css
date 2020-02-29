@@ -6,6 +6,27 @@ body {
     
 }
 
+.button4 a{
+  color: white;
+}
+.button4 a:hover{
+  color: white;
+}
+
+.button3 a{
+  color: white;
+}
+.button3 a:hover{
+  color: white;
+}
+
+.text a{
+  color: white;
+}
+.text a:hover{
+  color: white;
+}
+
 .exsistingCourse{
   float: left;
   width: 500px;
@@ -16,12 +37,13 @@ body {
   margin-left: -20px;
   height: 200px;
   float: left;
+  width: 400px;
 }
 
 .card {
   position: relative;
   min-height: 550px;
-  width: 1170px;
+  width:100%;
   margin-top: 20px;
   margin-left: 70px;
   margin-right: 70px;
@@ -80,11 +102,6 @@ body {
 }
 
 
-.text {
-  margin-top: 10px;
-  width: 200px;
-  margin-left:10px;
-}
 .profileStatsNumber {
   margin-left: 10px;
 }
@@ -220,7 +237,7 @@ body {
   margin-top: -50px;
   margin-left:600px;
   min-height: 300px;
-  width: 640px;
+  width: 600px;
  /* box-shadow: 3px 4px;
   border-width:5px;  */
   border-style:double;
@@ -293,13 +310,11 @@ body {
     transition: opacity 0.5s;
 }
 .text:hover{
-  
     opacity: 70%;
 }
 
 .text:focus {
     outline: none;
-
 }
 
 
