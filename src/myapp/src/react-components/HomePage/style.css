@@ -1,0 +1,25 @@
+.courseContainer {
+	transition: margin-left 0.5s;
+	margin-left: 150px;
+	position: absolute;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.card {
+	position: relative;
+	min-height: 550px;
+	width: 100%;
+	margin-top: 20px;
+	margin-left: 70px;
+	margin-right: 70px;
+	margin-bottom: 74px;
+	transition: margin-left .5s;
+	overflow: auto
+}
+
+.header{
+	width: 100%;
+	font-weight:bold;
+	font-size: 50px;
+}

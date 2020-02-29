@@ -1,0 +1,62 @@
+body {
+	font-family: "Roboto", sans-serif;
+	background-color: white;
+	color: lightgray;
+	font-size: 20px;
+	margin: 0px;
+    
+}
+
+.courseItem {
+	display: flex;
+	flex-direction: column;
+	margin: 13px;
+	align-items: left;
+	width: 400px;
+	padding: 40px;
+	border: 1px solid black;
+}
+
+.number {
+	padding: 5px 8px 12px 32px;
+	font-size: 25px;
+	color: black;
+	display: block;
+	transition: 0.3s;
+	text-align:left;
+}
+
+.profileStatsNumber {
+	margin-left: 10px;
+}
+
+.number {
+	transition: transform .3s;
+}
+.number:hover{
+	color: orange;
+	transform: scale(1.05,1.05);
+}
+
+
+.homeButton {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	color: white;
+	background-color: black;
+	border: none;
+	border-radius: 5px;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: 400;
+	transition: background-color 0.5s;
+}
+
+.homeButton:hover {
+	background-color: orange;
+}
+
+.homeButton:focus {
+	outline: none;
+}
