@@ -24,6 +24,7 @@ class App extends React.Component {
 		courses: [
 			{ id: 1, name: "CSC373", people: "123" },
 			{ id: 2, name: "CSC309", people: "35" },
+			{ id: 3, name: "CSC369", people: "300" },
 		],
 		students: [
 			{ id: 1,
@@ -43,7 +44,7 @@ class App extends React.Component {
 			  id: 3,
 			  name: "user",
 			  password: "user",
-			  current_courses: ["CSC373", "CSC309"],
+			  current_courses: ["CSC373", "CSC309", "CSC369"],
 			  past_courses: []
 			}
 		],
