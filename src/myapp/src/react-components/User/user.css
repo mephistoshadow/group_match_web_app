@@ -5,6 +5,26 @@ body {
   margin: 0px;
     
 }
+.button4 a{
+  color: white;
+}
+.button4 a:hover{
+  color: white;
+}
+
+.button3 a{
+  color: white;
+}
+.button3 a:hover{
+  color: white;
+}
+
+.text a{
+  color: white;
+}
+.text a:hover{
+  color: white;
+}
 
 .exsistingStudent{
   float: left;
