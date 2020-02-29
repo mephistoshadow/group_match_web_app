@@ -4,11 +4,11 @@ import { uid } from "react-uid";
 
 import HomePageCourse from "../HomePageCourse/index";
 import Header from "../Header/index";
+import { getObjectById, getObjectByName } from "../../actions/BasicOperation";
 
 import './style.css';
 
 
- 
 class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
@@ -16,6 +16,7 @@ class HomePage extends React.Component {
 			pop: false
 		}
 	}
+
 
 	/*
 	show = (e) => {
@@ -37,13 +38,16 @@ class HomePage extends React.Component {
 		this.props.app.setState({ pop: false });
 		console.log(this.state.pop);
 	}
-
 	render() {
+		const student1 = getObjectById(this.props.state.students, 1)
+		const class1 = getObjectByName(this.props.state.courses, 'CSC369')
+		console.log(student1)
+		console.log(class1)
 		return (
-			<div class="HomePageouter"> 
+			<div className="HomePageouter"> 
 				<Header></Header> 
-				<h3 class="HomePagetitle">Choose Your Course</h3>
-				<div class="HomePageCourseContainer">
+			<h3 className="HomePagetitle">Hi, Choose Your Course</h3>
+				<div className="HomePageCourseContainer">
 					{this.props.state.courses.map(course =>
 						(<HomePageCourse key={uid(course)} course={course} student={this.props.state.students}></HomePageCourse>)
 				)} 
