@@ -44,14 +44,15 @@ class Operation extends React.Component {
           const user = this.props.usercomponents;
          const array = user.state.students;
          const student = {
-            id:array.length+1,
+            id:this.props.usercomponents.state.countStudent+1,
             name:this.state.newName,
             password:this.state.newPassword
          }
          if(this.state.newName.length>0 && this.state.newPassword.length>0) {
             array.push(student);
             user.setState({
-            students: array
+            students: array,
+            countStudent:this.props.usercomponents.state.countStudent+1
             });
             console.log()
          }else {
@@ -63,14 +64,19 @@ class Operation extends React.Component {
     search = () => {
          const user = this.props.usercomponents;
          const array = user.state.students;
+         let find = false;
          for(let i =0; i < array.length; i ++) {
             if(array[i].id == this.state.searchId) {
                 this.setState({
                     searchOne:array[i]
 
                 })
+                find = true;
                 console.log(array[i].id);
             }
+         }
+         if(!find) {
+          alert("search with no result");
          }
 
     }

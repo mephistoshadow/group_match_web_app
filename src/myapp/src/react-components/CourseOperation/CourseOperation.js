@@ -37,7 +37,7 @@ class CourseOperation extends React.Component {
          this.setState({searchId: event.target.value});
     }
 
-    addUser = () => {
+    addCourse = () => {
           const user = this.props.usercomponents;
          const array = user.state.courses;
          console.log(this.props.usercomponents.state.countCourse);
@@ -59,17 +59,22 @@ class CourseOperation extends React.Component {
          
     }
 
-    search = () => {
+    searchCourse = () => {
          const user = this.props.usercomponents;
          const array = user.state.courses;
+         let find = false;
          for(let i =0; i < array.length; i ++) {
             if(array[i].id == this.state.searchId) {
                 this.setState({
                     searchOne:array[i]
 
                 })
+                 find = true;
                 console.log(array[i].id);
             }
+         }
+          if(!find) {
+          alert("search with no result");
          }
 
     }
@@ -85,7 +90,7 @@ class CourseOperation extends React.Component {
                     </ul>
                 </div>
                 <div className="button3">
-                    <a onClick={this.addUser} >Add Course</a>
+                    <a onClick={this.addCourse} >Add Course</a>
                 </div>
             </div>
             <div className="searchStudent">
@@ -94,7 +99,7 @@ class CourseOperation extends React.Component {
                     <input className="searchText" type="text" onChange={this.handleSearch}></input>
                 </form>
                 <div className="button4">
-                    <a onClick={this.search}>Search Course</a>
+                    <a onClick={this.searchCourse}>Search Course</a>
                 </div>
                 <div className = "searchbox">
                     <Card student = {this.state.searchOne} usercomponents = {this.props.usercomponents}/> 
