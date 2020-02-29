@@ -29,21 +29,22 @@ body {
 
 .exsistingCourse{
   float: left;
-  width: 500px;
+  width: 40%;
   margin-left:-40px;
+	display: grid;
 }
 
 .outer {
   margin-left: -20px;
   height: 200px;
   float: left;
-  width: 400px;
+  width: 100%;
 }
 
 .card {
   position: relative;
   min-height: 550px;
-  width:100%;
+  /*width:100%;*/
   margin-top: 20px;
   margin-left: 170px;
   margin-right: 70px;
@@ -235,9 +236,9 @@ body {
 .courseoperation {
   position: fixed;
   margin-top: -50px;
-  margin-left:600px;
+  margin-left: 50%;
   min-height: 300px;
-  width: 600px;
+  width: 40%;
  /* box-shadow: 3px 4px;
   border-width:5px;  */
   border-style:double;
