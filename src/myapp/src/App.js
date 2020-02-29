@@ -19,8 +19,8 @@ class App extends React.Component {
   // a 'global' state that you can pass through to any child componenets of App.
   //   In the Routes below they are passed to both the Home and Queue states.
 	state = {
-		countCourse: 2,
-		countStudent: 2,
+		countCourse: 3,
+		countStudent: 4,
 		courses: [
 			{ id: 1, name: "CSC373", people: "123" },
 			{ id: 2, name: "CSC309", people: "35" },
@@ -28,21 +28,31 @@ class App extends React.Component {
 		],
 		students: [
 			{ id: 1,
-			  name: "jerry",
+			  name: "admin",
 			  password: "12345",
+        Email:"admin@mail.utoronto.ca",
 			  current_courses: [],
 			  past_courses: []
 			},
+      { id: 2,
+        name: "user",
+        password: "12345",
+        Email:"user@mail.utoronto.ca",
+        current_courses: [],
+        past_courses: []
+      },
 			{
-			  id: 2,
+			  id: 3,
 			  name: "happy",
+        Email:"happy@mail.utoronto.ca",
 			  password: "1235",
 			  current_courses: [],
 			  past_courses: []
 			},
 			{
-			  id: 3,
-			  name: "user",
+			  id: 4,
+			  name: "jerry",
+        Email:"user@mail.utoronto.ca",
 			  password: "user",
 			  current_courses: ["CSC373", "CSC309", "CSC369"],
 			  past_courses: []
