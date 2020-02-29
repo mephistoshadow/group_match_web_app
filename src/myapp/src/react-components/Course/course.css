@@ -34,11 +34,11 @@ body {
 	display: grid;
 }
 
-.outer {
-  margin-left: -20px;
+.Courseouter {
+  margin-left: -50px;
   height: 200px;
   float: left;
-  width: 100%;
+  width: 90%;
 }
 
 .card {
@@ -46,7 +46,7 @@ body {
   min-height: 550px;
   /*width:100%;*/
   margin-top: 20px;
-  margin-left: 170px;
+  margin-left: 100px;
   margin-right: 70px;
   margin-bottom: 74px;
   transition: margin-left .5s;
@@ -236,9 +236,9 @@ body {
 .courseoperation {
   position: fixed;
   margin-top: -50px;
-  margin-left: 50%;
+  margin-left: 550px;
   min-height: 300px;
-  width: 40%;
+  width: 45%;
  /* box-shadow: 3px 4px;
   border-width:5px;  */
   border-style:double;

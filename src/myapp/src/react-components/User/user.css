@@ -33,9 +33,10 @@ body {
 
 .outer {
 
-  margin-left: -20px;
+  margin-left: -10px;
   height: 200px;
   float: left;
+   width: 90%;
 }
 
 .card {

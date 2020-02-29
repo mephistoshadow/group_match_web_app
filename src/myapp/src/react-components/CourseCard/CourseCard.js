@@ -66,7 +66,7 @@ class Card extends React.Component {
     render() {
         
         return (
-            <div className="outer">
+            <div className="Courseouter">
                 <div className="student">
                     <div className="profileStats">
                         <ul className = "list">
