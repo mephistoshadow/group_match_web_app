@@ -56,7 +56,7 @@ class App extends React.Component {
 			{
 				id: 4,
 				name: "jerry",
-				Email: "user@mail.utoronto.ca",
+				Email: "jerry@mail.utoronto.ca",
 				password: "user",
 				current_courses: ["CSC373,CSC309,CSC369"],
 				past_courses: []
@@ -78,8 +78,8 @@ class App extends React.Component {
 					"llit anim id est laborum."
 			},
 			{
-				name: "happy",
-				email: "happy@mail.utoronto.ca",
+				name: "jerry",
+				email: "jerry@mail.utoronto.ca",
 				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem" +
 						"por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
 						" nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a" +

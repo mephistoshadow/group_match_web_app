@@ -1,0 +1,29 @@
+
+.postHeader {
+    font-size: 35px;
+}
+
+
+.postDesc {
+    margin-top: 20px;
+    font-style: italic;
+}
+
+
+.posterName {
+	display: inline-block;
+	margin: 10px;
+}
+
+#posterEmail {
+	display: inline-block;
+	font-size: 25px;
+	color: gray;
+	margin-left: 20px
+}
+
+.fa-star {
+	position: absolute;
+	right: 0px;
+	cursor: pointer;
+}
