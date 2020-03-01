@@ -40,7 +40,6 @@ class Header extends React.Component {
 			        <div className="hamburgerContent">
 			            <Link to = {'/' + this.props.path}>Profile</Link>
 			            <a href="#">Logout</a>
-			            <i className="far fa-user-circle"></i>
 			        </div>
 			    </div>
 
