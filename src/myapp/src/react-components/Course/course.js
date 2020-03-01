@@ -54,7 +54,7 @@ class Course extends React.Component {
     render() {
         return (
             <div>
-            <Header/>
+            <Header enrolledCourses={this.props.state.enrolledCourses}></Header>
         <div className = "card">
             <div className="header">
                Courses
