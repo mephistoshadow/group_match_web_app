@@ -115,7 +115,7 @@ class Search extends React.Component {
 	render() {
 
         if (this.state.addedPost){
-            return <Redirect to='/Profile'/>
+            return <Redirect to='/Post'/>
         }
         
 		return (

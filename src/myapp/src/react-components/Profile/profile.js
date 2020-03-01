@@ -24,9 +24,8 @@ class Profile extends React.Component {
    constructor(props) {
     super(props);
       this.state = {
-        pop: false,
-        
-    }
+		  pop: false
+      }
      // const { state, app} = this.props;
 
    }
@@ -55,7 +54,7 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
-            <Header/>
+            <Header enrolledCourses={this.props.state.enrolledCourses}></Header>
             <div className = "profilecard">
                 <div className = "profileicon">
                     <a className="usericon" href="">
