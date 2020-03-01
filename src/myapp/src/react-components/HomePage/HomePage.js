@@ -4,8 +4,7 @@ import { uid } from "react-uid";
 
 import HomePageCourse from "../HomePageCourse/index";
 import Header from "../Header/index";
-import {getObjectByName } from "../../actions/BasicOperation";
-import { joinCourse, dropCourse } from "../../actions/HomePage";
+import { getObjectById, getObjectByName } from "../../actions/BasicOperation";
 
 import './style.css';
 
@@ -14,7 +13,8 @@ class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			pop: false
+			pop: false,
+			enrolledCourses: this.props.state.enrolledCourses
 		}
 	}
 
@@ -40,27 +40,43 @@ class HomePage extends React.Component {
 		console.log(this.state.pop);
 	}
 
+	dropCourse(courseName) {
+		const newEnrolledCourses = this.state.enrolledCourses.filter(function(course) {
+			return course != courseName
+		})
+
+		this.setState({
+			enrolledCourses: newEnrolledCourses
+		})
+	}
+
+	joinCourse(courseName) {
+		const newEnrolledCourses = this.state.enrolledCourses.concat([courseName])
+
+		this.setState({
+			enrolledCourses: newEnrolledCourses
+		})
+	}
 
 	render() {
-		const student_name = 'user'
-		const student = getObjectByName(this.props.state.students, student_name)
 		return (
-			<div className="HomePageouter"> 
-				<Header></Header> 
-			<h3 className="HomePagetitle">Hi, Choose Your Course</h3>
-				<div className="HomePageCourseContainer">
+			<div className="homePageContainer"> 
+				<Header enrolledCourses={this.state.enrolledCourses}></Header> 
+			<h2 className="homePageTitle">Manage Your Courses Below</h2>
+				<div className="homePageCourseContainer">
 					{this.props.state.courses.map(course =>
-						(<HomePageCourse
+						(<HomePageCourse 
 							key={uid(course)}
 							course={course}
-							student={student}
-							joinCourse={() => joinCourse(this, student, course)}
-							dropCourse={() => dropCourse(this, student, course)}
-						/>)
+							student={this.props.state.students}
+							enrolledCourses={this.state.enrolledCourses}
+							joinCourse={this.joinCourse.bind(this)}
+							dropCourse={this.dropCourse.bind(this)}>
+							</HomePageCourse>)
 				)} 
 				</div>
 			</div>
-	)
+		)
 	}
 
 }

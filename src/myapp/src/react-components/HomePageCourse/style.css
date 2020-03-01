@@ -1,87 +1,24 @@
 
-
-.HomePagecourseItem {
+.homePageCourseItem {
 	display: flex;
 	flex-direction: column;
-	margin: 13px;
+	margin-right: 20px;
+	margin-bottom: 20px;
 	align-items: left;
-	width: 400px;
+	width: 30vw;
 	padding: 40px;
 	border: 1px solid black;
 }
 
-.HomePageText {
-	padding: 5px 8px 12px 32px;
-	font-size: 25px;
-	color: black;
+.homePageText {
 	display: block;
-	transition: 0.3s;
+	margin-bottom: 20px;
+	font-size: 20px;
+	color: black;
+	transition: color 0.3s;
 	text-align: left;
 }
 
-.HomePageStateText {
-	margin-left: 10px;
-}
-
-.HomePageText {
-	transition: transform .3s;
-}
-.HomePageText:hover {
-	color: orange;
-	transform: scale(1.05,1.05);
-}
-
-
-.HomePageJoinButton {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	color: white;
-	background-color: black;
-	border: none;
-	border-radius: 5px;
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: 400;
-	transition: background-color 0.5s;
-}
-
-.HomePageJoinButton:hover {
-	background-color: orange;
-}	
-
-.HomePageJoinButton:focus {
-	outline: none;
-}
-
-
-/* We have Joined in this course, cannot join in again*/
-.HomePageJoinButton[value = true] {
-	background-color: gray;
-}
-
-.HomePageDropButton {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	color: white;
-	background-color: black;
-	border: none;
-	border-radius: 5px;
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: 400;
-	transition: background-color 0.5s;
-}
-
-.HomePageDropButton:hover {
-	background-color: orange;
-}
-
-.HomePageDropButton:focus {
-	outline: none;
-}
-
-.HomePageDropButton[value = false] {
-	background-color: gray;
+.homePageCourseItem .homeButton {
+	margin-bottom: 0px;
 }

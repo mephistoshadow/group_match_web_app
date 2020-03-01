@@ -9,7 +9,6 @@ import SignUp from './react-components/SignUp'
 import Header from './react-components/Header'
 import HomePage from './react-components/HomePage/HomePage'
 import Profile from './react-components/Profile/profile'
-import Search from './react-components/Search/Search'
 
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import React from 'react';
@@ -39,7 +38,7 @@ class App extends React.Component {
         name: "user",
         password: "12345",
         Email:"user@mail.utoronto.ca",
-        current_courses: ["CSC373", "CSC309"],
+        current_courses: [],
         past_courses: []
       },
 			{
@@ -59,7 +58,8 @@ class App extends React.Component {
 			  past_courses: []
 			}
 		],
-		pop: false
+		pop: false,
+		enrolledCourses: ['CSC373'] 
 	}
 	render() {
 		return (
@@ -76,8 +76,6 @@ class App extends React.Component {
 						(<Course state={this.state} app={this} />)} />
 					<Route exact path='/Profile' render={() =>
 						(<Profile state={this.state} app={this} />)} />
-                    <Route exact path='/Search' render={() =>
-                        (<Search state={this.state} app={this} />)} />
 				</Switch>
 				</BrowserRouter>
 		</div>

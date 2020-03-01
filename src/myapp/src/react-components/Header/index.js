@@ -24,6 +24,14 @@ class Header extends React.Component {
 		})
 	}
 
+	getNavbarDropdownCourses() {
+		const navbarDropdownCourses = this.props.enrolledCourses.map(function(course) {
+			return <a className="navbarDropdownCourse">{course}</a>
+		})
+
+		return navbarDropdownCourses;
+	}
+
 	render() {
 		return(
 			<div id="header">
@@ -52,10 +60,8 @@ class Header extends React.Component {
 			            <span id="navbarDropdownButton">
 			                COURSES <i className="fas fa-chevron-down"></i>
 			            </span>
-			            <div id="navbarDropdownContent">
-			                <a className="navbarDropdownCourse" href="">CSC309</a>
-			                <a className="navbarDropdownCourse" href="">CSC369</a>
-			                <a className="navbarDropdownCourse" href="">CSC373</a>
+			            <div id="navbarDropdownContent" ref="navbarDropdownContent">
+			            	{this.getNavbarDropdownCourses.bind(this)()}
 			            </div>
 			        </div>
 

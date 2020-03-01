@@ -1,23 +1,11 @@
-
-
-.HomePageCourseContainer {
-	transition: margin-left 0.5s;
-	margin-left: 160px;
+.homePageCourseContainer {
+	margin-left: 200px;
 	position: absolute;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }
 
-.HomePageouter {
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-}
-
-
-.HomePagetitle {
-	margin-left: 180px;
+.homePageTitle {
+	margin-left: 200px;
 	display: block;
-	color: black
 }
