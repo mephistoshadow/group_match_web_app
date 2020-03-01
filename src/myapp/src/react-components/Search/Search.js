@@ -17,6 +17,8 @@ class Search extends React.Component {
 			pop: false,
             addedPost: false,
 		}
+  
+        
 	}
 
 
@@ -46,12 +48,75 @@ class Search extends React.Component {
         return <Redirect to='/signup'/>
     }
     
-	render() {
+    addPost = () => {
         
+        const studentEntries = document.querySelector("#studentList")
+        console.log(studentEntries)
+        const students = this.props.state.students
+        
+        for (let i = 2; i<students.length; i++){
+            console.log(students[i])
+            
+            
+            //Create List Element
+            const listElement = document.createElement("li")
+            
+            //create post header
+            const headerDiv = document.createElement("div")
+            headerDiv.className = "postHeader"
+            
+            const headerIcon = document.createElement("i")
+            headerIcon.className = "far fa-user"
+            
+            const headerName = document.createElement("span")
+//            const headerNameText = document.createTextNode(students[i].name)
+//            headerName.appendChild(headerNameText)
+            headerName.innerText = students[i].name
+            
+            const headerStar = document.createElement("i")
+            headerStar.className = "far fa-star"
+            
+            headerDiv.appendChild(headerIcon)
+            headerDiv.appendChild(headerName)
+            headerDiv.appendChild(headerStar)
+            
+            //create post content
+            const postDiv = document.createElement("div")
+            postDiv.className = "postContent"
+
+            const postContent = document.createElement("p")
+            postContent.className = "postDesc"
+            postContent.innerText = ("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+
+            const postMatchCourse = document.createElement("strong")
+            postMatchCourse.className = "postInfo"
+            postMatchCourse.innerText = ("Current Matching Course: 0")
+
+            postDiv.appendChild(postContent)
+            postDiv.appendChild(postMatchCourse)
+
+            //Add to Li
+            listElement.appendChild(headerDiv)
+            listElement.appendChild(postDiv)
+            
+            //Add to ul
+            studentEntries.appendChild(listElement)
+            
+        }
+
+    
+    }
+    
+    componentDidMount = () => {
+      this.addPost();
+    }
+    
+	render() {
+
         if (this.state.addedPost){
             return <Redirect to='/Profile'/>
         }
- 
+        
 		return (
 			<div className="HomePageouter">
 				<Header></Header>
@@ -63,7 +128,7 @@ class Search extends React.Component {
                     <button id="addPostButton" type="submit" onClick = {this.clickAddPost} >ADD POST</button>
                 
                     <ul id="studentList">
-                    
+                        {/*}
                         <li>
                             <div className= "postHeader">
                                 <i className="far fa-user"></i>
@@ -123,6 +188,7 @@ class Search extends React.Component {
                                 <strong className="postInfo">Current Matching Courses: 2</strong>
                             </div>
                         </li>
+                        */}
                     
                     
                     </ul>
