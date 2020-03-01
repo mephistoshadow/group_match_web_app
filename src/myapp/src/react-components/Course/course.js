@@ -58,7 +58,7 @@ class Course extends React.Component {
             <Header enrolledCourses={this.props.state.enrolledCourses} path={this.state.path}/>
         <div className = "card">
             <div className="header">
-               Courses
+              Courses
             </div>
             <div className="exsistingCourse">
                  {this.props.state.courses.map(course => (

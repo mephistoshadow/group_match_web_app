@@ -108,7 +108,7 @@ class AdminProfile extends React.Component {
             <div className = "profilecard">
                 <div className = "profileicon">
                     <a className="usericon" href="">
-                    <i className="fa fa-user-circle"></i>
+                    <i className="far fa-user"></i>
                     </a>
                 </div>
                 <div className="Stats">
@@ -129,6 +129,9 @@ class AdminProfile extends React.Component {
                 </div>
                  <div className = "adminbutton">
                     <Link to = '/adminCourse' className= "name">Go change Courses</Link>
+                </div>
+                <div className = "adminbutton">
+                    <Link to = '/dashboard' className= "name">dashboard</Link>
                 </div>
             </div>
             </div>

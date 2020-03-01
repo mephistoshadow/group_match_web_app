@@ -46,7 +46,7 @@ class User extends React.Component {
         <div>
         <Header enrolledCourses={this.props.state.enrolledCourses} path={this.state.path}/>
         <div className = "card">
-            <div className="header">
+            <div className="Userheader">
                Users
             </div>
             <div className="exsistingStudent">

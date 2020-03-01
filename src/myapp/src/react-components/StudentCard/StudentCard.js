@@ -57,16 +57,15 @@ class Student extends React.Component {
                 if(this.state.newName.length <=0 || this.state.newName.length >5) {
                      alert("Please in range 1 to 4");
                 }else {
-                
                   array[i].name = this.state.newName;
+                  user.setState({
+                    students: array,
+                    pop:true
+                  });
                 }
                
             }
         } 
-        user.setState({
-            students: array,
-            pop:true
-        });
     }
     updatePassword = () => {
        
@@ -79,15 +78,14 @@ class Student extends React.Component {
                 if(this.state.newPassword.length <=0 || this.state.newPassword.length >5) {
                      alert("Please in range 1 to 4");
                 }else {
-                
                   array[i].password = this.state.newPassword;
+                   user.setState({
+                    students: array,
+                    pop:true
+                  });
                 }
             }
         } 
-        user.setState({
-            students: array,
-            pop:true
-        });
     }
 
     render() {
@@ -96,7 +94,7 @@ class Student extends React.Component {
         	<div className="outer">
                 <div className="student">
                     <div className="icon">
-                        <i className="fa fa-user-circle"></i>
+                        <i className="far fa-user"></i>
                     </div>
                     <div className="profileStats">
                         <ul>

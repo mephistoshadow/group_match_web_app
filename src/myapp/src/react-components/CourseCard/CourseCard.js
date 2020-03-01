@@ -54,14 +54,14 @@ class Card extends React.Component {
                      alert("Please in range 1 to 4");
                 }else {
                   array[i].name = this.state.newName;
+                   user.setState({
+                        courses: array,
+                        pop:true
+                    });
                 }
                
             }
         } 
-        user.setState({
-            courses: array,
-            pop:true
-        });
     }
 
     render() {

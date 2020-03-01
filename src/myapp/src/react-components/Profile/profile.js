@@ -108,7 +108,7 @@ class Profile extends React.Component {
             <div className = "profilecard">
                 <div className = "profileicon">
                     <a className="usericon" href="">
-                    <i className="fa fa-user-circle"></i>
+                    <i className="far fa-user"></i>
                     </a>
                 </div>
                 <div className="Stats">

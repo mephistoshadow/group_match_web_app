@@ -33,7 +33,7 @@ class App extends React.Component {
 			{
 				id: 1,
 				name: "admin",
-				password: "12345",
+				password: "admin",
 				Email: "admin@mail.utoronto.ca",
 				current_courses: [],
 				past_courses: []
@@ -41,7 +41,7 @@ class App extends React.Component {
 			{
 				id: 2,
 				name: "user",
-				password: "12345",
+				password: "user",
 				Email: "user@mail.utoronto.ca",
 				year:1,
 				current_courses: ["CSC373", "CSC301"],
