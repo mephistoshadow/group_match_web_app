@@ -5,7 +5,7 @@ import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import HomePageCourse from "../HomePageCourse/index";
 import Header from "../Header/index";
 import { Link, Redirect } from 'react-router-dom'
-import { useHistory } from 'react-router-dom';
+import { getObjectById, getObjectByName } from "../../actions/BasicOperation";
 
 import './style.css';
 
@@ -16,11 +16,12 @@ class Search extends React.Component {
 		this.state = {
 			pop: false,
             addedPost: false,
+            enrolledCourses: this.props.state.enrolledCourses,
 		}
   
         
 	}
-
+    
 
 	closepop = () => {
 		this.props.app.setState({ pop: false });
@@ -118,8 +119,9 @@ class Search extends React.Component {
         }
         
 		return (
+            
 			<div className="HomePageouter">
-				<Header></Header>
+				<Header enrolledCourses={this.props.state.enrolledCourses}></Header>
 
                 <div id="posts">
                     
