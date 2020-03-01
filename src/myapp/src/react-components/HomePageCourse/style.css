@@ -32,7 +32,7 @@
 }
 
 
-.HomePageButton {
+.HomePageJoinButton {
 	width: 100%;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -46,10 +46,42 @@
 	transition: background-color 0.5s;
 }
 
-.HomePageButton:hover {
+.HomePageJoinButton:hover {
 	background-color: orange;
 }	
 
-.HomePageButton:focus {
+.HomePageJoinButton:focus {
 	outline: none;
-}	
+}
+
+
+/* We have Joined in this course, cannot join in again*/
+.HomePageJoinButton[value = true] {
+	background-color: gray;
+}
+
+.HomePageDropButton {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	color: white;
+	background-color: black;
+	border: none;
+	border-radius: 5px;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: 400;
+	transition: background-color 0.5s;
+}
+
+.HomePageDropButton:hover {
+	background-color: orange;
+}
+
+.HomePageDropButton:focus {
+	outline: none;
+}
+
+.HomePageDropButton[value = false] {
+	background-color: gray;
+}
