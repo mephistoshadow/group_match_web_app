@@ -50,8 +50,8 @@ class PostPage extends React.Component {
 					</div> 
 					<div className="Stats">
 						<ul> 
-							<li className="profilenumber">First Name:<input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
-							<li className="profilenumber">Last Name: <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li> 
+							<li className="profilenumber">Name:<input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
+							<li className="profilenumber">Email: <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li> 
 							<li className="profilenumber">Current Course:<span className="profileStatsNumber">CSC309</span></li>
 							<li className="profilenumber">Past Course:<span className="profileStatsNumber">CSC121 CSC100</span></li>
 							<li className="profilenumber">Short Message <textarea className="PostPageMessage" type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
