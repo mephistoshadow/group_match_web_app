@@ -2,6 +2,7 @@
 import './profile.css';
 import React from "react";
 import Header from "../Header/index"
+import { Link, Redirect } from 'react-router-dom'
 // const log = console.log
 // let state = 0;
 
@@ -24,11 +25,56 @@ class Profile extends React.Component {
    constructor(props) {
     super(props);
       this.state = {
-		  pop: false
+		  newName:"",
+          newEmail:"",
+          newYear:"",
+          newPassword:""
       }
-     // const { state, app} = this.props;
-
    }
+
+    handleNChange= (event) => {
+         this.setState({newName: event.target.value});
+         console.log()
+    }
+
+    handleEChange= (event) => {
+         this.setState({newEmail: event.target.value});
+    }
+    handleYChange= (event) => {
+         this.setState({newYear: event.target.value});
+    }
+    handlePChange= (event) => {
+         this.setState({newPassword: event.target.value});
+    }
+
+    update = () => {
+         const user = this.props.app;
+         const array = user.state.students;
+         for(let i =0; i < array.length; i ++) {
+            if(array[i].id == this.props.state.students[2].id) {
+                if(this.state.newName){
+                     array[i].name = this.state.newName;
+                }
+                 if(this.state.newEmail){
+                     array[i].Email = this.state.newEmail;
+                }
+                if(this.state.newPassword){
+                     array[i].password = this.state.newPassword;
+                }
+                if(this.state.newYear){
+                     array[i].year = this.state.newYear;
+                }
+                this.setState({
+                    students:array
+                })
+            }
+         }
+
+    }
+
+    jump = () => {
+         return <Redirect to='/adminUser'/>;
+    }
 
   show= (e) => {
         if (!e) {
@@ -52,9 +98,12 @@ class Profile extends React.Component {
 
 
     render() {
+        const jump = () => {
+         return <Redirect to='/adminUser'/>;
+         }
         return (
             <div>
-            <Header enrolledCourses={this.props.state.enrolledCourses}></Header>
+           
             <div className = "profilecard">
                 <div className = "profileicon">
                     <a className="usericon" href="">
@@ -63,17 +112,22 @@ class Profile extends React.Component {
                 </div>
                 <div className="Stats">
                     <ul>
-                        <li className = "profilenumber">Id: <span  className="profileStatsNumber">1</span> </li>
-                        <li className = "profilenumber">Name:<span  className="profileStatsNumber">Pikachu</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
-                        <li className = "profilenumber">Email:<span  className="profileStatsNumber">Pikachu@gmail.com</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
-                        <li className = "profilenumber">Year:<span  className="profileStatsNumber">two</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
-                        <li className = "profilenumber">Current Course:<span className="profileStatsNumber">CSC309</span></li>
-                        <li className = "profilenumber">Past Course:<span className="profileStatsNumber">CSC121 CSC100</span></li>
-                        <li className = "profilenumber">Password:<span  className="profileStatsNumber">12345678</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
+                        <li className = "profilenumber">Id: <span  className="profileStatsNumber">{this.props.state.students[2].id}</span> </li>
+                        <li className = "profilenumber">Name:<span  className="profileStatsNumber">{this.props.state.students[2].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
+                        <li className = "profilenumber">Email:<span  className="profileStatsNumber">{this.props.state.students[2].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
+                        <li className = "profilenumber">Year:<span  className="profileStatsNumber">{this.props.state.students[2].year}</span> <input type="text" value={this.state.newYear} onChange={this.handleYChange} /></li>
+                        <li className = "profilenumber">Current Course:<span className="profileStatsNumber">{this.props.state.students[2].current_courses.map(courses => (
+                    courses)) + " "}</span></li>
+                        <li className = "profilenumber">Past Course:<span className="profileStatsNumber">{this.props.state.students[2].past_courses.map(courses => (
+                    courses)) + " "}</span></li>
+                        <li className = "profilenumber">Password:<span  className="profileStatsNumber">{this.props.state.students[2].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange} /></li>
                     </ul>
                 </div>
                 <div className = "profilebutton">
-                    <a  onclick="showpop()" className= "name">Save Changes</a>
+                    <a  onClick={this.update} className= "name">Save Changes</a>
+                </div>
+                <div className = "profilebutton">
+                    <Link to = '/adminUser' className= "name">jump</Link>
                 </div>
             </div>
             </div>
