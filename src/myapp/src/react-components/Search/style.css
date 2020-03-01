@@ -40,15 +40,6 @@
     border-top: 1px solid #d3d3d3;
 }
 
-.postHeader {
-    font-size: 35px;
-}
-
-.postDesc {
-    margin-top: 20px;
-    font-style: italic;
-}
-
 .filterBar {
     display: inline-block;
     position: absolute;
@@ -91,11 +82,4 @@
 #userSearchBar:focus{
     outline: none;
     border: 1px solid orange;
-}
-
-
-.fa-star {
-    position: absolute;
-    right: 0px;
-    cursor:pointer;
 }

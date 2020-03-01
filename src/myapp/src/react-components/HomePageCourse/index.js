@@ -6,10 +6,6 @@ import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 class HomePageCourse extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			name:'',
-			people: 0
-		}
 	}
 	
 	render() {
