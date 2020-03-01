@@ -18,13 +18,13 @@ class SearchPost extends React.Component {
 			<li>
 				<div className="postHeader">
 					<i className="far fa-user" />
-					<span classNAme="posterName"> {poster_name} </span>
+					<span className="posterName"> {poster_name} </span>
 					<span id ="posterEmail">{poster_email} </span>
 					<i className="far fa-star"/>
 				</div>
 				<div className="postContent">
 					<p className="postDesc"> {poster_content}</p> 
-					<strong class="postInfo">Current Matching Course: 0</strong>
+					<strong className="postInfo">Current Matching Course: 0</strong>
 				</div>
 			</li>
 		)

@@ -1,6 +1,6 @@
 import React from "react";
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'; 
-//import { uid } from "react-uid";
+import { uid } from "react-uid";
 
 import SearchPost from "../SearchPost/index";
 import Header from "../Header/index";
@@ -16,7 +16,8 @@ class Search extends React.Component {
 		this.state = {
 			pop: false,
             addedPost: false,
-            enrolledCourses: this.props.state.enrolledCourses,
+			enrolledCourses: this.props.state.enrolledCourses,
+			current_course: this.props.state.posts.filter((post) => post.name === this.props.state.current_course)[0]
 		}
   
         
@@ -55,7 +56,7 @@ class Search extends React.Component {
         if (this.state.addedPost){
             return <Redirect to='/Post'/>
         }
-        
+		console.log(this.state.current_course.posts)
 		return (
             
 			<div className="HomePageouter">
@@ -68,7 +69,8 @@ class Search extends React.Component {
                     <button id="addPostButton" type="submit" onClick = {this.clickAddPost} >ADD POST</button>
                 
                     <ul id="studentList">
-						{this.props.state.posts.map(post => (<SearchPost post={post} />))}
+						{this.state.current_course.posts.map(post =>
+							(<SearchPost key={uid(post)} post={post} />))}
 					</ul>
                 
                 

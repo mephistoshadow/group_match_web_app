@@ -68,24 +68,35 @@ class App extends React.Component {
 		current_course: 'CSC309',
 		posts: [
 			{
-				name: "happy",
-				email: "happy@mail.utoronto.ca",
-				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem" +
-					"por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
-					" nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a" +
-					"ute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pa" +
-					"riatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mo" +
-					"llit anim id est laborum."
+				name: 'CSC309',
+				posts: [
+					{
+						name: "happy",
+						email: "happy@mail.utoronto.ca",
+						content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem" +
+							"por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
+							" nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a" +
+							"ute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pa" +
+							"riatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mo" +
+							"llit anim id est laborum."
+					},
+					{
+						name: "jerry",
+						email: "jerry@mail.utoronto.ca",
+						content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem" +
+							"por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
+							" nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a" +
+							"ute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pa" +
+							"riatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mo" +
+							"llit anim id est laborum."
+					}
+				]
 			},
 			{
-				name: "jerry",
-				email: "jerry@mail.utoronto.ca",
-				content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem" +
-						"por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
-						" nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a" +
-						"ute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pa" +
-						"riatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mo" +
-						"llit anim id est laborum."
+				name: 'CSC373', posts: []
+			},
+			{
+				name: 'CSC369', posts: []
 			}
 		]
 	}
