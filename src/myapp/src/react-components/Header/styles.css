@@ -104,6 +104,7 @@
 	text-align: center;
 	background-color: #333;
   color: #d3d3d3;
+  cursor: pointer;
 }
 
 #navbarDropdownMenu:hover #navbarDropdownButton {
