@@ -20,7 +20,7 @@ import { Link, Redirect } from 'react-router-dom'
 
 
 
-class Profile extends React.Component {
+class AdminProfile extends React.Component {
 
    constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ class Profile extends React.Component {
           newEmail:"",
           newYear:"",
           newPassword:"",
-          path:"profile"
+           path:"AdminProfile"
       }
    }
 
@@ -52,7 +52,7 @@ class Profile extends React.Component {
          const user = this.props.app;
          const array = user.state.students;
          for(let i =0; i < array.length; i ++) {
-            if(array[i].id == this.props.state.students[1].id) {
+            if(array[i].id == this.props.state.students[0].id) {
                 if(this.state.newName){
                      array[i].name = this.state.newName;
                 }
@@ -113,19 +113,22 @@ class Profile extends React.Component {
                 </div>
                 <div className="Stats">
                     <ul>
-                        <li className = "profilenumber">Id: <span  className="profileStatsNumber">{this.props.state.students[1].id}</span> </li>
-                        <li className = "profilenumber">Name:<span  className="profileStatsNumber">{this.props.state.students[1].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
-                        <li className = "profilenumber">Email:<span  className="profileStatsNumber">{this.props.state.students[1].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
-                        <li className = "profilenumber">Year:<span  className="profileStatsNumber">{this.props.state.students[1].year}</span> <input type="text" value={this.state.newYear} onChange={this.handleYChange} /></li>
-                        <li className = "profilenumber">Current Course:<span className="profileStatsNumber">{this.props.state.students[1].current_courses.map(courses => (
-                    courses)) + " "}</span></li>
-                        <li className = "profilenumber">Past Course:<span className="profileStatsNumber">{this.props.state.students[1].past_courses.map(courses => (
-                    courses)) + " "}</span></li>
-                        <li className = "profilenumber">Password:<span  className="profileStatsNumber">{this.props.state.students[1].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange} /></li>
+                        <li className = "profilenumber">Id: <span  className="profileStatsNumber">{this.props.state.students[0].id}</span> </li>
+                        <li className = "profilenumber">Name:<span  className="profileStatsNumber">{this.props.state.students[0].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
+                        <li className = "profilenumber">Email:<span  className="profileStatsNumber">{this.props.state.students[0].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
+                        <li className = "profilenumber">Password:<span  className="profileStatsNumber">{this.props.state.students[0].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange} /></li>
+                        <li className = "profilenumber">Number of students:<span  className="profileStatsNumber">{this.props.state.students.length-1}</span></li>
+                         <li className = "profilenumber">Number of Courses:<span  className="profileStatsNumber">{this.props.state.courses.length}</span></li>
                     </ul>
                 </div>
-                <div className = "profilebutton">
+                <div className = "adminbutton">
                     <a  onClick={this.update} className= "name">Save Changes</a>
+                </div>
+                <div className = "adminbutton">
+                    <Link to = '/adminUser' className= "name">Go change users</Link>
+                </div>
+                 <div className = "adminbutton">
+                    <Link to = '/adminCourse' className= "name">Go change Courses</Link>
                 </div>
             </div>
             </div>
@@ -137,6 +140,6 @@ class Profile extends React.Component {
 }
 
 
-export default Profile;
+export default AdminProfile;
 
 

@@ -11,6 +11,7 @@ import HomePage from './react-components/HomePage/HomePage'
 import Profile from './react-components/Profile/profile'
 import Search from './react-components/Search/Search'
 import PostPage from './react-components/PostPage/PostPage'
+import AdminProfile from './react-components/AdminProfile/adminProfile'
 
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import React from 'react';
@@ -31,22 +32,24 @@ class App extends React.Component {
 		students: [
 			{ id: 1,
 			  name: "admin",
-			  password: "12345",
-        Email:"admin@mail.utoronto.ca",
+			  password: "admin",
+        	  Email:"admin@mail.utoronto.ca",
 			  current_courses: [],
 			  past_courses: []
 			},
       { id: 2,
         name: "user",
         password: "12345",
+        year:1,
         Email:"user@mail.utoronto.ca",
-        current_courses: [],
-        past_courses: []
+        current_courses:["CSC373","CSC301"],
+		past_courses: ["CSC369","CSC301","CSC401"]
       },
 			{
 			  id: 3,
 			  name: "happy",
         Email:"happy@mail.utoronto.ca",
+        year:2,
 			  password: "1235",
 			  current_courses:["CSC373","CSC301"],
 			  past_courses: ["CSC369","CSC301","CSC401"]
@@ -54,7 +57,8 @@ class App extends React.Component {
 			{
 			  id: 4,
 			  name: "jerry",
-        Email:"user@mail.utoronto.ca",
+       		  Email:"user@mail.utoronto.ca",
+        	  year:3,
 			  password: "user",
 			  current_courses: ["CSC373,CSC309,CSC369"],
 			  past_courses: []
@@ -78,6 +82,8 @@ class App extends React.Component {
 						(<Course state={this.state} app={this} />)} />
 					<Route exact path='/Profile' render={() =>
 						(<Profile state={this.state} app={this} />)} />
+						<Route exact path='/AdminProfile' render={() =>
+						(<AdminProfile state={this.state} app={this} />)} />
                     <Route exact path='/Search' render={() =>
 						(<Search state={this.state} app={this} />)} />
 					<Route exact path='/Post' render={() =>

@@ -3,6 +3,7 @@ import React from 'react'
 import './styles.css'
 
 import { openHamburgerMenu, closeHamburgerMenu } from './hamburgerMenuActions'
+import { Link, Redirect } from 'react-router-dom'
 
 class Header extends React.Component {
 	constructor(props) {
@@ -37,7 +38,7 @@ class Header extends React.Component {
 			<div id="header">
 				<div id="hamburgerMenu" ref="hamburgerMenu">
 			        <div className="hamburgerContent">
-			            <a href="#">Profile</a>
+			            <Link to = {'/' + this.props.path}>Profile</Link>
 			            <a href="#">Logout</a>
 			        </div>
 			    </div>

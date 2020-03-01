@@ -25,6 +25,7 @@ class Course extends React.Component {
     super(props);
       this.state = {
         pop: false,
+         path:"AdminProfile"
     }
      // const { state, app} = this.props;
 
@@ -54,7 +55,7 @@ class Course extends React.Component {
     render() {
         return (
             <div>
-            <Header enrolledCourses={this.props.state.enrolledCourses}></Header> 
+            <Header enrolledCourses={this.props.state.enrolledCourses} path={this.state.path}/>
         <div className = "card">
             <div className="header">
                Courses
