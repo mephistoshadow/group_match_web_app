@@ -67,12 +67,20 @@ class PostPage extends React.Component {
 	}
 
 	render() {	
+		// We need server call here to read current student name
+		// And to get user lists, courses lists and other data stored
+		// in current user
+
+		const cur_student_name = 'user'
+		const current_student = getObjectByName(this.props.state.students, cur_student_name)
+		const current_courses = current_student.current_courses
+
 		if (this.state.post) {
 			return <Redirect to='/search'/>
 		}
 		return (
 			<div>
-				<Header enrolledCourses={this.props.state.enrolledCourses}></Header>
+				<Header enrolledCourses={current_courses} path='user-profile'></Header>
 				<h2 className="h2Header">Create a Post</h2>
 				<div className="profileCard">
 					<div className="profileIcon">
