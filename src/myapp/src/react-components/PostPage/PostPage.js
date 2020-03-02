@@ -21,25 +21,7 @@ class PostPage extends React.Component {
 
 	}
 
-	show = (e) => {
-		if (!e) {
-			return null;
-		}
 
-		return (
-		<div className="popup">
-			<div className="cross" onClick={this.closepop}>
-			<i className="fa fa-times-circle"></i>
-			</div>
-			<span className="popupcontent">Changes Saved!</span>
-			</div>
-	);
-}
-
-	closepop = () => {
-		this.props.app.setState({ pop: false });
-		console.log(this.state.pop);
-	}
 
 	handleId = () => {
 		const current_user = this.props.state.current_user
@@ -60,7 +42,8 @@ class PostPage extends React.Component {
 		this.setState({ content: event.target.value})
 	}
 
-
+	// For this update, we need server call to write data into server
+	// Specifically, we need to write the new post into Data of posts
 	update = () => {
 		const total_posts = this.props.state.posts
 		const current_course = this.props.state.current_course
