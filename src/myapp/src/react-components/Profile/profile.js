@@ -29,7 +29,7 @@ class Profile extends React.Component {
           newEmail:"",
           newYear:"",
           newPassword:"",
-          path:"profile"
+          path:"user-profile"
       }
    }
 
@@ -47,7 +47,8 @@ class Profile extends React.Component {
     handlePChange= (event) => {
          this.setState({newPassword: event.target.value});
     }
-
+    // here we need the server call to get the user and store the updated information to 
+    // the server side.
     update = () => {
          const user = this.props.app;
          const array = user.state.students;
@@ -65,8 +66,9 @@ class Profile extends React.Component {
                 if(this.state.newYear){
                      array[i].year = this.state.newYear;
                 }
-                this.setState({
-                    students:array
+                user.setState({
+                    students:array,
+                    pop:true
                 })
             }
          }
@@ -122,8 +124,10 @@ class Profile extends React.Component {
                         <li>Password: <span>{this.props.state.students[1].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange}/></li>
                     </ul>
                     <button onClick={this.update} className="homeButton">SAVE CHANGES</button>
+                    <span>More Options: <strong><Link to="/dashboard">Dashboard</Link></strong></span>
                 </div>
             </div>
+             {this.show(this.props.state.pop)}
             </div>
         );
     }

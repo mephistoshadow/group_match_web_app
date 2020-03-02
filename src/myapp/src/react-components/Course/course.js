@@ -25,7 +25,7 @@ class Course extends React.Component {
     super(props);
       this.state = {
         pop: false,
-         path:"AdminProfile"
+         path:"admin-profile"
     }
      // const { state, app} = this.props;
 

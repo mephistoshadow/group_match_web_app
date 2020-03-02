@@ -13,7 +13,7 @@ class User extends React.Component {
    constructor(props) {
     super(props);
       this.state = {
-        path:"AdminProfile"
+        path:"admin-profile"
     }
      // const { state, app} = this.props;
      // console.log(this.props);

@@ -29,7 +29,7 @@ class AdminProfile extends React.Component {
           newEmail:"",
           newYear:"",
           newPassword:"",
-           path:"AdminProfile"
+           path:"admin-profile"
       }
    }
 
@@ -47,7 +47,8 @@ class AdminProfile extends React.Component {
     handlePChange= (event) => {
          this.setState({newPassword: event.target.value});
     }
-
+    // here we need a server call to find the admin and update it's value then
+    // store it to server.
     update = () => {
          const user = this.props.app;
          const array = user.state.students;
@@ -65,9 +66,11 @@ class AdminProfile extends React.Component {
                 if(this.state.newYear){
                      array[i].year = this.state.newYear;
                 }
-                this.setState({
-                    students:array
+                user.setState({
+                    students:array,
+                    pop:true
                 })
+                console.log(user);
             }
          }
 
@@ -124,6 +127,7 @@ class AdminProfile extends React.Component {
                     <span>More Options: <strong><Link to="/admin-user">Manage Users</Link></strong> <strong><Link to="/admin-course">Manage Courses</Link></strong></span>
                 </div>
             </div>
+             {this.show(this.props.state.pop)}
             </div>
         
         );
