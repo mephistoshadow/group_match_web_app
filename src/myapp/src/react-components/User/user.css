@@ -14,18 +14,6 @@ body {
    width: 90%;
 }
 
-.card {
-  
-  position: relative;
-  min-height: 550px;
-  width: 1170px;
-  margin-top: 20px;
-  margin-left: 70px;
-  margin-right: 70px;
-  margin-bottom: 74px;
-  transition: margin-left .5s;
-  overflow:auto
-}
 
 .Userheader{
   margin-top: 20px;
@@ -43,17 +31,6 @@ body {
   margin-top: 10px;
   width: 200px;
   margin-left:10px;
-}
-.profileStatsNumber {
-  margin-left: 10px;
-}
-
-.number {
-  transition: transform .3s;
-}
-.number:hover{
-  color: orange;
-  transform: scale(1.05,1.05);
 }
 
 .button {
