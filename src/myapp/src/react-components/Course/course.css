@@ -102,11 +102,6 @@ body {
   list-style: none; 
 }
 
-
-.profileStatsNumber {
-  margin-left: 10px;
-}
-
 .number {
   transition: transform .3s;
 }

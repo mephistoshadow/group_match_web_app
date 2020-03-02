@@ -9,8 +9,7 @@ class Header extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			hamburgerMenuIsOpen: false
-                
+			hamburgerMenuIsOpen: false 
 		}
 	}
 
@@ -28,7 +27,7 @@ class Header extends React.Component {
 
 	getNavbarDropdownCourses() {
         const navbarDropdownCourses = this.props.enrolledCourses.map(function(course) {
-			return <Link to="/search"  className="navbarDropdownCourse">{course}</Link>
+			return <Link to="/search" className="navbarDropdownCourse">{course}</Link>
 		})
 
 		return navbarDropdownCourses;
@@ -43,8 +42,7 @@ class Header extends React.Component {
             notifCounter.style.display = "none"
             notifBell.style.color = "#FFF"
         
-        }
-        else{
+        } else{
             notifCounter.style.display = "visible"
             notifBell.style.color = "orange"
         }
@@ -63,8 +61,8 @@ class Header extends React.Component {
 			<div id="header">
 				<div id="hamburgerMenu" ref="hamburgerMenu">
 			        <div className="hamburgerContent">
-			            <Link to = {'/' + this.props.path}>Profile</Link>
-			            <a href="#">Logout</a>
+			            <Link to={"/" + this.props.path}>Profile</Link>
+			            <a href="">Logout</a>
 			        </div>
 			    </div>
 
@@ -74,7 +72,7 @@ class Header extends React.Component {
 			        </a>
 
 			        <div className="hamburgerContent">
-			             <Link to = {'/' + this.props.path} className="far fa-user-circle"></Link>
+			             <Link to={"/" + this.props.path} className="far fa-user-circle"></Link>
 			            <a href="#"><i className="fas fa-sign-out-alt"></i></a>
 			        </div>
 			    </div>

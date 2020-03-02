@@ -21,6 +21,26 @@ class PostPage extends React.Component {
 
 	}
 
+	show = (e) => {
+		if (!e) {
+			return null;
+		}
+
+		return (
+		<div className="popup">
+			<div className="cross" onClick={this.closepop}>
+			<i className="fa fa-times-circle"></i>
+			</div>
+			<span className="popupcontent">Changes Saved!</span>
+			</div>
+	);
+}
+
+	closepop = () => {
+		this.props.app.setState({ pop: false });
+		console.log(this.state.pop);
+	}
+
 	handleId = () => {
 		const current_user = this.props.state.current_user
 		const user_list = this.props.state.students
@@ -40,8 +60,7 @@ class PostPage extends React.Component {
 		this.setState({ content: event.target.value})
 	}
 
-	// For this update, we need server call to write data into server
-	// Specifically, we need to write the new post into Data of posts
+
 	update = () => {
 		const total_posts = this.props.state.posts
 		const current_course = this.props.state.current_course
@@ -72,24 +91,21 @@ class PostPage extends React.Component {
 		return (
 			<div>
 				<Header enrolledCourses={this.props.state.enrolledCourses}></Header>
-				<div className="profilecard">
-					<h2 className="PostPageTitle"> Make a Post to Current Course </h2>
-					<div className="profileicon">
-						<a className="usericon" href="">
+				<h2 className="h2Header">Create a Post</h2>
+				<div className="profileCard">
+					<div className="profileIcon">
 						<i className="fa fa-user-circle"></i>
-						</a>
 					</div> 
-					<div className="Stats">
+					<div className="inputList">
 						<ul> 
-							<li className="profilenumber">Name:<input type="text" value={this.state.name} onChange={this.handleName} /></li>
-							<li className="profilenumber">Email: <input type="text" value={this.state.email} onChange={this.handleEmail} /></li> 
-							<li className="profilenumber">Current Course:<span className="profileStatsNumber">CSC309</span></li>
-							<li className="profilenumber">Past Course:<span className="profileStatsNumber">CSC121 CSC100</span></li>
-							<li className="profilenumber">Short Message <textarea className="PostPageMessage" type="text" value={this.state.content} onChange={this.handleContent} /></li>
+							<li>Name:<input type="text" value={this.state.name} onChange={this.handleName} /></li>
+							<li>Email: <input type="text" value={this.state.email} onChange={this.handleEmail} /></li> 
+							<li>Current Course(s): CSC309</li>
+							<li>Past Course(s): CSC121, CSC100</li>
+							<li>Short Message <textarea className="postPageMessageInput" type="text" value={this.state.content} onChange={this.handleContent} /></li>
 						</ul>
-					</div>
-					<div className="profilebutton">
-						<a onClick= {this.update} className="name">Post</a>
+
+						<button className="homeButton" onClick= {this.update}>POST</button>
 					</div>
 				</div>
 			</div>

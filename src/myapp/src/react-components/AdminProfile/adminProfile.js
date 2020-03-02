@@ -48,7 +48,6 @@ class AdminProfile extends React.Component {
          this.setState({newPassword: event.target.value});
     }
 
-    // here we need a server call to get the admin and update the profile information
     update = () => {
          const user = this.props.app;
          const array = user.state.students;
@@ -101,35 +100,28 @@ class AdminProfile extends React.Component {
 
     render() {
         const jump = () => {
-         return <Redirect to='/adminUser'/>;
-         }
+            return <Redirect to="/admin-user"/>;
+        }
+
         return (
             <div>
             <Header enrolledCourses={this.props.state.enrolledCourses} path={this.state.path}/>
-            <div className = "profilecard">
-                <div className = "profileicon">
-                    <a className="usericon" href="">
+            <h2 className="h2Header">Admin Profile Page</h2>
+            <div className = "profileCard">
+                <div className = "profileIcon">
                     <i className="far fa-user"></i>
-                    </a>
                 </div>
-                <div className="Stats">
+                <div className="inputList">
                     <ul>
-                        <li className = "profilenumber">Id: <span  className="profileStatsNumber">{this.props.state.students[0].id}</span> </li>
-                        <li className = "profilenumber">Name:<span  className="profileStatsNumber">{this.props.state.students[0].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
-                        <li className = "profilenumber">Email:<span  className="profileStatsNumber">{this.props.state.students[0].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
-                        <li className = "profilenumber">Password:<span  className="profileStatsNumber">{this.props.state.students[0].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange} /></li>
-                        <li className = "profilenumber">Number of students:<span  className="profileStatsNumber">{this.props.state.students.length-1}</span></li>
-                         <li className = "profilenumber">Number of Courses:<span  className="profileStatsNumber">{this.props.state.courses.length}</span></li>
+                        <li>Id: <span>{this.props.state.students[0].id}</span> </li>
+                        <li>Name: <span>{this.props.state.students[0].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
+                        <li>Email: <span>{this.props.state.students[0].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
+                        <li>Password: <span>{this.props.state.students[0].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange} /></li>
+                        <li>Number of Students: <span>{this.props.state.students.length-1}</span></li>
+                        <li>Number of Courses: <span>{this.props.state.courses.length}</span></li>
+                        <button className="homeButton" onClick={this.update}>SAVE CHANGES</button>
                     </ul>
-                </div>
-                <div className = "profilebutton">
-                    <a  onClick={this.update} className= "name">Save Profile Changes</a>
-                </div>
-                <div className = "profilebutton">
-                    <Link to = '/adminUser' className= "name">Go change users</Link>
-                </div>
-                 <div className = "profilebutton">
-                    <Link to = '/adminCourse' className= "name">Go change Courses</Link>
+                    <span>More Options: <strong><Link to="/admin-user">Manage Users</Link></strong> <strong><Link to="/admin-course">Manage Courses</Link></strong></span>
                 </div>
             </div>
             </div>

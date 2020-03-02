@@ -3,7 +3,6 @@ import './profile.css';
 import React from "react";
 import Header from "../Header/index"
 import { Link, Redirect } from 'react-router-dom'
-import { getObjectById, getObjectByName } from "../../actions/BasicOperation";
 // const log = console.log
 // let state = 0;
 
@@ -49,7 +48,6 @@ class Profile extends React.Component {
          this.setState({newPassword: event.target.value});
     }
 
-    // here we need the server call to update the user's profile information
     update = () => {
          const user = this.props.app;
          const array = user.state.students;
@@ -101,43 +99,32 @@ class Profile extends React.Component {
 
 
     render() {
-        const cur_student_name = 'user'
-        const current_student = getObjectByName(this.props.state.students, cur_student_name)
-        const current_courses = current_student.current_courses
         const jump = () => {
-         return <Redirect to='/adminUser'/>;
-         }
+         return <Redirect to="/admin-user"/>;
+        }
+        
         return (
             <div>
-           <Header enrolledCourses={current_courses} path= {this.state.path}></Header> 
-            <div className = "profilecard">
-                <div className = "profileicon">
-                    <a className="usericon" href="">
+            <Header enrolledCourses={this.props.state.enrolledCourses} path={this.state.path}/>
+            <h2 className="h2Header">User Profile Page</h2>
+            <div className = "profileCard">
+                <div className = "profileIcon">
                     <i className="far fa-user"></i>
-                    </a>
                 </div>
-                <div className="Stats">
+                <div className="inputList">
                     <ul>
-                        <li className = "profilenumber">Id: <span  className="profileStatsNumber">{this.props.state.students[1].id}</span> </li>
-                        <li className = "profilenumber">Name:<span  className="profileStatsNumber">{this.props.state.students[1].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
-                        <li className = "profilenumber">Email:<span  className="profileStatsNumber">{this.props.state.students[1].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
-                        <li className = "profilenumber">Year:<span  className="profileStatsNumber">{this.props.state.students[1].year}</span> <input type="text" value={this.state.newYear} onChange={this.handleYChange} /></li>
-                        <li className = "profilenumber">Current Course:<span className="profileStatsNumber">{this.props.state.students[1].current_courses.map(courses => (
-                    courses)) + " "}</span></li>
-                        <li className = "profilenumber">Past Course:<span className="profileStatsNumber">{this.props.state.students[1].past_courses.map(courses => (
-                    courses)) + " "}</span></li>
-                        <li className = "profilenumber">Password:<span  className="profileStatsNumber">{this.props.state.students[1].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange} /></li>
+                        <li>Id: <span>{this.props.state.students[1].id}</span> </li>
+                        <li>Name: <span>{this.props.state.students[1].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
+                        <li>Email: <span>{this.props.state.students[1].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
+                        <li>Year: <span>{this.props.state.students[1].year}</span> <input type="text" value={this.state.newYear} onChange={this.handleYChange} /></li>
+                        <li>Current Course(s): <span>{this.props.state.students[1].current_courses.join(', ')}</span></li>
+                        <li>Past Course(s): <span>{this.props.state.students[1].past_courses.join(', ')}</span></li>
+                        <li>Password: <span>{this.props.state.students[1].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange}/></li>
                     </ul>
-                </div>
-                <div className = "profilebutton">
-                    <a  onClick={this.update} className= "name">Save Changes</a>
-                </div>
-                 <div className = "profilebutton">
-                    <Link to = '/dashboard' className= "name">Go Dashboard</Link>
+                    <button onClick={this.update} className="homeButton">SAVE CHANGES</button>
                 </div>
             </div>
             </div>
-        
         );
     }
 

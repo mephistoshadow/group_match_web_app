@@ -1,99 +1,68 @@
+.profileCard {
+  border: 1px solid #d3d3d3;
+  padding: 40px;
+  margin-left: 200px;
+  position: relative;
+  width: 60vw;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
 
+.profileIcon {
+  width: auto;
+  display: inline-block;
+}
 
-.profilecard {
-  border-width:5px;  
-  border: 3px solid #d3d3d3;
-  position: absolute;
-  height: 500px;
-  width: 1100px;
-  margin-top: 20px;
+.profileIcon i.far.fa-user {
+  font-size: 8em;
+  color: lightgrey;
+}
+
+.inputList {
+  display: inline-block;
   margin-left: 100px;
-  margin-right: 70px;
-  margin-bottom: 74px;
-	transition: .5s;
 }
 
-.profileicon{
-  float: left;
-/*  margin-top: 20px;*/
-  margin-left: 30px;
-  width: 100px;
+.inputList ul {
+  margin: 0px;
+  padding: 0px;
+  width: 40vw;
 }
 
-.usericon {
-  color: lightgray;
-  font-size: 100px;
-
-}
-
-.Stats{
- margin-left: 150px;
-}
-
-.Stats ul {
-  margin-top: 60px;
-  margin-bottom: 0px;
-}
-.Stats ul li {
-  padding: 15px;
-  margin-right: 10px;
-  font-size: 120%;
+.inputList ul li {
+  padding-left: 0px;
+  padding-bottom: 20px;
+  font-size: 20px;
   font-weight: bold;
-  list-style: none; 
+  list-style: none;
 }
 
-.Statsnumber {
-  margin-left: 30px;
+.inputList ul li input {
+  width: 250px;
+  margin-left: 15px;
+  font-size: 20px;
+  border: 1px solid #d3d3d3;
+  transition: border 0.5s;
 }
 
-
-.text {
-   text-decoration: none;
-   font-size:120%;
-   color: #2d545e;
+.inputList ul li input:focus {
+  outline: none;
+  border: 1px solid orange;
 }
 
-.text:hover{
-  color: orange;
-}
-.profilebutton {
+.profileButton {
   margin-top: 10px;
-    color: white;
-    background-color: orange;
-    border: none;
-    margin-left:700px;
-    width:200px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    
-    cursor: pointer;
-    transition: opacity 0.5s;
-}
-
-.profilebutton a {
   color: white;
-}
-
-.profilebutton:hover {
-    opacity: 70%;
-}
-
-.profilebutton:focus {
-    outline: none;
-}
-
-.profilenumber {
-  transition: transform .3s;
-}
-.profilenumber:hover{
-  color: orange;
-  transform: scale(1.05,1.05);
-}
-
-
-.name{
-  text-decoration: none;
+  background-color: orange;
+  border: none;
+  margin-left:700px;
+  width:200px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.5s;
 }
 
 

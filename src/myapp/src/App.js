@@ -19,16 +19,16 @@ import React from 'react';
 
 class App extends React.Component {
 
-  // we will get the the state set up by using the data from server. ie the courses, students,
-  // and post.
+  // a 'global' state that you can pass through to any child componenets of App.
+  //   In the Routes below they are passed to both the Home and Queue states.
 	state = {
         notificationCounter: 0,
 		countCourse: 3,
 		countStudent: 4,
 		courses: [
-			{ id: 1, name: "CSC373", people: 123 },
-			{ id: 2, name: "CSC309", people: 35 },
-			{ id: 3, name: "CSC369", people: 300 },
+			{ id: 1, name: "CSC373", people: "123" },
+			{ id: 2, name: "CSC309", people: "35" },
+			{ id: 3, name: "CSC369", people: "300" },
 		],
 		students: [
 			{
@@ -45,7 +45,7 @@ class App extends React.Component {
 				password: "user",
 				Email: "user@mail.utoronto.ca",
 				year:1,
-				current_courses: ["CSC373"],
+				current_courses: ["CSC373", "CSC301"],
 				past_courses: ["CSC369", "CSC301", "CSC401"]
 			},
 			{
@@ -69,7 +69,6 @@ class App extends React.Component {
 		],
 		pop: false,
 		enrolledCourses: ['CSC373'],
-		current_user: 'user',
 		current_course: 'CSC309',
 		posts: [
 			{
@@ -114,17 +113,17 @@ class App extends React.Component {
 					<Route exact path="/signup" component={SignUp} />
 					<Route exact path="/dashboard" render={() =>
 						(<HomePage state={this.state} app={this} />)} />
-					<Route exact path='/AdminUser' render={() =>
+					<Route exact path='/admin-user' render={() =>
 						(<User state={this.state} app={this} />)} />
-					<Route exact path='/Admincourse' render={() =>
+					<Route exact path='/admin-course' render={() =>
 						(<Course state={this.state} app={this} />)} />
-					<Route exact path='/Profile' render={() =>
+					<Route exact path='/user-profile' render={() =>
 						(<Profile state={this.state} app={this} />)} />
-						<Route exact path='/AdminProfile' render={() =>
+						<Route exact path='/admin-profile' render={() =>
 						(<AdminProfile state={this.state} app={this} />)} />
-                    <Route exact path='/Search' render={() =>
+                    <Route exact path='/search' render={() =>
 						(<Search state={this.state} app={this} />)} />
-					<Route exact path='/Post' render={() =>
+					<Route exact path='/post' render={() =>
 						(<PostPage state={this.state} app={this} />)} />
 				</Switch>
 				</BrowserRouter>
