@@ -5,6 +5,7 @@ import Card from "../CourseCard/CourseCard"
 import CourseOperation from "../CourseOperation/CourseOperation"
 import { uid } from "react-uid";
 import Header from "../Header/index"
+import { getObjectByName } from "../../actions/BasicOperation";
 
 
 // function showpop() {
@@ -53,9 +54,13 @@ class Course extends React.Component {
 
 
     render() {
+      const cur_student_name = 'user'
+        const current_student = getObjectByName(this.props.state.students, cur_student_name)
+        const current_courses = current_student.current_courses
+
         return (
             <div>
-            <Header enrolledCourses={this.props.state.enrolledCourses} path={this.state.path}/>
+            <Header enrolledCourses={current_courses} path={this.state.path}/>
         <div className = "card">
             <div className="header">
               Courses

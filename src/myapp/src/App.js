@@ -19,8 +19,8 @@ import React from 'react';
 
 class App extends React.Component {
 
-  // a 'global' state that you can pass through to any child componenets of App.
-  //   In the Routes below they are passed to both the Home and Queue states.
+  // here we need the server call that can correct setup the data objects for us to use.
+  // ie courses, students,posts.
 	state = {
         notificationCounter: 0,
 		countCourse: 3,
@@ -45,7 +45,7 @@ class App extends React.Component {
 				password: "user",
 				Email: "user@mail.utoronto.ca",
 				year:1,
-				current_courses: ["CSC373", "CSC301"],
+				current_courses: ["CSC373"],
 				past_courses: ["CSC369", "CSC301", "CSC401"]
 			},
 			{

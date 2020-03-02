@@ -3,6 +3,8 @@ import './profile.css';
 import React from "react";
 import Header from "../Header/index"
 import { Link, Redirect } from 'react-router-dom'
+import { getObjectByName } from "../../actions/BasicOperation";
+
 // const log = console.log
 // let state = 0;
 
@@ -104,10 +106,13 @@ class Profile extends React.Component {
         const jump = () => {
          return <Redirect to="/admin-user"/>;
         }
+        const cur_student_name = 'user'
+        const current_student = getObjectByName(this.props.state.students, cur_student_name)
+        const current_courses = current_student.current_courses
         
         return (
             <div>
-            <Header enrolledCourses={this.props.state.enrolledCourses} path={this.state.path}/>
+            <Header enrolledCourses={current_courses} path={this.state.path}/>
             <h2 className="h2Header">User Profile Page</h2>
             <div className = "profileCard">
                 <div className = "profileIcon">
