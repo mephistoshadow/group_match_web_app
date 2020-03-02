@@ -1,5 +1,5 @@
 
-import './profile.css';
+import '../Profile/profile.css';
 import React from "react";
 import Header from "../Header/index"
 import { Link, Redirect } from 'react-router-dom'
@@ -121,16 +121,16 @@ class AdminProfile extends React.Component {
                          <li className = "profilenumber">Number of Courses:<span  className="profileStatsNumber">{this.props.state.courses.length}</span></li>
                     </ul>
                 </div>
-                <div className = "adminbutton">
+                <div className = "profilebutton">
                     <a  onClick={this.update} className= "name">Save Changes</a>
                 </div>
-                <div className = "adminbutton">
+                <div className = "profilebutton">
                     <Link to = '/adminUser' className= "name">Go change users</Link>
                 </div>
-                 <div className = "adminbutton">
+                 <div className = "profilebutton">
                     <Link to = '/adminCourse' className= "name">Go change Courses</Link>
                 </div>
-                <div className = "adminbutton">
+                <div className = "profilebutton">
                     <Link to = '/dashboard' className= "name">dashboard</Link>
                 </div>
             </div>

@@ -98,7 +98,7 @@ body {
 .profileStats ul li {
   padding: 5px;
   font-size: 120%;
-  /*font-weight: bold;*/
+  font-weight: bold;
   list-style: none; 
 }
 
