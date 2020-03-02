@@ -32,7 +32,7 @@ class HomePage extends React.Component {
 
 		return (
 			<div className="homePageContainer"> 
-				<Header enrolledCourses={current_courses} path='profile'></Header> 
+				<Header enrolledCourses={current_courses} path='user-profile'></Header> 
 				<h2 className="h2Header">Manage Your Courses Below</h2>
 				<div className="homePageCourseContainer">
 					{this.props.state.courses.map(course =>
