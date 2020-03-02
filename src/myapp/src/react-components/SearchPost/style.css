@@ -22,8 +22,16 @@
 	margin-left: 20px
 }
 
-.fa-star {
+.fa-star.noMatch {
 	position: absolute;
+	color: black;
+	right: 0px;
+	cursor: pointer;
+}
+
+.fa-star.match {
+	position: absolute;
+	color: orange;
 	right: 0px;
 	cursor: pointer;
 }
