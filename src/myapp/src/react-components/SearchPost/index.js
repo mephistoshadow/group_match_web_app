@@ -18,27 +18,35 @@ class SearchPost extends React.Component {
 	}
 
 	render() {
-		const poster_name = this.props.post.name
-		const poster_email = this.props.post.email
-		const poster_content = this.props.post.content
+		const postId = this.props.post.id
+		const postName = this.props.post.name
+		const postEmail = this.props.post.email
+		const postMessage = this.props.post.content
+		
+		const isAuthored = this.props.post.isAuthored
+		const isMatch = this.state.isMatch
 
-		let star;
-		if (this.state.isMatch) {
-			star = <i className="fas fa-star match" onClick={this.match.bind(this)}></i>
+		let symbol;
+		if (isAuthored) {
+			symbol = <i className="fas fa-trash-alt" onClick={e => this.props.clickRemovePost(postId)}></i>
 		} else {
-			star = <i className="far fa-star noMatch" onClick={this.match.bind(this)}></i>
+			if (isMatch) {
+				symbol = <i className="fas fa-star match" onClick={this.match.bind(this)}></i>
+			} else {
+				symbol = <i className="far fa-star noMatch" onClick={this.match.bind(this)}></i>
+			}
 		}
 
 		return (
 			<li>
 				<div className="postHeader">
 					<i className="far fa-user" />
-					<span className="posterName"> {poster_name} </span>
-					<span className="posterEmail">{poster_email} </span>
-					{star}
+					<span className="posterName"> {postName} </span>
+					<span className="posterEmail">{postEmail} </span>
+					{symbol}
 				</div>
 				<div className="postContent">
-					<p className="postDesc"> {poster_content}</p>
+					<p className="postDesc"> {postMessage}</p>
 					<strong className="postInfo">Current Matching Course: 0</strong>
 				</div>
 			</li>

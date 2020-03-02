@@ -75,8 +75,10 @@ class App extends React.Component {
 				name: 'CSC309',
 				posts: [
 					{
+						id: 1,
 						name: "happy",
 						email: "happy@mail.utoronto.ca",
+						isAuthored: false,
 						content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem" +
 							"por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
 							" nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a" +
@@ -85,8 +87,10 @@ class App extends React.Component {
 							"llit anim id est laborum."
 					},
 					{
+						id: 2,
 						name: "jerry",
 						email: "jerry@mail.utoronto.ca",
+						isAuthored: false,
 						content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem" +
 							"por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
 							" nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a" +
