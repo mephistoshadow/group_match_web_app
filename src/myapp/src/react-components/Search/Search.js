@@ -56,6 +56,7 @@ class Search extends React.Component {
         if (this.state.addedPost){
             return <Redirect to='/Post'/>
         }
+
 		console.log(this.state.current_course.posts)
 		return (
             
@@ -104,8 +105,12 @@ class Search extends React.Component {
                     </div>
                     
                     <div className="filterCriteria">
-                        <input type="checkbox" name="commuter"></input>
-                        <label htmlFor="commuter">Commuter</label>
+
+                        <div className="filterItem">
+                            <input type="checkbox" name="commuter"></input>
+                            <label htmlFor="commuter">Commuter</label>
+                        </div>
+                        
                     </div>
                     
                 </div>

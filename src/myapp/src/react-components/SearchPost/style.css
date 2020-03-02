@@ -1,25 +1,23 @@
 
 .postHeader {
-    font-size: 35px;
+    font-size: 30px;
 }
 
-
 .postDesc {
+	font-size: 18px;
     margin-top: 20px;
     font-style: italic;
 }
 
-
 .posterName {
 	display: inline-block;
-	margin: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
-#posterEmail {
+.posterEmail {
 	display: inline-block;
-	font-size: 25px;
 	color: gray;
-	margin-left: 20px
 }
 
 .fa-star.noMatch {

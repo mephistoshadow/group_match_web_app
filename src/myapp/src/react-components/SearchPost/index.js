@@ -34,7 +34,7 @@ class SearchPost extends React.Component {
 				<div className="postHeader">
 					<i className="far fa-user" />
 					<span className="posterName"> {poster_name} </span>
-					<span id ="posterEmail">{poster_email} </span>
+					<span className="posterEmail">{poster_email} </span>
 					{star}
 				</div>
 				<div className="postContent">

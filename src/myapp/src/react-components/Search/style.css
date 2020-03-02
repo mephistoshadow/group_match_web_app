@@ -49,6 +49,7 @@
 }
 
 .filterBarTitle {
+    padding-top: 10px;
     padding-bottom: 10px;
     display: inline-block;
     width: 100%;
@@ -57,12 +58,18 @@
 }
 
 .filterCriteria {
-    padding: 10px 0px;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-top: 1px solid #d3d3d3;
 }
 
 .filterItem {
     padding-bottom: 20px;
+}
+
+.filterItem input {
+    margin-right: 10px;
 }
 
 .filterItem:last-child {
