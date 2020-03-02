@@ -26,9 +26,9 @@ class App extends React.Component {
 		countCourse: 3,
 		countStudent: 4,
 		courses: [
-			{ id: 1, name: "CSC373", people: "123" },
-			{ id: 2, name: "CSC309", people: "35" },
-			{ id: 3, name: "CSC369", people: "300" },
+			{ id: 1, name: "CSC373", people: 123 },
+			{ id: 2, name: "CSC309", people: 35 },
+			{ id: 3, name: "CSC369", people: 300 },
 		],
 		students: [
 			{
