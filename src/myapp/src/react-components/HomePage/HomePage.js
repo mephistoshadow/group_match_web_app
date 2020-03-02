@@ -5,7 +5,7 @@ import { uid } from "react-uid";
 import HomePageCourse from "../HomePageCourse/index";
 import Header from "../Header/index";
 import { getObjectById, getObjectByName } from "../../actions/BasicOperation";
-
+import { joinCourse, dropCourse } from "../../actions/HomePage";
 import './style.css';
 
 
@@ -39,7 +39,7 @@ class HomePage extends React.Component {
 		this.props.app.setState({ pop: false });
 		console.log(this.state.pop);
 	}
-
+	/*
 	dropCourse(courseName) {
 		const newEnrolledCourses = this.state.enrolledCourses.filter(function(course) {
 			return course != courseName
@@ -50,28 +50,41 @@ class HomePage extends React.Component {
 		})
 	}
 
-	joinCourse(courseName) {
-		const newEnrolledCourses = this.state.enrolledCourses.concat([courseName])
+	joinCourse(state, courseName) {
+		const cur_student_name = 'user'
+		const studentsList = state.props.state.students
+		const student = getObjectByName(state.props.state.students, cur_student_name)
 
-		this.setState({
-			enrolledCourses: newEnrolledCourses
-		})
-	}
+		console.log(student)
+		
+		const newStudentsList = studentsList.splice(studentsList.indexOf(student), 1)
+
+		student.current_courses.push(courseName)
+		console.log(student)
+		console.log(studentsList)
+		
+		state.setState({ students: studentsList })
+		console.log(state.props.state.students)
+	}*/
 
 	render() {
+		const cur_student_name = 'user'
+		const current_student = getObjectByName(this.props.state.students, cur_student_name)
+		const current_courses = current_student.current_courses
+		
 		return (
 			<div className="homePageContainer"> 
-				<Header enrolledCourses={this.state.enrolledCourses}></Header> 
+				<Header enrolledCourses={current_courses} path='profile'></Header> 
 			<h2 className="homePageTitle">Manage Your Courses Below</h2>
 				<div className="homePageCourseContainer">
 					{this.props.state.courses.map(course =>
-						(<HomePageCourse 
+						(<HomePageCourse
 							key={uid(course)}
 							course={course}
 							student={this.props.state.students}
-							enrolledCourses={this.state.enrolledCourses}
-							joinCourse={this.joinCourse.bind(this)}
-							dropCourse={this.dropCourse.bind(this)}>
+							enrolledCourses={current_courses}
+							joinCourse={() => joinCourse(this, current_student, course)}
+							dropCourse={() => dropCourse(this, current_student, course)}>
 							</HomePageCourse>)
 				)} 
 				</div>
