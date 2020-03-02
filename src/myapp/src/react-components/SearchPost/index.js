@@ -24,9 +24,9 @@ class SearchPost extends React.Component {
 
 		let star;
 		if (this.state.isMatch) {
-			star = <i className="fas fa-star" onClick={this.match.bind(this)}></i>
+			star = <i className="fas fa-star match" onClick={this.match.bind(this)}></i>
 		} else {
-			star = <i className="far fa-star" onClick={this.match.bind(this)}></i>
+			star = <i className="far fa-star noMatch" onClick={this.match.bind(this)}></i>
 		}
 
 		return (

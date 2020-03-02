@@ -124,6 +124,7 @@
   display: inline-block;
   color: #d3d3d3;
   cursor: pointer;
+  
 }
 
 /* FONT AWESOME STYLING */
@@ -137,19 +138,29 @@
   color: orange;
 }
 
-.fas.fa-bell:after {
-  content: "2";
-  text-align: center;
-  font-family: "Roboto", sans-serif;
-  font-size: 10px;
+.notificationCounter {
 
-  position: relative;
-  bottom: 12px;
-  right: 5px;
+    color: orange;
+    font-size:15px;
+    position: relative;
+    bottom: 10px;
+    right:5px;
 
-  border-radius: 50%;
-  padding: 2.5px;
-
-  background-color: orange;
-  color: #333;
 }
+
+/*.fas.fa-bell:after {*/
+/*  content: "2";*/
+/*  text-align: center;*/
+/*  font-family: "Roboto", sans-serif;*/
+/*  font-size: 10px;*/
+/**/
+/*  position: relative;*/
+/*  bottom: 12px;*/
+/*  right: 5px;*/
+/**/
+/*  border-radius: 50%;*/
+/*  padding: 2.5px;*/
+/**/
+/*  background-color: orange;*/
+/*  color: #333;*/
+/*}*/

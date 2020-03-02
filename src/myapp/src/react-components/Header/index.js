@@ -33,6 +33,28 @@ class Header extends React.Component {
 		return navbarDropdownCourses;
 	}
 
+
+    handleNotificationCounter = () => {
+        const notifCounter = document.querySelector(".notificationCounter")
+        const notifBell = document.querySelector("#notificationBell").children[0]
+        
+        if (notifCounter.innerText == 0){
+            notifCounter.style.display = "none"
+            notifBell.style.color = "#FFF"
+        
+        }
+        else{
+            notifCounter.style.display = "visible"
+            notifBell.style.color = "orange"
+        }
+        
+    
+    }
+
+    componentDidMount = () => {
+        this.handleNotificationCounter();
+    }
+
 	render() {
 		return(
 			<div id="header">
@@ -68,6 +90,7 @@ class Header extends React.Component {
 
 			        <div id="notificationBell">
 			            <i className="fas fa-bell"></i>
+                        <span className="notificationCounter"> 0 </span>
 			        </div>
 			    </div>
 		    </div>
