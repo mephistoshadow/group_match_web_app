@@ -19,8 +19,8 @@ import React from 'react';
 
 class App extends React.Component {
 
-  // a 'global' state that you can pass through to any child componenets of App.
-  //   In the Routes below they are passed to both the Home and Queue states.
+  // we will get the the state set up by using the data from server. ie the courses, students,
+  // and post.
 	state = {
         notificationCounter: 0,
 		countCourse: 3,

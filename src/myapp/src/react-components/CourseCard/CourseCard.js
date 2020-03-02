@@ -25,6 +25,7 @@ class Card extends React.Component {
      // const { student, usercomponents } = this.props;
    }
 
+    // here we need a server call to delete the course
     delete = (student,user) => {
        const deletestudent = user.state.courses.filter(s => {
         return s !== student;
@@ -42,8 +43,9 @@ class Card extends React.Component {
          // console.log(this.props.usercomponents);
 
     }
+
+    //we will need serve call to update the correspoding courses name.
     updateName = () => {
-       
         const user = this.props.usercomponents;
         const student = this.props.student;
         const array = user.state.courses;

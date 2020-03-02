@@ -36,7 +36,7 @@ class CourseOperation extends React.Component {
     handleSearch= (event) => {
          this.setState({searchId: event.target.value});
     }
-
+    // here we need a server call to add the course .
     addCourse = () => {
           const user = this.props.usercomponents;
          const array = user.state.courses;
@@ -59,7 +59,7 @@ class CourseOperation extends React.Component {
          }
          
     }
-
+    // we need a server call to search course.
     searchCourse = () => {
          const user = this.props.usercomponents;
          const array = user.state.courses;

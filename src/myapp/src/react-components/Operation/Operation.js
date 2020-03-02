@@ -40,6 +40,7 @@ class Operation extends React.Component {
          this.setState({searchId: event.target.value});
     }
 
+    // we need a server call to add the user. get the add the user to server.
     addUser = () => {
           const user = this.props.usercomponents;
          const array = user.state.students;
@@ -61,7 +62,7 @@ class Operation extends React.Component {
          }
          
     }
-
+    // here we need to require a server call to search user from server side.
     search = () => {
          const user = this.props.usercomponents;
          const array = user.state.students;

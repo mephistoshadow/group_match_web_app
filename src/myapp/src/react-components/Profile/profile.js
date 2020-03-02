@@ -49,6 +49,7 @@ class Profile extends React.Component {
          this.setState({newPassword: event.target.value});
     }
 
+    // here we need the server call to update the user's profile information
     update = () => {
          const user = this.props.app;
          const array = user.state.students;

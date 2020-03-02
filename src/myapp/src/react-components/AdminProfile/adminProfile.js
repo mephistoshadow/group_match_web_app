@@ -48,6 +48,7 @@ class AdminProfile extends React.Component {
          this.setState({newPassword: event.target.value});
     }
 
+    // here we need a server call to get the admin and update the profile information
     update = () => {
          const user = this.props.app;
          const array = user.state.students;

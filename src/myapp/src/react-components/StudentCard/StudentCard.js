@@ -46,6 +46,7 @@ class Student extends React.Component {
          this.setState({newPassword: event.target.value});
     }
 
+    // we need a server call to get the user and update name to the server.
     updateName = () => {
        
         const user = this.props.usercomponents;
@@ -67,6 +68,8 @@ class Student extends React.Component {
             }
         } 
     }
+
+     // we need a server call to get the user and update name to the password.
     updatePassword = () => {
        
         const user = this.props.usercomponents;
