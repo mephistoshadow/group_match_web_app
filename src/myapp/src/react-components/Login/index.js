@@ -24,8 +24,13 @@ class Login extends React.Component {
 				password: password,
 				authorized: true,
 			});
-
-			this.props.history.push('/dashboard');
+			if (this.state.username === 'admin') {
+				this.props.history.push('/AdminProfile');
+			}
+			else if (this.state.username === 'user') {
+				this.props.history.push('/dashboard')
+			}
+			
 		}
 	}
 
@@ -40,9 +45,12 @@ class Login extends React.Component {
 	}
 
 	render() {
-		if (this.authorized) {
+		if (this.state.authorized) {
+			if (this.state.username == 'admin') {
+				return <Redirect to='/AdminProfile'/>
+			}
 			return <Redirect to='/dashboard'/>
-		}
+		} 
 
 		return(
 			<div className='homeContainer'>
