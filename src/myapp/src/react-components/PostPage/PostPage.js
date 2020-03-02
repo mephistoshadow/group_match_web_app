@@ -18,10 +18,7 @@ class PostPage extends React.Component {
 			post: false
 		}
 		// const { state, app} = this.props;
-
 	}
-
-
 
 	handleId = () => {
 		const current_user = this.props.state.current_user
@@ -31,45 +28,47 @@ class PostPage extends React.Component {
 	}
 	
 	handleName = (event) => {
-		this.setState({ name: event.target.value})
-
+		this.setState({name: event.target.value})
 	}
+
 	handleEmail = (event) => {
-		this.setState({ email: event.target.value})
+		this.setState({email: event.target.value})
 	}
 
 	handleContent = (event) => {
-		this.setState({ content: event.target.value})
+		this.setState({content: event.target.value})
 	}
 
 	// For this update, we need server call to write data into server
 	// Specifically, we need to write the new post into Data of posts
 	update = () => {
 		const total_posts = this.props.state.posts
-		const current_course = this.props.state.current_course
-		const current_posts = total_posts.filter(p => p.name === current_course)[0]
+		const current_course_name = this.props.state.current_course
+		const current_course = total_posts.filter(p => p.name === current_course_name)[0]
+		const current_posts = current_course.posts
 
-		console.log(current_posts)
 		total_posts.splice(total_posts.indexOf(current_posts), 1)
 
-		const newPost = {
-			id: this.state.id,
+		const new_post = {
+			id: current_posts.length + 1,
 			name: this.state.name,
 			email: this.state.email,
+			isAuthored: true,
 			content: this.state.content
 		}
-		current_posts.posts.push(newPost)
-		total_posts.push(current_posts)
 
-		this.setState({ posts: total_posts })
+		current_posts.push(new_post)
+		total_posts.push(current_course)
+
+		this.setState({posts: total_posts})
 
 		console.log(total_posts[2])
 		this.setState({post: true})
 	}
-	render()
-	{	
+
+	render() {	
 		if (this.state.post) {
-			return <Redirect to='/Search' />
+			return <Redirect to='/search'/>
 		}
 		return (
 			<div>
@@ -81,21 +80,18 @@ class PostPage extends React.Component {
 					</div> 
 					<div className="inputList">
 						<ul> 
-							<li>Name:<input type="text" value={this.state.name} onChange={this.handleName} /></li>
-							<li>Email: <input type="text" value={this.state.email} onChange={this.handleEmail} /></li> 
+							<li>Name:<input type="text" value={this.state.name} onChange={this.handleName}/></li>
+							<li>Email: <input type="text" value={this.state.email} onChange={this.handleEmail}/></li> 
 							<li>Current Course(s): CSC309</li>
 							<li>Past Course(s): CSC121, CSC100</li>
-							<li>Short Message <textarea className="postPageMessageInput" type="text" value={this.state.content} onChange={this.handleContent} /></li>
+							<li>Short Message <textarea className="postPageMessageInput" type="text" value={this.state.content} onChange={this.handleContent}/></li>
 						</ul>
-
 						<button className="homeButton" onClick= {this.update}>POST</button>
 					</div>
 				</div>
 			</div>
-)
-
+		);
 	}
-
 }
 
 export default PostPage;

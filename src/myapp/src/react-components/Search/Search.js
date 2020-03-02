@@ -47,14 +47,28 @@ class Search extends React.Component {
     
     clickAddPost = () => {
         this.setState({addedPost: true})
-        return <Redirect to='/signup'/>
+        //return <Redirect to='/signup'/>
     }
 
+    clickRemovePost = (id) => {
+        const course_posts = this.props.state.posts
+        const current_course = this.state.current_course
+        const current_posts = current_course.posts
+        
+        course_posts.splice(course_posts.indexOf(current_course), 1)
+        const newPosts = current_posts.filter(p => p.id != id)
+        current_course.posts = newPosts
+
+        course_posts.push(current_course)
+
+        this.setState({
+            posts: course_posts
+        })
+    }
     
 	render() {
-
         if (this.state.addedPost){
-            return <Redirect to='/Post'/>
+            return <Redirect to='/post'/>
         }
 
 		console.log(this.state.current_course.posts)
@@ -64,62 +78,47 @@ class Search extends React.Component {
 				<Header enrolledCourses={this.props.state.enrolledCourses} notificationCounter={this.props.state.notificationCounter}></Header>
 
                 <div id="posts">
-                    
-                    <input type="text" id= "userSearchBar" onKeyUp = {this.searchClick}placeholder="Enter a name..."></input>
-                    
-                    <button id="addPostButton" type="submit" onClick = {this.clickAddPost} >ADD POST</button>
-                
+                    <input type="text" id="userSearchBar" onKeyUp = {this.searchClick}placeholder="Enter a name..."></input>
+                    <button id="addPostButton" type="submit" onClick = {this.clickAddPost}>ADD POST</button>
                     <ul id="studentList">
 						{this.state.current_course.posts.map(post =>
-							(<SearchPost key={uid(post)} post={post} />))}
+							(<SearchPost key={uid(post)} post={post} clickRemovePost={this.clickRemovePost.bind(this)}/>))}
 					</ul>
-                
-                
                 </div>
             
                 <div className="filterBar">
                     <strong className="filterBarTitle">FILTER BY</strong>
-                    
                     <div className="filterCriteria">
-                    
                         <div className="filterItem">
                             <input type="checkbox" name="year1"></input>
                             <label htmlFor="year1">First year</label>
                         </div>
-                        
                         <div className="filterItem">
                             <input type="checkbox" name="year2"></input>
                             <label htmlFor="year2">Second year</label>
                         </div>
-                        
                         <div className="filterItem">
                             <input type="checkbox" name="year3"></input>
                             <label htmlFor="year3">Third year</label>
                         </div>
-
                         <div className="filterItem">
                             <input type="checkbox" name="year4"></input>
                             <label htmlFor="year4">Fourth year</label>
                         </div>
-                    
                     </div>
                     
                     <div className="filterCriteria">
-
                         <div className="filterItem">
                             <input type="checkbox" name="commuter"></input>
                             <label htmlFor="commuter">Commuter</label>
                         </div>
-                        
                     </div>
                     
                 </div>
             
-            
 			</div>
-	)
+        );
 	}
-
 }
 
 
