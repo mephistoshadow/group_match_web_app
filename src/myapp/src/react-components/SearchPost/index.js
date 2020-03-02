@@ -6,13 +6,28 @@ import './style.css';
 class SearchPost extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			isMatch: false
+		}
 	}
- 
+
+	match() {
+		this.setState({
+			isMatch: !this.state.isMatch
+		})
+	}
 
 	render() {
 		const poster_name = this.props.post.name
 		const poster_email = this.props.post.email
 		const poster_content = this.props.post.content
+
+		let star;
+		if (this.state.isMatch) {
+			star = <i className="fas fa-star" onClick={this.match.bind(this)}></i>
+		} else {
+			star = <i className="far fa-star" onClick={this.match.bind(this)}></i>
+		}
 
 		return (
 			<li>
@@ -20,10 +35,10 @@ class SearchPost extends React.Component {
 					<i className="far fa-user" />
 					<span className="posterName"> {poster_name} </span>
 					<span id ="posterEmail">{poster_email} </span>
-					<i className="far fa-star"/>
+					{star}
 				</div>
 				<div className="postContent">
-					<p className="postDesc"> {poster_content}</p> 
+					<p className="postDesc"> {poster_content}</p>
 					<strong className="postInfo">Current Matching Course: 0</strong>
 				</div>
 			</li>
