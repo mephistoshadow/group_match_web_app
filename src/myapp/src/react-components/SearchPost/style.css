@@ -27,9 +27,25 @@
 	cursor: pointer;
 }
 
+.fa-star.noMatch:hover {
+    color:orange;
+
+}
+
 .fa-star.match {
 	position: absolute;
 	color: orange;
 	right: 0px;
 	cursor: pointer;
 }
+
+.fa-trash-alt.trash {
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+}
+
+.fa-trash-alt.trash:hover {
+    color:orange;
+}
+
