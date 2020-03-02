@@ -122,16 +122,13 @@ class AdminProfile extends React.Component {
                     </ul>
                 </div>
                 <div className = "profilebutton">
-                    <a  onClick={this.update} className= "name">Save Changes</a>
+                    <a  onClick={this.update} className= "name">Save Profile Changes</a>
                 </div>
                 <div className = "profilebutton">
                     <Link to = '/adminUser' className= "name">Go change users</Link>
                 </div>
                  <div className = "profilebutton">
                     <Link to = '/adminCourse' className= "name">Go change Courses</Link>
-                </div>
-                <div className = "profilebutton">
-                    <Link to = '/dashboard' className= "name">dashboard</Link>
                 </div>
             </div>
             </div>

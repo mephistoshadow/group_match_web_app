@@ -45,7 +45,7 @@ class App extends React.Component {
 				password: "user",
 				Email: "user@mail.utoronto.ca",
 				year:1,
-				current_courses: ["CSC373", "CSC301"],
+				current_courses: ["CSC373"],
 				past_courses: ["CSC369", "CSC301", "CSC401"]
 			},
 			{
