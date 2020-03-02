@@ -4,7 +4,7 @@ import { uid } from "react-uid";
 
 import HomePageCourse from "../HomePageCourse/index";
 import Header from "../Header/index";
-import { getObjectById, getObjectByName } from "../../actions/BasicOperation";
+import { getObjectByName } from "../../actions/BasicOperation";
 import { joinCourse, dropCourse } from "../../actions/HomePage";
 import './style.css';
 
@@ -69,7 +69,7 @@ class HomePage extends React.Component {
 
 	render() {
 		const cur_student_name = 'user'
-		const current_student = getObjectByName(this.props.state.students, cur_student_name)
+		const current_student = getObjectByName(this.props.state.students, 'user')
 		const current_courses = current_student.current_courses
 		
 		return (
