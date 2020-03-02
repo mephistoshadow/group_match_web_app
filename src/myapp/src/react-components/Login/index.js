@@ -25,7 +25,7 @@ class Login extends React.Component {
 				authorized: true,
 			});
 			if (this.state.username === 'admin') {
-				this.props.history.push('/AdminProfile');
+				this.props.history.push('/admin-profile');
 			}
 			else if (this.state.username === 'user') {
 				this.props.history.push('/dashboard')
@@ -48,7 +48,7 @@ class Login extends React.Component {
 	render() {
 		if (this.state.authorized) {
 			if (this.state.username == 'admin') {
-				return <Redirect to='/AdminProfile'/>
+				return <Redirect to='/admin-profile'/>
 			}
 			return <Redirect to='/dashboard'/>
 		} 
