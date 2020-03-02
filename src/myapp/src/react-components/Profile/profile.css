@@ -57,6 +57,7 @@
   color: orange;
 }
 .profilebutton {
+  margin-top: 10px;
     color: white;
     background-color: orange;
     border: none;
@@ -89,6 +90,12 @@
   color: orange;
   transform: scale(1.05,1.05);
 }
+
+
+.name{
+  text-decoration: none;
+}
+
 
 
 
