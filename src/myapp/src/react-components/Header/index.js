@@ -27,7 +27,7 @@ class Header extends React.Component {
 
 	getNavbarDropdownCourses() {
 		const navbarDropdownCourses = this.props.enrolledCourses.map(function(course) {
-			return <a className="navbarDropdownCourse">{course}</a>
+			return <Link to="/search"  className="navbarDropdownCourse">{course}</Link>
 		})
 
 		return navbarDropdownCourses;
