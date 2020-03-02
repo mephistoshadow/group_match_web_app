@@ -22,6 +22,7 @@ class App extends React.Component {
   // a 'global' state that you can pass through to any child componenets of App.
   //   In the Routes below they are passed to both the Home and Queue states.
 	state = {
+        notificationCounter: 0,
 		countCourse: 3,
 		countStudent: 4,
 		courses: [

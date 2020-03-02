@@ -60,7 +60,7 @@ class Search extends React.Component {
 		return (
             
 			<div className="HomePageouter">
-				<Header enrolledCourses={this.props.state.enrolledCourses}></Header>
+				<Header enrolledCourses={this.props.state.enrolledCourses} notificationCounter={this.props.state.notificationCounter}></Header>
 
                 <div id="posts">
                     

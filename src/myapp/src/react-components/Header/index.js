@@ -10,6 +10,7 @@ class Header extends React.Component {
 		super(props);
 		this.state = {
 			hamburgerMenuIsOpen: false
+                
 		}
 	}
 
@@ -26,7 +27,7 @@ class Header extends React.Component {
 	}
 
 	getNavbarDropdownCourses() {
-		const navbarDropdownCourses = this.props.enrolledCourses.map(function(course) {
+        const navbarDropdownCourses = this.props.enrolledCourses.map(function(course) {
 			return <Link to="/search"  className="navbarDropdownCourse">{course}</Link>
 		})
 
@@ -52,7 +53,9 @@ class Header extends React.Component {
     }
 
     componentDidMount = () => {
+        console.log("PROPS ", this.props.notificationCounter)
         this.handleNotificationCounter();
+        
     }
 
 	render() {
@@ -90,7 +93,7 @@ class Header extends React.Component {
 
 			        <div id="notificationBell">
 			            <i className="fas fa-bell"></i>
-                        <span className="notificationCounter"> 0 </span>
+                        <span className="notificationCounter"> {this.props.notificationCounter} </span>
 			        </div>
 			    </div>
 		    </div>
