@@ -62,13 +62,13 @@ class App extends React.Component {
 				Email: "jerry@mail.utoronto.ca",
 				year:3,
 				password: "user",
-				past_courses: ["CSC369", "CSC301", "CSC401"],
+				current_courses: ["CSC369", "CSC301", "CSC401"],
 				past_courses: []
 			}
 		],
 		pop: false,
 		enrolledCourses: ['CSC373'],
-		current_user: '',
+		current_user: 'user',
 		current_course: 'CSC309',
 		posts: [
 			{
