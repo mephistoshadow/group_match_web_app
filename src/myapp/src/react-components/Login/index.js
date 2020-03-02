@@ -34,6 +34,7 @@ class Login extends React.Component {
 		}
 	}
 
+	// We need to read data from server in order to check if the username matches the password
 	validCredentials(username, password) {
 		if ((username === 'user' && password === 'user') ||
 			(username === 'admin' && password === 'admin')) {

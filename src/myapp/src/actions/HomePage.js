@@ -2,7 +2,9 @@
 
 const log = console.log;
 
-// Function to join/drop a course
+
+// Function to join/drop a course, we need server call for both methods
+// Because we're changing the data and need to store the new data.
 export const joinCourse = (state, student, course) => {
 	const current_courses = student.current_courses
 	const course_name = course.name
