@@ -1,0 +1,23 @@
+
+.homePageCourseItem {
+	display: flex;
+	flex-direction: column;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	align-items: left;
+	width: 30vw;
+	padding: 40px;
+	border: 1px solid black;
+}
+
+.homePageText {
+	display: block;
+	margin-bottom: 20px;
+	font-size: 20px;
+	color: black;
+	text-align: left;
+}
+
+.homePageCourseItem .homeButton {
+	margin-bottom: 0px;
+}

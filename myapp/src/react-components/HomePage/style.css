@@ -1,0 +1,11 @@
+.homePageCourseContainer {
+	margin-left: 200px;
+	position: absolute;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.h2Header {
+	margin-left: 200px;
+	display: block;
+}

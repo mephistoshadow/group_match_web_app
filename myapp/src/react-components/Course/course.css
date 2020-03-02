@@ -1,0 +1,274 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: white;
+  font-size: 20px;
+  margin: 0px;
+    
+}
+
+.button4 a{
+  color: white;
+}
+.button4 a:hover{
+  color: white;
+}
+
+.button3 a{
+  color: white;
+}
+.button3 a:hover{
+  color: white;
+}
+
+.text a{
+  color: white;
+}
+.text a:hover{
+  color: white;
+}
+
+.exsistingCourse{
+  float: left;
+  width: 40%;
+  margin-left:-40px;
+	display: grid;
+}
+
+.Courseouter {
+  margin-left: -50px;
+  height: 200px;
+  float: left;
+  width: 90%;
+}
+
+.card {
+  position: relative;
+  min-height: 550px;
+  /*width:100%;*/
+  margin-top: 20px;
+  margin-left: 100px;
+  margin-right: 70px;
+  margin-bottom: 74px;
+  transition: margin-left .5s;
+  overflow:auto
+}
+
+.header{
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 150px;
+  font-weight:bold;
+  font-size: 50px;
+}
+
+.student{
+  margin-top: 30px;
+  margin-left:40px;
+  margin-bottom: 20px;
+  width:auto;
+  max-width: 400px;
+  min-height:100px;
+  height:auto;
+ /* box-shadow: 3px 4px #504A4B;*/
+  transition: transform .4s;
+  float: left;
+}
+
+
+.student:hover{
+  transform: scale(1.1,1.1);
+}
+
+.icon {
+   font-size: 40px;
+   margin-top: 10px;
+   margin-left: 10px;
+   float: left;
+}
+
+
+.profileStats{
+ margin-left: 20px;
+}
+
+.profileStats ul {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.profileStats ul li {
+  padding: 5px;
+  font-size: 120%;
+  font-weight: bold;
+  list-style: none; 
+}
+
+.number {
+  transition: transform .3s;
+}
+.number:hover{
+  color: orange;
+  transform: scale(1.05,1.05);
+}
+
+.coursebutton {
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 400px;
+  text-align: center;
+  transition: transform .3s;
+}
+
+
+/*.button:hover{
+  color: orange;
+  transform: scale(1.05);
+
+}*/
+
+.button2{
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 350px;
+  width: 125px;
+  text-align: center;
+  transition: transform .3s;
+}
+
+
+.button2:hover{
+   color: orange;
+  transform: scale(1.2);
+
+}
+
+.newStudent{
+  position: absolute;
+  min-height: 100px;
+  width: 490px;
+   z-index: 1;
+}
+
+.studentinfo{
+}
+.studentinfo ul {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.studentinfo ul li {
+  padding: 5px;
+  font-size: 100%;
+  font-weight: bold;
+  list-style: none; 
+}
+
+.button3 {
+   margin-top: 5px;
+  margin-left: 50px;
+  width: 200px;
+  transition: transform .3s;
+   color: white;
+    background-color: orange;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;  
+    cursor: pointer;
+    transition: opacity 0.5s;
+}
+.button3:hover{
+  
+    opacity: 70%;
+}
+
+.button3:focus {
+    outline: none;
+
+}
+
+.courseoperation {
+  position: fixed;
+  margin-top: -50px;
+  margin-left: 550px;
+  min-height: 300px;
+  width: 45%;
+ /* box-shadow: 3px 4px;
+  border-width:5px;  */
+  border-style:double;
+}
+
+.searchStudent{
+ /*s*/
+  margin-top: 150px;
+  height: 350px;
+  width: 550px;
+  z-index: 1;
+}
+
+.searchForm{
+  font-weight: bold;
+  margin-left: 40px;
+  margin-top: 15px;
+}
+
+.searchText{
+  transition: transform .3s;
+}
+
+.searchText:hover{
+  transform: scale(1.1,1.1);
+}
+
+.button4 {
+  margin-top: 5px;
+  margin-left: 50px;
+  width: 200px;
+  transition: transform .3s;
+   color: white;
+    background-color: orange;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;  
+    cursor: pointer;
+    transition: opacity 0.5s;
+}
+.button4:hover{
+  
+    opacity: 70%;
+}
+
+.button4:focus {
+    outline: none;
+
+}
+
+.searchForm {
+  transition: transform .3s;
+}
+.searchForm:hover{
+  color: orange;
+  transform: scale(1.05);
+}
+
+
+.text {
+  transition: transform .3s;
+   color: white;
+    background-color: orange;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;  
+    cursor: pointer;
+    transition: opacity 0.5s;
+}
+.text:hover{
+    opacity: 70%;
+}
+
+.text:focus {
+    outline: none;
+}
+
+
+

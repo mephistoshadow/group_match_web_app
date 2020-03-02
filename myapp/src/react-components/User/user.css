@@ -1,0 +1,114 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: white;
+  font-size: 20px;
+  margin: 0px;
+    
+}
+
+.outer {
+
+  margin-left: -10px;
+  height: 200px;
+  float: left;
+   width: 90%;
+}
+
+
+.Userheader{
+  margin-top: 20px;
+  margin-left: 40px;
+  width: 150px;
+  font-weight:bold;
+  font-size: 50px;
+}
+
+
+
+
+
+.text {
+  margin-top: 10px;
+  width: 200px;
+  margin-left:10px;
+}
+
+.button {
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 350px;
+  text-align: center;
+  transition: transform .3s;
+}
+
+
+/*.button:hover{
+  color: orange;
+  transform: scale(1.05);
+
+}*/
+
+
+.popup {
+  background-color: #FAF6F6;
+  z-index: 1;
+  position:fixed;
+  top: 100px;
+  left:200px;
+  width: 800px; 
+  height: 300px;
+  border-width:5px;  
+  border-style:double;
+  box-shadow: 3px 4px;
+}
+
+.popupcontent{
+  position: absolute;
+  color: #DC143C;
+  margin-top: 80px;
+  margin-left: 250px;
+  font-weight: bold;
+  font-size: 200%;
+}
+
+
+.cross{
+   transition: transform .3s;
+   margin-left:96%;
+   margin-top:3%;
+   min-height: 30px;
+   
+}
+
+.searchbox  {
+  margin-top: 20px;
+  margin-left:-20px;
+  
+}
+
+
+.cross:hover{
+  color: orange;
+  transform: scale(2,2);
+}
+
+.operation {
+  position: fixed;
+  margin-top: -50px;
+  margin-left:600px;
+  min-height: 300px;
+  width: 590px;
+ /* box-shadow: 3px 4px;
+  border-width:5px;  */
+  border: 1px solid #d3d3d3;
+}
+
+.searchStudent{
+ /*s*/
+  margin-top: 150px;
+  height: 350px;
+  width: 550px;
+  z-index: 1;
+}
+
+
