@@ -73,7 +73,8 @@ class Header extends React.Component {
 
                     <div className="hamburgerContent">
                          <Link to={"/" + this.props.path} className="far fa-user-circle"></Link>
-                        <a href="#"><i className="fas fa-sign-out-alt"></i></a>
+                         <Link to={"/"} className="fas fa-sign-out-alt"></Link>
+                   
                     </div>
                 </div>
 
