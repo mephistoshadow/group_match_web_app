@@ -99,27 +99,7 @@ class Header extends React.Component {
 
 			    <div id="navbar">
 			        <span id="navbarLogo">GROUPIE</span>
-<<<<<<< HEAD
 			        {userOptions}
-=======
-
-			        <div id="navbarDropdownMenu">
-			            <span id="navbarDropdownButton">
-			                COURSES <i className="fas fa-chevron-down"></i>
-			            </span>
-			            <div id="navbarDropdownContent" ref="navbarDropdownContent">
-			            	{this.getNavbarDropdownCourses.bind(this)()}
-			            </div>
-			        </div>
-
-			        <div id="notificationBell">
-			            <i className="fas fa-bell"></i>
-                        <span className="notificationCounter"> {this.props.notificationCounter} </span>
-                        <div id="notificationDropdown">
-                            0 Notifications
-                        </div>
-                    </div>
->>>>>>> 39f007eeff7b37539a120d208d0802d1c44003d1
 			    </div>
 		    </div>
 		);
