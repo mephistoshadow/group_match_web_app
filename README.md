@@ -24,7 +24,7 @@ Upon authentication of user or admin, we recommend navigating our website in the
 
 ### User Home Page: */dashboard*
 
-After authentication, the user is redirected to the user home page. On this page the user can manage their current course enrollment, which is reflected in the drop-down menu titled *Courses*. Clicking *Join* or *Drop* on any of the listed courses adds or removes, respectively, the target course from the user's drop-down list of enrolled courses. Data sharing is not implemented in this phase, and any changes to the user's enrolled courses are not reflected in the other pages.
+After authentication, the user is redirected to the user home page. On this page the user can manage their current course enrollment, which is reflected in the drop-down menu titled *Courses*. Clicking *Join* or *Drop* on any of the listed courses adds or removes, respectively, the target course from the user's drop-down list of enrolled courses.
 
 ### User Search Page: */search*
 
