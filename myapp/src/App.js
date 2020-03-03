@@ -46,7 +46,7 @@ class App extends React.Component {
 				password: "user",
 				Email: "user@mail.utoronto.ca",
 				year:1,
-				current_courses: ["CSC373"],
+				current_courses: ["CSC309"],
 				past_courses: ["CSC369", "CSC301", "CSC401"]
 			},
 			{
@@ -69,7 +69,7 @@ class App extends React.Component {
 			}
 		],
 		pop: false,
-		enrolledCourses: ['CSC373'],
+		enrolledCourses: ['CSC309'],
 		current_course: 'CSC309',
 		posts: [
 			{
