@@ -15,12 +15,12 @@ class HomePage extends React.Component {
 		super(props);
 		this.state = {
 			pop: false,
-			enrolledCourses: this.props.state.enrolledCourses
+			enrolledCourses: this.props.state.enrolledCourses,
 		}
 	}
 
 	componentDidMount() {
-		console.log(this.props);
+		console.log(this.props.state.notificationCounter);
 	}
 
 	render() {
@@ -34,7 +34,7 @@ class HomePage extends React.Component {
 
 		return (
 			<div className="homePageContainer"> 
-				<Header enrolledCourses={current_courses} path='user-profile'></Header> 
+				<Header enrolledCourses={current_courses} path='user-profile' notificationCounter={this.props.state.notificationCounter} ></Header>
 				<h2 className="h2Header">Manage Your Courses Below</h2>
 				<div className="homePageCourseContainer">
 					{this.props.state.courses.map(course =>

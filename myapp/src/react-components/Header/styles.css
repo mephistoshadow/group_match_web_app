@@ -149,17 +149,42 @@
     background:#333;
     padding:10px;
     text-align:right;
+    color:#d3d3d3;
+    border:1px solid #333;
+    
 }
 
-#notificationDropdown:hover #notificationBell {
+#notificationDropdown span{
+    margin-right: 10px;
+}
 
+#notificationDropdown:hover{
+    border:1px solid orange;
+    color:#d3d3d3;
+    
   
 }
 
 #notificationBell:hover #notificationDropdown {
+    padding: 15px;
     display: block;
     text-shadow: 0 0 0px;
-    color:#d3d3d3;
+
+}
+
+.notificationDropdownButton{
+    cursor:pointer;
+    background-color: #333;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    outline: none;
+
+}
+
+.notificationDropdownButton:hover{
+    color: orange;
 
 }
 

@@ -37,20 +37,60 @@ class Header extends React.Component {
     handleNotificationCounter = () => {
         const notifCounter = document.querySelector(".notificationCounter")
         const notifBell = document.querySelector("#notificationBell").children[0]
+        const notifText = document.querySelector("#notificationDropdown").children[0]
+        const notifButtons = document.querySelectorAll(".notificationDropdownButton")
+//        console.log(notifButtons)
         if (notifCounter.innerText == 0){
             notifCounter.style.display = "none"
             notifBell.style.color = null
-        
+            
+            //Check for 0 notifications
+            notifText.innerText = "0 Notifications"
+            notifButtons[0].style.display = "none"
+            notifButtons[1].style.display = "none"
         } else{
             notifCounter.style.display = "visible"
             notifBell.style.color = "orange"
+            
+            //Grab notofications here
+            notifText.innerText = "Mark Z. has invited you to connect for CSC309"
+            notifButtons[0].style.display = "visible"
+            notifButtons[1].style.display = "visible"
         }
         
     
     }
+    
+    handleNotifClickYes = () => {
+        const notifButtons = document.querySelectorAll(".notificationDropdownButton")
+        const notifText = document.querySelector("#notificationDropdown").children[0]
+        notifText.innerText = "Accepted"
+        notifButtons[0].style.display = "none"
+        notifButtons[1].style.display = "none"
+        
+        //Hardcoded so far
+        const notifCounter = document.querySelector(".notificationCounter")
+        notifCounter.innerText -= 1
+        setTimeout(this.handleNotificationCounter, 1000);
+    }
+    
+    handleNotifClickNo = () => {
+        const notifButtons = document.querySelectorAll(".notificationDropdownButton")
+        const notifText = document.querySelector("#notificationDropdown").children[0]
+        notifText.innerText = "Declined"
+        notifButtons[0].style.display = "none"
+        notifButtons[1].style.display = "none"
+        
+        //Hardcoded so far
+        const notifCounter = document.querySelector(".notificationCounter")
+        notifCounter.innerText -= 1
+        setTimeout(this.handleNotificationCounter, 1000);
+
+        
+    }
 
     componentDidMount = () => {
-        console.log("PROPS ", this.props.notificationCounter)
+        console.log("NOTIF ", this.props.notificationCounter)
         if (this.props.path === 'user-profile') {
         	this.handleNotificationCounter();
     	}
@@ -74,6 +114,12 @@ class Header extends React.Component {
 		        <div id="notificationBell">
 		            <i className="fas fa-bell"></i>
 		            <span className="notificationCounter"> {this.props.notificationCounter} </span>
+                    <div id="notificationDropdown">
+                        <span> Mark Z. has invited you to connect for CSC309 </span>
+                        
+                        <button className = "notificationDropdownButton" onClick = {this.handleNotifClickYes}><i className="far fa-check-circle"></i></button>
+                        <button className = "notificationDropdownButton" onClick = {this.handleNotifClickNo}><i className="far fa-times-circle"></i></button>
+                    </div>
 		        </div>
 		        </div>
 		}
