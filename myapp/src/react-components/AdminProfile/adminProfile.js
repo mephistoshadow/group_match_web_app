@@ -29,7 +29,7 @@ class AdminProfile extends React.Component {
           newEmail:"",
           newYear:"",
           newPassword:"",
-           path:"admin-profile"
+           user:"admin"
       }
    }
 
@@ -111,7 +111,7 @@ class AdminProfile extends React.Component {
 
         return (
             <div>
-            <Header enrolledCourses={current_courses} path={this.state.path}/>
+            <Header enrolledCourses={current_courses} user = {this.state.user}/>
             <h2 className="h2Header">Admin Profile Page</h2>
             <div className = "profileCard">
                 <div className = "profileIcon">

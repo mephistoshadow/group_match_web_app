@@ -14,7 +14,7 @@ class User extends React.Component {
    constructor(props) {
     super(props);
       this.state = {
-        path:"admin-profile"
+        user:"admin"
     }
      // const { state, app} = this.props;
      // console.log(this.props);
@@ -48,7 +48,7 @@ class User extends React.Component {
         const current_courses = current_student.current_courses
         return (
         <div>
-         <Header enrolledCourses={current_courses} path={this.state.path}/>
+         <Header enrolledCourses={current_courses} user={this.state.user}/>
         <div className = "card">
             <div className="Userheader">
                Users

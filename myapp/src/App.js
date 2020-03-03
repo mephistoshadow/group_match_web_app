@@ -115,7 +115,8 @@ class App extends React.Component {
 				<Switch>
 					<Route exact path="/" render={() =>
 						(<Login state={this.state} app={this} />)} />
-					<Route exact path="/signup" component={SignUp} />
+					<Route exact path='/signup' render={() =>
+						(<SignUp state={this.state} app={this} />)} />
 					<Route exact path="/dashboard" render={() =>
 						(<HomePage state={this.state} app={this} />)} />
 					<Route exact path='/admin-user' render={() =>
