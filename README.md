@@ -5,8 +5,8 @@
 
 ### Start the App
 
-cd myapp
-Use the command `npm install && npm start` to start the application.
+- cd myapp
+- Use the command `npm install && npm start` to start the application.
 
 ### Login
 
