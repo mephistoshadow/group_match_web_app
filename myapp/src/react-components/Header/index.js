@@ -82,8 +82,9 @@ class Header extends React.Component {
 			<div id="header">
 				<div id="hamburgerMenu" ref="hamburgerMenu">
                     <div className="hamburgerContent">
+                        <Link to={"/" + this.props.path}>Home</Link>
                         <Link to={"/" + this.props.path}>Profile</Link>
-                        <a href="">Logout</a>
+                        <Link to={"/"}>Logout</Link>
                     </div>
                 </div>
 
@@ -93,9 +94,9 @@ class Header extends React.Component {
                     </a>
 
                     <div className="hamburgerContent">
-                         <Link to={"/" + this.props.path} className="far fa-user-circle"></Link>
-                         <Link to={"/"} className="fas fa-sign-out-alt"></Link>
-                   
+                    	<Link to={"/" + this.props.path} className="fas fa-home"></Link>
+                        <Link to={"/" + this.props.path} className="far fa-user-circle"></Link>
+                        <Link to={"/"} className="fas fa-sign-out-alt"></Link>
                     </div>
                 </div>
 
