@@ -28,7 +28,7 @@ class SearchPost extends React.Component {
 
 		let symbol;
 		if (isAuthored) {
-			symbol = <i className="fas fa-trash-alt" onClick={e => this.props.clickRemovePost(postId)}></i>
+			symbol = <i className="fas fa-trash-alt trash" onClick={e => this.props.clickRemovePost(postId)}></i>
 		} else {
 			if (isMatch) {
 				symbol = <i className="fas fa-star match" onClick={this.match.bind(this)}></i>
