@@ -24,7 +24,7 @@ class Student extends React.Component {
     }
      // const { student, usercomponents } = this.props;
    }
-
+   // here we need a server call to get the user list updated.
     delete = (student,user) => {
        const deletestudent = user.state.students.filter(s => {
         return s !== student;
