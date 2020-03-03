@@ -83,7 +83,7 @@ class Header extends React.Component {
 				<div id="hamburgerMenu" ref="hamburgerMenu">
                     <div className="hamburgerContent">
                         <Link to={"/" + this.props.path}>Profile</Link>
-                        <a href="">Logout</a>
+                        <a href="/">Logout</a>
                     </div>
                 </div>
 
