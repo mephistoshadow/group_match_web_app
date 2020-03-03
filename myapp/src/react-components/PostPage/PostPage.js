@@ -15,7 +15,8 @@ class PostPage extends React.Component {
 			name: "",
 			email: "",
 			content: "",
-			post: false
+			post: false,
+			user: 'user'
 		}
 		// const { state, app} = this.props;
 	}
@@ -80,7 +81,7 @@ class PostPage extends React.Component {
 		}
 		return (
 			<div>
-				<Header enrolledCourses={current_courses} path='user-profile'></Header>
+				<Header enrolledCourses={current_courses} user={this.state.user}></Header>
 				<h2 className="h2Header">Create a Post</h2>
 				<div className="profileCard">
 					<div className="profileIcon">

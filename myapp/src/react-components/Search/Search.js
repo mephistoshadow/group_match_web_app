@@ -17,7 +17,8 @@ class Search extends React.Component {
 			pop: false,
             addedPost: false,
 			enrolledCourses: this.props.state.enrolledCourses,
-			current_course: this.props.state.posts.filter((post) => post.name === this.props.state.current_course)[0]
+			current_course: this.props.state.posts.filter((post) => post.name === this.props.state.current_course)[0],
+			user: 'user'
 		}
   
         
@@ -81,7 +82,7 @@ class Search extends React.Component {
 		return (
             
 			<div className="HomePageouter">
-				<Header enrolledCourses={current_courses} notificationCounter={this.props.state.notificationCounter} path='user-profile'></Header>
+				<Header enrolledCourses={current_courses} notificationCounter={this.props.state.notificationCounter} user={this.state.user}></Header>
 
                 <div id="posts">
                     <input type="text" id="userSearchBar" onKeyUp = {this.searchClick}placeholder="Enter a name..."></input>

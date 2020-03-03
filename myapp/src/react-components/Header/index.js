@@ -91,45 +91,50 @@ class Header extends React.Component {
 
     componentDidMount = () => {
         console.log("NOTIF ", this.props.notificationCounter)
-        if (this.props.path === 'user-profile') {
+        if (this.props.user === 'user') {
         	this.handleNotificationCounter();
     	}
     }
 
 	render() {
 		let userOptions;
+		let homeLink;
+		let homeLinkButton;
 
-		if (this.props.path === 'user-profile') {
-			userOptions = 
+		if (this.props.user === 'user') {
+			userOptions =
 				<div id="userOptions">
-				<div id="navbarDropdownMenu">
-		            <span id="navbarDropdownButton">
-		                COURSES <i className="fas fa-chevron-down"></i>
-		            </span>
-		            <div id="navbarDropdownContent" ref="navbarDropdownContent">
-		            	{this.getNavbarDropdownCourses.bind(this)()}
-		            </div>
-		        </div>
+					<div id="navbarDropdownMenu">
+						<span id="navbarDropdownButton">
+							COURSES <i className="fas fa-chevron-down"></i>
+						</span>
+						<div id="navbarDropdownContent" ref="navbarDropdownContent">
+							{this.getNavbarDropdownCourses.bind(this)()}
+						</div>
+					</div>
 
-		        <div id="notificationBell">
-		            <i className="fas fa-bell"></i>
-		            <span className="notificationCounter"> {this.props.notificationCounter} </span>
-                    <div id="notificationDropdown">
-                        <span> Mark Z. has invited you to connect for CSC309 </span>
-                        
-                        <button className = "notificationDropdownButton" onClick = {this.handleNotifClickYes}><i className="far fa-check-circle"></i></button>
-                        <button className = "notificationDropdownButton" onClick = {this.handleNotifClickNo}><i className="far fa-times-circle"></i></button>
-                    </div>
-		        </div>
-		        </div>
+					<div id="notificationBell">
+						<i className="fas fa-bell"></i>
+						<span className="notificationCounter"> {this.props.notificationCounter} </span>
+						<div id="notificationDropdown">
+							<span> Mark Z. has invited you to connect for CSC309 </span>
+
+							<button className="notificationDropdownButton" onClick={this.handleNotifClickYes}><i className="far fa-check-circle"></i></button>
+							<button className="notificationDropdownButton" onClick={this.handleNotifClickNo}><i className="far fa-times-circle"></i></button>
+						</div>
+					</div>
+				</div>
+			homeLink = <Link to={"/dashboard"}>Home</Link>
+			homeLinkButton = <Link to={"/dashboard"} className="fas fa-home"></Link>
 		}
+		
 
 		return(
 			<div id="header">
 				<div id="hamburgerMenu" ref="hamburgerMenu">
                     <div className="hamburgerContent">
-                        <Link to={"/" + this.props.path}>Home</Link>
-                        <Link to={"/" + this.props.path}>Profile</Link>
+						{homeLink}
+                        <Link to={"/" + this.props.user + '-profile'}>Profile</Link>
                         <Link to={"/"}>Logout</Link>
                     </div>
                 </div>
@@ -140,8 +145,8 @@ class Header extends React.Component {
                     </a>
 
                     <div className="hamburgerContent">
-                    	<Link to={"/" + this.props.path} className="fas fa-home"></Link>
-                        <Link to={"/" + this.props.path} className="far fa-user-circle"></Link>
+						{homeLinkButton}
+						<Link to={"/" + this.props.user + '-profile'} className="far fa-user-circle"></Link>
                         <Link to={"/"} className="fas fa-sign-out-alt"></Link>
                     </div>
                 </div>

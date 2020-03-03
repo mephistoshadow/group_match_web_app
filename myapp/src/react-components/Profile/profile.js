@@ -128,9 +128,8 @@ class Profile extends React.Component {
                         <li>Past Course(s): <span>{this.props.state.students[1].past_courses.join(', ')}</span></li>
                         <li>Password: <span>{this.props.state.students[1].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange}/></li>
                     </ul>
-                    <button onClick={this.update} className="homeButton">SAVE CHANGES</button>
-                    <span>More Options: <strong><Link to="/dashboard">Dashboard</Link></strong></span>
-                </div>
+                    <button onClick={this.update} className="homeButton">SAVE CHANGES</button> 
+	    </div>
             </div>
              {this.show(this.props.state.pop)}
             </div>
