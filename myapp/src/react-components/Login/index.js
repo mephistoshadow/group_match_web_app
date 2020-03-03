@@ -32,16 +32,6 @@ class Login extends React.Component {
 		if ((username === 'user' && password === 'user') ||
 			(username === 'admin' && password === 'admin')) {
 			console.log('Valid credentials');
-
-			if (username === 'admin') {
-				this.setState({
-					isAdmin: true
-				})
-			} else {
-				this.setState({
-					isAdmin: false
-				})
-			}
 			return true;
 		}
 
@@ -51,13 +41,9 @@ class Login extends React.Component {
 	render() {
 		if (this.state.authorized) {
 			if (this.state.username === 'admin') {
-				return <Redirect to={{
-					pathname: '/admin-profile'
-				}}/>
+				return <Redirect to='/admin-profile'/>
 			} else if (this.state.username === 'user') {
-				return <Redirect to={{
-					pathname: '/dashboard'
-				}}/>
+				return <Redirect to='/dashboard'/>
 			}
 		}
 

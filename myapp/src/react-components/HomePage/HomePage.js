@@ -19,13 +19,15 @@ class HomePage extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		console.log(this.props);
+	}
 
 	render() {
 		// We need to read from server to get the current login in student name and 
 		// other data, such as the user lists: students, the course lists: courses
 		// In fact, for the most of time when we're using this.props.state in every page, 
 		//we need to read data From server. The smaller component will not need server call.
-
 		const cur_student_name = 'user'
 		const current_student = getObjectByName(this.props.state.students, cur_student_name)
 		const current_courses = current_student.current_courses

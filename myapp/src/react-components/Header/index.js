@@ -51,13 +51,15 @@ class Header extends React.Component {
 
     componentDidMount = () => {
         console.log("PROPS ", this.props.notificationCounter)
-        this.handleNotificationCounter();
-        console.log(this.props)
+        if (this.props.path === 'user-profile') {
+        	this.handleNotificationCounter();
+    	}
     }
 
 	render() {
 		let userOptions;
-		if (!this.props.isAdmin) {
+
+		if (this.props.path === 'user-profile') {
 			userOptions = 
 				<div id="userOptions">
 				<div id="navbarDropdownMenu">
@@ -99,7 +101,7 @@ class Header extends React.Component {
 
 			    <div id="navbar">
 			        <span id="navbarLogo">GROUPIE</span>
-			        {userOptions}
+			        	{userOptions}
 			    </div>
 		    </div>
 		);
