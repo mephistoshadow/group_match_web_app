@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
-
+import { getObjectById, getObjectByName } from "../../actions/BasicOperation";
 import './styles.css'
 
 class Login extends React.Component {
@@ -31,6 +31,11 @@ class Login extends React.Component {
 	validCredentials(username, password) {
 		if ((username === 'user' && password === 'user') ||
 			(username === 'admin' && password === 'admin')) {
+			const current_user = getObjectByName(this.props.state.students, username)
+			if (current_user == undefined) {
+				return false;
+			}
+
 			console.log('Valid credentials');
 			return true;
 		}
