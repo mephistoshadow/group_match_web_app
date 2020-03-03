@@ -16,11 +16,17 @@ The login credentials are as follows:
 
 The *Create an Account* link redirects to the sign-up page, which is not implemented for this phase due to the need for server calls.
 
-### User Home Page
+### How to Navigate
+
+Upon authentication of user or admin, we recommend navigating our website in the order that we outline below.
+
+## User Navigation
+
+### User Home Page: */dashboard*
 
 After authentication, the user is redirected to the user home page. On this page the user can manage their current course enrollment, which is reflected in the drop-down menu titled *Courses*. Clicking *Join* or *Drop* on any of the listed courses adds or removes, respectively, the target course from the user's drop-down list of enrolled courses. Data sharing is not implemented in this phase, and any changes to the user's enrolled courses are not reflected in the other pages.
 
-### User Search Page
+### User Search Page: */search*
 
 The user search page can be reached from the drop-down menu in the navigation bar. For this phase, the user is redirected to a generic search page. It is on this page that the user can click on the *Add a Post* button to create a post of their own.
 
@@ -30,22 +36,24 @@ The user can interact with the posts in two ways:
 
 In addition, the user is presented with the ability to search the posts for a particular user by name, which in turn lists the posts that match the given query.
 
-### User Post Page
+### User Post Page: */post*
 
 The user is redirected to the post page when they click on the *Add a Post* button,  where they can input their name, email address, and a short message about themselves. Error-checking for empty or invalid inputs is not implemented in this phase.
 
-### Admin Home Page
+## Admin Navigation
+
+### Admin Home Page: */admin-profile*
 
 After authentication, the admin is redirected to the admin home page. On this page the admin can update their name, email, password, and view the stats for the number of users and the number of courses. To further manage the users or courses, the admin can click on the appropriate link, *Manage Users* or *Manage Courses*.
 
-### Admin User Page
+### Admin User Page: */admin-user*
 
 The admin user page has several functionalities.
 
 - The left panel displays the list of all users. The admin can change the username/password of a particular user, or delete the user altogether.
 - The right panel allows the admin to add a user, as well as search for a particular user by ID and change their username/password. 
 
-### Admin Course Page
+### Admin Course Page: */admin-course*
 
 The admin course page has several functionalities.
 
