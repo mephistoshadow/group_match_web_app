@@ -14,7 +14,11 @@ The login credentials are as follows:
 - Standard user: username *user*, password *user*
 - Admin user: username *admin*, password *admin*
 
-The *Create an Account* link redirects to the sign-up page, which is not implemented for this phase due to the need for server calls.
+The *Create an Account* link redirects to the sign-up page, which is not implemented completely for this phase due to the need for server calls.
+
+### SignUP
+User can type their user name, email address, password,and their name to sign up for our website.
+After user click the sign up button. His information is stored. Then we can go admin's page to see the new added user.
 
 ### How to Navigate
 
