@@ -37,6 +37,7 @@ The user search page can be reached from the drop-down menu in the navigation ba
 The user can interact with the posts in two ways:
 1. If the user wishes to match with another user, they can click on the star icon next to the post of interest.
 2. If the user wishes to delete a post they have authored, they can click the trash icon next to one of their own posts. 
+3. There is a notification bell, when user click it they can see the current invitation for group match. User can either accept or decline it.
 
 In addition, the user is presented with the ability to search the posts for a particular user by name, which in turn lists the posts that match the given query.
 
