@@ -43,12 +43,11 @@ class User extends React.Component {
 
 
     render() {
-        const cur_student_name = 'user'
-        const current_student = getObjectByName(this.props.state.students, cur_student_name)
-        const current_courses = current_student.current_courses
+       
+
         return (
         <div>
-         <Header enrolledCourses={current_courses} user={this.state.user}/>
+         <Header user={this.state.user}/>
         <div className = "card">
             <div className="Userheader">
                Users

@@ -121,7 +121,7 @@ class Profile extends React.Component {
                 <div className="inputList">
                     <ul>
                         <li>Id: <span>{this.props.state.students[1].id}</span> </li>
-                        <li>Name: <span>{this.props.state.students[1].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
+                        <li>Name: <span>{this.props.state.students[1].name}</span></li>
                         <li>Email: <span>{this.props.state.students[1].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
                         <li>Year: <span>{this.props.state.students[1].year}</span> <input type="text" value={this.state.newYear} onChange={this.handleYChange} /></li>
                         <li>Current Course(s): <span>{this.props.state.students[1].current_courses.join(', ')}</span></li>
