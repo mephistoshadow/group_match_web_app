@@ -105,13 +105,10 @@ class AdminProfile extends React.Component {
         const jump = () => {
             return <Redirect to="/admin-user"/>;
         }
-        const cur_student_name = 'user'
-        const current_student = getObjectByName(this.props.state.students, cur_student_name)
-        const current_courses = current_student.current_courses
 
         return (
             <div>
-            <Header enrolledCourses={current_courses} user = {this.state.user}/>
+            <Header user = {this.state.user}/>
             <h2 className="h2Header">Admin Profile Page</h2>
             <div className = "profileCard">
                 <div className = "profileIcon">
@@ -123,7 +120,7 @@ class AdminProfile extends React.Component {
                         <li>Name: <span>{this.props.state.students[0].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
                         <li>Email: <span>{this.props.state.students[0].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
                         <li>Password: <span>{this.props.state.students[0].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange} /></li>
-                        <li>Number of Students: <span>{this.props.state.students.length-1}</span></li>
+                        <li>Number of Students: <span>{this.props.state.students.length}</span></li>
                         <li>Number of Courses: <span>{this.props.state.courses.length}</span></li>
                         <button className="homeButton" onClick={this.update}>SAVE CHANGES</button>
                     </ul>
