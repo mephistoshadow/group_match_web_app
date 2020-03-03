@@ -51,12 +51,33 @@ class Header extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log("PROPS ", this.props.notificationCounter)
-        this.handleNotificationCounter();
-        
+        if (this.props.user == 'user') {
+        	console.log("PROPS ", this.props.notificationCounter);
+        	this.handleNotificationCounter();
+    	}
     }
 
 	render() {
+		let userOptions;
+		if (!this.props.isAdmin) {
+			userOptions = 
+				<div id="userOptions">
+				<div id="navbarDropdownMenu">
+		            <span id="navbarDropdownButton">
+		                COURSES <i className="fas fa-chevron-down"></i>
+		            </span>
+		            <div id="navbarDropdownContent" ref="navbarDropdownContent">
+		            	{this.getNavbarDropdownCourses.bind(this)()}
+		            </div>
+		        </div>
+
+		        <div id="notificationBell">
+		            <i className="fas fa-bell"></i>
+		            <span className="notificationCounter"> {this.props.notificationCounter} </span>
+		        </div>
+		        </div>
+		}
+
 		return(
 			<div id="header">
 				<div id="hamburgerMenu" ref="hamburgerMenu">
@@ -79,20 +100,7 @@ class Header extends React.Component {
 
 			    <div id="navbar">
 			        <span id="navbarLogo">GROUPIE</span>
-
-			        <div id="navbarDropdownMenu">
-			            <span id="navbarDropdownButton">
-			                COURSES <i className="fas fa-chevron-down"></i>
-			            </span>
-			            <div id="navbarDropdownContent" ref="navbarDropdownContent">
-			            	{this.getNavbarDropdownCourses.bind(this)()}
-			            </div>
-			        </div>
-
-			        <div id="notificationBell">
-			            <i className="fas fa-bell"></i>
-                        <span className="notificationCounter"> {this.props.notificationCounter} </span>
-			        </div>
+			        {userOptions}
 			    </div>
 		    </div>
 		);

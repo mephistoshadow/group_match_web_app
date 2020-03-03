@@ -78,6 +78,10 @@
   cursor: default;
 }
 
+#userOptions {
+  display: inline-block;
+}
+
 #navbarDropdownMenu {
 	display: inline-block;
   color: #d3d3d3;
