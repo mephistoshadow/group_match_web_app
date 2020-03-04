@@ -26,7 +26,7 @@ class SignUp extends React.Component {
     handlePChange= (event) => {
          this.setState({password: event.target.value});
     }
-
+    // here we need a server call to update the information and store it in server side database.
     update = () => {
          const student = {
          		id: this.props.state.countStudent+1,
