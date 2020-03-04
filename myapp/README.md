@@ -1,68 +1,67 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# team15 :sparkles:
 
-In the project directory, you can run:
+## Phase 1 Instructions
 
-### `npm start`
+### Start the App
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- cd team15/myapp
+- Use the command `npm install && npm start` to start the application.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Login
 
-### `npm test`
+The login credentials are as follows:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Standard user: username *user*, password *user*
+- Admin user: username *admin*, password *admin*
 
-### `npm run build`
+The *Create an Account* link redirects to the sign-up page, which is not implemented completely for this phase due to the need for server calls.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### SignUP
+User can type their user name, email address, password,and their name to sign up for our website.
+After user click the sign up button. His information is stored. Then we can go admin's page to see the new added user.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### How to Navigate
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Upon authentication of user or admin, we recommend navigating our website in the order that we outline below.
 
-### `npm run eject`
+## User Navigation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### User Home Page: */dashboard*
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+After authentication, the user is redirected to the user home page. On this page the user can manage their current course enrollment, which is reflected in the drop-down menu titled *Courses*. Clicking *Join* or *Drop* on any of the listed courses adds or removes, respectively, the target course from the user's drop-down list of enrolled courses.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### User Search Page: */search*
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The user search page can be reached from the drop-down menu in the navigation bar. For this phase, the user is redirected to a generic search page. It is on this page that the user can click on the *Add a Post* button to create a post of their own.
 
-## Learn More
+The user can interact with the posts in two ways:
+1. If the user wishes to match with another user, they can click on the star icon next to the post of interest.
+2. If the user wishes to delete a post they have authored, they can click the trash icon next to one of their own posts. 
+3. There is a notification bell, when user click it they can see the current invitation for group match. User can either accept or decline it.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In addition, the user is presented with the ability to search the posts for a particular user by name, which in turn lists the posts that match the given query.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### User Post Page: */post*
 
-### Code Splitting
+The user is redirected to the post page when they click on the *Add a Post* button,  where they can input their name, email address, and a short message about themselves. Error-checking for empty or invalid inputs is not implemented in this phase.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Admin Navigation
 
-### Analyzing the Bundle Size
+### Admin Home Page: */admin-profile*
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+After authentication, the admin is redirected to the admin home page. On this page the admin can update their name, email, password, and view the stats for the number of users and the number of courses. To further manage the users or courses, the admin can click on the appropriate link, *Manage Users* or *Manage Courses*.
 
-### Making a Progressive Web App
+### Admin User Page: */admin-user*
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The admin user page has several functionalities.
 
-### Advanced Configuration
+- The left panel displays the list of all users. The admin can change the username/password of a particular user, or delete the user altogether.
+- The right panel allows the admin to add a user, as well as search for a particular user by ID and change their username/password. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Admin Course Page: */admin-course*
 
-### Deployment
+The admin course page has several functionalities.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- The left panel displays the list of all courses. The admin can change the name of a particular course, or delete the course altogether.
+- The right panel allows the admin to add a course, as well as search for a particular course by ID and change its name.
