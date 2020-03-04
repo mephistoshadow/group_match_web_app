@@ -72,7 +72,7 @@ class Search extends React.Component {
             return <Redirect to='/post'/>
 		}
         
-		// We need to read data from server in order to get current_user name 
+		// We need to read data from server in order to get current user's name & id 
 		// and user lists, courses lists, posts list from database
         const cur_student_name = 'user'
         const current_student = getObjectByName(this.props.state.students, cur_student_name)

@@ -41,7 +41,7 @@ class PostPage extends React.Component {
 	}
 
 	// For this update, we need server call to write data into server
-	// Specifically, we need to write the new post into Data of posts
+	// Specifically, we need to write the new post into posts table in Database
 	update = () => {
 		const total_posts = this.props.state.posts
 		const current_course_name = this.props.state.current_course
@@ -68,9 +68,8 @@ class PostPage extends React.Component {
 	}
 
 	render() {	
-		// We need server call here to read current student name
-		// And to get user lists, courses lists and other data stored
-		// in current user
+		// We need server call here to read current student name & id from user table in our database
+		// In order to get user lists, courses lists and other data store in current user
 
 		const cur_student_name = 'user'
 		const current_student = getObjectByName(this.props.state.students, cur_student_name)
