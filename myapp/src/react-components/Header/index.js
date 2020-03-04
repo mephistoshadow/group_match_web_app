@@ -33,7 +33,10 @@ class Header extends React.Component {
 		return navbarDropdownCourses;
 	}
 
-
+	// We need server call to get information about current user's Notifications
+	// This can be done with other pages pass the notification information to Headers
+	// Once the student click yes/no, the reaction should be saved into our database 
+	// by another server call
     handleNotificationCounter = () => {
         const notifCounter = document.querySelector(".notificationCounter")
         const notifBell = document.querySelector("#notificationBell").children[0]
