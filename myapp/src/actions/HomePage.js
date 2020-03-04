@@ -4,7 +4,9 @@ const log = console.log;
 
 
 // Function to join/drop a course, we need server call for both methods
-// Because we're changing the data and need to store the new data.
+// Because we're changing the data and need to store the new data into Database.
+// In particular, wherever we're setState, we need to server call to write data, 
+//and when we read from state, we need server call to read
 export const joinCourse = (state, student, course) => {
 	const current_courses = student.current_courses
 	const course_name = course.name
