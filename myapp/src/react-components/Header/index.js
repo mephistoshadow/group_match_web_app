@@ -130,7 +130,13 @@ class Header extends React.Component {
 				</div>
 			homeLink = <Link to={"/dashboard"}>Home</Link>
 			homeLinkButton = <Link to={"/dashboard"} className="fas fa-home"></Link>
-		}
+		} else {
+            userOptions =
+            <div id="userOptions">
+                <Link to="/admin-user" className="navbarLink"><i class="fas fa-user-edit"></i> USERS</Link>
+                <Link to="/admin-course" className="navbarLink"><i class="fas fa-edit"></i> COURSES</Link>
+            </div>
+        }
 		
 
 		return(
