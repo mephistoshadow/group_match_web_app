@@ -66,16 +66,20 @@
 #navbar {
 	padding: 15px 0px;
 	background-color: #333;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #navbarLogo {
 	display: inline-block;
-  width: 85%;
   font-size: 25px;
   font-weight: 700;
   color: #d3d3d3;
   text-align: center;
   cursor: default;
+  transform: translateX(50vw);
 }
 
 #userOptions {
@@ -96,7 +100,7 @@
 
 #navbarDropdownContent {
 	display: none;
-	margin-top: 15px;
+	margin-top: 17px;
 	position: absolute;
   z-index: 1;
 }
@@ -109,6 +113,11 @@
 	background-color: #333;
   color: #d3d3d3;
   cursor: pointer;
+}
+
+.navbarLink {
+  display: inline-block;
+  color: #d3d3d3;
 }
 
 #navbarDropdownMenu:hover #navbarDropdownButton {
@@ -130,7 +139,6 @@
     cursor: pointer;
     padding: 15px;
     margin: -15px;
-    
 }
 
 #notificationBell:hover{
@@ -142,7 +150,7 @@
 
 #notificationDropdown {
     display: none;
-    margin-top: 15px;
+    margin-top: 17px;
     position: absolute;
     z-index: 1;
     right:0px;
@@ -161,8 +169,6 @@
 #notificationDropdown:hover{
     border:1px solid orange;
     color:#d3d3d3;
-    
-  
 }
 
 #notificationBell:hover #notificationDropdown {

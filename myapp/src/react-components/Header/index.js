@@ -107,6 +107,7 @@ class Header extends React.Component {
 		if (this.props.user === 'user') {
 			userOptions =
 				<div id="userOptions">
+                    <Link to="/matches" className="navbarLink">MATCHES</Link>
 					<div id="navbarDropdownMenu">
 						<span id="navbarDropdownButton">
 							COURSES <i className="fas fa-chevron-down"></i>
