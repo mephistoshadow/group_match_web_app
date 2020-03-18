@@ -12,6 +12,7 @@ import AdminProfile from './react-components/AdminProfile/adminProfile'
 import Profile from './react-components/Profile/profile'
 import Search from './react-components/Search/Search'
 import PostPage from './react-components/PostPage/PostPage'
+import Matches  from './react-components/Matches'
 
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import React from 'react';
@@ -131,6 +132,8 @@ class App extends React.Component {
 						(<Search state={this.state} app={this} />)} />
 					<Route exact path='/post' render={() =>
 						(<PostPage state={this.state} app={this} />)} />
+					<Route exact path='/matches' render={() =>
+						(<Matches state={this.state} app={this} /> )} />
 				</Switch>
 				</BrowserRouter>
 		</div>
