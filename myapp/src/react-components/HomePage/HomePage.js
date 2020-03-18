@@ -22,7 +22,31 @@ class HomePage extends React.Component {
 
 	componentDidMount() {
 		console.log(this.props.state.notificationCounter);
+        
 	}
+ 
+    courseSearch(event) {
+        const searchBox = document.querySelector("#courseSearchBar")
+        const searchQuery = searchBox.value
+        const courseCotainer = document.querySelectorAll(".homePageCourseItem")
+        for (let i in courseCotainer){
+            
+            if (courseCotainer[i].className === "homePageCourseItem" ){
+                const courseName = courseCotainer[i].firstElementChild.firstElementChild.innerText
+//                console.log("Course Name: ",courseName)
+//                console.log("Query: ", searchQuery)
+                if(!courseName.toLowerCase().includes(searchQuery.toLowerCase())){
+                    courseCotainer[i].style.display='none'
+                }
+                
+                if(courseName.toLowerCase().includes(searchQuery.toLowerCase())){
+                    courseCotainer[i].style.display='block'
+                }
+                
+            }
+        }
+    
+    }
 
 	render() {
 		// We need to read from server to get the current login in student name and 
@@ -37,7 +61,12 @@ class HomePage extends React.Component {
 			<div className="homePageContainer"> 
 				<Header enrolledCourses={current_courses} user= {this.state.user} notificationCounter={this.props.state.notificationCounter} ></Header>
 				<h2 className="h2Header">Manage Your Courses Below</h2>
+
+            <div id="searchContainer">
+                <input type="text" id="courseSearchBar" onKeyUp = {this.courseSearch}placeholder="Enter a course..."></input>
+            </div>
 				<div className="homePageCourseContainer">
+                
 					{this.props.state.courses.map(course =>
 						(<HomePageCourse 
 							key={uid(course)}

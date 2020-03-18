@@ -9,3 +9,24 @@
 	margin-left: 200px;
 	display: block;
 }
+
+#searchContainer{
+    z-index:1;
+}
+
+#courseSearchBar {
+    position:relative;
+    
+    margin-bottom: 10px;
+    border: 1px solid #d3d3d3;
+    padding: 10px;
+    font-size: 20px;
+    display:inline-block;
+    width:71.25%;
+    margin-left:200px;
+}
+
+#courseSearchBar:focus{
+    outline: none;
+    border: 1px solid orange;
+}
