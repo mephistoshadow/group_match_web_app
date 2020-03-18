@@ -265,5 +265,9 @@ body {
     outline: none;
 }
 
+.bold {
+  font-weight:bold;
+}
+
 
 

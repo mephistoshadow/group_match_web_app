@@ -110,11 +110,11 @@ class Student extends React.Component {
 
                 <div className="button">
                 <form >
-                     <label>
+                     <label className = "bold">
                         UserName:
                         <input type="text" value={this.state.newName} onChange={this.handleNChange} />
                     </label><br/>
-                    <label>
+                    <label className = "bold">
                         Password:
                         <input type="text" value={this.state.newPassword} onChange={this.handlePChange} />
                     </label><br/>

@@ -14,7 +14,7 @@ const Student = mongoose.model('Student', {
 	},
 	year: {
 		type: Number,
-		required: true,
+		required: true
 	},
 	courses:[Number],
 	email: {

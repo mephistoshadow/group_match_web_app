@@ -8,7 +8,7 @@ const Post = mongoose.model('Post', {
 		maxlength:3
 	},
 	Content :{
-		type:Stri
+		type:String
 	}
 })
 

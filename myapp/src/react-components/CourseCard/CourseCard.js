@@ -82,7 +82,7 @@ class Card extends React.Component {
 
                 <div className="coursebutton">
                 <form >
-                     <label>
+                     <label className = "bold">
                         CourseName:
                         <input type="text" value={this.state.newName} onChange={this.handleNChange} />
                     </label><br/>
