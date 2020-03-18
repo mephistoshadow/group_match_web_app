@@ -84,7 +84,7 @@ class PostPage extends React.Component {
 
                 <div id="headerContainer">
                     <Link to={"/search"} className="fas fa-chevron-left backButton"></Link>
-                    <h2 className="h2Header">Create a Post</h2>
+                    <h2 className="h2HeaderPost">Create a Post</h2>
 
                 </div>
 				<div className="profileCard">
