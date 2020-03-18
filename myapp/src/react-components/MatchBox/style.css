@@ -1,0 +1,31 @@
+.matchBox {
+	position: relative;
+	width: 400px;
+	padding: 15px;
+	border: 1px solid black;
+	margin-bottom: 20px;
+}
+
+.userOption {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.matchBoxButton {
+	font-family: inherit;
+	font-size: large;
+	font-weight: bold;
+	background-color: orange;
+	color: white;
+	border: none;
+	margin-left: 10px;
+}
+
+.matchBoxButton:hover {
+	opacity: 75%;
+}
+
+.matchBoxButton:focus {
+	outline: none;
+}
