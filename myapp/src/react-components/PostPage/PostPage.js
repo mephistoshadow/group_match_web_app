@@ -81,7 +81,12 @@ class PostPage extends React.Component {
 		return (
 			<div>
 				<Header enrolledCourses={current_courses} user={this.state.user}></Header>
-				<h2 className="h2Header">Create a Post</h2>
+
+                <div id="headerContainer">
+                    <Link to={"/search"} className="fas fa-chevron-left backButton"></Link>
+                    <h2 className="h2Header">Create a Post</h2>
+
+                </div>
 				<div className="profileCard">
 					<div className="profileIcon">
 						<i className="fa fa-user-circle"></i>
