@@ -16,9 +16,11 @@ const PostSchema = new mongoose.Schema({
 	},
 	author: {
 		type: mongoose.Schema.Types.ObjectId,
-		required: true
+		required: true,
 	}
 })
+
+PostSchema.index({'author': -1, 'courseCode': -1}, {unique: true})
 
 const Post = mongoose.model('Post', PostSchema) 
 module.exports = { Post }
