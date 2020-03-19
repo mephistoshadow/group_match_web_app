@@ -20,7 +20,8 @@ class Student extends React.Component {
     super(props);
       this.state = {
         newName:'',
-        newPassword:''
+        newPassword:'',
+         operation:this.props.flag
     }
      // const { student, usercomponents } = this.props;
    }
@@ -91,24 +92,13 @@ class Student extends React.Component {
         } 
     }
 
-    render() {
-        
-        return (
-        	<div className="outer">
-                <div className="student">
-                    <div className="icon">
-                        <i className="far fa-user"></i>
-                    </div>
-                    <div className="profileStats">
-                        <ul>
-                            <li className="number">UserId:<span  className="profileStatsNumber">{this.props.student.id}</span></li>
-                            <li className="number">UserName:<span className="profileStatsNumber">{this.props.student.name}</span></li>
-                            <li className="number">Password:<span className="profileStatsNumber">{this.props.student.password}</span></li>
-                        </ul>
-                    </div>
-                </div>
+    showOperation= (e) => {
+        if (!e) {
+            return null;
+        }
 
-                <div className="button">
+        return (
+           <div className="button">
                 <form >
                      <label className = "bold">
                         UserName:
@@ -130,9 +120,26 @@ class Student extends React.Component {
                     <a onClick={()=> {this.delete(this.props.student,this.props.usercomponents) }}>Delete User</a>
                 </div>
                 </div>
-                
-               
-
+          
+        );
+    }
+    render() {
+        
+        return (
+        	<div className="outer">
+                <div className="student">
+                    <div className="icon">
+                        <i className="far fa-user"></i>
+                    </div>
+                    <div className="profileStats">
+                        <ul>
+                            <li className="number">UserId:<span  className="profileStatsNumber">{this.props.student.id}</span></li>
+                            <li className="number">UserName:<span className="profileStatsNumber">{this.props.student.name}</span></li>
+                            <li className="number">Password:<span className="profileStatsNumber">{this.props.student.password}</span></li>
+                        </ul>
+                    </div>
+                </div>
+                  {this.showOperation(this.state.operation)}
             </div>
         );
     }

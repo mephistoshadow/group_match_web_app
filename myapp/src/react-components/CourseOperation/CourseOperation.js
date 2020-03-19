@@ -103,7 +103,7 @@ class CourseOperation extends React.Component {
                     <a onClick={this.searchCourse}>Search Course</a>
                 </div>
                 <div className = "searchbox">
-                    <Card student = {this.state.searchOne} usercomponents = {this.props.usercomponents}/> 
+                    <Card student = {this.state.searchOne} usercomponents = {this.props.usercomponents} flag = {true}/> 
                 </div>
             </div>
 

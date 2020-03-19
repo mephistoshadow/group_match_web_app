@@ -64,12 +64,11 @@ class Course extends React.Component {
             </div>
             <div className="exsistingCourse">
                  {this.props.state.courses.map(course => (
-                    <Card  key={uid(course)} student = {course} usercomponents = {this.props.app}/>
+                    <Card  key={uid(course)} student = {course} usercomponents = {this.props.app} flag = {false}/>
                 ))}
             </div>
             <CourseOperation student = {this.props.state.courses} usercomponents = {this.props.app}/>
             {this.show(this.props.state.pop)}
-           
         </div>
         </div>
         );

@@ -182,13 +182,13 @@ body {
 
 .courseoperation {
   position: fixed;
-  margin-top: -50px;
-  margin-left: 550px;
+  margin-top: 45px;
+  margin-left: 300px;
   min-height: 300px;
   width: 45%;
  /* box-shadow: 3px 4px;
   border-width:5px;  */
-  border-style:double;
+  border: 1px solid #d3d3d3;
 }
 
 .searchStudent{

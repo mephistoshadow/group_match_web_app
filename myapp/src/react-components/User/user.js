@@ -54,7 +54,7 @@ class User extends React.Component {
             </div>
             <div className="exsistingStudent">
             	 {this.props.state.students.map(student => (
-                    <Student  key={uid(student)} student = {student} usercomponents = {this.props.app}/>
+                    <Student  key={uid(student)} student = {student} usercomponents = {this.props.app} flag = {false}/>
                 ))}
             </div>
             <Operation student = {this.props.state.students} usercomponents = {this.props.app}/>

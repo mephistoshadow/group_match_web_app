@@ -94,8 +94,8 @@ body {
 
 .operation {
   position: fixed;
-  margin-top: -50px;
-  margin-left:600px;
+  margin-top: 45px;
+  margin-left:300px;
   min-height: 300px;
   width: 590px;
  /* box-shadow: 3px 4px;
