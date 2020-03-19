@@ -1,21 +1,26 @@
 /* Course mongoose model */
 const mongoose = require('mongoose')
 
-const Match = mongoose.model('Match', {
+const MatchSchema = new mongoose.Schema({
 	sender: {
-		type: Number,
+		type: mongoose.Schema.Types.ObjectId,
 		required: true,
 	},
 	receiver: {
-		type: Number,
+		type: mongoose.Schema.Types.ObjectId,
 		required: true
 	},
-	Course: {
-		type: String
+	courseCode: {
+		type: String,
+		required: true,
+		uppercase: true,
+		maxlength: 6
 	},
-	Status: {
-		type:String
+	status: {
+		type: String,
+		enum: ['accepted', 'pending']
 	}
 })
 
+const Match = mongoose.model('Match', MatchSchema)
 module.exports = { Match }
