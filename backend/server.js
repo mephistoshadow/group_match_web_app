@@ -111,10 +111,7 @@ app.post('/courses', (req, res) => {
 	})
 })
 
-
-
-
-
+////////////////////////////////////////////////posts api
 app.post('/posts', (req, res) => {
 	log(req.body)
 
@@ -145,7 +142,6 @@ app.get('/posts/:courseCode', (req, res) => {
 		res.status(500).send() // Serve error: internal server error
 	})
 })
-
 
 const port = process.env.PORT || 5000
 app.listen(port, () => {
