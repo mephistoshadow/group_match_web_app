@@ -7,7 +7,6 @@ const LogInfo = mongoose.model('LogInfo', {
 		required: true,
 	},
 	password: {
-		required:true
 	},
 	id: {
 		type: String
