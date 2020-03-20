@@ -37,7 +37,6 @@ app.use(bodyParser.json())
 ////////////////////////////////////////////////student api
 // add the student to database
 app.post('/students', (req, res) => {
-	
 	const student = new Student({
 		username: req.body.username,
 		name: req.body.name,
@@ -56,7 +55,7 @@ app.post('/students', (req, res) => {
 
 // get all the students from database
 app.get('/students', (req, res) => {
-	Student.find({}).then((students) => {
+	Student.find().then((students) => {
 		res.send({ students }) 
 	}, (error) => {
 		res.status(500).send(error)
@@ -65,8 +64,9 @@ app.get('/students', (req, res) => {
 
 // get student by their id
 app.get('/students/:id', (req, res) => {
-	const thisId = req.params.id
-	Student.findById(thisId).then((student) => {
+	const studentId = req.params.id
+
+	Student.findById(studentId).then((student) => {
 		if (!student) {
 			res.status(404).send()
 		} else {
@@ -79,11 +79,12 @@ app.get('/students/:id', (req, res) => {
 
 // delete the student by their id
 app.delete('/students/:id', (req, res) => {
-	const thisId = req.params.id
-	if (!ObjectID.isValid(thisId)) {
+	const studentId = req.params.id
+
+	if (!ObjectID.isValid(studentId)) {
 		return res.redirect("/error")
 	}
-	Student.findByIdAndRemove(thisId).then((student) => {
+	Student.findByIdAndRemove(studentId).then((student) => {
 		if (!student) {
 			res.status(404).send();
 		} else {
@@ -97,7 +98,6 @@ app.delete('/students/:id', (req, res) => {
 
 ////////////////////////////////////////////////courses Api
 app.post('/courses', (req, res) => {
-	
 	const course = new Course({
 		title: req.body.title,
 		courseCode:req.body.courseCode,
@@ -113,8 +113,6 @@ app.post('/courses', (req, res) => {
 
 ////////////////////////////////////////////////posts api
 app.post('/posts', (req, res) => {
-	log(req.body)
-
 	const post = new Post({
 		courseCode: req.body.courseCode,
 		content: req.body.content,
@@ -129,7 +127,6 @@ app.post('/posts', (req, res) => {
 })
 
 app.get('/posts/:courseCode', (req, res) => {
-	log(req.params.id)
 	const courseCode = req.params.courseCode
 
 	Post.find({courseCode: courseCode}).then((posts) => {
