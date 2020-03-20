@@ -15,10 +15,6 @@ const MatchSchema = new mongoose.Schema({
 		required: true,
 		uppercase: true,
 		maxlength: 6
-	},
-	status: {
-		type: String,
-		enum: ['accepted', 'pending']
 	}
 })
 

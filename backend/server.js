@@ -1,11 +1,11 @@
 /* server.js, with mongodb API and static directories */
-'use strict';
+'use strict'
 const log = console.log
 const path = require('path')
 
 const express = require('express')
 // starting the express server
-const app = express();
+const app = express()
 
 // mongoose and mongo connection
 const { mongoose } = require('./db/mongoose')
@@ -15,7 +15,7 @@ const { Student } = require('./models/student')
 const { Course } = require('./models/course')
 const { Post } = require('./models/post')
 const { Match } = require('./models/match')
-const { LogInfo } = require('./models/Loginfo')
+const { Login } = require('./models/login')
 
 
 const { ObjectID } = require('mongodb')
@@ -34,8 +34,8 @@ app.use(bodyParser.json())
 
 
 
-////////////////////////////////////////////////student api
-// add the student to database
+// Student API Calls
+// Add student to database
 app.post('/students', (req, res) => {
 	const student = new Student({
 		username: req.body.username,
@@ -53,7 +53,7 @@ app.post('/students', (req, res) => {
 	})
 })
 
-// get all the students from database
+// Get all students from database
 app.get('/students', (req, res) => {
 	Student.find().then((students) => {
 		res.send({ students }) 
@@ -62,7 +62,7 @@ app.get('/students', (req, res) => {
 	})
 })
 
-// get student by their id
+// Get student by ID
 app.get('/students/:id', (req, res) => {
 	const studentId = req.params.id
 
@@ -77,16 +77,17 @@ app.get('/students/:id', (req, res) => {
 	})
 })
 
-// delete the student by their id
+// Delete student by ID
 app.delete('/students/:id', (req, res) => {
 	const studentId = req.params.id
 
 	if (!ObjectID.isValid(studentId)) {
 		return res.redirect("/error")
 	}
+
 	Student.findByIdAndRemove(studentId).then((student) => {
 		if (!student) {
-			res.status(404).send();
+			res.status(404).send()
 		} else {
 			res.send({ student })
 		}
@@ -96,7 +97,7 @@ app.delete('/students/:id', (req, res) => {
 })
 
 
-////////////////////////////////////////////////courses Api
+// Courses API Calls
 app.post('/courses', (req, res) => {
 	const course = new Course({
 		title: req.body.title,
@@ -111,7 +112,22 @@ app.post('/courses', (req, res) => {
 	})
 })
 
-////////////////////////////////////////////////posts api
+// Get all students in course
+app.get('/:courseCode/students', (req, res) => {
+	const courseCode = req.params.courseCode
+
+	Student.find({courses: {$in : [courseCode]}}).then((students) => {
+		if (!students) {
+			res.status(404).send()
+		} else {
+			res.send(students)
+		}
+	}).catch((error) => {
+		res.status(500).send()
+	})
+})
+
+// Posts API Calls
 app.post('/posts', (req, res) => {
 	const post = new Post({
 		courseCode: req.body.courseCode,
@@ -122,7 +138,7 @@ app.post('/posts', (req, res) => {
 	post.save().then((result) => {
 		res.send(result)
 	}, (error) => {
-		res.status(400).send(error); // Client error: bad request
+		res.status(400).send(error)
 	})
 })
 
@@ -131,12 +147,12 @@ app.get('/posts/:courseCode', (req, res) => {
 
 	Post.find({courseCode: courseCode}).then((posts) => {
 		if (!posts) {
-			res.status(404).send() // Client error: not found
+			res.status(404).send()
 		} else {
 			res.send(posts)
 		}
 	}).catch((error) => {
-		res.status(500).send() // Serve error: internal server error
+		res.status(500).send()
 	})
 })
 
