@@ -56,7 +56,7 @@ app.post('/students', (req, res) => {
 // Get all students from database
 app.get('/students', (req, res) => {
 	Student.find().then((students) => {
-		res.send({ students }) 
+		res.send(students) 
 	}, (error) => {
 		res.status(500).send(error)
 	})
@@ -70,7 +70,7 @@ app.get('/students/:id', (req, res) => {
 		if (!student) {
 			res.status(404).send()
 		} else {
-			res.send({ student })
+			res.send(student)
 		}
 	}).catch((error) => {
 		res.status(500).send(error)
@@ -82,14 +82,14 @@ app.delete('/students/:id', (req, res) => {
 	const studentId = req.params.id
 
 	if (!ObjectID.isValid(studentId)) {
-		return res.redirect("/error")
+		res.redirect("/error")
 	}
 
-	Student.findByIdAndRemove(studentId).then((student) => {
-		if (!student) {
+	Student.deleteOne({_id: studentId}).then((result) => {
+		if (result.deletedCount !== 1) {
 			res.status(404).send()
 		} else {
-			res.send({ student })
+			res.send()
 		}
 	}).catch((error) => {
 		res.status(500).send(error)
@@ -150,6 +150,44 @@ app.get('/posts/:courseCode', (req, res) => {
 			res.status(404).send()
 		} else {
 			res.send(posts)
+		}
+	}).catch((error) => {
+		res.status(500).send()
+	})
+})
+
+app.delete('/posts/:courseCode/:author', (req, res) => {
+	const courseCode = req.params.courseCode
+	const author = req.params.author
+
+	if (!ObjectID.isValid(author)) {
+		res.status(400).send()
+	}
+
+	Post.deleteOne({courseCode: courseCode, author: author}).then((result) => {
+		if (result.deletedCount !== 1) {
+			res.status(404).send()
+		} else {
+			res.send()
+		}
+	}).catch((error) => {
+		res.status(500).send()
+	})
+})
+
+app.get('/posts/:courseCode/:author', (req, res) => {
+	const courseCode = req.params.courseCode
+	const author = req.params.author
+
+	if (!ObjectID.isValid(author)) {
+		res.status(400).send()
+	}
+
+	Post.findOne({courseCode : courseCode, author: author}).then((post) => {
+		if (!post) {
+			res.status(404).send()
+		} else {
+			res.send(post)
 		}
 	}).catch((error) => {
 		res.status(500).send()
