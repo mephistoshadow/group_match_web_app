@@ -96,6 +96,79 @@ app.delete('/students/:id', (req, res) => {
 	})
 })
 
+//Add student to course
+app.patch('/students/:id', (req, res) => {
+    const studentId = req.params.id
+    if (!ObjectID.isValid(studentId)) {
+        res.status(400).send()
+    }
+    
+    const courseCode = req.body.courseCode
+    
+    
+    //find and increment course counter
+    Course.findOneAndUpdate({courseCode : courseCode}, {$inc:{people:1}}, {new:true}).then((course) => {
+        if (!course) {
+            res.status(404).send()
+        } else {
+            res.send(course)
+            
+            //Add course to student course list
+            
+            Student.findByIdAndUpdate(studentId, {$addToSet: {courses:courseCode}}, {new: true}).then((student) => {
+                if (!student) {
+                    res.status(404).send()
+                } else {
+                    res.send(student)
+                    
+                }
+            }).catch((error) => {
+                res.status(500).send()
+            })
+
+        }
+    }).catch((error) => {
+        res.status(500).send()
+    })
+
+})
+
+//TODO: Remove student from course
+app.patch('/courses/:courseCode', (req, res) => {
+    const courseCode = req.params.courseCode
+//    if (!ObjectID.isValid(courseCode)) {
+//        res.status(400).send()
+//    }
+    
+    const studentId = req.body.studentId
+
+    //Remove course from student course list
+    
+    Student.findByIdAndUpdate(studentId, {$pull: {courses:courseCode}}, {new: true}).then((student) => {
+        if (!student) {
+            res.status(404).send()
+        } else {
+            res.send(student)
+            
+            //find and decrement course counter
+            Course.findOneAndUpdate({courseCode : courseCode}, {$inc:{people:-1}}, {new:true}).then((course) => {
+                if (!course) {
+                    res.status(404).send()
+                } else {
+                    res.send(course)
+                }
+            }).catch((error) => {
+                res.status(500).send()
+            })
+            
+        }
+    }).catch((error) => {
+        res.status(500).send()
+    })
+    
+    
+
+})
 
 // Courses API Calls
 app.post('/courses', (req, res) => {
