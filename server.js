@@ -55,6 +55,10 @@ app.get('/students', (req, res) => {
 app.get('/students/:id', (req, res) => {
 	const studentId = req.params.id
 
+	if (!ObjectID.isValid(studentId)) {
+		res.status(400).send()
+	}
+	
 	Student.findById(studentId).then((student) => {
 		if (!student) {
 			res.status(404).send()
@@ -71,14 +75,18 @@ app.delete('/students/:id', (req, res) => {
 	const studentId = req.params.id
 
 	if (!ObjectID.isValid(studentId)) {
-		res.redirect("/error")
+		res.status(400).send()
 	}
 
 	Student.deleteOne({_id: studentId}).then((result) => {
-		if (result.deletedCount !== 1) {
-			res.status(404).send()
+		if (result.deletedCount === 1) {
+			Post.deleteMany({author: studentId}).then((result) => {
+				res.send()
+			}).catch((error) => {
+				res.status(500).send(error)
+			})
 		} else {
-			res.send()
+			res.status(404).send()
 		}
 	}).catch((error) => {
 		res.status(500).send(error)
@@ -170,13 +178,11 @@ app.delete('/courses', (req, res) => {
 	const courseCode = req.body.code
 
 	Course.deleteOne({code: courseCode}).then((result) => {
-		const deletedCount = result.deletedCount
-
-		if (deletedCount === 1) {
+		if (result.deletedCount === 1) {
 			Promise.all([Student.updateMany({}, {$pull: {courses: courseCode}}), Post.deleteMany({courseCode: courseCode})]).then((result) => {
 				res.send()
 			}).catch((error) => {
-				res.status(500).send()
+				res.status(500).send(error)
 			})
 		} else {
 			res.status(404).send()
@@ -197,7 +203,7 @@ app.get('/:courseCode/students', (req, res) => {
 			res.send(students)
 		}
 	}).catch((error) => {
-		res.status(500).send()
+		res.status(500).send(error)
 	})
 })
 
@@ -227,7 +233,7 @@ app.get('/posts/:courseCode', (req, res) => {
 			res.send(posts)
 		}
 	}).catch((error) => {
-		res.status(500).send()
+		res.status(500).send(error)
 	})
 })
 
@@ -247,7 +253,7 @@ app.delete('/posts/:courseCode/:author', (req, res) => {
 			res.send()
 		}
 	}).catch((error) => {
-		res.status(500).send()
+		res.status(500).send(error)
 	})
 })
 
@@ -267,7 +273,7 @@ app.get('/posts/:courseCode/:author', (req, res) => {
 			res.send(post)
 		}
 	}).catch((error) => {
-		res.status(500).send()
+		res.status(500).send(error)
 	})
 })
 
