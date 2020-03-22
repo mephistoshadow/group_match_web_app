@@ -18,14 +18,62 @@ const { Match } = require('./models/match')
 const { Login } = require('./models/login')
 const { Admin } = require('./models/admin')
 
-
 const { ObjectID } = require('mongodb')
-
 
 const bodyParser = require('body-parser') 
 app.use(bodyParser.json())
 
+const session = require('express-session')
+app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(
+	session({
+		resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60000,
+            httpOnly: true
+        }
+	})
+)
+
+// A route to login and create a session
+app.post('/login', (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    // Use the static method on the User model to find a user
+    // by their email and password
+    Login.findByEmailPassword(email, password).then((user) => {
+            // Add username and isAdmin to the session cookie
+            req.session.user = user.username
+            req.session.isAdmin = user.isAdmin
+            res.send({currentUser: user.username})
+    }).catch(error => {
+            res.status(400).send()
+    })
+})
+
+// A route to logout a user
+app.get('/logout', (req, res) => {
+    // Remove the session
+    req.session.destroy((error) => {
+        if (error) {
+            res.status(500).send(error)
+        } else {
+            res.send()
+        }
+    })
+})
+
+// A route to check if a use is logged in on the session cookie
+app.get('/check-session', (req, res) => {
+    if (req.session.user) {
+        res.send({currentUser: req.session.user})
+    } else {
+        res.status(401).send()
+    }
+})
 
 //create admin
 app.post('/admin', (req, res) => {
@@ -40,6 +88,7 @@ app.post('/admin', (req, res) => {
 		res.status(400).send(error)
 	})
 })
+
 // get admin
 app.get('/admin', (req, res) => {
 	Admin.find().then((admin) => {
