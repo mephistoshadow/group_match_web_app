@@ -1,8 +1,7 @@
-################################################################################
-# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
-################################################################################
-
-/.vs
-/package-lock.json
+.DS_Store
 node_modules/
+package-lock.json
 mongo-data/
+client/build/
+client/package-lock.json
+client/node_modules/
