@@ -16,6 +16,7 @@ const { Course } = require('./models/course')
 const { Post } = require('./models/post')
 const { Match } = require('./models/match')
 const { Login } = require('./models/login')
+const { Admin } = require('./models/admin')
 
 
 const { ObjectID } = require('mongodb')
@@ -24,6 +25,30 @@ const { ObjectID } = require('mongodb')
 const bodyParser = require('body-parser') 
 app.use(bodyParser.json())
 
+
+
+//create admin
+app.post('/admin', (req, res) => {
+	const  admin = new Admin({
+		username: req.body.username,
+		name: req.body.name
+	})
+
+	admin.save().then((result) => {
+		res.send(result)
+	}, (error) => {
+		res.status(400).send(error)
+	})
+})
+// get admin
+app.get('/admin', (req, res) => {
+	Admin.find().then((admin) => {
+		res.send(admin) 
+	}, (error) => {
+		res.status(500).send(error)
+	})
+})
+
 // Add student
 app.post('/students', (req, res) => {
 	const student = new Student({
@@ -31,8 +56,7 @@ app.post('/students', (req, res) => {
 		name: req.body.name,
 		year: req.body.year,
 		courses:req.body.courses,
-		email: req.body.email,
-		role: req.body.role
+		email: req.body.email
 	})
 
 	student.save().then((result) => {
