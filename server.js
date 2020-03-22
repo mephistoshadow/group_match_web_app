@@ -15,7 +15,7 @@ const { Student } = require('./models/student')
 const { Course } = require('./models/course')
 const { Post } = require('./models/post')
 const { Match } = require('./models/match')
-const { Login } = require('./models/login')
+const { User } = require('./models/user')
 const { Admin } = require('./models/admin')
 
 const { ObjectID } = require('mongodb')
@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(
 	session({
+		secret: "csc309",
 		resave: false,
         saveUninitialized: false,
         cookie: {
@@ -37,25 +38,41 @@ app.use(
 	})
 )
 
+app.post('/users', (req, res) => {
+	const user = new User({
+		username: req.body.username,
+		password: req.body.password,
+		email: req.body.email,
+		isAdmin: req.body.isAdmin
+	})
+
+	user.save().then((user) => {
+		res.send(user)
+	}, (error) => {
+		res.status(400).send(error)
+	})
+})
+
 // A route to login and create a session
-app.post('/login', (req, res) => {
-    const email = req.body.email
+app.post('/users/login', (req, res) => {
+    const username = req.body.username
     const password = req.body.password
 
     // Use the static method on the User model to find a user
     // by their email and password
-    Login.findByEmailPassword(email, password).then((user) => {
+    User.findByUsernamePassword(username, password).then((user) => {
+    		log(user)
             // Add username and isAdmin to the session cookie
             req.session.user = user.username
             req.session.isAdmin = user.isAdmin
-            res.send({currentUser: user.username})
+            res.send({currentUser: user.username, isAdmin: user.isAdmin})
     }).catch(error => {
             res.status(400).send()
     })
 })
 
 // A route to logout a user
-app.get('/logout', (req, res) => {
+app.get('/users/logout', (req, res) => {
     // Remove the session
     req.session.destroy((error) => {
         if (error) {
@@ -67,7 +84,7 @@ app.get('/logout', (req, res) => {
 })
 
 // A route to check if a use is logged in on the session cookie
-app.get('/check-session', (req, res) => {
+app.get('users/check-session', (req, res) => {
     if (req.session.user) {
         res.send({currentUser: req.session.user})
     } else {
