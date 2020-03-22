@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
-const log = console.log
 
 const UserSchema = new mongoose.Schema({
 	username: {
@@ -51,22 +50,17 @@ UserSchema.pre('save', function(next) {
 UserSchema.statics.findByUsernamePassword = function(username, password) {
     const User = this // binds this to the User model
 
-    log('hello', username, password)
     // First find the user by their username
     return User.findOne({username: username}).then((user) => {
-        log('user', user)
         if (!user) {
             return Promise.reject()  // a rejected promise
         }
         // if the user exists, make sure their password is correct
         return new Promise((resolve, reject) => {
-            log('passwords', password, user.password)
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
-                    log('correct password')
                     resolve(user)
                 } else {
-                    log('incorrect password')
                     reject()
                 }
             })

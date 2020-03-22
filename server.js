@@ -61,7 +61,6 @@ app.post('/users/login', (req, res) => {
     // Use the static method on the User model to find a user
     // by their email and password
     User.findByUsernamePassword(username, password).then((user) => {
-    		log(user)
             // Add username and isAdmin to the session cookie
             req.session.user = user.username
             req.session.isAdmin = user.isAdmin
