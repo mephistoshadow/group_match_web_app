@@ -7,7 +7,7 @@ const Login = mongoose.model('LogInfo', {
 		type: String,
 		required: true,
 		trim: true,
-		unique: true
+		unique: true,
 		minlength: 1
 	},
 	password: {
@@ -24,7 +24,8 @@ const Login = mongoose.model('LogInfo', {
 			validator: validator.isEmail,
 			message: "Not a valid email"
 		}
-	}
+	},
+	isAdmin: Boolean
 })
 
 module.exports = { Login }
