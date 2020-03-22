@@ -13,7 +13,7 @@ const Student = mongoose.model('Student', {
 		minlength: 1,
 		trim: true
 	},
-	lastname: {
+	lastName: {
 		type: String,
 		required: true,
 		minlength: 1,
