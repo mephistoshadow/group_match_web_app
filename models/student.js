@@ -6,7 +6,7 @@ const Student = mongoose.model('Student', {
 		type: String,
 		required: true,
 		trim: true,
-		unique: true
+		unique: true,
 		minlength: 1
 	},
 	firstName: {
