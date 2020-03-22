@@ -24,18 +24,7 @@ const { ObjectID } = require('mongodb')
 const bodyParser = require('body-parser') 
 app.use(bodyParser.json())
 
-
-// app.use("/js", express.static(path.join(__dirname, '/public/js')))
-
-
-// app.get('/', (req, res) => {
-// 	res.sendFile(path.join(__dirname, '/public/dashboard.html'))
-// })
-
-
-
-// Student API Calls
-// Add student to database
+// Add student
 app.post('/students', (req, res) => {
 	const student = new Student({
 		username: req.body.username,
@@ -53,7 +42,7 @@ app.post('/students', (req, res) => {
 	})
 })
 
-// Get all students from database
+// Get all students
 app.get('/students', (req, res) => {
 	Student.find().then((students) => {
 		res.send(students) 
@@ -96,86 +85,77 @@ app.delete('/students/:id', (req, res) => {
 	})
 })
 
-//Add student to course
-app.patch('/students/:id', (req, res) => {
-    const studentId = req.params.id
+// Add student to course
+app.patch('/students/add-course', (req, res) => {
+    const courseCode = req.body.courseCode
+    const studentId = req.body.studentId
+
     if (!ObjectID.isValid(studentId)) {
         res.status(400).send()
     }
-    
-    const courseCode = req.body.courseCode
-    
-    
-    //find and increment course counter
-    Course.findOneAndUpdate({courseCode : courseCode}, {$inc:{people:1}}, {new:true}).then((course) => {
-        if (!course) {
-            res.status(404).send()
-        } else {
-            res.send(course)
-            
-            //Add course to student course list
-            
-            Student.findByIdAndUpdate(studentId, {$addToSet: {courses:courseCode}}, {new: true}).then((student) => {
-                if (!student) {
-                    res.status(404).send()
-                } else {
-                    res.send(student)
-                    
-                }
-            }).catch((error) => {
-                res.status(500).send()
-            })
 
-        }
-    }).catch((error) => {
-        res.status(500).send()
-    })
+  	Promise.all([Course.findOne({code: courseCode}), Student.findById(studentId)]).then((results) => {
+  		const course = results[0], student = results[1]
 
+  		if (course && student) {
+  			if (!student.courses.includes(course.code)) {
+  				course.people += 1
+  				student.courses.push(course.code)
+
+  				Promise.all([course.save(), student.save()]).then((results) => {
+  					res.send({course: results[0], student: results[1]})
+  				}).catch((error) => {
+  					res.status(500).send(error)
+  				})
+  			} else {
+  				res.status(400).send()
+  			}
+  		} else {
+  			res.status(404).send()
+  		}
+  	}).catch((error) => {
+  		res.status(500).send(error)
+  	})
 })
 
-//TODO: Remove student from course
-app.patch('/courses/:courseCode', (req, res) => {
-    const courseCode = req.params.courseCode
-//    if (!ObjectID.isValid(courseCode)) {
-//        res.status(400).send()
-//    }
-    
+// Remove student from course
+app.patch('/students/remove-course', (req, res) => {
+    const courseCode = req.body.courseCode
     const studentId = req.body.studentId
 
-    //Remove course from student course list
-    
-    Student.findByIdAndUpdate(studentId, {$pull: {courses:courseCode}}, {new: true}).then((student) => {
-        if (!student) {
-            res.status(404).send()
-        } else {
-            res.send(student)
-            
-            //find and decrement course counter
-            Course.findOneAndUpdate({courseCode : courseCode}, {$inc:{people:-1}}, {new:true}).then((course) => {
-                if (!course) {
-                    res.status(404).send()
-                } else {
-                    res.send(course)
-                }
-            }).catch((error) => {
-                res.status(500).send()
-            })
-            
-        }
-    }).catch((error) => {
-        res.status(500).send()
-    })
-    
-    
+    if (!ObjectID.isValid(studentId)) {
+        res.status(400).send()
+    }
 
+  	Promise.all([Course.findOne({code: courseCode}), Student.findById(studentId)]).then((results) => {
+  		const course = results[0], student = results[1]
+
+  		if (course && student) {
+  			if (student.courses.includes(course.code)) {
+  				course.people -= 1
+  				student.courses = student.courses.filter((courseCode) => courseCode !== course.code)
+
+  				Promise.all([course.save(), student.save()]).then((results) => {
+  					res.send({course: results[0], student: results[1]})
+  				}).catch((error) => {
+  					res.status(500).send(error)
+  				})
+  			} else {
+  				res.status(400).send()
+  			}
+  		} else {
+  			res.status(404).send()
+  		}
+  	}).catch((error) => {
+  		res.status(500).send(error)
+  	})
 })
 
-// Courses API Calls
+// Add course
 app.post('/courses', (req, res) => {
 	const course = new Course({
 		title: req.body.title,
-		courseCode:req.body.courseCode,
-		people:req.body.people
+		code: req.body.code
 	})
 
 	course.save().then((result) => {
@@ -200,7 +180,7 @@ app.get('/:courseCode/students', (req, res) => {
 	})
 })
 
-// Posts API Calls
+// Add post
 app.post('/posts', (req, res) => {
 	const post = new Post({
 		courseCode: req.body.courseCode,
@@ -215,6 +195,7 @@ app.post('/posts', (req, res) => {
 	})
 })
 
+// Get all posts in course
 app.get('/posts/:courseCode', (req, res) => {
 	const courseCode = req.params.courseCode
 
@@ -229,6 +210,7 @@ app.get('/posts/:courseCode', (req, res) => {
 	})
 })
 
+// Delete post in course by author
 app.delete('/posts/:courseCode/:author', (req, res) => {
 	const courseCode = req.params.courseCode
 	const author = req.params.author
@@ -248,6 +230,7 @@ app.delete('/posts/:courseCode/:author', (req, res) => {
 	})
 })
 
+// Get post in course by author
 app.get('/posts/:courseCode/:author', (req, res) => {
 	const courseCode = req.params.courseCode
 	const author = req.params.author
@@ -270,5 +253,4 @@ app.get('/posts/:courseCode/:author', (req, res) => {
 const port = process.env.PORT || 5000
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
-}) 
-
+})
