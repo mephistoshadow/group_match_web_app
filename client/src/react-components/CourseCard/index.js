@@ -40,8 +40,8 @@ class Card extends React.Component {
         for(let i = 0; i<array.length; i ++) {
             console.log(array.length);
             if(array[i].id === student.id ) {
-                if(this.state.newName.length <=0 || this.state.newName.length >5) {
-                     alert("Please in range 1 to 4");
+                if(this.state.newName.length <=0 || this.state.newName.length >6) {
+                     alert("type the correct format of courses code, ie CSC309");
                 }else {
                   array[i].name = this.state.newName;
                    user.setState({

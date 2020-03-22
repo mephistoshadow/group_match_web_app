@@ -47,8 +47,8 @@ class Student extends React.Component {
         for(let i = 0; i<array.length; i ++) {
             console.log(array.length);
             if(array[i].id === student.id ) {
-                if(this.state.newName.length <=0 || this.state.newName.length >5) {
-                     alert("Please in range 1 to 4");
+                if(this.state.newName.length <=0) {
+                     alert("Please type a user name to change");
                 }else {
                   array[i].name = this.state.newName;
                   user.setState({
@@ -70,8 +70,8 @@ class Student extends React.Component {
         for(let i = 0; i<array.length; i ++) {
             console.log(array.length);
             if(array[i].id === student.id ||this.state.newPassword.length <0) {
-                if(this.state.newPassword.length <=0 || this.state.newPassword.length >5) {
-                     alert("Please in range 1 to 4");
+                if(this.state.newPassword.length <=0) {
+                     alert("Please type a password to change");
                 }else {
                   array[i].password = this.state.newPassword;
                    user.setState({

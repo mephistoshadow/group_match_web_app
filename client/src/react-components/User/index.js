@@ -5,7 +5,7 @@ import Student from "../StudentCard"
 import Operation from "../Operation"
 import Header from "../Header"
 import { uid } from "react-uid";
-import { getObjectByName } from "../../actions/basicoperation";
+// import { getObjectByName } from "../../actions/Basicoperation";
 
 
 
@@ -20,26 +20,27 @@ class User extends React.Component {
      // console.log(this.props);
 
    }
+   // {this.show(this.props.state.pop)}
 
-  show= (e) => {
-        console.log(e);
-        if (!e) {
-            return null;
-        }
-        return (
-           <div className="popup">
-                <div className="cross" onClick={this.closepop}>
-                    <i className="fa fa-times-circle"></i>
-                </div>
-                <span className="popupcontent">Changes Saved!</span>
-            </div>
-        );
-    }
+  // show= (e) => {
+  //       console.log(e);
+  //       if (!e) {
+  //           return null;
+  //       }
+  //       return (
+  //          <div className="popup">
+  //               <div className="cross" onClick={this.closepop}>
+  //                   <i className="fa fa-times-circle"></i>
+  //               </div>
+  //               <span className="popupcontent">Changes Saved!</span>
+  //           </div>
+  //       );
+  //   }
 
-    closepop = () =>{
-        this.props.app.setState({pop:false});
-        console.log(this.state.pop);
-    }
+  //   closepop = () =>{
+  //       this.props.app.setState({pop:false});
+  //       console.log(this.state.pop);
+  //   }
 
 
     render() {
@@ -59,7 +60,7 @@ class User extends React.Component {
             </div>
             <Operation student = {this.props.state.students} usercomponents = {this.props.app}/>
         </div>
-         {this.show(this.props.state.pop)}
+         
         </div>
          
         );

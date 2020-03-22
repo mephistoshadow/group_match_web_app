@@ -1,7 +1,7 @@
 import './styles.css'
 import React from "react";
 import Header from "../Header"
-import {getObjectByName} from "../../actions/basicoperation"
+import {getObjectByName} from "../../actions/BasicOperation"
 import { Link, Redirect } from 'react-router-dom'
 
 class PostPage extends React.Component {

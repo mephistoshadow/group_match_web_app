@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { getObjectById, getObjectByName } from "../../actions/basicoperation";
+import { getObjectById, getObjectByName } from "../../actions/BasicOperation";
 import './styles.css'
 
 class Login extends React.Component {

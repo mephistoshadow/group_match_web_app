@@ -3,7 +3,7 @@ import './styles.css';
 import React from "react";
 import Header from "../Header"
 import { Link, Redirect } from 'react-router-dom'
-import { getObjectByName } from "../../actions/basicoperation";
+import { getObjectByName } from "../../actions/BasicOperation";
 
 // const log = console.logs
 // let state = 0;
@@ -81,25 +81,26 @@ class Profile extends React.Component {
          return <Redirect to='/adminUser'/>;
     }
 
-  show= (e) => {
-        if (!e) {
-            return null;
-        }
+  // show= (e) => {
+  //       if (!e) {
+  //           return null;
+  //       }
 
-        return (
-           <div className="popup">
-                <div className="cross" onClick={this.closepop}>
-                    <i className="fa fa-times-circle"></i>
-                </div>
-                <span className="popupcontent">Changes Saved!</span>
-            </div>
-        );
-    }
+  //       return (
+  //          <div className="popup">
+  //               <div className="cross" onClick={this.closepop}>
+  //                   <i className="fa fa-times-circle"></i>
+  //               </div>
+  //               <span className="popupcontent">Changes Saved!</span>
+  //           </div>
+  //       );
+  //   }
 
-    closepop = () =>{
-        this.props.app.setState({pop:false});
-        console.log(this.state.pop);
-    }
+  //   closepop = () =>{
+  //       this.props.app.setState({pop:false});
+  //       console.log(this.state.pop);
+  //   }
+   // {this.show(this.props.state.pop)}
 
 
     render() {
@@ -131,7 +132,7 @@ class Profile extends React.Component {
                     <button onClick={this.update} className="homeButton">SAVE CHANGES</button> 
 	    </div>
             </div>
-             {this.show(this.props.state.pop)}
+            
             </div>
         );
     }
