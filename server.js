@@ -165,11 +165,32 @@ app.post('/courses', (req, res) => {
 	})
 })
 
+// Delete course
+app.delete('/courses', (req, res) => {
+	const courseCode = req.body.code
+
+	Promise.all([Course.deleteOne({code: courseCode})]).then((results) => {
+		const deletedCount = results[0].deletedCount
+
+		if (deletedCount === 1) {
+			Promise.all([Student.updateMany({}, {$pull: {courses: courseCode}}), Post.deleteMany({courseCode: courseCode})]).then((result) => {
+				res.send()
+			}).catch((error) => {
+				res.status(500).send()
+			})
+		} else {
+			res.status(404).send()
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+})
+
 // Get all students in course
 app.get('/:courseCode/students', (req, res) => {
 	const courseCode = req.params.courseCode
 
-	Student.find({courses: {$in : [courseCode]}}).then((students) => {
+	Student.find({courses: {$in: [courseCode]}}).then((students) => {
 		if (!students) {
 			res.status(404).send()
 		} else {
