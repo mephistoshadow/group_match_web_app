@@ -5,7 +5,7 @@ import Student from "../StudentCard"
 import Operation from "../Operation"
 import Header from "../Header"
 import { uid } from "react-uid";
-// import { getObjectByName } from "../../actions/Basicoperation";
+// import { getObjectByName } from "../../actions/basicoperation";
 
 
 

@@ -3,8 +3,8 @@ import { uid } from "react-uid";
 
 import HomePageCourse from "../HomePageCourse";
 import Header from "../Header";
-import { getObjectByName } from "../../actions/BasicOperation";
-import { joinCourse, dropCourse } from "../../actions/HomePage";
+import { getObjectByName } from "../../actions/basicoperation";
+import { joinCourse, dropCourse } from "../../actions/homepage";
 
 import './styles.css';
 

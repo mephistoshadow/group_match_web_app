@@ -2,7 +2,7 @@ import '../Profile/styles.css';
 import React from "react";
 import Header from "../Header"
 import { Link, Redirect } from 'react-router-dom'
-import { getObjectByName } from "../../actions/BasicOperation";
+import { getObjectByName } from "../../actions/basicoperation";
 
 class AdminProfile extends React.Component {
 

@@ -3,7 +3,7 @@ import './styles.css';
 import React from "react";
 import Header from "../Header"
 import { Link, Redirect } from 'react-router-dom'
-import { getObjectByName } from "../../actions/BasicOperation";
+import { getObjectByName } from "../../actions/basicoperation";
 
 // const log = console.logs
 // let state = 0;

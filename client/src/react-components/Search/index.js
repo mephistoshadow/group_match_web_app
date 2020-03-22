@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 
 import SearchPost from "../SearchPost";
 import Header from "../Header";
-import { getObjectById, getObjectByName } from "../../actions/BasicOperation";
+import { getObjectById, getObjectByName } from "../../actions/basicoperation";
 
 import './styles.css';
 
