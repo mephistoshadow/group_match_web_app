@@ -169,8 +169,8 @@ app.post('/courses', (req, res) => {
 app.delete('/courses', (req, res) => {
 	const courseCode = req.body.code
 
-	Promise.all([Course.deleteOne({code: courseCode})]).then((results) => {
-		const deletedCount = results[0].deletedCount
+	Course.deleteOne({code: courseCode}).then((result) => {
+		const deletedCount = result.deletedCount
 
 		if (deletedCount === 1) {
 			Promise.all([Student.updateMany({}, {$pull: {courses: courseCode}}), Post.deleteMany({courseCode: courseCode})]).then((result) => {
