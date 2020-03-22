@@ -1,16 +1,16 @@
 import React from 'react'
-import { login } from "../../actions/authentication";
+import { Link } from 'react-router-dom'
+import { updateLoginForm, login } from "../../actions/authentication";
 import './styles.css'
 
 class Login extends React.Component {
-
 	constructor(props) {
 		super(props);
 	}
 
 	state = {
-		'currentUser': '',
-		'isAdmin': false,
+		'username': '',
+		'password': '',
 	}
 
 	render() {
@@ -20,9 +20,9 @@ class Login extends React.Component {
 			<div className='homeContainer'>
 				<div className='homeForm'>
 					<span className='homeLogo'>GROUPIE</span>
-					<input className='homeInput' type='text' ref='username' placeholder='Username'/>
-					<input className='homeInput' type='password' ref='password' placeholder='Password'/>
-					<button className='homeButton' onClick={this.authenticate.bind(this)}>SIGN IN</button>
+					<input className='homeInput' type='text' name='username' placeholder='Username' onChange={(e) => updateLoginForm(this, e.target)}/>
+					<input className='homeInput' type='password' name='password' placeholder='Password' onChange={(e) => updateLoginForm(this, e.target)}/>
+					<button className='homeButton' onClick={() => login(this, app)}>SIGN IN</button>
 					<span>Don't have an account yet? <Link to='/signup'>Create one!</Link></span>
 				</div>
 			</div>

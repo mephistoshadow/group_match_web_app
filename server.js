@@ -26,6 +26,9 @@ app.use(bodyParser.json())
 const session = require('express-session')
 app.use(bodyParser.urlencoded({ extended: true }))
 
+const cors = require('cors')
+app.use(cors())
+
 app.use(
 	session({
 		secret: "csc309",
