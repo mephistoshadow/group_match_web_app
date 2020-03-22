@@ -1,8 +1,8 @@
-/* Course mongoose model */
 const mongoose = require('mongoose')
 const validator = require('validator')
+const bcrypt = require('bcryptjs')
 
-const Login = new mongoose.Schema('LogInfo', {
+const LoginSchema = new mongoose.Schema({
 	username: {
 		type: String,
 		required: true,
@@ -28,8 +28,8 @@ const Login = new mongoose.Schema('LogInfo', {
 	isAdmin: Boolean
 })
 
-//EDITED MARK CODE
-Login.pre('save', function(next) {
+// Edited Mark's Code
+LoginSchema.pre('save', function(next) {
     const user = this; // binds this to User document instance
 
     // checks to ensure we don't hash password more than once
@@ -46,8 +46,8 @@ Login.pre('save', function(next) {
     }
 })
 
-//EDITED MARK CODE
-Login.statics.findByEmailPassword = function(email, password) {
+// Edited Mark's code
+LoginSchema.statics.findByEmailPassword = function(email, password) {
     const User = this // binds this to the User model
 
     // First find the user by their email
@@ -68,4 +68,5 @@ Login.statics.findByEmailPassword = function(email, password) {
     })
 }
 
+const Login = mongoose.model('Login', LoginSchema)
 module.exports = { Login }
