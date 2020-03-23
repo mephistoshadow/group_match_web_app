@@ -104,7 +104,7 @@ class Header extends React.Component {
 		let homeLink;
 		let homeLinkButton;
 
-		if (this.props.user === 'user') {
+		if (!this.props.isAdmin) {
 			userOptions =
 				<div id="userOptions">
                     <Link to="/matches" className="navbarLink">MATCHES</Link>

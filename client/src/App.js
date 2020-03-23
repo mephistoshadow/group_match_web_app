@@ -24,8 +24,8 @@ class App extends React.Component {
   // here we need the server call that can correct setup the data objects for us to use.
   // ie courses, students,posts.
   state = {
-  		currentUser: null,
-		isAdmin: null,
+  		currentUser: '',
+		isAdmin: false,
         notificationCounter: 1,
 		countCourse: 3,
 		countStudent: 4,
@@ -122,7 +122,7 @@ class App extends React.Component {
 				<Switch>
 					<Route exact path={["/", "/login", "/dashboard"]} render={() => (
 						!currentUser ? <Login app={this}/> : (
-						!isAdmin ? <HomePage app={this} state={this.state}/> : <AdminProfile app={this} state={this.state}/>
+						!isAdmin ? <HomePage app={this}/> : <AdminProfile app={this} state={this.state}/>
 						))}/>
 					<Route exact path='/signup' render={({history}) =>
 						(<SignUp history={history} app={this}/>)} />

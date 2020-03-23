@@ -2,61 +2,98 @@
 
 const log = console.log;
 
+const getAllCourses = (homeComp) => {
+	const url = 'http://localhost:5000/courses'
 
-// Function to join/drop a course, we need server call for both methods
-// Because we're changing the data and need to store the new data into Database.
-// In particular, wherever we're setState, we need to server call to write data, 
-//and when we read from state, we need server call to read
-export const joinCourse = (state, student, course) => {
-	const current_courses = student.current_courses
-	const course_name = course.name
-	const isIn = current_courses.includes(course_name)
-	const coursesList = state.props.state.courses
-	const studentsList = state.props.state.students
-
-	const student_index = studentsList.indexOf(student)
-	const course_index = coursesList.indexOf(course)
-
-	if (!isIn) {
-		student.current_courses.push(course_name)
-		coursesList[course_index].people = coursesList[course_index].people + 1
-		console.log("Successful JOin In Course")
-	} else {
-		console.log("You have already Joined IN")
-	}
-
-	studentsList[student_index] = student
-	state.setState({
-		students: studentsList,
-		courses: coursesList
+	fetch(url).then((result) => {
+		if (result.status === 200) {
+			return result.json()
+		}
+	}).then((json) => {
+		if (json) {
+			homeComp.setState({allCourses: json})
+		}
+	}).catch((error) => {
+		console.log(error)
 	})
+}
 
-	console.log(state.props.state.students[1].current_courses)
-};
+const getStudentCourses = (homeComp, currentUser) => {
+	const url = `http://localhost:5000/students/username/${currentUser}`
 
-export const dropCourse = (state, student, course) => {
-	const current_courses = student.current_courses
-	const course_name = course.name
-	const isIn = current_courses.includes(course_name)
-	const coursesList = state.props.state.courses
-	const studentsList = state.props.state.students
-
-	const student_index = studentsList.indexOf(student)
-	const course_index = coursesList.indexOf(course)
-
-	if (isIn) {
-		student.current_courses.splice(student.current_courses.indexOf(course_name), 1)
-		coursesList[course_index].people -= 1
-		console.log("Successful Drop Course")
-	} else {
-		console.log("You cannot Drop Course before you join it")
-	}
-	
-	studentsList[student_index] = student
-	state.setState({
-		students: studentsList
+	fetch(url).then((result) => {
+		if (result.status === 200) {
+			return result.json()
+		}
+	}).then((json) => {
+		if (json) {
+			homeComp.setState({studentCourses: json.courses})
+		}
+	}).catch((error) => {
+		console.log(error)
 	})
+}
 
-	console.log(state.props.state.students[1].current_courses)
-	
-};
+const joinCourse = (homeComp, courseComp, courseCode, studentUsername) => {
+	const request = new Request("http://localhost:5000/students/add-course", {
+        method: "post",
+        body: JSON.stringify({
+        	courseCode: courseCode,
+        	studentUsername: studentUsername
+        }),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+
+    fetch(request).then((result) => {
+    	if (result.status === 200) {
+    		return result.json()
+    	}
+    }).then((jsons) => {
+    	if (jsons.course && jsons.student) {
+    		console.log('setting state', jsons.course, jsons.student)
+    		homeComp.setState({studentCourses: jsons.student.courses})
+    		courseComp.setState({people: jsons.course.people})
+    	}
+    }).catch((error) => {
+    	console.log(error)
+    })
+}
+
+const dropCourse = (homeComp, courseComp, courseCode, studentUsername) => {
+	const request = new Request("http://localhost:5000/students/remove-course", {
+        method: "post",
+        body: JSON.stringify({
+        	courseCode: courseCode,
+        	studentUsername: studentUsername
+        }),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+
+    fetch(request).then((result) => {
+    	console.log(result)
+    	if (result.status === 200) {
+    		return result.json()
+    	}
+    }).then((jsons) => {
+    	if (jsons.course && jsons.student) {
+			console.log('setting state', jsons.course, jsons.student)
+    		homeComp.setState({studentCourses: jsons.student.courses})
+    		courseComp.setState({people: jsons.course.people})
+    	}
+    }).catch((error) => {
+    	console.log(error)
+    })
+}
+
+module.exports = {
+	getAllCourses,
+	getStudentCourses,
+	joinCourse,
+	dropCourse
+}
