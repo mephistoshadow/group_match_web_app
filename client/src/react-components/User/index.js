@@ -20,6 +20,7 @@ class User extends React.Component {
         load:true
     }
      const { state, app} = this.props;
+
    }
 
    show=(e) =>{
@@ -28,11 +29,11 @@ class User extends React.Component {
       }
    }
     render() {
-       
+        
 
         return (
         <div>
-         <Header user={this.state.user}/>
+         <Header user={this.props.app.state.currentUser} isAdmin={this.props.app.state.isAdmin}/>
          {this.show(this.state.load)}
         <div className = "card">
             <div className="Userheader">

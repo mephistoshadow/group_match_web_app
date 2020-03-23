@@ -42,10 +42,9 @@ class Course extends React.Component {
 
 
     render() {
-     
         return (
             <div>
-            <Header user={this.state.user}/>
+            <Header user={this.props.app.state.currentUser} isAdmin={this.props.app.state.isAdmin}/>
         <div className = "card">
             <div className="header">
               Courses
