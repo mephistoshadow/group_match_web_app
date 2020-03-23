@@ -46,17 +46,12 @@ app.use(
 //  receiver:
 //  courseCode:
 //}
-app.post('/match/:username', (req, res) => {
-    
-    //all matches are done by username
-    const sender = req.params.username
-    const receiver = req.body.receiver
-    const courseCode = req.body.courseCode
-    
+app.post('/matches', (req, res) => {
+    // Matches are done by username
     const match = new Match({
-        sender:sender,
-        receiver:receiver,
-        courseCode:courseCode
+        sender: req.body.sender,
+        receiver: req.body.receiver,
+        courseCode: req.body.courseCode
     })
     
     //TODO: check if sender/ receiver usernames exist
@@ -72,7 +67,7 @@ app.post('/match/:username', (req, res) => {
 
 //get all matches for username
 //NOTE: both sender and receiver would have to match with each other
-app.get('/match/:username', (req, res) => {
+app.get('/matches/:username', (req, res) => {
     const username = req.params.username
 
 //LEGACY CODE
@@ -86,39 +81,55 @@ app.get('/match/:username', (req, res) => {
 //        res.status(400).send(error)
 //    })
     
-    Match.find({sender: username}).then((match) => {
-    //find all matches that username is sender
-        if (!match) {
-            res.status(404).send()
-        } else {
-        
-            const senderMatches = match
-            const receiverMatches = []
+    // Match.find({sender: username}).then((matches) => {
+    // //find all matches that username is sender
+    //     if (!match) {
+    //         res.status(404).send()
+    //     } else {
+    //         const senderMatches = match
+    //         const receiverMatches = []
             
-            //loop through all the receivers and check if
-            //they also matched with username
-            for (let i in senderMatches){
-                const rec = senderMatches[i].receiver
-                Match.findOne({sender: rec, receiver:username}).then((match) => {
-                    if (match){
-                        log(match)
-                        //if so, add to reciever List
-                        receiverMatches.push(match)
-                        const endI = parseInt(i) + parseInt('1')
+    //         //loop through all the receivers and check if
+    //         //they also matched with username
+    //         for (let i in senderMatches){
+    //             const rec = senderMatches[i].receiver
+    //             Match.findOne({sender: rec, receiver:username}).then((match) => {
+    //                 if (match){
+    //                     log(match)
+    //                     //if so, add to reciever List
+    //                     receiverMatches.push(match)
+    //                     const endI = parseInt(i) + parseInt('1')
                         
-                        //once finished looping, send it
-                        if (endI == senderMatches.length){
-                            res.send(receiverMatches)
-                        }
-                    }
+    //                     //once finished looping, send it
+    //                     if (endI == senderMatches.length){
+    //                         res.send(receiverMatches)
+    //                     }
+    //                 }
                 
-                })
-            }
-        }
-    }, (error) => {
-        res.status(400).send(error)
-    })
+    //             })
+    //         }
+    //     }
+    // }, (error) => {
+    //     res.status(400).send(error)
+    // })
 
+    // Suppress _id and __v from queries
+    Promise.all([Match.find({sender: username}, {_id: 0, __v: 0}), Match.find({receiver: username}, {_id: 0, __v: 0})]).then((results) => {
+    	const senderMatches = results[0], receiverMatches = results[1]
+
+    	const twoWayMatches = senderMatches.filter((senderMatch) =>
+    		// Check if corresponding receiver match exists
+    		receiverMatches.some((receiverMatch) => (
+    			receiverMatch.sender === senderMatch.receiver &&
+    			receiverMatch.receiver === senderMatch.sender &&
+    			receiverMatch.courseCode === senderMatch.courseCode
+    		))
+    	)
+
+    	res.send(twoWayMatches)
+    }).catch((error) => {
+    	res.status(400).send(error)
+    })
 })
 
 app.post('/users', (req, res) => {
