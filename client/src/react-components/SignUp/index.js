@@ -8,7 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 import { updateForm, updateCheckbox } from "../../actions/basicoperation"
-import { getUserByEmail, getUserByUsername, signUp } from "../../actions/signup"
+import { isEmailTaken, isUsernameTaken, signUp } from "../../actions/signup"
 
 import "./styles.css"
 
@@ -47,21 +47,14 @@ class SignUp extends React.Component {
 		const emailRegex = new RegExp('.+@.+\\..+')
 		let emailError = '', usernameError = '', passwordError = ''
 		
-		const userWithEmail = await getUserByEmail(email)
-		const userWithUsername = await getUserByUsername(username)
-
 		if (!email) {
 			emailError = 'Email Address is required'
 		} else if (!emailRegex.test(email)) {
 			emailError = 'Invalid Email Address'
-		} else if (userWithEmail && userWithEmail.email === email) {
-			emailError = `Email ${email} is already in use`
 		}
 
 		if (!username) {
 			usernameError = 'Username is required'
-		} else if (userWithUsername && userWithUsername.username === username) {
-			usernameError = `Username ${username} is not available`
 		}
 
 		if (password.length < 6) {
@@ -70,7 +63,15 @@ class SignUp extends React.Component {
 
 		this.setState({emailError: emailError, usernameError: usernameError, passwordError: passwordError})
 
-		if (!emailError && !usernameError && !passwordError) {
+		if (!this.state.emailError) {
+			await isEmailTaken(email, this)
+		}
+
+		if (!this.state.usernameError) {
+			await isUsernameTaken(username, this)
+		}
+
+		if (!this.state.emailError && !this.state.usernameError && !this.state.passwordError) {
 			this.setState({next: true})
 		}
 	}
@@ -102,7 +103,7 @@ class SignUp extends React.Component {
 
 		this.setState({firstNameError: firstNameError, lastNameError: lastNameError, yearError: yearError, CGPAError: CGPAError})
 
-		if (!firstNameError && !lastNameError && !yearError && !CGPAError) {
+		if (!this.state.firstNameError && !this.state.lastNameError && !this.state.yearError && !this.state.CGPAError) {
 			await signUp(this, this.props.history)
 		}
 	}

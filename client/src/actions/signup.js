@@ -43,34 +43,40 @@ const signUp = (signUpComp, history) => {
     })
 }
 
-const getUserByEmail = (email) => {
+const isEmailTaken = (email, signUpComp) => {
 	const url = `http://localhost:5000/users/email/${email}`
     return fetch(url).then((result) => {
     	if (result.status === 200) {
-    		return Promise.resolve(result.json())
-    	} else {
-    		return Promise.reject()
+    		return result.json()
     	}
+    }).then((json) => {
+        console.log(json)
+        if (json && json.email === email) {
+            console.log('setting state')
+            signUpComp.setState({emailError: `Email ${email} is already in use`})
+        }
     }).catch((error) => {
     	console.log(error)
     })
 }
 
-const getUserByUsername = (username) => {
+const isUsernameTaken = (username, signUpComp) => {
 	const url = `http://localhost:5000/users/username/${username}`
     return fetch(url).then((result) => {
-    	if (result.status === 200) {
-    		return Promise.resolve(result.json())
-    	} else {
-    		return Promise.reject()
-    	}
+        if (result.status === 200) {
+            return result.json()
+        }
+    }).then((json) => {
+        if (json && json.username === username) {
+            signUpComp.setState({usernameError: `Username ${username} is not available`})
+        }
     }).catch((error) => {
-    	console.log(error)
+        console.log(error)
     })
 }
 
 module.exports = {
 	signUp,
-	getUserByEmail,
-	getUserByUsername
+	isEmailTaken,
+	isUsernameTaken
 }
