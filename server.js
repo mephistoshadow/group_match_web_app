@@ -41,6 +41,86 @@ app.use(
 	})
 )
 
+//add Match
+//body= {
+//  receiver:
+//  courseCode:
+//}
+app.post('/match/:username', (req, res) => {
+    
+    //all matches are done by username
+    const sender = req.params.username
+    const receiver = req.body.receiver
+    const courseCode = req.body.courseCode
+    
+    const match = new Match({
+        sender:sender,
+        receiver:receiver,
+        courseCode:courseCode
+    })
+    
+    //TODO: check if sender/ receiver usernames exist
+    //TODO: check if course exists
+ 
+    match.save().then((match) => {
+        res.send(match)
+    }, (error) => {
+        res.status(400).send(error)
+    })
+
+})
+
+//get all matches for username
+//NOTE: both sender and receiver would have to match with each other
+app.get('/match/:username', (req, res) => {
+    const username = req.params.username
+
+//LEGACY CODE
+//    Match.find({ $or:[ {'sender':username}, {'receiver':username}]}).then((match) => {
+//        if (!match) {
+//            res.status(404).send()
+//        } else {
+//            res.send(match)
+//        }
+//    }, (error) => {
+//        res.status(400).send(error)
+//    })
+    
+    Match.find({sender: username}).then((match) => {
+    //find all matches that username is sender
+        if (!match) {
+            res.status(404).send()
+        } else {
+        
+            const senderMatches = match
+            const receiverMatches = []
+            
+            //loop through all the receivers and check if
+            //they also matched with username
+            for (let i in senderMatches){
+                const rec = senderMatches[i].receiver
+                Match.findOne({sender: rec, receiver:username}).then((match) => {
+                    if (match){
+                        log(match)
+                        //if so, add to reciever List
+                        receiverMatches.push(match)
+                        const endI = parseInt(i) + parseInt('1')
+                        
+                        //once finished looping, send it
+                        if (endI == senderMatches.length){
+                            res.send(receiverMatches)
+                        }
+                    }
+                
+                })
+            }
+        }
+    }, (error) => {
+        res.status(400).send(error)
+    })
+
+})
+
 app.post('/users', (req, res) => {
 	const user = new User({
 		username: req.body.username,

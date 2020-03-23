@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 
 const MatchSchema = new mongoose.Schema({
 	sender: {
-		type: mongoose.Schema.Types.ObjectId,
+        type: String,
 		required: true,
 	},
 	receiver: {
-		type: mongoose.Schema.Types.ObjectId,
+        type: String,
 		required: true
 	},
 	courseCode: {
