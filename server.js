@@ -86,7 +86,7 @@ app.get('/users/logout', (req, res) => {
 })
 
 // A route to check if a use is logged in on the session cookie
-app.get('users/check-session', (req, res) => {
+app.get('/users/check-session', (req, res) => {
     if (req.session.user) {
         res.send({currentUser: req.session.user})
     } else {
@@ -94,9 +94,39 @@ app.get('users/check-session', (req, res) => {
     }
 })
 
+// Get users by username
+app.get('/users/username/:username', (req, res) => {
+	const username = req.params.username
+
+	User.findOne({username: username}).then((user) => {
+		if (!user) {
+			res.status(404).send()
+		} else {
+			res.send(user)
+		}
+	}, (error) => {
+		res.status(400).send(error)
+	})
+})
+
+// Get users by email
+app.get('/users/email/:email', (req, res) => {
+	const email = req.params.email
+
+	User.findOne({email: email}).then((user) => {
+		if (!user) {
+			res.status(404).send()
+		} else {
+			res.send(user)
+		}
+	}, (error) => {
+		res.status(400).send(error)
+	})
+})
+
 //create admin
 app.post('/admin', (req, res) => {
-	const  admin = new Admin({
+	const admin = new Admin({
 		username: req.body.username,
 		name: req.body.name
 	})

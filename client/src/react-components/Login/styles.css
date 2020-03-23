@@ -46,14 +46,13 @@ span {
 	color: orange;
 }
 
-.homeInput {
+.formInput {
 	box-sizing: border-box;
 	border: 1px solid black;
 	border-radius: 5px;
 
 	width: 100%;
 	padding: 10px;
-	margin-bottom: 20px;
 
 	font-family: inherit;
 	font-size: inherit;
@@ -61,17 +60,17 @@ span {
 	text-align: left;
 }
 
-.homeInput:focus {
+.formInput:focus {
 	outline: none;
 	border: 1px solid orange;
 }
 
-.homeInput:placeholder {
+.formInput:placeholder {
 	color: lightgrey;
 	transition: color 0.25s;
 }
 
-.homeInput:focus::placeholder {
+.formInput:focus::placeholder {
 	color: transparent;
 }
 

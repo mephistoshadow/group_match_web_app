@@ -40,6 +40,34 @@ const signUp = (signUpComp, history) => {
     })
 }
 
+const getUserByEmail = (email) => {
+	const url = `http://localhost:5000/users/email/${email}`
+    return fetch(url).then((result) => {
+    	if (result.status === 200) {
+    		return Promise.resolve(result.json())
+    	} else {
+    		return Promise.reject()
+    	}
+    }).catch((error) => {
+    	console.log(error)
+    })
+}
+
+const getUserByUsername = (username) => {
+	const url = `http://localhost:5000/users/username/${username}`
+    return fetch(url).then((result) => {
+    	if (result.status === 200) {
+    		return Promise.resolve(result.json())
+    	} else {
+    		return Promise.reject()
+    	}
+    }).catch((error) => {
+    	console.log(error)
+    })
+}
+
 module.exports = {
-	signUp
+	signUp,
+	getUserByEmail,
+	getUserByUsername
 }

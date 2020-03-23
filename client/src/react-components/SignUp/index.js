@@ -8,7 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 import { updateForm, updateCheckbox } from "../../actions/basicoperation"
-import { signUp } from "../../actions/signup"
+import { getUserByEmail, getUserByUsername, signUp } from "../../actions/signup"
 
 import "./styles.css"
 
@@ -29,15 +29,82 @@ class SignUp extends React.Component {
 	}
 
 	state = {
-		email: '',
-		username: '',
-		password: '',
-		firstName: '',
-		lastName: '',
-		year: null,
-		CGPA: null,
-		isCommuter: null,
-		next: false
+		email: '', emailError: '',
+		username: '', usernameError: '',
+		password: '', passwordError: '',
+		firstName: '', firstNameError: '',
+		lastName: '', lastNameError: '',
+		year: '', yearError: '',
+		CGPA: '', CGPAError: '',
+		isCommuter: false,
+		next: false,
+	}
+
+	async validateUserInfo(event) {
+		event.preventDefault()
+
+		const email = this.state.email, username = this.state.username, password = this.state.password
+		const emailRegex = new RegExp('.+@.+\\..+')
+		let emailError = '', usernameError = '', passwordError = ''
+		
+		const userWithEmail = await getUserByEmail(email)
+		const userWithUsername = await getUserByUsername(username)
+
+		if (!email) {
+			emailError = 'Email Address is required'
+		} else if (!emailRegex.test(email)) {
+			emailError = 'Invalid Email Address'
+		} else if (userWithEmail && userWithEmail.email === email) {
+			emailError = `Email ${email} is already in use`
+		}
+
+		if (!username) {
+			usernameError = 'Username is required'
+		} else if (userWithUsername && userWithUsername.username === username) {
+			usernameError = `Username ${username} is not available`
+		}
+
+		if (password.length < 6) {
+			passwordError = 'Password must be at least 6 characters long'
+		}
+
+		this.setState({emailError: emailError, usernameError: usernameError, passwordError: passwordError})
+
+		if (!emailError && !usernameError && !passwordError) {
+			this.setState({next: true})
+		}
+	}
+
+	async validateStudentInfo(event) {
+		event.preventDefault()
+
+		const firstName = this.state.firstName, lastName = this.state.lastName
+		const year = parseInt(this.state.year), CGPA = parseFloat(this.state.CGPA)
+		let firstNameError = '', lastNameError = '', yearError = '', CGPAError = ''
+
+		if (!firstName) {
+			firstNameError = 'First Name is required'
+		}
+
+		if (!lastName) {
+			lastNameError = 'Last Name is required'
+		}
+
+		if (!year) {
+			yearError = 'Year must be a number'
+		} else if (year < 1) {
+			yearError = 'Year must be an integer greater than 1'
+		}
+
+		if (CGPA && (CGPA < 0.0 || CGPA > 4.0)) {
+			CGPAError = 'CGPA must be between 0.0 and 4.0'
+		}
+
+		this.setState({firstNameError: firstNameError, lastNameError: lastNameError, yearError: yearError, CGPAError: CGPAError})
+
+		if (!firstNameError && !lastNameError && !yearError && !CGPAError) {
+			await signUp(this, this.props.history)
+		}
 	}
 
 	render() {
@@ -48,29 +115,59 @@ class SignUp extends React.Component {
 				{!this.state.next &&
 				<div className="homeForm">
 					<span className="homeLogo">Create an account</span>
-					<input className="homeInput" name="email" value={this.state.email} placeholder="Email Address" onChange={(e) => updateForm(this, e.target)}/>
-					<input className="homeInput" name="username" value={this.state.username} placeholder="Username" onChange={(e) => updateForm(this, e.target)}/>
-					<input className="homeInput" type="password" value={this.state.password} name="password" placeholder="Password" onChange={(e) => updateForm(this, e.target)}/>
-					<button className="homeButton" onClick={() => this.setState({next: true})}>NEXT</button>
+
+					<div className="formContainer">
+						<input className="formInput" name="email" value={this.state.email} placeholder="Email Address" onChange={(e) => updateForm(this, e.target)}/>
+						<span className="errorMessage">{this.state.emailError}</span>
+					</div>
+
+					<div className="formContainer">
+						<input className="formInput" name="username" value={this.state.username} placeholder="Username" onChange={(e) => updateForm(this, e.target)}/>
+						<span className="errorMessage">{this.state.usernameError}</span>
+					</div>
+
+					<div className="formContainer">
+						<input className="formInput" type="password" value={this.state.password} name="password" placeholder="Password" onChange={(e) => updateForm(this, e.target)}/>
+						<span className="errorMessage">{this.state.passwordError}</span>
+					</div>
+					
+					<button className="homeButton" onClick={(event) => this.validateUserInfo(event)}>NEXT</button>
 					<span>Sign In to Groupie <Link to="/">Login</Link></span>
 				</div>}
 
 				{this.state.next &&
 				<div className="homeForm">
 					<span className="homeLogo">Tell us about yourself</span>
-					<div className="formContainer">
-						<div className="form"><input className="homeInput" name="firstName" value={this.state.firstName} placeholder="Fist Name" onChange={(e) => updateForm(this, e.target)}/></div>
-						<div className="form"><input className="homeInput" name="lastName" value={this.state.lastName} placeholder="Last Name" onChange={(e) => updateForm(this, e.target)}/></div>
+
+					<div className="halfFormContainer">
+						<div className="halfForm">
+							<input className="formInput" name="firstName" value={this.state.firstName} placeholder="First Name" onChange={(e) => updateForm(this, e.target)}/>
+							<span className="errorMessage">{this.state.firstNameError}</span>
+						</div>
+						<div className="halfForm">
+							<input className="formInput" name="lastName" value={this.state.lastName} placeholder="Last Name" onChange={(e) => updateForm(this, e.target)}/>
+							<span className="errorMessage">{this.state.lastNameError}</span>
+						</div>
 					</div>
-					<div className="formContainer">
-						<div className="form"><input className="homeInput" name="year" value={this.state.year} placeholder="Year of Study" onChange={(e) => updateForm(this, e.target)}/></div>
-						<div className="form"><input className="homeInput" name="CGPA" value={this.state.CGPA} placeholder="CGPA" onChange={(e) => updateForm(this, e.target)}/></div>
+
+					<div className="halfFormContainer">
+						<div className="halfForm">
+							<input className="formInput" name="year" value={this.state.year} placeholder="Year of Study" onChange={(e) => updateForm(this, e.target)}/>
+							<span className="errorMessage">{this.state.yearError}</span>
+						</div>
+						<div className="halfForm">
+							<input className="formInput" name="CGPA" value={this.state.CGPA} placeholder="CGPA" onChange={(e) => updateForm(this, e.target)}/>
+							<span className="errorMessage">{this.state.CGPAError}</span>
+						</div>
 					</div>
+
 					<FormControlLabel control={<OrangeCheckbox name="isCommuter" checked={this.state.isCommuter} onChange={(e) => updateCheckbox(this, e.target)}/>} label="I'm a commuter"/>
-					<div className="formContainer">
-						<div className="form"><button className="homeButton" onClick={() => this.setState({next: false})}>BACK</button></div>
-						<div className="form"><button className="homeButton" onClick={() => signUp(this, history)}>SIGN UP</button></div>
+					
+					<div className="halfFormContainer">
+						<div className="halfForm"><button className="homeButton" onClick={() => this.setState({next: false})}>BACK</button></div>
+						<div className="halfForm"><button className="homeButton" onClick={(event) => this.validateStudentInfo(event)}>SIGN UP</button></div>
 					</div>
+
 					<span>Sign In to Groupie <Link to="/">Login</Link></span>
 				</div>}
 						
