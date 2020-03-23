@@ -388,6 +388,15 @@ app.post('/courses', (req, res) => {
 	})
 })
 
+// get all courses
+app.get('/courses', (req, res) => {
+	Course.find().then((Course) => {
+		res.send(Course) 
+	}, (error) => {
+		res.status(500).send(error)
+	})
+})
+
 // Delete course
 app.delete('/courses', (req, res) => {
 	const courseCode = req.body.code

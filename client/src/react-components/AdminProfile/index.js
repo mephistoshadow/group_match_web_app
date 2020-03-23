@@ -19,7 +19,7 @@ class AdminProfile extends React.Component {
 
     handleNChange= (event) => {
          this.setState({newName: event.target.value});
-         console.log()
+         console.log(this.props.state);
     }
 
     handleEChange= (event) => {
@@ -54,7 +54,7 @@ class AdminProfile extends React.Component {
                     students:array,
                     pop:true
                 })
-                console.log(user);
+                // console.log(user);
             }
          }
 

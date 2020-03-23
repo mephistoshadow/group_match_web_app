@@ -2,6 +2,7 @@
 import '../User/styles.css';
 import React from "react";
 import Student from "../StudentCard"
+import { searchStudents } from "../../actions/adminOperation"
 
 
 // function closepop() {
@@ -59,25 +60,25 @@ class Operation extends React.Component {
          
     }
     // here we need to require a server call to search user from server side.
-    search = () => {
-         const user = this.props.usercomponents;
-         const array = user.state.students;
-         let find = false;
-         for(let i =0; i < array.length; i ++) {
-            if(array[i].id == this.state.searchId) {
-                this.setState({
-                    searchOne:array[i]
+    // search = () => {
+    //      const user = this.props.usercomponents;
+    //      const array = user.state.students;
+    //      let find = false;
+    //      for(let i =0; i < array.length; i ++) {
+    //         if(array[i].id == this.state.searchId) {
+    //             this.setState({
+    //                 searchOne:array[i]
 
-                })
-                find = true;
-                console.log(this.state.searchOne);
-            }
-         }
-         if(!find) {
-          alert("search with no result");
-         }
+    //             })
+    //             find = true;
+    //             console.log(this.state.searchOne);
+    //         }
+    //      }
+    //      if(!find) {
+    //       alert("search with no result");
+    //      }
 
-    }
+    // }
 
 
     render() {
@@ -100,7 +101,7 @@ class Operation extends React.Component {
                     <input className="searchText" type="text" onChange={this.handleSearch}></input>
                 </form>
                 <div className="button4">
-                    <a onClick={this.search}>Search User</a>
+                    <a onClick={() => searchStudents(this, this.props.app)}>Search User</a>
                 </div>
                 <div className = "searchbox">
                     <Student student = {this.state.searchOne} usercomponents = {this.props.usercomponents} flag = {true}/> 

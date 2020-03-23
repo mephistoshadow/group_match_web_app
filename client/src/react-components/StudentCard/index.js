@@ -124,9 +124,11 @@ class Student extends React.Component {
                     </div>
                     <div className="profileStats">
                         <ul>
-                            <li className="number">UserId:<span  className="profileStatsNumber">{this.props.student.id}</span></li>
-                            <li className="number">UserName:<span className="profileStatsNumber">{this.props.student.name}</span></li>
-                            <li className="number">Password:<span className="profileStatsNumber">{this.props.student.password}</span></li>
+                            <li className="number">UserId:<span  className="profileStatsNumber">{this.props.student._id}</span></li>
+                            <li className="number">UserName:<span className="profileStatsNumber">{this.props.student.username}</span></li>
+                            <li className="number">Full Name:<span className="profileStatsNumber">{this.props.student.firstName+" " + this.props.student.lastName}</span></li>
+                            <li className="number">Year:<span className="profileStatsNumber">{this.props.student.year}</span></li>
+                            <li className="number">CGPA:<span className="profileStatsNumber">{this.props.student.CGPA}</span></li>
                         </ul>
                     </div>
                 </div>
