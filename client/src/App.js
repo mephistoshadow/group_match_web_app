@@ -24,8 +24,8 @@ class App extends React.Component {
   // here we need the server call that can correct setup the data objects for us to use.
   // ie courses, students,posts.
   state = {
-  		currentUser: null,
-		isAdmin: null,
+  		currentUser: '',
+		isAdmin: false,
         notificationCounter: 1,
 		countCourse: 3,
 		countStudent: 4,

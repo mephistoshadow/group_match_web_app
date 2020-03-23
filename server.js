@@ -267,7 +267,7 @@ app.get('/students', (req, res) => {
 })
 
 // Get student by ID
-app.get('/students/:id', (req, res) => {
+app.get('/students/id/:id', (req, res) => {
 	const studentId = req.params.id
 
 	if (!ObjectID.isValid(studentId)) {
@@ -275,6 +275,20 @@ app.get('/students/:id', (req, res) => {
 	}
 	
 	Student.findById(studentId).then((student) => {
+		if (!student) {
+			res.status(404).send()
+		} else {
+			res.send(student)
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+})
+
+app.get('/students/username/:username', (req, res) => {
+	const studentUsername = req.params.username
+
+	Student.findOne({username: studentUsername}).then((student) => {
 		if (!student) {
 			res.status(404).send()
 		} else {
@@ -309,15 +323,11 @@ app.delete('/students/:id', (req, res) => {
 })
 
 // Add student to course
-app.patch('/students/add-course', (req, res) => {
+app.post('/students/add-course', (req, res) => {
     const courseCode = req.body.courseCode
-    const studentId = req.body.studentId
+    const studentUsername = req.body.studentUsername
 
-    if (!ObjectID.isValid(studentId)) {
-        res.status(400).send()
-    }
-
-  	Promise.all([Course.findOne({code: courseCode}), Student.findById(studentId)]).then((results) => {
+  	Promise.all([Course.findOne({code: courseCode}), Student.findOne({username: studentUsername})]).then((results) => {
   		const course = results[0], student = results[1]
 
   		if (course && student) {
@@ -342,15 +352,11 @@ app.patch('/students/add-course', (req, res) => {
 })
 
 // Remove student from course
-app.patch('/students/remove-course', (req, res) => {
+app.post('/students/remove-course', (req, res) => {
     const courseCode = req.body.courseCode
-    const studentId = req.body.studentId
+    const studentUsername = req.body.studentUsername
 
-    if (!ObjectID.isValid(studentId)) {
-        res.status(400).send()
-    }
-
-  	Promise.all([Course.findOne({code: courseCode}), Student.findById(studentId)]).then((results) => {
+  	Promise.all([Course.findOne({code: courseCode}),Student.findOne({username: studentUsername})]).then((results) => {
   		const course = results[0], student = results[1]
 
   		if (course && student) {
@@ -411,6 +417,15 @@ app.delete('/courses', (req, res) => {
 		} else {
 			res.status(404).send()
 		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+})
+
+// Get all courses
+app.get('/courses', (req, res) => {
+	Course.find().then((courses) => {
+		res.send(courses)
 	}).catch((error) => {
 		res.status(500).send(error)
 	})
