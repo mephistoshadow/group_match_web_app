@@ -1,5 +1,5 @@
 // A function to check if a user is logged in on the session cookie
-export const readCookie = (app) => {
+const readCookie = (app) => {
     const url = "/users/check-session"
 
     fetch(url)
@@ -18,18 +18,8 @@ export const readCookie = (app) => {
         })
 }
 
-// A functon to update the login form state
-export const updateLoginForm = (loginComp, field) => {
-    const value = field.value
-    const name = field.name
-
-    loginComp.setState({
-        [name]: value
-    })
-}
-
 // A function to send a POST request with the user to be logged in
-export const login = (loginComp, app) => {
+const login = (loginComp, app) => {
     // Create our request constructor with all the parameters we need
     const request = new Request("http://localhost:5000/users/login", {
         method: "post",
@@ -55,4 +45,9 @@ export const login = (loginComp, app) => {
         .catch(error => {
             console.log(error)
         })
+}
+
+module.exports = {
+    readCookie,
+    login
 }

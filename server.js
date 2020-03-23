@@ -121,10 +121,12 @@ app.get('/admin', (req, res) => {
 app.post('/students', (req, res) => {
 	const student = new Student({
 		username: req.body.username,
-		name: req.body.name,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 		year: req.body.year,
 		courses:req.body.courses,
-		email: req.body.email
+		CGPA: req.body.CGPA,
+		isCommuter: req.body.isCommuter
 	})
 
 	student.save().then((result) => {

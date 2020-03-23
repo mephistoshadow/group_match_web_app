@@ -124,8 +124,8 @@ class App extends React.Component {
 						!currentUser ? <Login app={this}/> : (
 						!isAdmin ? <HomePage app={this} state={this.state}/> : <AdminProfile app={this} state={this.state}/>
 						))}/>
-					<Route exact path='/signup' render={() =>
-						(<SignUp state={this.state} app={this} />)} />
+					<Route exact path='/signup' render={({history}) =>
+						(<SignUp history={history} app={this}/>)} />
 					<Route exact path="/dashboard" render={() =>
 						(<HomePage state={this.state} app={this} />)} />
 					<Route exact path='/admin-user' render={() =>

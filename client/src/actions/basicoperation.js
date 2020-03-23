@@ -1,6 +1,21 @@
-// Methods in this file is some basic functions we might used in different pages
-// This file has some function copy/changed from Week8 student.js in class by Prof
+// A functon to update a form state
+const updateForm = (comp, field) => {
+    const value = field.value
+    const name = field.name
 
+    comp.setState({
+        [name]: value
+    })
+}
+
+const updateCheckbox = (comp, checkbox) => {
+	const name = checkbox.name
+	const value = checkbox.checked
+
+	comp.setState({
+		[name]: value
+	})
+}
 
 // Return a  object selected by his/her id
 const getObjectById = (objectList, id) => {
@@ -16,7 +31,9 @@ const getObjectByName = (objectList, name) => {
 }
 
 
-module.exports= {
+module.exports = {
 	getObjectById,
-	getObjectByName
+	getObjectByName,
+	updateForm,
+	updateCheckbox
 }
