@@ -87,13 +87,14 @@ class AdminProfile extends React.Component {
 
 
     render() {
-        const jump = () => {
-            return <Redirect to="/admin-user"/>;
-        }
+        // const jump = () => {
+        //     return <Redirect to="/admin-user"/>;
+        // }
+        const { app } = this.props
 
         return (
             <div>
-            <Header user = {this.state.user}/>
+            <Header user={app.state.currentUser} isAdmin={app.state.isAdmin}/>
             <h2 className="h2Header">Admin Profile Page</h2>
             <div className = "profileCard">
                 <div className = "profileIcon">
