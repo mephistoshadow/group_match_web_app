@@ -1,9 +1,6 @@
+export const showAllUsers = (users, app) => {
+    const url = "/students";
 
-
-const showAllUsers = (users, app) => {
-    const url = "http://localhost:5000/students";
-
-    
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -16,24 +13,20 @@ const showAllUsers = (users, app) => {
         .then(json => {
             if(json) {
                users.setState({ students: json.students });
-                users.setState({ load: false });
-                console.log(1);
+               users.setState({ load: false });
+               console.log(1);
             }
             // the resolved promise with the JSON body
-           
         })
         .catch(error => {
             console.log(error);
         });
 }
 
+export const searchStudents = (users, app) => {
+    if(users.state.searchId !== "") {
 
-const searchStudents = (users, app) => {
-    if(users.state.searchId!= "") {
-
-
-    const url = "http://localhost:5000/students/" + users.state.searchId;
-
+    const url = "/students/" + users.state.searchId;
     
     fetch(url)
         .then(res => {
@@ -48,18 +41,9 @@ const searchStudents = (users, app) => {
                users.setState({ searchOne: json });
             }
             // the resolved promise with the JSON body
-           
         })
         .catch(error => {
             console.log(error);
         });
     }
-}
-
-
-
-
-module.exports = {
-    showAllUsers,
-    searchStudents
 }

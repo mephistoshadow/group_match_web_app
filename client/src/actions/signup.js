@@ -1,6 +1,6 @@
-const signUp = (signUpComp, history) => {
+export const signUp = (signUpComp, history) => {
     // Create our request constructor with all the parameters we need
-    const createUserRequest = new Request("http://localhost:5000/users", {
+    const createUserRequest = new Request("/users", {
         method: "post",
         body: JSON.stringify({
         	username: signUpComp.state.username,
@@ -14,7 +14,7 @@ const signUp = (signUpComp, history) => {
         }
     })
 
-    const createStudentRequest = new Request("http://localhost:5000/students", {
+    const createStudentRequest = new Request("/students", {
     	method: "post",
     	body: JSON.stringify({
     		username: signUpComp.state.username,
@@ -43,8 +43,8 @@ const signUp = (signUpComp, history) => {
     })
 }
 
-const isEmailTaken = (email, signUpComp) => {
-	const url = `http://localhost:5000/users/email/${email}`
+export const isEmailTaken = (email, signUpComp) => {
+	const url = `/users/email/${email}`
     return fetch(url).then((result) => {
     	if (result.status === 200) {
     		return result.json()
@@ -60,8 +60,8 @@ const isEmailTaken = (email, signUpComp) => {
     })
 }
 
-const isUsernameTaken = (username, signUpComp) => {
-	const url = `http://localhost:5000/users/username/${username}`
+export const isUsernameTaken = (username, signUpComp) => {
+	const url = `/users/username/${username}`
     return fetch(url).then((result) => {
         if (result.status === 200) {
             return result.json()
@@ -73,10 +73,4 @@ const isUsernameTaken = (username, signUpComp) => {
     }).catch((error) => {
         console.log(error)
     })
-}
-
-module.exports = {
-	signUp,
-	isEmailTaken,
-	isUsernameTaken
 }

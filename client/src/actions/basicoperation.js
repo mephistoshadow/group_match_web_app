@@ -1,5 +1,5 @@
 // A functon to update a form state
-const updateForm = (comp, field) => {
+export const updateForm = (comp, field) => {
     const value = field.value
     const name = field.name
 
@@ -8,7 +8,7 @@ const updateForm = (comp, field) => {
     })
 }
 
-const updateCheckbox = (comp, checkbox) => {
+export const updateCheckbox = (comp, checkbox) => {
 	const name = checkbox.name
 	const value = checkbox.checked
 
@@ -18,22 +18,14 @@ const updateCheckbox = (comp, checkbox) => {
 }
 
 // Return a  object selected by his/her id
-const getObjectById = (objectList, id) => {
+export const getObjectById = (objectList, id) => {
 	const object = objectList.filter((o) => o.id === id)
 	return object[0]
 } 
 
 
 // Return a  object selected by his/her name
-const getObjectByName = (objectList, name) => {
+export const getObjectByName = (objectList, name) => {
 	const object = objectList.filter((o) => o.name === name)
 	return object[0] 
-}
-
-
-module.exports = {
-	getObjectById,
-	getObjectByName,
-	updateForm,
-	updateCheckbox
 }

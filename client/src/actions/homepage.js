@@ -1,9 +1,5 @@
-// Methods in this file modifies the courses of student/user in HomePage 
-
-const log = console.log;
-
-const getAllCourses = (homeComp) => {
-	const url = 'http://localhost:5000/courses'
+export const getAllCourses = (homeComp) => {
+	const url = '/courses'
 
 	fetch(url).then((result) => {
 		if (result.status === 200) {
@@ -18,8 +14,8 @@ const getAllCourses = (homeComp) => {
 	})
 }
 
-const getStudentCourses = (homeComp, currentUser) => {
-	const url = `http://localhost:5000/students/username/${currentUser}`
+export const getStudentCourses = (homeComp, currentUser) => {
+	const url = `/students/username/${currentUser}`
 
 	fetch(url).then((result) => {
 		if (result.status === 200) {
@@ -34,8 +30,8 @@ const getStudentCourses = (homeComp, currentUser) => {
 	})
 }
 
-const joinCourse = (homeComp, courseComp, courseCode, studentUsername) => {
-	const request = new Request("http://localhost:5000/students/add-course", {
+export const joinCourse = (homeComp, courseComp, courseCode, studentUsername) => {
+	const request = new Request("/students/add-course", {
         method: "post",
         body: JSON.stringify({
         	courseCode: courseCode,
@@ -62,8 +58,8 @@ const joinCourse = (homeComp, courseComp, courseCode, studentUsername) => {
     })
 }
 
-const dropCourse = (homeComp, courseComp, courseCode, studentUsername) => {
-	const request = new Request("http://localhost:5000/students/remove-course", {
+export const dropCourse = (homeComp, courseComp, courseCode, studentUsername) => {
+	const request = new Request("/students/remove-course", {
         method: "post",
         body: JSON.stringify({
         	courseCode: courseCode,
@@ -89,11 +85,4 @@ const dropCourse = (homeComp, courseComp, courseCode, studentUsername) => {
     }).catch((error) => {
     	console.log(error)
     })
-}
-
-module.exports = {
-	getAllCourses,
-	getStudentCourses,
-	joinCourse,
-	dropCourse
 }

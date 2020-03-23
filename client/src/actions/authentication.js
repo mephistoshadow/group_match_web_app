@@ -1,5 +1,5 @@
 // A function to check if a user is logged in on the session cookie
-const readCookie = (app) => {
+export const readCookie = (app) => {
     const url = "/users/check-session"
 
     fetch(url)
@@ -19,9 +19,9 @@ const readCookie = (app) => {
 }
 
 // A function to send a POST request with the user to be logged in
-const login = (loginComp, app) => {
+export const login = (loginComp, app) => {
     // Create our request constructor with all the parameters we need
-    const request = new Request("http://localhost:5000/users/login", {
+    const request = new Request("/users/login", {
         method: "post",
         body: JSON.stringify(loginComp.state),
         headers: {
@@ -47,9 +47,4 @@ const login = (loginComp, app) => {
         .catch(error => {
             console.log(error)
         })
-}
-
-module.exports = {
-    readCookie,
-    login
 }
