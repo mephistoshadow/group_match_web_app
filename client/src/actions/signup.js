@@ -30,10 +30,13 @@ const signUp = (signUpComp, history) => {
         }
     })
 
-    Promise.all([fetch(createUserRequest), fetch(createStudentRequest)]).then((results) => {
-    	const userRes = results[0], studentRes = results[1]
-    	if (userRes.status === 200 && studentRes.status === 200) {
-    		history.push('/')
+    fetch(createUserRequest).then((userRes) => {
+    	if (userRes.status === 200) {
+    		fetch(createStudentRequest).then((studentRes) => {
+    			if (studentRes.status === 200) {
+    				history.push('/')
+    			}
+    		})
     	}
     }).catch((error) => {
     	console.log(error)
