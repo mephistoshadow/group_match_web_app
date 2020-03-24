@@ -101,7 +101,7 @@ class Header extends React.Component {
 
         let dropdownCourses
         if (courses === undefined) { // Header is not provided courses reference in props
-            dropdownCourses = this.props.state.map(makeDropdownCourse) // Get courses from state
+            dropdownCourses = this.state.courses.map(makeDropdownCourse) // Get courses from state
         } else {
             dropdownCourses = this.props.courses.map(makeDropdownCourse) // Get courses from props
         }
