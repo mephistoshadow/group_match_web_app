@@ -5,13 +5,17 @@
     width: 900px;
 }
 
+#addPost {
+    margin-bottom: 20px;
+}
+
 #addPostButton {
     color: white;
     background-color: orange;
     border: none;
     
     width: 100%;
-    padding: 20px 20px;
+    padding: 10px;
 
     text-align: center;
     font-size: 20px;
@@ -22,11 +26,27 @@
 }
 
 #addPostButton:hover {
-    opacity: 70%;
+    opacity: 0.7;
 }
 
 #addPostButton:focus {
     outline: none;
+}
+
+#postBox {
+    display: block;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 18px;
+    width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+    border: 1px solid #d3d3d3;
+}
+
+#postBox:focus {
+    outline: none;
+    border: 1px solid orange;
 }
 
 #studentList {

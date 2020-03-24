@@ -5,7 +5,8 @@ import { Link, Redirect } from 'react-router-dom'
 import SearchPost from "../SearchPost";
 import Header from "../Header";
 import { getObjectById, getObjectByName } from "../../actions/basicoperation"
-import { getCoursePosts, getUserPost, deleteUserPost } from "../../actions/search"
+import { getCoursePosts, addUserPost, deleteUserPost} from "../../actions/search"
+import TextField from '@material-ui/core/TextField';
 
 import './styles.css';
 
@@ -17,24 +18,56 @@ class Search extends React.Component {
 
     state = {
         posts: [],
+        postError: '',
         madePost: false
     }
 
     async componentDidMount() {
-        const { app } = this.props
+        const { app, history, match } = this.props
         const currentUser = app.state.currentUser
-        const courseCode = this.props.match.params.courseCode
+        const courseCode = match.params.courseCode
 
-        await getCoursePosts(this, courseCode)
-        await getUserPost(this, courseCode, currentUser)
+        await getCoursePosts(this, courseCode, currentUser)
+    }
+
+    async componentDidUpdate(prevProps, prevState, snapshot) {
+        const { app, history, match } = this.props
+        const currentUser = app.state.currentUser
+        const courseCode = match.params.courseCode
+
+        // const changedCoursePage = prevProps.match.params.courseCode !== match.params.courseCode
+        // const addedOrRemovedPost = prevState.madePost !== this.state.madePost
+
+        await getCoursePosts(this, courseCode, currentUser)
+    }
+
+    handleAddPost() {
+        const { app, history, match } = this.props
+        const currentUser = app.state.currentUser
+        const courseCode = match.params.courseCode
+
+        const postBox = document.getElementById("postBox")
+        const content = postBox.value
+        postBox.value = ''
+
+        addUserPost(this, courseCode, content, currentUser)
     }
 
 	render() {
         console.log('props', this.props)
         console.log('state', this.state)
-        const { app } = this.props
+
+        const { app, history, match } = this.props
         const currentUser = app.state.currentUser
-        const courseCode = this.props.match.params.courseCode
+        const courseCode = match.params.courseCode
+
+        const addPost = (
+            <div id="addPost" style={{display: this.state.madePost === true ? 'none' : 'block'}}>
+                <button id="addPostButton" type="submit" onClick={() => this.handleAddPost()}>ADD POST</button>
+                <textarea id="postBox" type="text" maxlength="280" placeholder="Introduce yourself..."></textarea>
+                <span className="errorMessage">{this.state.postError}</span>
+            </div>
+        )
 
 		return (
 			<div className="HomePageouter">
@@ -42,7 +75,7 @@ class Search extends React.Component {
 
                 <div id="posts">
                     <input type="text" id="userSearchBar" placeholder="Enter a name..."></input>
-                    {!this.state.madePost ? <button id="addPostButton" type="submit">ADD POST</button> : null}
+                    {addPost}
                     <ul id="studentList">
 						{this.state.posts.map((post) => 
                             <SearchPost
