@@ -44,7 +44,7 @@ class User extends React.Component {
                     <Student  key={uid(student)} student = {student} usercomponents = {this.props.app} flag = {false}/>
                 ))}
             </div>
-            <Operation student = {this.state.students} usercomponents = {this.props.app}/>
+            <Operation student = {this.state.students} usercomponents = {this.props.app} user = {this}/>
         </div>
         </div>
          

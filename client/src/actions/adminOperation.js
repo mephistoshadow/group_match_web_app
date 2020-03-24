@@ -44,3 +44,25 @@ export const searchStudents = (users, app) => {
         });
     }
 }
+
+
+export const deleteStudent = (studentCard, app) => {
+    const url = "/students/" + studentCard.props.student._id;
+    const request = new Request(url, {
+        method: "delete",
+    });
+
+    fetch(request)
+        .then(function (res) {
+            if (res.status === 200) {
+                studentCard.props.user.setState({load:true})
+            } else {
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+
+
