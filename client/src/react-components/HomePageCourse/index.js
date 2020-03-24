@@ -15,7 +15,7 @@ class HomePageCourse extends React.Component {
 		const dropButton = <button className="homeButton" onClick={() => this.props.dropCourse(this)}>DROP</button>
 
 		return (
-			<div className="homePageCourseItem" title={this.props.code.concat(this.props.title)}>
+			<div className="homePageCourseItem" title={`${this.props.code}-${this.props.title}`}>
 				<div className="homePageText">Course title: <span className="HomePageStateText">{this.props.title}</span></div>
 				<div className="homePageText">Course code: <span className="HomePageStateText">{this.props.code}</span></div>
 				<div className="homePageText">No. of students: <span className="HomePageStateText">{this.state.people}</span></div>

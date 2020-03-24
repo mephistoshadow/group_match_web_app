@@ -38,7 +38,7 @@ class Search extends React.Component {
         const courseCode = match.params.courseCode
 
         const changedCoursePage = prevProps.match.params.courseCode !== match.params.courseCode
-        
+
         if (changedCoursePage) {
             await getCoursePosts(this, courseCode, currentUser)
             await getSentMatches(this, courseCode, currentUser)
@@ -55,6 +55,19 @@ class Search extends React.Component {
         postBox.value = ''
 
         addPost(this, courseCode, content, currentUser)
+    }
+
+    usernameSearch() {
+        const searchBox = document.querySelector("#userSearchBar")
+        const posts = document.querySelectorAll(".post")
+        const searchQuery = searchBox.value
+        posts.forEach((post) => {
+            if (!post.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+                post.style.display = 'none';
+            } else {
+                post.style.display = 'block';
+            }
+        })
     }
 
 	render() {
@@ -74,11 +87,11 @@ class Search extends React.Component {
         )
 
 		return (
-			<div className="HomePageouter">
+			<div>
 				<Header app={app}/>
 
                 <div id="posts">
-                    <input type="text" id="userSearchBar" placeholder="Enter a name..."></input>
+                    <input type="text" id="userSearchBar" onKeyUp={() => this.usernameSearch()}placeholder="Search for a username..."></input>
                     {addPost}
                     <ul id="studentList">
 						{this.state.posts.map((post) => 

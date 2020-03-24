@@ -18,7 +18,7 @@ class SearchPost extends React.Component {
 		)
 
 		return (
-			<li>
+			<li className="post" title={`${author}-post`}>
 				<div className="postHeader">
 					<i className="far fa-user" />
 					<span className="posterName">{author}</span>

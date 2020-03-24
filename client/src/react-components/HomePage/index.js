@@ -26,7 +26,7 @@ class HomePage extends React.Component {
 		await getStudentCourses(this, app.state.currentUser)
 	}
 
-    courseSearch(event) {
+    courseSearch() {
         const searchBox = document.querySelector("#courseSearchBar")
         const courses = document.querySelectorAll(".homePageCourseItem")
         const searchQuery = searchBox.value
@@ -47,7 +47,7 @@ class HomePage extends React.Component {
 				<Header app={app} courses={this.state.studentCourses}></Header>
 				<h2 className="h2Header">Manage Your Courses Below</h2>
 
-                <input type="text" id="courseSearchBar" onKeyUp ={this.courseSearch} placeholder="Enter a course..."></input>
+                <input type="text" id="courseSearchBar" onKeyUp ={() => this.courseSearch()} placeholder="Search for a course..."></input>
             
 				<div className="homePageCourseContainer">
 					{this.state.allCourses.map((course) =>
