@@ -3,10 +3,9 @@
 	flex-direction: column;
 	margin-right: 20px;
 	margin-bottom: 20px;
-	align-items: left;
 	width: 30vw;
 	padding: 40px;
-	border: 1px solid black;
+	border: 1px solid #d3d3d3;
 }
 
 .homePageText {
