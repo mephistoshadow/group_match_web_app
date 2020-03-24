@@ -1,4 +1,4 @@
-export const getCoursePosts = (searchComp, courseCode) => {
+export const getCoursePosts = (searchComp, courseCode, currentUser) => {
 	const url = `/posts/${courseCode}`
 
 	fetch(url).then((result) => {
@@ -6,27 +6,14 @@ export const getCoursePosts = (searchComp, courseCode) => {
 			return result.json()
 		}
 	}).then((posts) => {
-		searchComp.setState({posts: posts})
+		searchComp.setState({
+			posts: posts,
+			madePost: posts.some((post) => post.author === currentUser)
+		})
 	}).catch((error) => {
 		console.log(error)
 	})
 }
-
-// export const getUserPost = (searchComp, courseCode, currentUser) => {
-// 	const url = `/posts/${courseCode}/${currentUser}`
-
-// 	fetch(url).then((result) => {
-// 		if (result.status === 200) {
-// 			return result.json()
-// 		}
-// 	}).then((post) => {
-// 		if (post) {
-// 			searchComp.setState({madePost: true})
-// 		}
-// 	}).catch((error) => {
-// 		console.log(error)
-// 	})
-// }
 
 export const deleteUserPost = (searchComp, courseCode, author) => {
 	const url = `/posts/${courseCode}`
