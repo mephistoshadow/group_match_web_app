@@ -1,5 +1,5 @@
 export const showAllUsers = (users, app) => {
-    const url = "/students";
+    const url = "http://localhost:5000/students";
 
     fetch(url)
         .then(res => {
@@ -11,11 +11,8 @@ export const showAllUsers = (users, app) => {
             }
         })
         .then(json => {
-            if(json) {
-               users.setState({ students: json.students });
+               users.setState({ students: json });
                users.setState({ load: false });
-               console.log(1);
-            }
             // the resolved promise with the JSON body
         })
         .catch(error => {

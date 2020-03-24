@@ -267,7 +267,7 @@ app.get('/students', (req, res) => {
 })
 
 // Get student by ID
-app.get('/students/id/:id', (req, res) => {
+app.get('/students/:id', (req, res) => {
 	const studentId = req.params.id
 
 	if (!ObjectID.isValid(studentId)) {

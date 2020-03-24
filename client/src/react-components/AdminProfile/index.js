@@ -90,7 +90,7 @@ class AdminProfile extends React.Component {
         // const jump = () => {
         //     return <Redirect to="/admin-user"/>;
         // }
-        const { app } = this.props
+        const {app} = this.props
 
         return (
             <div>
