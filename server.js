@@ -164,6 +164,36 @@ app.post('/users/login', (req, res) => {
     })
 })
 
+app.post('/users/signup', (req, res) => {
+	const user = {
+		username: req.body.username,
+		password: req.body.password,
+		email: req.body.email,
+		isAdmin: req.body.isAdmin
+	}
+
+	const student = {
+		username: req.body.username,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		year: req.body.year,
+		courses:req.body.courses,
+		CGPA: req.body.CGPA,
+		isCommuter: req.body.isCommuter
+	}
+
+	new User(user).save().then((user) => {
+		student._id = user._id
+		new Student(student).save().then((student) => {
+			res.send()
+		}, (error) => {
+			res.stats(400).send(error)
+		})
+	}, (error) => {
+		res.status(400).send(error)
+	})
+})
+
 // A route to logout a user
 app.get('/users/logout', (req, res) => {
     // Remove the session

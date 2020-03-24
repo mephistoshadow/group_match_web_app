@@ -1,12 +1,20 @@
 export const signUp = (signUpComp, history) => {
     // Create our request constructor with all the parameters we need
-    const createUserRequest = new Request("/users", {
-        method: "post",
+    const signUpRequest = new Request("/users/signup", {
+        method: 'post',
         body: JSON.stringify({
-        	username: signUpComp.state.username,
-        	password: signUpComp.state.password,
-        	email: signUpComp.state.email,
-        	isAdmin: false
+            // Fields to create new user
+            username: signUpComp.state.username,
+            password: signUpComp.state.password,
+            email: signUpComp.state.email,
+            isAdmin: false,
+            // Fields to create new student
+            username: signUpComp.state.username,
+            firstName: signUpComp.state.firstName,
+            lastName: signUpComp.state.lastName,
+            year: signUpComp.state.year,
+            CGPA: signUpComp.state.CGPA,
+            isCommuter: signUpComp.state.isCommuter
         }),
         headers: {
             Accept: "application/json, text/plain, */*",
@@ -14,29 +22,9 @@ export const signUp = (signUpComp, history) => {
         }
     })
 
-    const createStudentRequest = new Request("/students", {
-    	method: "post",
-    	body: JSON.stringify({
-    		username: signUpComp.state.username,
-    		firstName: signUpComp.state.firstName,
-    		lastName: signUpComp.state.lastName,
-    		year: signUpComp.state.year,
-    		CGPA: signUpComp.state.CGPA,
-    		isCommuter: signUpComp.state.isCommuter
-    	}),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    })
-
-    fetch(createUserRequest).then((userRes) => {
-    	if (userRes.status === 200) {
-    		fetch(createStudentRequest).then((studentRes) => {
-    			if (studentRes.status === 200) {
-    				history.push('/')
-    			}
-    		})
+    fetch(signUpRequest).then((signUpRes) => {
+    	if (signUpRes.status === 200) {
+            history.push('/')
     	}
     }).catch((error) => {
     	console.log(error)
@@ -50,9 +38,7 @@ export const isEmailTaken = (email, signUpComp) => {
     		return result.json()
     	}
     }).then((json) => {
-        console.log(json)
         if (json && json.email === email) {
-            console.log('setting state')
             signUpComp.setState({emailError: `Email ${email} is already in use`})
         }
     }).catch((error) => {
