@@ -6,21 +6,16 @@ class SearchPost extends React.Component {
 		super(props);
 	}
 
-	state = {
-		match: false
-	}
-
-	match() {
-		this.setState({match: !this.state.match})
-	}
-
 	render() {
-		const { id, author, authored, content } = this.props
-		const { deletePost } = this.props
-		const match = this.state.match
+		const { id, author, authored, content, isMatch } = this.props
+		const { deletePost, addMatch, deleteMatch } = this.props
 
 		const deleteButton = <i className="fas fa-trash-alt trash" onClick={() => deletePost()}></i>
-		const matchButton = match ? <i className="fas fa-star match"></i> : <i className="far fa-star noMatch"></i>
+		const matchButton = (
+			isMatch ? 
+			<i className="fas fa-star match" onClick={() => deleteMatch()}></i> :
+			<i className="far fa-star noMatch" onClick={() => addMatch()}></i>
+		)
 
 		return (
 			<li>

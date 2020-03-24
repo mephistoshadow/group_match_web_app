@@ -15,30 +15,79 @@ export const getCoursePosts = (searchComp, courseCode, currentUser) => {
 	})
 }
 
-export const deleteUserPost = (searchComp, courseCode, author) => {
-	const url = `/posts/${courseCode}`
+export const getSentMatches = (searchComp, courseCode, currentUser) => {
+	const url = `/matches/sent/${currentUser}/${courseCode}`
 
-	const deleteRequest = new Request(url, {
-        method: "delete",
-        body: JSON.stringify({
-        	author: author
-        }),
-        headers: {
+	fetch(url).then((result) => {
+		if (result.status === 200) {
+			return result.json()
+		}
+	}).then((matches) => {
+		searchComp.setState({
+			sentMatches: matches
+		})
+	})
+}
+
+export const addMatch = (searchComp, courseCode, sender, receiver) => {
+	const url = `/matches`
+
+	const addRequest = new Request(url, {
+		method: "post",
+		body: JSON.stringify({
+			sender: sender,
+			receiver: receiver,
+			courseCode: courseCode
+		}),
+		headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
         }
-    })
+	})
 
-    fetch(deleteRequest).then((result) => {
-    	if (result.status === 200) {
-    		searchComp.setState({madePost: false})
-    	}
-    }).catch((error) => {
-    	console.log(error)
-    })
+	fetch(addRequest).then((result) => {
+		if (result.status === 200) {
+			return result.json()
+		}
+	}).then((json) => {
+		searchComp.setState({
+			sentMatches: searchComp.state.sentMatches.concat([json])
+		})
+	}).catch((error) => {
+		console.log(error)
+	})
 }
 
-export const addUserPost = (searchComp, courseCode, content, author) => {
+export const deleteMatch = (searchComp, courseCode, sender, receiver) => {
+	const url = `/matches`
+
+	const deleteRequest = new Request(url, {
+		method: "delete",
+		body: JSON.stringify({
+			sender: sender,
+			receiver: receiver,
+			courseCode: courseCode
+		}),
+		headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+	})
+
+	fetch(deleteRequest).then((result) => {
+		if (result.status === 200) {
+			return result.json()
+		}
+	}).then((json) => {
+		searchComp.setState({
+			sentMatches: searchComp.state.sentMatches.filter((match) => JSON.stringify(match) !== JSON.stringify(json))
+		})
+	}).catch((error) => {
+		console.log(error)
+	})
+}
+
+export const addPost = (searchComp, courseCode, content, author) => {
 	if (content.trim().length === 0) {
 		searchComp.setState({postError: 'Post body cannot be empty'})
 	} else {
@@ -57,10 +106,43 @@ export const addUserPost = (searchComp, courseCode, content, author) => {
 
 		fetch(addRequest).then((result) => {
     		if (result.status === 200) {
-    			searchComp.setState({madePost: true, postError: ''})
+    			return result.json()
     		}
+    	}).then((json) => {
+    		searchComp.setState({
+    			madePost: true,
+    			posts: searchComp.state.posts.concat([json])
+    		})
     	}).catch((error) => {
     		console.log(error)
     	})
 	}
+}
+
+export const deletePost = (searchComp, courseCode, author) => {
+	const url = `/posts/${courseCode}`
+
+	const deleteRequest = new Request(url, {
+        method: "delete",
+        body: JSON.stringify({
+        	author: author
+        }),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+
+    fetch(deleteRequest).then((result) => {
+    	if (result.status === 200) {
+    		return result.json()
+    	}
+    }).then((json) => {
+    	searchComp.setState({
+    		madePost: false,
+    		posts: searchComp.state.posts.filter((post) => JSON.stringify(post) !== JSON.stringify(json))
+    	})
+    }).catch((error) => {
+    	console.log(error)
+    })
 }

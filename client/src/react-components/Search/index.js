@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom'
 import SearchPost from "../SearchPost";
 import Header from "../Header";
 import { getObjectById, getObjectByName } from "../../actions/basicoperation"
-import { getCoursePosts, addUserPost, deleteUserPost} from "../../actions/search"
+import { getCoursePosts, getSentMatches, addMatch, deleteMatch, addPost, deletePost } from "../../actions/search"
 import TextField from '@material-ui/core/TextField';
 
 import './styles.css';
@@ -18,6 +18,7 @@ class Search extends React.Component {
 
     state = {
         posts: [],
+        sentMatches: [],
         postError: '',
         madePost: false
     }
@@ -28,6 +29,7 @@ class Search extends React.Component {
         const courseCode = match.params.courseCode
 
         await getCoursePosts(this, courseCode, currentUser)
+        await getSentMatches(this, courseCode, currentUser)
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -35,10 +37,12 @@ class Search extends React.Component {
         const currentUser = app.state.currentUser
         const courseCode = match.params.courseCode
 
-        // const changedCoursePage = prevProps.match.params.courseCode !== match.params.courseCode
-        // const addedOrRemovedPost = prevState.madePost !== this.state.madePost
-
-        await getCoursePosts(this, courseCode, currentUser)
+        const changedCoursePage = prevProps.match.params.courseCode !== match.params.courseCode
+        
+        if (changedCoursePage) {
+            await getCoursePosts(this, courseCode, currentUser)
+            await getSentMatches(this, courseCode, currentUser)
+        }
     }
 
     handleAddPost() {
@@ -50,7 +54,7 @@ class Search extends React.Component {
         const content = postBox.value
         postBox.value = ''
 
-        addUserPost(this, courseCode, content, currentUser)
+        addPost(this, courseCode, content, currentUser)
     }
 
 	render() {
@@ -79,11 +83,16 @@ class Search extends React.Component {
                     <ul id="studentList">
 						{this.state.posts.map((post) => 
                             <SearchPost
+                                app={app}
+                                match={match}
                                 id={post._id}
                                 author={post.author}
                                 authored={app.state.currentUser === post.author}
                                 content={post.content}
-                                deletePost={() => deleteUserPost(this, courseCode, currentUser)}
+                                isMatch={this.state.sentMatches.some((match) => match.receiver === post.author)}
+                                deletePost={() => deletePost(this, courseCode, currentUser)}
+                                addMatch={() => addMatch(this, courseCode, currentUser, post.author)}
+                                deleteMatch={() => deleteMatch(this, courseCode, currentUser, post.author)}
                             />)}
 					</ul>
                 </div>
