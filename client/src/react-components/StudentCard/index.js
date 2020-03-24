@@ -2,6 +2,10 @@
 import '../User/styles.css';
 import React from "react";
 import { deleteStudent } from "../../actions/adminOperation"
+import { deleteUser } from "../../actions/adminOperation"
+import { updateStudentUserName } from "../../actions/adminOperation"
+import { updateUserPassword } from "../../actions/adminOperation"
+import { updateUserName } from "../../actions/adminOperation"
 
 // function closepop() {
 // 	document.querySelector(".popup").style.display = "none";
@@ -11,24 +15,14 @@ class Student extends React.Component {
     constructor(props) {
     super(props);
       this.state = {
-        newName:'',
-        newPassword:'',
-         operation:this.props.flag
+        newName:"",
+        newPassword:"",
+        operation:this.props.flag,
+        name:""
     }
-     // const { student, usercomponents } = this.props;
+     const { student, usercomponents } = this.props;
+    
    }
-   // here we need a server call to get the user list updated.
-    // delete = (student,user) => {
-    //    const deletestudent = user.state.students.filter(s => {
-    //     return s !== student;
-    //     });
-
-    //     user.setState({
-    //     students: deletestudent,
-    //     pop:true
-    //      });
-
-    // }
 
     handleNChange= (event) => {
          this.setState({newName: event.target.value});
@@ -38,50 +32,22 @@ class Student extends React.Component {
     handlePChange= (event) => {
          this.setState({newPassword: event.target.value});
     }
-
-    // we need a server call to get the user and update name to the server.
-    updateName = () => {
-       
-        const user = this.props.usercomponents;
-        const student = this.props.student;
-        const array = user.state.students;
-        for(let i = 0; i<array.length; i ++) {
-            console.log(array.length);
-            if(array[i].id === student.id ) {
-                if(this.state.newName.length <=0) {
-                     alert("Please type a user name to change");
-                }else {
-                  array[i].name = this.state.newName;
-                  user.setState({
-                    students: array,
-                    pop:true
-                  });
-                }
-               
-            }
-        } 
+    update = () => {
+        updateUserName(this,this.props.usercomponents);
+        updateStudentUserName(this, this.props.usercomponents);
+        this.setState({name: this.state.newName});
+        this.setState({newName: ""});
     }
 
-     // we need a server call to get the user and update name to the password.
-    updatePassword = () => {
-       
-        const user = this.props.usercomponents;
-        const student = this.props.student;
-        const array = user.state.students;
-        for(let i = 0; i<array.length; i ++) {
-            console.log(array.length);
-            if(array[i].id === student.id ||this.state.newPassword.length <0) {
-                if(this.state.newPassword.length <=0) {
-                     alert("Please type a password to change");
-                }else {
-                  array[i].password = this.state.newPassword;
-                   user.setState({
-                    students: array,
-                    pop:true
-                  });
-                }
-            }
-        } 
+    delete = () => {
+        deleteStudent(this,this.props.usercomponents)
+        deleteUser(this,this.props.usercomponents)
+        this.setState({name:""});
+    }
+
+    password = () => {
+        updateUserPassword(this, this.props.usercomponents)
+        this.setState({newPassword:""});
     }
 
     showOperation= (e) => {
@@ -102,14 +68,14 @@ class Student extends React.Component {
                     </label><br/>
                 </form> 
                 <div className = "text">
-                 <a onClick={this.updateName}>Change Name</a>
+                 <a onClick={() => this.update()}>Change Name</a>
                 </div>
                 <div className = "text">
-                 <a onClick={this.updatePassword}> Change Password</a>
+                 <a onClick={() => this.password()}> Change Password</a>
                 </div>
                 
                 <div className="text">
-                    <a onClick={()=> {deleteStudent(this,this.props.usercomponents)}}>Delete User</a>
+                    <a onClick={()=> this.delete()}>Delete User</a>
                 </div>
                 </div>
           

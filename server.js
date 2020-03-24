@@ -139,7 +139,7 @@ app.post('/users', (req, res) => {
 		email: req.body.email,
 		isAdmin: req.body.isAdmin
 	})
-
+	console.log(user);
 	user.save().then((user) => {
 		res.send(user)
 	}, (error) => {
@@ -193,6 +193,55 @@ app.post('/users/signup', (req, res) => {
 		res.status(400).send(error)
 	})
 })
+
+app.delete('/users/:username', (req, res) => {
+	const username = req.params.username
+
+	User.deleteOne({username: username}).then((result) => {
+		if (!result) {
+			res.status(404).send();
+		} else {
+			res.send(result);
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+})
+
+app.patch("/users/admin/:user", (req, res) => {
+    const {username,email} = req.body;
+    const body = {username,email};
+
+    User.findOneAndUpdate({username:req.params.user}, { $set: body }, { new: true })
+        .then(student => {
+            if (!student) {
+                res.status(404).send();
+            } else {
+                res.send(student);
+            }
+        })
+        .catch(error => {
+            res.status(400).send(); 
+        });
+});
+
+app.patch("/users/admin/password/:username", (req, res) => {
+    const {password} = req.body;
+    const body = {password};
+
+
+    User.findOneAndUpdate({username:req.params.username}, { $set: body }, { new: true })
+        .then(student => {
+            if (!student) {
+                res.status(404).send();
+            } else {
+                res.send(student);
+            }
+        })
+        .catch(error => {
+            res.status(400).send(); 
+        });
+});
 
 // A route to logout a user
 app.get('/users/logout', (req, res) => {
@@ -314,6 +363,28 @@ app.get('/students/:id', (req, res) => {
 		res.status(500).send(error)
 	})
 })
+/// update the student username by admin part
+app.patch("/students/admin/:id", (req, res) => {
+    const id = req.params.id;
+    const {username} = req.body;
+    const body = { username};
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+    Student.findByIdAndUpdate(id, { $set: body }, { new: true })
+        .then(student => {
+            if (!student) {
+                res.status(404).send();
+            } else {
+                res.send(student);
+            }
+        })
+        .catch(error => {
+            res.status(400).send(); 
+        });
+});
 
 app.get('/students/username/:username', (req, res) => {
 	const studentUsername = req.params.username
