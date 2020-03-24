@@ -28,8 +28,8 @@ class HomePage extends React.Component {
 
     courseSearch(event) {
         const searchBox = document.querySelector("#courseSearchBar")
-        const searchQuery = searchBox.value
         const courses = document.querySelectorAll(".homePageCourseItem")
+        const searchQuery = searchBox.value
         courses.forEach((course) => {
         	if (!course.title.toLowerCase().includes(searchQuery.toLowerCase())) {
         		course.style.display = 'none';
@@ -44,7 +44,7 @@ class HomePage extends React.Component {
 
 		return (
 			<div className="homePageContainer"> 
-				<Header enrolledCourses={this.state.studentCourses} user={app.state.currentUser} isAdmin={app.state.isAdmin} notificationCounter={this.props.state.notificationCounter}></Header>
+				<Header app={app} courses={this.state.studentCourses}></Header>
 				<h2 className="h2Header">Manage Your Courses Below</h2>
 
             <div id="searchContainer">
