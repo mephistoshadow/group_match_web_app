@@ -24,6 +24,7 @@ const Student = mongoose.model('Student', {
 	year: {
 		type: Number,
 		minvalue: 1,
+		maxvalue: 4,
 		required: true
 	},
 	courses: [String],

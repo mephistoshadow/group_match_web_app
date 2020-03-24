@@ -36,7 +36,9 @@ export const isEmailTaken = (email, signUpComp) => {
     return fetch(url).then((result) => {
     	if (result.status === 200) {
     		return result.json()
-    	}
+    	} else {
+            signUpComp.setState({emailError: ''})
+        }
     }).then((json) => {
         if (json && json.email === email) {
             signUpComp.setState({emailError: `Email ${email} is already in use`})
@@ -51,6 +53,8 @@ export const isUsernameTaken = (username, signUpComp) => {
     return fetch(url).then((result) => {
         if (result.status === 200) {
             return result.json()
+        } else {
+            signUpComp.setState({usernameError: ''})
         }
     }).then((json) => {
         if (json && json.username === username) {

@@ -61,19 +61,28 @@ class SignUp extends React.Component {
 			passwordError = 'Password must be at least 6 characters long'
 		}
 
-		this.setState({emailError: emailError, usernameError: usernameError, passwordError: passwordError})
-
-		if (!this.state.emailError) {
+		if (emailError === '') {
 			await isEmailTaken(email, this)
 		}
 
-		if (!this.state.usernameError) {
+		if (usernameError === '') {
 			await isUsernameTaken(username, this)
 		}
 
-		if (!this.state.emailError && !this.state.usernameError && !this.state.passwordError) {
-			this.setState({next: true})
-		}
+		this.setState(
+			{
+				emailError: (this.state.emailError === '' ? emailError : this.state.emailError),
+				usernameError: (this.state.usernameError === '' ? usernameError : this.state.usernameError),
+				passwordError: passwordError
+			},
+			function() {
+				if (this.state.emailError === '' &&
+					this.state.usernameError === '' &&
+					this.state.passwordError === '') {
+					this.setState({next: true})
+				}
+			}
+		)
 	}
 
 	async validateStudentInfo(event) {
@@ -92,20 +101,31 @@ class SignUp extends React.Component {
 		}
 
 		if (!year) {
-			yearError = 'Year must be a number'
-		} else if (year < 1) {
-			yearError = 'Year must be an integer greater than 1'
+			yearError = 'Year must be an integer'
+		} else if (year < 1 || year > 4) {
+			yearError = 'Year must be an integer between 1 and 4'
 		}
 
 		if (CGPA && (CGPA < 0.0 || CGPA > 4.0)) {
-			CGPAError = 'CGPA must be between 0.0 and 4.0'
+			CGPAError = 'CGPA must be a number between 0.0 and 4.0'
 		}
 
-		this.setState({firstNameError: firstNameError, lastNameError: lastNameError, yearError: yearError, CGPAError: CGPAError})
-
-		if (!this.state.firstNameError && !this.state.lastNameError && !this.state.yearError && !this.state.CGPAError) {
-			await signUp(this, this.props.history)
-		}
+		this.setState(
+			{
+				firstNameError: firstNameError,
+				lastNameError: lastNameError,
+				yearError: yearError,
+				CGPAError: CGPAError
+			},
+			async function() {
+				if (this.state.firstNameError === '' &&
+					this.state.lastNameError === '' &&
+					this.state.yearError === '' &&
+					this.state.CGPAError === '') {
+					await signUp(this, this.props.history)
+				}
+			}
+		)
 	}
 
 	render() {
