@@ -23,9 +23,10 @@ class Matches extends React.Component {
     }
 
 	render() {
+        const { app } = this.props
 		return (
                 <div>
-				<Header enrolledCourses={this.props.state.enrolledCourses} notificationCounter={this.props.state.notificationCounter} user={this.state.user}></Header>
+				<Header app={app}/>
                 <h2 className="h2Header">View Your Matches Below</h2>
 
 

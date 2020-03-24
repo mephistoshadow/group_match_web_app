@@ -9,3 +9,19 @@ export const closeHamburgerMenu = (hamburgerIcon, hamburgerMenu, hamburgerCollap
 	hamburgerMenu.style.width = "0px";
 	hamburgerCollapsedMenu.style.marginLeft = "0px";
 }
+
+export const getStudentCourses = (header, currentUser) => {
+	const url = `/students/username/${currentUser}`
+
+	fetch(url).then((result) => {
+		if (result.status === 200) {
+			return result.json()
+		}
+	}).then((json) => {
+		if (json) {
+			header.setState({courses: json.courses})
+		}
+	}).catch((error) => {
+		console.log(error)
+	})
+}

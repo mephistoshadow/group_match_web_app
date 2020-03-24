@@ -70,6 +70,8 @@ class Search extends React.Component {
         if (this.state.addedPost) {
             return <Redirect to='/post'/>
 		}
+
+        const { app } = this.props
         
 		// We need to read data from server in order to get current user's name & id 
 		// and user lists, courses lists, posts list from database
@@ -79,9 +81,8 @@ class Search extends React.Component {
 
 		console.log(this.state.current_course.posts)
 		return (
-            
 			<div className="HomePageouter">
-				<Header enrolledCourses={current_courses} notificationCounter={this.props.state.notificationCounter} user={this.state.user}></Header>
+				<Header app={app}/>
 
                 <div id="posts">
                     <input type="text" id="userSearchBar" onKeyUp = {this.searchClick}placeholder="Enter a name..."></input>

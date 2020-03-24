@@ -42,10 +42,11 @@ class Course extends React.Component {
 
 
     render() {
+        const { app } = this.props
         return (
             <div>
-            <Header user={this.props.app.state.currentUser} isAdmin={this.props.app.state.isAdmin}/>
-        <div className = "card">
+            <Header app={app}/>
+            <div className = "card">
             <div className="header">
               Courses
             </div>

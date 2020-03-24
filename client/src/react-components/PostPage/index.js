@@ -69,7 +69,7 @@ class PostPage extends React.Component {
 	render() {	
 		// We need server call here to read current student name & id from user table in our database
 		// In order to get user lists, courses lists and other data store in current user
-
+		const { app } = this.props
 		const cur_student_name = 'user'
 		const current_student = getObjectByName(this.props.state.students, cur_student_name)
 		const current_courses = current_student.current_courses
@@ -79,7 +79,7 @@ class PostPage extends React.Component {
 		}
 		return (
 			<div>
-				<Header enrolledCourses={current_courses} user={this.state.user}></Header>
+				<Header app={app}/>
 
                 <div id="headerContainer">
                     <Link to={"/search"} className="fas fa-chevron-left backButton"></Link>

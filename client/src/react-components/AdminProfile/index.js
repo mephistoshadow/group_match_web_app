@@ -94,7 +94,7 @@ class AdminProfile extends React.Component {
 
         return (
             <div>
-            <Header user={app.state.currentUser} isAdmin={app.state.isAdmin}/>
+            <Header app={app}/>
             <h2 className="h2Header">Admin Profile Page</h2>
             <div className = "profileCard">
                 <div className = "profileIcon">

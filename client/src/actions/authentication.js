@@ -3,17 +3,17 @@ export const readCookie = (app) => {
     const url = "/users/check-session"
 
     fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json()
+        .then((result) => {
+            if (result.status === 200) {
+                return result.json()
             }
         })
-        .then(json => {
+        .then((json) => {
             if (json && json.currentUser) {
                 app.setState({ currentUser: json.currentUser })
             }
         })
-        .catch(error => {
+        .catch((error) => {
             console.log(error)
         })
 }
@@ -32,19 +32,31 @@ export const login = (loginComp, app) => {
 
     // Send the request with fetch()
     fetch(request)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json()
+        .then((result) => {
+            if (result.status === 200) {
+                return result.json()
             } else {
                 loginComp.setState({loginError: 'Username or password is incorrect'})
             }
         })
-        .then(json => {
+        .then((json) => {
             if (json.currentUser !== undefined) {
                 app.setState({ currentUser: json.currentUser, isAdmin: json.isAdmin })
             }
         })
-        .catch(error => {
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
+export const logout = (app) => {
+    const url = 'users/logout'
+
+    fetch(url)
+        .then((result) => {
+            app.setState({currentUser: null, isAdmin: null})
+        })
+        .catch((error) => {
             console.log(error)
         })
 }

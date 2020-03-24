@@ -110,10 +110,10 @@ class Profile extends React.Component {
         const cur_student_name = 'user'
         const current_student = getObjectByName(this.props.state.students, cur_student_name)
         const current_courses = current_student.current_courses
-        
+        const { app } = this.props
         return (
             <div>
-            <Header enrolledCourses={current_courses} user={this.state.user}/>
+            <Header app={app}/>
             <h2 className="h2Header">User Profile Page</h2>
             <div className = "profileCard">
                 <div className = "profileIcon">
