@@ -4,48 +4,33 @@ import './styles.css';
 class SearchPost extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			isMatch: false
-		}
+	}
+
+	state = {
+		match: false
 	}
 
 	match() {
-		this.setState({
-			isMatch: !this.state.isMatch
-		})
+		this.setState({match: !this.state.match})
 	}
 
 	render() {
-		const postId = this.props.post.id
-		const postName = this.props.post.name
-		const postEmail = this.props.post.email
-		const postMessage = this.props.post.content
-		
-		const isAuthored = this.props.post.isAuthored
-		const isMatch = this.state.isMatch
+		const { id, author, authored, content } = this.props
+		const { deletePost } = this.props
+		const match = this.state.match
 
-		let symbol;
-		if (isAuthored) {
-			symbol = <i className="fas fa-trash-alt trash" onClick={e => this.props.clickRemovePost(postId)}></i>
-		} else {
-			if (isMatch) {
-				symbol = <i className="fas fa-star match" onClick={this.match.bind(this)}></i>
-			} else {
-				symbol = <i className="far fa-star noMatch" onClick={this.match.bind(this)}></i>
-			}
-		}
+		const deleteButton = <i className="fas fa-trash-alt trash" onClick={() => deletePost()}></i>
+		const matchButton = match ? <i className="fas fa-star match"></i> : <i className="far fa-star noMatch"></i>
 
 		return (
 			<li>
 				<div className="postHeader">
 					<i className="far fa-user" />
-					<span className="posterName"> {postName} </span>
-					<span className="posterEmail">{postEmail} </span>
-					{symbol}
+					<span className="posterName">{author}</span>
+					{authored ? deleteButton : matchButton}
 				</div>
 				<div className="postContent">
-					<p className="postDesc"> {postMessage}</p>
-					<strong className="postInfo">Current Matching Course: 0</strong>
+					<p className="postDesc">{content}</p>
 				</div>
 			</li>
 		)

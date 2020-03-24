@@ -96,7 +96,9 @@ class Header extends React.Component {
     getDropdownCourses() {
         const { courses } = this.props
         const makeDropdownCourse = function(course) {
-            return <Link to='/search' className='navbarDropdownCourse'>{course}</Link>
+            return <Link to={
+                {pathname: `/search/${course}`, state: {course: course}}
+            } className='navbarDropdownCourse'>{course}</Link>
         }
 
         let dropdownCourses

@@ -4,92 +4,54 @@ import { Link, Redirect } from 'react-router-dom'
 
 import SearchPost from "../SearchPost";
 import Header from "../Header";
-import { getObjectById, getObjectByName } from "../../actions/basicoperation";
+import { getObjectById, getObjectByName } from "../../actions/basicoperation"
+import { getCoursePosts, getUserPost, deleteUserPost } from "../../actions/search"
 
 import './styles.css';
 
 
 class Search extends React.Component {
 	constructor(props) {
-		super(props);
-		this.state = {
-			pop: false,
-            addedPost: false,
-			enrolledCourses: this.props.state.enrolledCourses,
-			current_course: this.props.state.posts.filter((post) => post.name === this.props.state.current_course)[0],
-			user: 'user'
-		}
-  
-        
+		super(props); 
 	}
-    
 
-	closepop = () => {
-		this.props.app.setState({ pop: false });
-		console.log(this.state.pop);
-	}
-    
-    
-    searchClick = (event) => {
-        const searchBox = document.querySelector("#userSearchBar")
-        const searchQuery = searchBox.value
-        
-        const studentEntries = document.querySelectorAll("#studentList > li")
-        for (let i = 0; i < studentEntries.length; i++){
-            const name = studentEntries[i].firstElementChild.children[1].innerText
-            if (!name.toLowerCase().includes(searchQuery.toLowerCase())){
-                studentEntries[i].style.display='none'
-            } else{
-                studentEntries[i].style.display='block'
-            }
-        }
-    }
-    
-    clickAddPost = () => {
-        this.setState({addedPost: true})
-        //return <Redirect to='/signup'/>
+    state = {
+        posts: [],
+        madePost: false
     }
 
-    clickRemovePost = (id) => {
-        const course_posts = this.props.state.posts
-        const current_course = this.state.current_course
-        const current_posts = current_course.posts
-        
-        course_posts.splice(course_posts.indexOf(current_course), 1)
-        const newPosts = current_posts.filter(p => p.id != id)
-        current_course.posts = newPosts
-
-        course_posts.push(current_course)
-
-        this.setState({
-            posts: course_posts
-        })
-    }
-    
-	render() {
-        if (this.state.addedPost) {
-            return <Redirect to='/post'/>
-		}
-
+    async componentDidMount() {
         const { app } = this.props
-        
-		// We need to read data from server in order to get current user's name & id 
-		// and user lists, courses lists, posts list from database
-        const cur_student_name = 'user'
-        const current_student = getObjectByName(this.props.state.students, cur_student_name)
-		const current_courses = current_student.current_courses
+        const currentUser = app.state.currentUser
+        const courseCode = this.props.match.params.courseCode
 
-		console.log(this.state.current_course.posts)
+        await getCoursePosts(this, courseCode)
+        await getUserPost(this, courseCode, currentUser)
+    }
+
+	render() {
+        console.log('props', this.props)
+        console.log('state', this.state)
+        const { app } = this.props
+        const currentUser = app.state.currentUser
+        const courseCode = this.props.match.params.courseCode
+
 		return (
 			<div className="HomePageouter">
 				<Header app={app}/>
 
                 <div id="posts">
-                    <input type="text" id="userSearchBar" onKeyUp = {this.searchClick}placeholder="Enter a name..."></input>
-                    <button id="addPostButton" type="submit" onClick = {this.clickAddPost}>ADD POST</button>
+                    <input type="text" id="userSearchBar" placeholder="Enter a name..."></input>
+                    {!this.state.madePost ? <button id="addPostButton" type="submit">ADD POST</button> : null}
                     <ul id="studentList">
-						{this.state.current_course.posts.map(post =>
-							(<SearchPost key={uid(post)} post={post} clickRemovePost={this.clickRemovePost.bind(this)}/>))}
+						{this.state.posts.map((post) => 
+                            <SearchPost
+                                id={post._id}
+                                author={post.author}
+                                authored={app.state.currentUser === post.author}
+                                content={post.content}
+                                deletePost={() => deleteUserPost(this, courseCode, currentUser)}
+                            />)}
 					</ul>
                 </div>
             
