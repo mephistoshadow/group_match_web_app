@@ -139,7 +139,7 @@ app.post('/users', (req, res) => {
 		email: req.body.email,
 		isAdmin: req.body.isAdmin
 	})
-
+	console.log(user);
 	user.save().then((user) => {
 		res.send(user)
 	}, (error) => {
@@ -179,8 +179,8 @@ app.delete('/users/:username', (req, res) => {
 })
 
 app.patch("/users/admin/:user", (req, res) => {
-    const {username} = req.body;
-    const body = {username};
+    const {username,email} = req.body;
+    const body = {username,email};
 
     User.findOneAndUpdate({username:req.params.user}, { $set: body }, { new: true })
         .then(student => {

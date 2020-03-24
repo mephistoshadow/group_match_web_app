@@ -132,15 +132,12 @@ export const addStudent = (comp, app) => {
 
 
 export const addUser = (comp, app) => {
-    if(comp.state.newName != "") {
-
 
    const url = "/users"
    const user = {
         username: comp.state.newName,
         password: comp.state.newPassword,
-        lastName: "N/A",
-        email:"N/A@mail.ca",
+        email:comp.state.newName + "@mail.ca",
         isAdmin:false
 
    }
@@ -156,8 +153,6 @@ export const addUser = (comp, app) => {
     // Send the request with fetch()
     fetch(request)
         .then(function (res) {
-            // Handle response we get from the API.
-            // Usually check the error codes to see what happened.
             if (res.status === 200) {
 
             } else {
@@ -167,7 +162,6 @@ export const addUser = (comp, app) => {
             console.log(error);
         });
     }
-}
 
 export const updateStudentUserName = (comp, app) => {
    
@@ -214,6 +208,7 @@ export const updateUserName = (comp, app) => {
     const info = 
     {
         username:comp.state.newName,
+        email:comp.state.newName + "@mail.ca"
     }
     const request = new Request(url, {
         method: "PATCH",
