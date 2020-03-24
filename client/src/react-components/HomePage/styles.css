@@ -15,9 +15,8 @@
 }
 
 #courseSearchBar {
-    position:relative;
-    
-    margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 20px;
     border: 1px solid #d3d3d3;
     padding: 10px;
     font-size: 20px;

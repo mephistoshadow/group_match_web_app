@@ -47,9 +47,8 @@ class HomePage extends React.Component {
 				<Header app={app} courses={this.state.studentCourses}></Header>
 				<h2 className="h2Header">Manage Your Courses Below</h2>
 
-            <div id="searchContainer">
                 <input type="text" id="courseSearchBar" onKeyUp ={this.courseSearch} placeholder="Enter a course..."></input>
-            </div>
+            
 				<div className="homePageCourseContainer">
 					{this.state.allCourses.map((course) =>
 						(<HomePageCourse
