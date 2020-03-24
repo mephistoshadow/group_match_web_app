@@ -125,7 +125,7 @@ app.get('/matches/:username', (req, res) => {
     			receiverMatch.courseCode === senderMatch.courseCode
     		))
     	)
-
+    	
     	res.send(twoWayMatches)
     }).catch((error) => {
     	res.status(400).send(error)
@@ -359,10 +359,11 @@ app.get('/students/:id', (req, res) => {
 		} else {
 			res.send(student)
 		}
-	}).catch((error) => {
+	}, (error) => {
 		res.status(500).send(error)
 	})
 })
+
 /// update the student username by admin part
 app.patch("/students/admin/:id", (req, res) => {
     const id = req.params.id;
