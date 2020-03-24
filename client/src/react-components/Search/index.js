@@ -8,8 +8,23 @@ import { getObjectById, getObjectByName } from "../../actions/basicoperation"
 import { getCoursePosts, getSentMatches, addMatch, deleteMatch, addPost, deletePost } from "../../actions/search"
 import TextField from '@material-ui/core/TextField';
 
+// Imports to create Checkboxes
+import { withStyles } from '@material-ui/core/styles'
+import { orange } from '@material-ui/core/colors'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+
 import './styles.css';
 
+const OrangeCheckbox = withStyles({
+    root: {
+        color: orange[500],
+        '&$checked': {
+            color: orange[500],
+        },
+    },
+    checked: {},
+})((props) => <Checkbox color="default" {...props} />)
 
 class Search extends React.Component {
 	constructor(props) {
@@ -113,29 +128,14 @@ class Search extends React.Component {
                 <div className="filterBar">
                     <strong className="filterBarTitle">FILTER BY</strong>
                     <div className="filterCriteria">
-                        <div className="filterItem">
-                            <input type="checkbox" name="year1"></input>
-                            <label htmlFor="year1">First year</label>
-                        </div>
-                        <div className="filterItem">
-                            <input type="checkbox" name="year2"></input>
-                            <label htmlFor="year2">Second year</label>
-                        </div>
-                        <div className="filterItem">
-                            <input type="checkbox" name="year3"></input>
-                            <label htmlFor="year3">Third year</label>
-                        </div>
-                        <div className="filterItem">
-                            <input type="checkbox" name="year4"></input>
-                            <label htmlFor="year4">Fourth year</label>
-                        </div>
+                        <FormControlLabel control={<OrangeCheckbox name="year1"/>} label="Year 1"/>
+                        <FormControlLabel control={<OrangeCheckbox name="year3"/>} label="Year 3"/>
+                        <FormControlLabel control={<OrangeCheckbox name="year2"/>} label="Year 2"/>
+                        <FormControlLabel control={<OrangeCheckbox name="year4"/>} label="Year 4"/>
                     </div>
-                    
+
                     <div className="filterCriteria">
-                        <div className="filterItem">
-                            <input type="checkbox" name="commuter"></input>
-                            <label htmlFor="commuter">Commuter</label>
-                        </div>
+                        <FormControlLabel control={<OrangeCheckbox name="commuter"/>} label="Commuter"/>
                     </div>
                     
                 </div>
