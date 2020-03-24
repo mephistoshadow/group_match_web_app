@@ -451,7 +451,7 @@ app.post('/posts', (req, res) => {
 	const post = new Post({
 		courseCode: req.body.courseCode,
 		content: req.body.content,
-		author: req.body.author
+		author: req.body.author // Is a username
 	})
 
 	post.save().then((result) => {
@@ -477,13 +477,9 @@ app.get('/posts/:courseCode', (req, res) => {
 })
 
 // Delete post in course by author
-app.delete('/posts/:courseCode/:author', (req, res) => {
+app.delete('/posts/:courseCode/', (req, res) => {
 	const courseCode = req.params.courseCode
-	const author = req.params.author
-
-	if (!ObjectID.isValid(author)) {
-		res.status(400).send()
-	}
+	const author = req.body.author // Is a username
 
 	Post.deleteOne({courseCode: courseCode, author: author}).then((result) => {
 		if (result.deletedCount !== 1) {
@@ -499,11 +495,7 @@ app.delete('/posts/:courseCode/:author', (req, res) => {
 // Get post in course by author
 app.get('/posts/:courseCode/:author', (req, res) => {
 	const courseCode = req.params.courseCode
-	const author = req.params.author
-
-	if (!ObjectID.isValid(author)) {
-		res.status(400).send()
-	}
+	const author = req.params.author // Is a username
 
 	Post.findOne({courseCode : courseCode, author: author}).then((post) => {
 		if (!post) {

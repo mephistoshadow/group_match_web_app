@@ -1,4 +1,4 @@
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter, useLocation } from 'react-router-dom';
 
 import { readCookie } from "./actions/authentication"
 
@@ -134,8 +134,8 @@ class App extends React.Component {
 						(<Course state={this.state} app={this} />)} />
 					<Route exact path='/user-profile' render={() =>
 						(<Profile state={this.state} app={this} />)} />
-                    <Route exact path='/search' render={() =>
-						(<Search state={this.state} app={this} />)} />
+                    <Route path='/search/:courseCode' render={({match}) =>
+						(<Search state={this.state} app={this} match={match}/>)} />
 					<Route exact path='/post' render={() =>
 						(<PostPage state={this.state} app={this} />)} />
 					<Route exact path='/matches' render={() =>
