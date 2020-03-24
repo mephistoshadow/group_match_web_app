@@ -164,6 +164,54 @@ app.post('/users/login', (req, res) => {
     })
 })
 
+app.delete('/users/:username', (req, res) => {
+	const username = req.params.username
+
+	User.deleteOne({username: username}).then((result) => {
+		if (!result) {
+			res.status(404).send();
+		} else {
+			res.send(result);
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+})
+
+app.patch("/users/admin/:user", (req, res) => {
+    const {username} = req.body;
+    const body = {username};
+
+    User.findOneAndUpdate({username:req.params.user}, { $set: body }, { new: true })
+        .then(student => {
+            if (!student) {
+                res.status(404).send();
+            } else {
+                res.send(student);
+            }
+        })
+        .catch(error => {
+            res.status(400).send(); 
+        });
+});
+app.patch("/users/admin/password/:username", (req, res) => {
+    const {password} = req.body;
+    const body = {password};
+
+
+    User.findOneAndUpdate({username:req.params.username}, { $set: body }, { new: true })
+        .then(student => {
+            if (!student) {
+                res.status(404).send();
+            } else {
+                res.send(student);
+            }
+        })
+        .catch(error => {
+            res.status(400).send(); 
+        });
+});
+
 // A route to logout a user
 app.get('/users/logout', (req, res) => {
     // Remove the session
@@ -284,6 +332,28 @@ app.get('/students/:id', (req, res) => {
 		res.status(500).send(error)
 	})
 })
+/// update the student username by admin part
+app.patch("/students/admin/:id", (req, res) => {
+    const id = req.params.id;
+    const {username} = req.body;
+    const body = { username};
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+    Student.findByIdAndUpdate(id, { $set: body }, { new: true })
+        .then(student => {
+            if (!student) {
+                res.status(404).send();
+            } else {
+                res.send(student);
+            }
+        })
+        .catch(error => {
+            res.status(400).send(); 
+        });
+});
 
 app.get('/students/username/:username', (req, res) => {
 	const studentUsername = req.params.username
