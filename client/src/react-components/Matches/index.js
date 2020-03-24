@@ -3,6 +3,8 @@ import React from "react";
 import Header from "../Header";
 import MatchBox from "../MatchBox"
 import { Link, Redirect } from 'react-router-dom'
+import { getAllMatches, getStudentCourses} from "../../actions/match";
+
 
 import './styles.css';
 
@@ -11,14 +13,23 @@ class Matches extends React.Component {
 	constructor(props) {
 		super(props);
         this.state = {
-            user: 'user',
-            enrolledCourses: ['CSC309', 'CSC373'],
-            matches: [{name: 'Jane Doe', course: 'CSC309', status: 'accepted'}, {name: 'John Doe', course: 'CSC309', status: 'pending'}, {name: 'Mr Bean', course: 'CSC373', status: 'accepted'}]
+        
+            matches : [],
+        
+            user: '',
+            enrolledCourses: [],
+//            matches: [{name: 'Jane Doe', course: 'CSC309', status: 'accepted'}, {name: 'John Doe', course: 'CSC309', status: 'pending'}, {name: 'Mr Bean', course: 'CSC373', status: 'accepted'}]
         }
 	}
     
+    async componentDidMount() {
+        const { app } = this.props
+        await getAllMatches(this, app.state.currentUser)
+        await getStudentCourses(this, app.state.currentUser)
+    }
+    
     getMatchesForCourse(enrolledCourse) {
-        const matches = this.state.matches.filter((match) => match.course === enrolledCourse);
+        const matches = this.state.matches.filter((match) => match.courseCode === enrolledCourse);
         return matches.map()
     }
 
@@ -37,7 +48,7 @@ class Matches extends React.Component {
                     <h3 className="h3Header">Your matches in {enrolledCourse}</h3>
                     
                     {this.state.matches
-                        .filter((match) => match.course === enrolledCourse)
+                        .filter((match) => match.courseCode === enrolledCourse)
                         .map((match) => <MatchBox match={match}></MatchBox>)
                     }
 
