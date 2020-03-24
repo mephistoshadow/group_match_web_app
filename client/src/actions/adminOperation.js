@@ -36,6 +36,7 @@ export const searchStudents = (users, app) => {
         .then(json => {
             if(json) {
                users.setState({ searchOne: json });
+               users.setState({searchResult:true});
             }
             // the resolved promise with the JSON body
         })

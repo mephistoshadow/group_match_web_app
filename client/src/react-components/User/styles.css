@@ -12,6 +12,7 @@ body {
   height: 200px;
   float: left;
    width: 90%;
+    border: 1px solid #d3d3d3;
 }
 
 
@@ -24,7 +25,11 @@ body {
 }
 
 
-
+.edit {
+  font-size: 50px;
+  margin-top: 60px;
+  margin-left: 900px;
+}
 
 
 .text {
@@ -35,10 +40,15 @@ body {
 
 .button {
   position: absolute;
-  margin-top: 20px;
+  margin-top: 70px;
   margin-left: 450px;
   text-align: center;
   transition: transform .3s;
+}
+
+
+.exsistingStudent {
+  margin-top: 40px;
 }
 
 
@@ -93,27 +103,28 @@ body {
 }
 
 .operation {
-  position: fixed;
-  margin-top: 45px;
+  margin-top: -138px;
   margin-left:450px;
   min-height: 300px;
   width: 700px;
  /* box-shadow: 3px 4px;
   border-width:5px;  */
-  border: 1px solid #d3d3d3;
 }
 
-.searchStudent{
+.search{
  /*s*/
-  margin-top: 150px;
-  height: 350px;
-  width: 550px;
-  z-index: 1;
+  margin-top: -60px;
+  margin-left: 150px;
+ 
 }
 
 
 .bold {
   font-weight:bold;
+}
+
+.searchForm {
+  margin-top: -100px;
 }
 
 

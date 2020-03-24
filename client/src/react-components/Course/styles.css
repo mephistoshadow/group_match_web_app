@@ -43,6 +43,7 @@ body {
 
 .card {
   position: relative;
+  margin-top: 45px;
   min-height: 550px;
   margin-left: 170px;
   overflow:auto
@@ -105,6 +106,15 @@ body {
   transform: scale(1.05,1.05);
 }
 
+.numberone {
+  float: left;
+  transition: transform .3s;
+}
+.numberone:hover{
+  color: orange;
+  transform: scale(1.05,1.05);
+}
+
 .coursebutton {
   position: absolute;
   margin-top: 50px;
@@ -140,10 +150,11 @@ body {
   position: absolute;
   min-height: 100px;
   width: 490px;
-   z-index: 1;
+  /* z-index: 1;*/
 }
 
 .studentinfo{
+  margin-top: 45px;
 }
 .studentinfo ul {
   margin-top: 10px;
@@ -157,8 +168,9 @@ body {
 }
 
 .button3 {
-   margin-top: 5px;
-  margin-left: 50px;
+  margin-top: 75px;
+  height: 25px;
+  margin-left: 130px;
   width: 200px;
   transition: transform .3s;
    color: white;
@@ -196,7 +208,7 @@ body {
   margin-top: 150px;
   height: 350px;
   width: 550px;
-  z-index: 1;
+  /*z-index: 1;*/
 }
 
 .searchForm{
