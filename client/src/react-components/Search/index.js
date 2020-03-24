@@ -5,11 +5,26 @@ import { Link, Redirect } from 'react-router-dom'
 import SearchPost from "../SearchPost";
 import Header from "../Header";
 import { getObjectById, getObjectByName } from "../../actions/basicoperation"
-import { getCoursePosts, addUserPost, deleteUserPost} from "../../actions/search"
+import { getCoursePosts, getSentMatches, addMatch, deleteMatch, addPost, deletePost } from "../../actions/search"
 import TextField from '@material-ui/core/TextField';
+
+// Imports to create Checkboxes
+import { withStyles } from '@material-ui/core/styles'
+import { orange } from '@material-ui/core/colors'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 import './styles.css';
 
+const OrangeCheckbox = withStyles({
+    root: {
+        color: orange[500],
+        '&$checked': {
+            color: orange[500],
+        },
+    },
+    checked: {},
+})((props) => <Checkbox color="default" {...props} />)
 
 class Search extends React.Component {
 	constructor(props) {
@@ -18,6 +33,7 @@ class Search extends React.Component {
 
     state = {
         posts: [],
+        sentMatches: [],
         postError: '',
         madePost: false
     }
@@ -28,6 +44,7 @@ class Search extends React.Component {
         const courseCode = match.params.courseCode
 
         await getCoursePosts(this, courseCode, currentUser)
+        await getSentMatches(this, courseCode, currentUser)
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -35,10 +52,12 @@ class Search extends React.Component {
         const currentUser = app.state.currentUser
         const courseCode = match.params.courseCode
 
-        // const changedCoursePage = prevProps.match.params.courseCode !== match.params.courseCode
-        // const addedOrRemovedPost = prevState.madePost !== this.state.madePost
+        const changedCoursePage = prevProps.match.params.courseCode !== match.params.courseCode
 
-        await getCoursePosts(this, courseCode, currentUser)
+        if (changedCoursePage) {
+            await getCoursePosts(this, courseCode, currentUser)
+            await getSentMatches(this, courseCode, currentUser)
+        }
     }
 
     handleAddPost() {
@@ -50,7 +69,20 @@ class Search extends React.Component {
         const content = postBox.value
         postBox.value = ''
 
-        addUserPost(this, courseCode, content, currentUser)
+        addPost(this, courseCode, content, currentUser)
+    }
+
+    usernameSearch() {
+        const searchBox = document.querySelector("#userSearchBar")
+        const posts = document.querySelectorAll(".post")
+        const searchQuery = searchBox.value
+        posts.forEach((post) => {
+            if (!post.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+                post.style.display = 'none';
+            } else {
+                post.style.display = 'block';
+            }
+        })
     }
 
 	render() {
@@ -70,20 +102,25 @@ class Search extends React.Component {
         )
 
 		return (
-			<div className="HomePageouter">
+			<div>
 				<Header app={app}/>
 
                 <div id="posts">
-                    <input type="text" id="userSearchBar" placeholder="Enter a name..."></input>
+                    <input type="text" id="userSearchBar" onKeyUp={() => this.usernameSearch()}placeholder="Search for a username..."></input>
                     {addPost}
                     <ul id="studentList">
 						{this.state.posts.map((post) => 
                             <SearchPost
+                                app={app}
+                                match={match}
                                 id={post._id}
                                 author={post.author}
                                 authored={app.state.currentUser === post.author}
                                 content={post.content}
-                                deletePost={() => deleteUserPost(this, courseCode, currentUser)}
+                                isMatch={this.state.sentMatches.some((match) => match.receiver === post.author)}
+                                deletePost={() => deletePost(this, courseCode, currentUser)}
+                                addMatch={() => addMatch(this, courseCode, currentUser, post.author)}
+                                deleteMatch={() => deleteMatch(this, courseCode, currentUser, post.author)}
                             />)}
 					</ul>
                 </div>
@@ -91,29 +128,14 @@ class Search extends React.Component {
                 <div className="filterBar">
                     <strong className="filterBarTitle">FILTER BY</strong>
                     <div className="filterCriteria">
-                        <div className="filterItem">
-                            <input type="checkbox" name="year1"></input>
-                            <label htmlFor="year1">First year</label>
-                        </div>
-                        <div className="filterItem">
-                            <input type="checkbox" name="year2"></input>
-                            <label htmlFor="year2">Second year</label>
-                        </div>
-                        <div className="filterItem">
-                            <input type="checkbox" name="year3"></input>
-                            <label htmlFor="year3">Third year</label>
-                        </div>
-                        <div className="filterItem">
-                            <input type="checkbox" name="year4"></input>
-                            <label htmlFor="year4">Fourth year</label>
-                        </div>
+                        <FormControlLabel control={<OrangeCheckbox name="year1"/>} label="Year 1"/>
+                        <FormControlLabel control={<OrangeCheckbox name="year3"/>} label="Year 3"/>
+                        <FormControlLabel control={<OrangeCheckbox name="year2"/>} label="Year 2"/>
+                        <FormControlLabel control={<OrangeCheckbox name="year4"/>} label="Year 4"/>
                     </div>
-                    
+
                     <div className="filterCriteria">
-                        <div className="filterItem">
-                            <input type="checkbox" name="commuter"></input>
-                            <label htmlFor="commuter">Commuter</label>
-                        </div>
+                        <FormControlLabel control={<OrangeCheckbox name="commuter"/>} label="Commuter"/>
                     </div>
                     
                 </div>

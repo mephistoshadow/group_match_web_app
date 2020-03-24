@@ -136,8 +136,6 @@ class App extends React.Component {
 						(<Profile state={this.state} app={this} />)} />
                     <Route path='/search/:courseCode' render={({match, history}) =>
 						(<Search state={this.state} app={this} match={match} history={history}/>)} />
-					<Route exact path='/post' render={() =>
-						(<PostPage state={this.state} app={this} />)} />
 					<Route exact path='/matches' render={() =>
 						(<Matches state={this.state} app={this} /> )} />
 				</Switch>
