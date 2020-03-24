@@ -104,7 +104,7 @@ class Operation extends React.Component {
                     <a onClick={() => searchStudents(this, this.props.app)}>Search User</a>
                 </div>
                 <div className = "searchbox">
-                    <Student student = {this.state.searchOne} usercomponents = {this.props.usercomponents} flag = {true}/> 
+                    <Student student = {this.state.searchOne} usercomponents = {this.props.usercomponents} user = {this.props.user } flag = {true}/> 
                 </div>
             </div>
 

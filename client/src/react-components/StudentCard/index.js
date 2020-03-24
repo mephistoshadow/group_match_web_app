@@ -1,6 +1,7 @@
 
 import '../User/styles.css';
 import React from "react";
+import { deleteStudent } from "../../actions/adminOperation"
 
 // function closepop() {
 // 	document.querySelector(".popup").style.display = "none";
@@ -17,17 +18,17 @@ class Student extends React.Component {
      // const { student, usercomponents } = this.props;
    }
    // here we need a server call to get the user list updated.
-    delete = (student,user) => {
-       const deletestudent = user.state.students.filter(s => {
-        return s !== student;
-        });
+    // delete = (student,user) => {
+    //    const deletestudent = user.state.students.filter(s => {
+    //     return s !== student;
+    //     });
 
-        user.setState({
-        students: deletestudent,
-        pop:true
-         });
+    //     user.setState({
+    //     students: deletestudent,
+    //     pop:true
+    //      });
 
-    }
+    // }
 
     handleNChange= (event) => {
          this.setState({newName: event.target.value});
@@ -108,7 +109,7 @@ class Student extends React.Component {
                 </div>
                 
                 <div className="text">
-                    <a onClick={()=> {this.delete(this.props.student,this.props.usercomponents) }}>Delete User</a>
+                    <a onClick={()=> {deleteStudent(this,this.props.usercomponents)}}>Delete User</a>
                 </div>
                 </div>
           
