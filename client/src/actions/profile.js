@@ -62,8 +62,6 @@ export const updateUserById = (profileComp, currentId) => {
         }
 	})
 
-	console.log('sending request', url, currentId, body)
-
 	fetch(updateRequest).then((result) => {
 		if (result.status === 200) {
 			return result.json()
@@ -99,8 +97,6 @@ export const updateStudentById = (profileComp, currentId) => {
             "Content-Type": "application/json"
         }
 	})
-
-	console.log('sending request', url, currentId, body)
 
 	fetch(updateRequest).then((result) => {
 		if (result.status === 200) {
