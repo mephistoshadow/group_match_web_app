@@ -112,20 +112,20 @@ class Header extends React.Component {
     }
 
     getHamburgerMenuLinks(app) {
-        const isAdmin = app.state.isAdmin
+        const isAdmin = app.state.isAdmin, currentId = app.state.currentId
 
         const homeLink = <Link to={isAdmin ? '/admin-profile' : '/dashboard'}>Home</Link>
-        const profileLink = <Link to={isAdmin? '/admin-profile' : '/user-profile'}>Profile</Link>
+        const profileLink = <Link to={isAdmin? '/admin-profile' : `/profile/user/${currentId}`}>Profile</Link>
         const logoutLink = <Link to={'/'} onClick={() => logout(app)}>Logout</Link>
         
         return {homeLink: homeLink, profileLink: profileLink, logoutLink: logoutLink}
     }
 
     getHamburgerMenuButtons(app) {
-        const isAdmin = app.state.isAdmin
+        const isAdmin = app.state.isAdmin, currentId = app.state.currentId
 
         const homeButton = <Link to={isAdmin ? '/admin-profile' : '/dashboard'} className='fas fa-home'></Link>
-        const profileButton = <Link to={isAdmin? '/admin-profile' : '/user-profile'} className='far fa-user-circle'></Link>
+        const profileButton = <Link to={isAdmin? '/admin-profile' : `/profile/user/${currentId}`} className='far fa-user-circle'></Link>
         const logoutButton = <Link to={'/'} onClick={() => logout(app)} className='fas fa-sign-out-alt'></Link>
 
         return {homeButton: homeButton, profileButton: profileButton, logoutButton: logoutButton}

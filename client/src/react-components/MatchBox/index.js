@@ -13,8 +13,8 @@ class MatchBox extends React.Component {
 			<div className="matchBox">
 				<span>Username: {this.props.match.receiver}</span>
 				<div className="matchOption">
-					<button className="matchBoxButton">View Profile</button>
-					<button className="matchBoxButton">Remove Match</button>
+					<button className="matchBoxButton">VIEW PROFILE</button>
+					<button className="matchBoxButton">REMOVE MATCH</button>
 				</div>
 			</div>
 		)

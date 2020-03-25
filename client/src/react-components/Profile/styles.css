@@ -65,7 +65,62 @@
   transition: opacity 0.5s;
 }
 
+.profileContainer {
+    position: relative;
+    margin-left: 200px;
+    width: 70vw;
+    border-top: 1px solid #d3d3d3;
+}
 
+.profileField {
+    margin-top: 20px;
+    font-family: inherit;
+    font-size: 20px;
+}
 
+.profileField input {
+    margin-left: 10px;
+    margin-right: 40px;
+    font-family: inherit;
+    font-size: 20px;
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+}
 
+.profileField input:focus {
+    outline: none;
+    border: 1px solid orange;
+}
 
+.profileFieldValue {
+    margin-right: 40px;
+}
+
+.profileActionButton {
+    position: absolute;
+    right: 0;
+    margin-top: 20px;
+    width: 225px;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    color: white;
+    background: black;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.5s;
+}
+
+.profileActionButton:hover {
+    background: orange;
+}
+
+.profileActionButton:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: black;
+}

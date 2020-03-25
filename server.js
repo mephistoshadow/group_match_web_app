@@ -139,7 +139,7 @@ app.post('/users/login', (req, res) => {
             // Add username and isAdmin to the session cookie
             req.session.user = user.username
             req.session.isAdmin = user.isAdmin
-            res.send({currentUser: user.username, isAdmin: user.isAdmin})
+            res.send({currentId: user._id, currentUser: user.username, isAdmin: user.isAdmin})
     }).catch(error => {
             res.status(400).send()
     })
@@ -243,6 +243,20 @@ app.get('/users/check-session', (req, res) => {
     } else {
         res.status(401).send()
     }
+})
+
+app.get('/users/:id', (req, res) => {
+	const id = req.params.id
+
+	User.findById(id).then((user) => {
+		if (!user) {
+			res.status(404).send()
+		} else {
+			res.send(user)
+		}
+	}, (error) => {
+		res.status(400).send(error)
+	})
 })
 
 // Get users by username
@@ -378,7 +392,7 @@ app.get('/students/username/:username', (req, res) => {
 			res.send(student)
 		}
 	}).catch((error) => {
-		res.status(500).send(error)
+		res.status(400).send(error)
 	})
 })
 

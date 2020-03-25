@@ -41,7 +41,7 @@ export const login = (loginComp, app) => {
         })
         .then((json) => {
             if (json.currentUser !== undefined) {
-                app.setState({ currentUser: json.currentUser, isAdmin: json.isAdmin })
+                app.setState({ currentId: json.currentId, currentUser: json.currentUser, isAdmin: json.isAdmin })
             }
         })
         .catch((error) => {

@@ -20,10 +20,9 @@ class App extends React.Component {
 		readCookie(this)
 	}
 
-  // here we need the server call that can correct setup the data objects for us to use.
-  // ie courses, students,posts.
-  state = {
+	state = {
   		currentUser: '',
+  		currentId: '',
 		isAdmin: false,
         notificationCounter: 1,
 		countCourse: 3,
@@ -116,31 +115,43 @@ class App extends React.Component {
 		const {currentUser, isAdmin} = this.state
 
 		return (
-			<div>
-				<BrowserRouter>
+			<div><BrowserRouter>
 				<Switch>
 					<Route exact path={["/", "/login", "/dashboard"]} render={() => (
 						!currentUser ? <Login app={this}/> : (
-						!isAdmin ? <HomePage app={this} state={this.state}/> : <AdminProfile app={this} state={this.state}/>
-						))}/>
-					<Route exact path='/signup' render={({history}) =>
-						(<SignUp history={history} app={this}/>)} />
-					<Route exact path="/dashboard" render={() =>
-						(<HomePage state={this.state} app={this} />)} />
-					<Route exact path='/admin-user' render={() =>
-						(<User state={this.state} app={this} />)} />
-					<Route exact path='/admin-course' render={() =>
-						(<Course state={this.state} app={this} />)} />
-					<Route exact path='/user-profile' render={() =>
-						(<Profile state={this.state} app={this} />)} />
-                    <Route path='/search/:courseCode' render={({match, history}) =>
-						(<Search state={this.state} app={this} match={match} history={history}/>)} />
-					<Route exact path='/matches' render={() =>
-						(<Matches state={this.state} app={this} /> )} />
+						!isAdmin ? <HomePage app={this}/> : <AdminProfile app={this} state={this.state}/>
+					))}/>
+
+					<Route exact path='/signup' render={({history}) => (
+						<SignUp history={history} app={this}/>
+					)}/>
+
+					<Route exact path="/dashboard" render={() => (
+						<HomePage app={this} />
+					)}/>
+
+					<Route exact path='/admin-user' render={() => (
+						<User state={this.state} app={this}/>
+					)}/>
+
+					<Route exact path='/admin-course' render={() => (
+						<Course state={this.state} app={this}/>
+					)}/>
+
+					<Route path='/profile/user/:id' render={({match}) => (
+						<Profile app={this} match={match}/>
+					)}/>
+
+                    <Route path='/search/:courseCode' render={({match}) => (
+                    	<Search app={this} match={match}/>
+                    )}/>
+
+					<Route exact path='/matches' render={() => (
+						<Matches app={this}/>
+					)}/>
 				</Switch>
-				</BrowserRouter>
-		</div>
-		);
+			</BrowserRouter></div>
+		)
 	}
 }
 
