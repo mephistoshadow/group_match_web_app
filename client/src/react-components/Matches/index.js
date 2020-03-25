@@ -2,9 +2,7 @@ import React from "react";
 
 import Header from "../Header";
 import MatchBox from "../MatchBox"
-import { Link, Redirect } from 'react-router-dom'
 import { getAllMatches, getStudentCourses} from "../../actions/match";
-
 
 import './styles.css';
 

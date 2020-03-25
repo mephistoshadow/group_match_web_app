@@ -1,9 +1,8 @@
 import React from "react";
-import { uid } from "react-uid";
 
 import HomePageCourse from "../HomePageCourse";
 import Header from "../Header";
-import { getObjectByName } from "../../actions/basicoperation";
+
 import { getAllCourses, getStudentCourses, joinCourse, dropCourse } from "../../actions/homepage";
 
 import './styles.css';

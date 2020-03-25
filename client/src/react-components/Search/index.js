@@ -36,7 +36,7 @@ class Search extends React.Component {
     }
 
     async componentDidMount() {
-        const { app, history, match } = this.props
+        const { app, match } = this.props
         const currentUser = app.state.currentUser
         const courseCode = match.params.courseCode
 
@@ -45,7 +45,7 @@ class Search extends React.Component {
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
-        const { app, history, match } = this.props
+        const { app, match } = this.props
         const currentUser = app.state.currentUser
         const courseCode = match.params.courseCode
 
@@ -58,7 +58,7 @@ class Search extends React.Component {
     }
 
     handleAddPost() {
-        const { app, history, match } = this.props
+        const { app, match } = this.props
         const currentUser = app.state.currentUser
         const courseCode = match.params.courseCode
 
@@ -86,7 +86,7 @@ class Search extends React.Component {
         console.log('props', this.props)
         console.log('state', this.state)
 
-        const { app, history, match } = this.props
+        const { app, match } = this.props
         const currentUser = app.state.currentUser
         const courseCode = match.params.courseCode
 
