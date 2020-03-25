@@ -1,12 +1,9 @@
 import React from "react";
-import { uid } from "react-uid";
-import { Link, Redirect } from 'react-router-dom'
 
 import SearchPost from "../SearchPost";
 import Header from "../Header";
-import { getObjectById, getObjectByName } from "../../actions/basicoperation"
+
 import { getCoursePosts, getSentMatches, addMatch, deleteMatch, addPost, deletePost } from "../../actions/search"
-import TextField from '@material-ui/core/TextField';
 
 // Imports to create Checkboxes
 import { withStyles } from '@material-ui/core/styles'
@@ -132,6 +129,11 @@ class Search extends React.Component {
                         <FormControlLabel control={<OrangeCheckbox name="year3"/>} label="Year 3"/>
                         <FormControlLabel control={<OrangeCheckbox name="year2"/>} label="Year 2"/>
                         <FormControlLabel control={<OrangeCheckbox name="year4"/>} label="Year 4"/>
+                    </div>
+
+                    <div className="filterCriteria">
+                        <div className="inputBox"><span className="inputLabel">Min CGPA </span><input type="number" min="0" max="4" step="0.25" defaultValue="0"/></div>
+                        <div className="inputBox"><span className="inputLabel">Max CGPA </span><input type="number" min="0" max="4" step="0.25" defaultValue="4"/></div>
                     </div>
 
                     <div className="filterCriteria">
