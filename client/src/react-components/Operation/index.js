@@ -6,6 +6,7 @@ import { searchStudents } from "../../actions/adminOperation"
 
 import { addStudent } from "../../actions/adminOperation"
 import { addUser} from "../../actions/adminOperation"
+import { addNew } from "../../actions/adminOperation"
 
 
 // function closepop() {
@@ -41,9 +42,8 @@ class Operation extends React.Component {
     }
 
     update = () => {
-         addStudent(this, this.props.app);
-         addUser(this, this.props.app);
-         window.location.reload(false);
+         addNew(this, this.props.app);
+         this.props.user.setState({load : true});
     }
 
     render() {
@@ -56,9 +56,9 @@ class Operation extends React.Component {
                         <li className="numberone">Password:<input className="searchText" type="text"  onChange={this.handlePChange}></input></li>
                     </ul>
                 </div>
-                <div className= "button3">
+            </div>
+            <div className= "button3">
                 <a onClick={() => this.update()} >Add User</a>
-                </div>
             </div>
 
             

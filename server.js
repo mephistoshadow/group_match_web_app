@@ -4,6 +4,7 @@ const log = console.log
 const path = require('path')
 
 const express = require('express')
+const bcrypt = require('bcryptjs');
 // starting the express server
 const app = express()
 
@@ -206,22 +207,24 @@ app.patch("/users/admin/:user", (req, res) => {
         });
 });
 
-app.patch("/users/admin/password/:username", (req, res) => {
-    const {password} = req.body;
-    const body = {password};
-
-
-    User.findOneAndUpdate({username:req.params.username}, { $set: body }, { new: true })
+app.post("/users/admin/password/:username", (req, res) => {
+  		User.findOne({username:req.params.username})
         .then(student => {
             if (!student) {
                 res.status(404).send();
             } else {
-                res.send(student);
+                student.password = req.body.password
+               	student.save().then((results) => {
+  					res.send(results)
+  				}).catch((error) => {
+  					res.status(500).send(error)
+  				})
             }
         })
         .catch(error => {
             res.status(400).send(); 
-        });
+        });   
+
 });
 
 // A route to logout a user
