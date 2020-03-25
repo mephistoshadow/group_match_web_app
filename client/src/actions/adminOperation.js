@@ -280,7 +280,7 @@ export const updateUserPassword = (comp, app) => {
         password:comp.state.newPassword
     }
     const request = new Request(url, {
-        method: "PATCH",
+        method: "post",
         body: JSON.stringify(info),
         headers: {
             Accept: "application/json, text/plain, */*",
