@@ -45,6 +45,22 @@ UserSchema.pre('save', function(next) {
     }
 })
 
+UserSchema.pre('findOneAndUpdate', function(next) {
+    const update = this.getUpdate().$set;
+    const password = update.password;
+
+    if (password) {
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(password, salt, (err, hash) => {
+                update.password = hash
+                next()
+            })
+        })
+    } else {
+        next()
+    }
+})
+
 // Edited Mark's code
 UserSchema.statics.findByUsernamePassword = function(username, password) {
     const User = this // binds this to the User model

@@ -227,6 +227,60 @@ app.post("/users/admin/password/:username", (req, res) => {
 
 });
 
+app.put('/users/update/:id',(req, res) => {
+	const userId = req.params.id
+	const fields = ['username', 'email', 'password']
+
+	if (!ObjectID.isValid(userId)) {
+		res.status(400).send()
+	}
+
+	// Keep only relevant fields in request body
+	Object.keys(req.body).forEach((key) => {
+		if (!fields.includes(key)) {delete req.body[key]}
+	})
+
+	console.log(userId, req.body)
+
+	User.findByIdAndUpdate(userId, { $set: req.body }, { new : true }).then((user) => {
+		if (!user) {
+			res.status(404).send()
+		} else {
+			res.send(user)
+		}
+	}).catch((error) => {
+		console.log(error)
+		res.status(400).send()
+	})
+})
+
+app.put('/students/update/:id',(req, res) => {
+	const studentId = req.params.id
+	const fields = ['username', 'firstName', 'lastName', 'year', 'CGPA', 'isCommuter']
+
+	if (!ObjectID.isValid(studentId)) {
+		res.status(400).send()
+	}
+
+	// Keep only relevant fields in request body
+	Object.keys(req.body).forEach((key) => {
+		if (!fields.includes(key)) {delete req.body[key]}
+	})
+
+	console.log(studentId, req.body)
+
+	Student.findByIdAndUpdate(studentId, { $set: req.body }, { new : true }).then((student) => {
+		if (!student) {
+			res.status(404).send()
+		} else {
+			res.send(student)
+		}
+	}).catch((error) => {
+		console.log(error)
+		res.status(400).send()
+	})
+})
+
 // A route to logout a user
 app.get('/users/logout', (req, res) => {
     // Remove the session
