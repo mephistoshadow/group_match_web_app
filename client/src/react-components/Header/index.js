@@ -4,7 +4,7 @@ import './styles.css'
 
 import { getStudentCourses, openHamburgerMenu, closeHamburgerMenu } from '../../actions/header'
 import { logout } from '../../actions/authentication'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
 	constructor(props) {
@@ -112,7 +112,7 @@ class Header extends React.Component {
     }
 
     getHamburgerMenuLinks(app) {
-        const isAdmin = app.state.isAdmin, currentUser = app.state.currentUser
+        const isAdmin = app.state.isAdmin
 
         const homeLink = <Link to={isAdmin ? '/admin-profile' : '/dashboard'}>Home</Link>
         const profileLink = <Link to={isAdmin? '/admin-profile' : '/user-profile'}>Profile</Link>
@@ -122,7 +122,7 @@ class Header extends React.Component {
     }
 
     getHamburgerMenuButtons(app) {
-        const isAdmin = app.state.isAdmin, currentUser = app.state.currentUser
+        const isAdmin = app.state.isAdmin
 
         const homeButton = <Link to={isAdmin ? '/admin-profile' : '/dashboard'} className='fas fa-home'></Link>
         const profileButton = <Link to={isAdmin? '/admin-profile' : '/user-profile'} className='far fa-user-circle'></Link>
@@ -142,7 +142,6 @@ class Header extends React.Component {
 	render() {
         const { app } = this.props
         const isAdmin = app.state.isAdmin
-        const currentUser = app.state.currentUser
 
         const links = this.getHamburgerMenuLinks(app)
         const buttons = this.getHamburgerMenuButtons(app)

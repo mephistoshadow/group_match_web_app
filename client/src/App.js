@@ -1,4 +1,4 @@
-import { Route, Switch, BrowserRouter, useLocation } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import { readCookie } from "./actions/authentication"
 
@@ -10,7 +10,6 @@ import HomePage from './react-components/HomePage'
 import AdminProfile from './react-components/AdminProfile'
 import Profile from './react-components/Profile'
 import Search from './react-components/Search'
-import PostPage from './react-components/PostPage'
 import Matches  from './react-components/Matches'
 
 import React from 'react';

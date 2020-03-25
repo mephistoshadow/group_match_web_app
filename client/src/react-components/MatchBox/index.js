@@ -9,30 +9,15 @@ class MatchBox extends React.Component {
 	}
 
 	render () {
-		let userOption;
-		let matchStatus;
-
-		if (!this.props.match.status) {
-			matchStatus = "Match accepted!";
-			userOption = <div className="userOption">
-			<button className="matchBoxButton">View Profile</button>
-			</div>
-		}
-//        else {
-//			matchStatus = "Please accept or reject the match!";
-//			userOption = <div className="userOption">
-//			<button className="matchBoxButton"><i class="fas fa-user-check"></i></button>
-//			<button className="matchBoxButton"><i class="fas fa-user-times"></i></button>
-//			</div>
-//		}
-
 		return (
 			<div className="matchBox">
-				<h3>Name: {this.props.match.receiver}</h3>
-				<h3>Match status: {matchStatus}</h3>
-				{userOption}
+				<span>Username: {this.props.match.receiver}</span>
+				<div className="matchOption">
+					<button className="matchBoxButton">View Profile</button>
+					<button className="matchBoxButton">Remove Match</button>
+				</div>
 			</div>
-		);
+		)
 	}
 }
 

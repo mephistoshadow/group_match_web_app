@@ -24,7 +24,7 @@ export const getStudentCourses = (matchComp, currentUser) => {
 		}
 	}).then((json) => {
 		if (json) {
-			matchComp.setState({enrolledCourses: json.courses})
+			matchComp.setState({courses: json.courses})
 		}
 	}).catch((error) => {
 		console.log(error)

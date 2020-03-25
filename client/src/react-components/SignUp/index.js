@@ -129,8 +129,6 @@ class SignUp extends React.Component {
 	}
 
 	render() {
-		const { history, app } = this.props
-
 		return(
 			<div className="homeContainer">
 				{!this.state.next &&
@@ -191,10 +189,9 @@ class SignUp extends React.Component {
 
 					<span>Sign In to Groupie <Link to="/">Login</Link></span>
 				</div>}
-						
 			</div>
-		);
+		)
 	}
 }
 
-export default SignUp;
+export default SignUp
