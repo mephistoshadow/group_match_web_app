@@ -71,9 +71,7 @@ body {
 }
 
 
-.student:hover{
-  transform: scale(1.1,1.1);
-}
+
 
 .icon {
    font-size: 40px;
@@ -99,21 +97,12 @@ body {
 }
 
 .number {
-  transition: transform .3s;
-}
-.number:hover{
-  color: orange;
-  transform: scale(1.05,1.05);
 }
 
 .numberone {
   float: left;
-  transition: transform .3s;
 }
-.numberone:hover{
-  color: orange;
-  transform: scale(1.05,1.05);
-}
+
 
 .coursebutton {
   position: absolute;
@@ -142,12 +131,11 @@ body {
 
 .button2:hover{
    color: orange;
-  transform: scale(1.2);
+ /* transform: scale(1.2);*/
 
 }
 
 .newStudent{
-  position: absolute;
   min-height: 100px;
   width: 490px;
   /* z-index: 1;*/
@@ -168,23 +156,21 @@ body {
 }
 
 .button3 {
-  margin-top: 75px;
+  margin-top: -70px;
   height: 25px;
   margin-left: 130px;
   width: 200px;
-  transition: transform .3s;
    color: white;
-    background-color: orange;
+    background-color: black;
     border: none;
     text-align: center;
     font-size: 20px;
     font-weight: 700;  
     cursor: pointer;
-    transition: opacity 0.5s;
+    border-radius: 5px;
 }
 .button3:hover{
-  
-    opacity: 70%;
+  background-color: orange;
 }
 
 .button3:focus {
@@ -218,11 +204,9 @@ body {
 }
 
 .searchText{
-  transition: transform .3s;
 }
 
 .searchText:hover{
-  transform: scale(1.1,1.1);
 }
 
 .button4 {
@@ -231,17 +215,17 @@ body {
   width: 200px;
   transition: transform .3s;
    color: white;
-    background-color: orange;
+    background-color: black;
     border: none;
     text-align: center;
     font-size: 20px;
     font-weight: 700;  
     cursor: pointer;
     transition: opacity 0.5s;
+   border-radius: 5px;
 }
 .button4:hover{
-  
-    opacity: 70%;
+  background-color: orange;
 }
 
 .button4:focus {
@@ -250,27 +234,26 @@ body {
 }
 
 .searchForm {
-  transition: transform .3s;
+  /*transition: transform .3s;*/
 }
 .searchForm:hover{
-  color: orange;
-  transform: scale(1.05);
 }
 
 
 .text {
   transition: transform .3s;
    color: white;
-    background-color: orange;
+    background-color: black;
     border: none;
     text-align: center;
     font-size: 20px;
     font-weight: 700;  
     cursor: pointer;
     transition: opacity 0.5s;
+    border-radius: 5px;
 }
 .text:hover{
-    opacity: 70%;
+   background-color: orange;
 }
 
 .text:focus {

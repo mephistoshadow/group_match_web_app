@@ -20,6 +20,7 @@ class User extends React.Component {
         students:[],
         load:true,
         searchId:'',
+        keepId:'',
             searchOne: {
                 _id:"",
                 username:"",
@@ -36,32 +37,37 @@ class User extends React.Component {
 
    handleSearch= (event) => {
          this.setState({searchId: event.target.value});
-         if(this.state.searchId == '') {
-          this.setState({searchResult:false});
+         if(event.target.value == '') {
+          this.setState({searchResult:false,load:true});
+          this.showSearchResult();
          }
          console.log(this.state.searchResult);
+         console.log();
+         console.log(this.state.seachId);
     }
 
 
    show=(e) =>{
       if(e) {
       showAllUsers(this,this.props.app);
+      console.log("1");
       }
    }
+
    showSearchResult = () => {
     console.log(this.state.searchResult);
     if(this.state.searchResult == false) {
       return (
         <div className="exsistingStudent">
                {this.state.students.map(student => (
-                    <Student  key={uid(student)} student = {student} usercomponents = {this.props.app} flag = {false}/>
+                    <Student  key={uid(student)} student = {student} usercomponents = {this.props.app} flag = {false} user = {this}/>
                 ))}
         </div>
       );
     } else {
          return  (<div className = "searchbox">
-                    <Student student = {this.state.searchOne} usercomponents = {this.props.usercomponents} user = {this.props.user } flag = {true}/> 
-              </div>
+                    <Student student = {this.state.searchOne} usercomponents = {this.props.usercomponents} user = {this} flag = {true}/>
+                  </div>
            );
     }
    }
@@ -87,8 +93,8 @@ class User extends React.Component {
                 </div>
             </div>
             {this.showSearchResult()}
-            <Operation student = {this.state.students} usercomponents = {this.props.app} user = {this}/>
         </div>
+         <Operation student = {this.state.students} usercomponents = {this.props.app} user = {this}/>
         </div>
          
         );

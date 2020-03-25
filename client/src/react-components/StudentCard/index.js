@@ -6,6 +6,7 @@ import { deleteUser } from "../../actions/adminOperation"
 import { updateStudentUserName } from "../../actions/adminOperation"
 import { updateUserPassword } from "../../actions/adminOperation"
 import { updateUserName } from "../../actions/adminOperation"
+import { searchStudents } from "../../actions/adminOperation"
 
 class Student extends React.Component {
     constructor(props) {
@@ -32,18 +33,22 @@ class Student extends React.Component {
         updateUserName(this,this.props.usercomponents);
         updateStudentUserName(this, this.props.usercomponents);
         this.setState({name: this.state.newName});
+        this.props.user.setState({load : true});
+        searchStudents(this.props.user, this.props.usercomponents)
         this.setState({newName: ""});
-        window.location.reload(false);
     }
 
     delete = () => {
         deleteStudent(this,this.props.usercomponents)
         deleteUser(this,this.props.usercomponents)
         this.setState({name:""});
+        this.props.user.setState({load : true,searchResult:false});
     }
 
     password = () => {
         updateUserPassword(this, this.props.usercomponents)
+        this.props.user.setState({load : true});
+        searchStudents(this.props.user, this.props.usercomponents)
         this.setState({newPassword:""});
     }
 
@@ -78,6 +83,21 @@ class Student extends React.Component {
         this.setState({operation:!e})
      }
 
+     close = () => {
+        this.props.user.setState({searchResult:false});
+     }
+
+     showBack = () => {
+         if (this.props.flag == false) {
+            return null;
+        }
+        else {
+            return (<div className = "backbutton">
+                <i className="fas fa-backspace"  onClick={() => this.close()}></i>
+        </div>);
+        }
+     }
+
 
     render() {
         
@@ -100,8 +120,12 @@ class Student extends React.Component {
                 {this.showOperation(this.state.operation)}
                 <div className = "edit">
                     <i className="far fa-edit" onClick={() => this.change(this.state.operation)}></i>
+                    
+                </div>
+                <div className = "edittwo">
                     <i className="fas fa-trash-alt" onClick={() =>  this.delete()}></i>
                 </div>
+                {this.showBack()}
             </div>
 
         );

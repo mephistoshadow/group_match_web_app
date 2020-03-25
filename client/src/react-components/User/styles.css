@@ -27,9 +27,34 @@ body {
 
 .edit {
   font-size: 50px;
-  margin-top: 60px;
+  margin-top: 50px;
   margin-left: 900px;
 }
+
+.edit:hover {
+  color: orange;
+}
+
+.edittwo {
+  font-size: 50px;
+  margin-top: px;
+  margin-left: 900px;
+
+}
+.edittwo:hover {
+  color: orange;
+}
+
+.backbutton {
+  margin-top: -170px;
+  font-size: 50px;
+  margin-left: 940px;
+}
+
+.backbutton:hover {
+   color: orange;
+  }
+
 
 
 .text {
@@ -91,22 +116,22 @@ body {
 }
 
 .searchbox  {
-  margin-top: 20px;
-  margin-left:-20px;
+  margin-top: 40px;
   
 }
 
 
 .cross:hover{
   color: orange;
-  transform: scale(2,2);
+  /*transform: scale(2,2);*/
 }
 
 .operation {
-  margin-top: -138px;
-  margin-left:450px;
-  min-height: 300px;
-  width: 700px;
+  position: absolute;
+  top: 82px;
+  left:600px;
+  min-height: 150px;
+  width: 300px;
  /* box-shadow: 3px 4px;
   border-width:5px;  */
 }

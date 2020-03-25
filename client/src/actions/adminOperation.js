@@ -89,7 +89,37 @@ export const deleteUser = (studentCard, app) => {
         });
 }
 
+export const addNew = (comp, app) => {
+    const request = new Request("/users/signup", {
+        method: 'post',
+        body: JSON.stringify({
+            // Fields to create new user
+            username: comp.state.newName,
+            password: comp.state.newPassword,
+            email: comp.state.newName + "@mail.ca",
+            isAdmin: false,
+            // Fields to create new student
+            username: comp.state.newName,
+            firstName: "N/A",
+            lastName: "N/A",
+            year: 0,
+            CGPA:0,
+            isCommuter: false
+        }),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
 
+    fetch(request).then((res) => {
+        if (res.status === 200) {
+        }
+    }).catch((error) => {
+        console.log(error)
+    })
+
+}
 
 export const addStudent = (comp, app) => {
     if(comp.state.newName != "") {
@@ -223,6 +253,7 @@ export const updateUserName = (comp, app) => {
         .then(function (res) {
             if (res.status === 200) {
                   comp.props.user.setState({load:true})
+                  comp.props.user.setState({...comp.props.user.state.searchOne,username:comp.state.newName})
             } else {
                 console.log("failed")
             }
