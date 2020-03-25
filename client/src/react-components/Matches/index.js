@@ -10,16 +10,13 @@ import './styles.css';
 class Matches extends React.Component {
 	constructor(props) {
 		super(props);
-        this.state = {
-        
-            matches : [],
-        
-            user: '',
-            enrolledCourses: [],
-//            matches: [{name: 'Jane Doe', course: 'CSC309', status: 'accepted'}, {name: 'John Doe', course: 'CSC309', status: 'pending'}, {name: 'Mr Bean', course: 'CSC373', status: 'accepted'}]
-        }
 	}
     
+    state = {
+            matches : [],
+            courses: []
+    }
+
     async componentDidMount() {
         const { app } = this.props
         await getAllMatches(this, app.state.currentUser)
@@ -33,34 +30,42 @@ class Matches extends React.Component {
 
 	render() {
         const { app } = this.props
+        console.log('courses', this.state.courses)
+        console.log('matches', this.state.matches)
+
+        const coursesToMatches = []
+        this.state.courses.forEach((course) => 
+            coursesToMatches.push(
+                {'course': course, 'matches': this.state.matches.filter((match) => match.courseCode === course)}
+            )
+        )
+
+        console.log('courses to matches', coursesToMatches)
+
 		return (
                 <div>
-				<Header app={app}/>
-                <h2 className="h2Header">View Your Matches Below</h2>
+				    <Header app={app}/>
+                    <h2 className="h2Header">View Your Matches Below</h2>
 
+                    <div id="matchesContainer">
 
-                <div id="matchesContainer">
-                {this.state.enrolledCourses.map((enrolledCourse) =>
-                    <div id={enrolledCourse.toString() + "Matches"}>
+                    {coursesToMatches.map((obj) =>
+                            <div className="outerMatchesContainer">
+                            <h3 className="h3Header">Your matches in {obj.course}</h3>
+                            {
+                                obj.matches.length === 0 ?
+                                <span>No matches!</span> :
+                                (<div className="innerMatchesContainer">
+                                    {obj.matches.map((match) => <MatchBox match={match}/>)}
+                                </div>)
+                            }
+                            </div>
+                    )}
 
-                    <h3 className="h3Header">Your matches in {enrolledCourse}</h3>
-                    
-                    {this.state.matches
-                        .filter((match) => match.courseCode === enrolledCourse)
-                        .map((match) => <MatchBox match={match}></MatchBox>)
-                    }
-
-                    </div>)}
+                    </div>
                 </div>
-
-
-                </div>
-        );
+            )
 	}
 }
 
-
-
-
-export default Matches;
-
+export default Matches
