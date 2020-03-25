@@ -22,7 +22,14 @@ class Operation extends React.Component {
             newName:'',
             newPassword:'',
             searchId:'',
-            searchOne:''
+            searchOne: {
+                _id:"",
+                username:"",
+                firstName:"",
+                lastName:"",
+                year:"",
+                CGPA:""
+            }
         }
     }
 
@@ -32,13 +39,11 @@ class Operation extends React.Component {
     handlePChange= (event) => {
          this.setState({newPassword: event.target.value});
     }
-    handleSearch= (event) => {
-         this.setState({searchId: event.target.value});
-    }
 
     update = () => {
          addStudent(this, this.props.app);
          addUser(this, this.props.app);
+         window.location.reload(false);
     }
 
     render() {
@@ -47,24 +52,12 @@ class Operation extends React.Component {
             <div className="newStudent">
                 <div className="studentinfo">
                     <ul>
-                        <li className="number">UserName:<input className="searchText" type="text" onChange={this.handleNChange} ></input></li>
-                        <li className="number">Password:<input className="searchText" type="text"  onChange={this.handlePChange}></input></li>
+                        <li className="numberone">UserName:<input className="searchText" type="text" onChange={this.handleNChange} ></input></li>
+                        <li className="numberone">Password:<input className="searchText" type="text"  onChange={this.handlePChange}></input></li>
                     </ul>
                 </div>
-                <div className="button3">
-                    <a onClick={() => this.update()} >Add User</a>
-                </div>
-            </div>
-            <div className="searchStudent">
-                <form className="searchForm">
-                    <label className = "labelText">UserID:</label>
-                    <input className="searchText" type="text" onChange={this.handleSearch}></input>
-                </form>
-                <div className="button4">
-                    <a onClick={() => searchStudents(this, this.props.app)}>Search User</a>
-                </div>
-                <div className = "searchbox">
-                    <Student student = {this.state.searchOne} usercomponents = {this.props.usercomponents} user = {this.props.user } flag = {true}/> 
+                <div className= "button3">
+                <a onClick={() => this.update()} >Add User</a>
                 </div>
             </div>
 

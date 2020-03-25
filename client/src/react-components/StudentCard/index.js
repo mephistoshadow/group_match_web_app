@@ -7,17 +7,13 @@ import { updateStudentUserName } from "../../actions/adminOperation"
 import { updateUserPassword } from "../../actions/adminOperation"
 import { updateUserName } from "../../actions/adminOperation"
 
-// function closepop() {
-// 	document.querySelector(".popup").style.display = "none";
-// }
-
 class Student extends React.Component {
     constructor(props) {
     super(props);
       this.state = {
         newName:"",
         newPassword:"",
-        operation:this.props.flag,
+        operation:false,
         name:""
     }
      const { student, usercomponents } = this.props;
@@ -37,6 +33,7 @@ class Student extends React.Component {
         updateStudentUserName(this, this.props.usercomponents);
         this.setState({name: this.state.newName});
         this.setState({newName: ""});
+        window.location.reload(false);
     }
 
     delete = () => {
@@ -51,10 +48,9 @@ class Student extends React.Component {
     }
 
     showOperation= (e) => {
-        if (!e) {
+        if (this.state.operation == false) {
             return null;
         }
-
         return (
            <div className="button">
                 <form >
@@ -74,13 +70,15 @@ class Student extends React.Component {
                  <a onClick={() => this.password()}> Change Password</a>
                 </div>
                 
-                <div className="text">
-                    <a onClick={()=> this.delete()}>Delete User</a>
-                </div>
                 </div>
           
         );
     }
+     change= (e) => {
+        this.setState({operation:!e})
+     }
+
+
     render() {
         
         return (
@@ -99,8 +97,13 @@ class Student extends React.Component {
                         </ul>
                     </div>
                 </div>
-                  {this.showOperation(this.state.operation)}
+                {this.showOperation(this.state.operation)}
+                <div className = "edit">
+                    <i className="far fa-edit" onClick={() => this.change(this.state.operation)}></i>
+                    <i className="fas fa-trash-alt" onClick={() =>  this.delete()}></i>
+                </div>
             </div>
+
         );
     }
 
