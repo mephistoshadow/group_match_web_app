@@ -78,9 +78,6 @@ class Student extends React.Component {
         this.setState({operation:!e})
      }
 
-     // <div className="text">
-                    // <a onClick={()=> this.delete()}>Delete User</a>
-                // </div>
 
     render() {
         
