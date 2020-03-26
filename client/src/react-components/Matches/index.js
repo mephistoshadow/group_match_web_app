@@ -35,7 +35,7 @@ class Matches extends React.Component {
 
     linkMatchProfile(profile) {
         //Sets the state currProfile to the Json student obj
-        getStudentObj(this,
+        getStudentObj(this, profile)
         console.log("FJDLASF: ", this.state.currProfile)
         
         //TODO: Get ID from currProfile, Link to page
