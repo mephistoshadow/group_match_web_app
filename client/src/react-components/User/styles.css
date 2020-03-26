@@ -65,7 +65,7 @@ body {
 
 .button {
   position: absolute;
-  margin-top: 70px;
+  margin-top: 45px;
   margin-left: 450px;
   text-align: center;
   transition: transform .3s;
