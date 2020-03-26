@@ -1,7 +1,7 @@
 import React from "react";
 
 import './styles.css';
-
+//import {deleteMatch} from "../../actions/search";
 
 class MatchBox extends React.Component {
 	constructor(props) {
@@ -9,12 +9,13 @@ class MatchBox extends React.Component {
 	}
 
 	render () {
+        const { match, deleteMatch } = this.props
 		return (
 			<div className="matchBox">
 				<span>Username: {this.props.match.receiver}</span>
 				<div className="matchOption">
 					<button className="matchBoxButton">VIEW PROFILE</button>
-					<button className="matchBoxButton">REMOVE MATCH</button>
+					<button onClick={deleteMatch} className="matchBoxButton">REMOVE MATCH</button>
 				</div>
 			</div>
 		)

@@ -31,59 +31,35 @@ export const getStudentCourses = (matchComp, currentUser) => {
 	})
 }
 
-export const joinCourse = (homeComp, courseComp, courseCode, studentUsername) => {
-	const request = new Request("/students/add-course", {
-        method: "post",
-        body: JSON.stringify({
-        	courseCode: courseCode,
-        	studentUsername: studentUsername
-        }),
-        headers: {
+export const deleteMatch = (matchComp, courseCode, sender, receiver) => {
+	const url = `/matches`
+
+	const deleteRequest = new Request(url, {
+		method: "delete",
+		body: JSON.stringify({
+			sender: sender,
+			receiver: receiver,
+			courseCode: courseCode
+		}),
+		headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
         }
-    })
+	})
 
-    fetch(request).then((result) => {
-    	if (result.status === 200) {
-    		return result.json()
-    	}
-    }).then((jsons) => {
-    	if (jsons.course && jsons.student) {
-    		console.log('setting state', jsons.course, jsons.student)
-    		homeComp.setState({studentCourses: jsons.student.courses})
-    		courseComp.setState({people: jsons.course.people})
-    	}
-    }).catch((error) => {
-    	console.log(error)
-    })
-}
+	fetch(deleteRequest).then((result) => {
+		if (result.status === 200) {
+			return result.json()
+		}
+	}).then((json) => {
+            
+            
 
-export const dropCourse = (homeComp, courseComp, courseCode, studentUsername) => {
-	const request = new Request("/students/remove-course", {
-        method: "post",
-        body: JSON.stringify({
-        	courseCode: courseCode,
-        	studentUsername: studentUsername
-        }),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    })
-
-    fetch(request).then((result) => {
-    	console.log(result)
-    	if (result.status === 200) {
-    		return result.json()
-    	}
-    }).then((jsons) => {
-    	if (jsons.course && jsons.student) {
-			console.log('setting state', jsons.course, jsons.student)
-    		homeComp.setState({studentCourses: jsons.student.courses})
-    		courseComp.setState({people: jsons.course.people})
-    	}
-    }).catch((error) => {
-    	console.log(error)
-    })
+        
+		matchComp.setState({
+			matches: matchComp.state.matches.filter((match) =>         JSON.stringify(match) !== JSON.stringify({sender: json.sender, receiver: json.receiver, courseCode: json.courseCode}))
+		})
+	}).catch((error) => {
+		console.log(error)
+	})
 }
