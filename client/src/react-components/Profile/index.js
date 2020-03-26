@@ -140,7 +140,7 @@ class Profile extends React.Component {
     }
 
     render() {
-        const { app, match } = this.props
+        const { app, match, history } = this.props
         console.log(this.props)
 
         const userToFetch = match.params.id
@@ -149,6 +149,7 @@ class Profile extends React.Component {
         return (
             <div>
                 <Header app={app}/>
+                <i class="fas fa-chevron-left" id="profileBackButton" onClick={() => history.goBack()}></i>
                 <h2 className='h2Header'>User Profile Page</h2>
                 <div className='profileContainer'>
                     <div className='profileField'>
@@ -234,7 +235,7 @@ class Profile extends React.Component {
                     {
                         userToFetch === currentId ?
                         <button className="profileActionButton" onClick={() => this.validateStudentInfo()}>SAVE CHANGES</button> :
-                        <button className="profileActionButton">CONTACT THIS USER</button>
+                        <button className="profileActionButton"><a href={`mailto:${this.state.email}`}>CONTACT THIS USER</a></button>
                     }
                 </div>
             </div>

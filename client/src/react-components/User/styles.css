@@ -11,8 +11,8 @@ body {
   margin-left: -10px;
   height: 200px;
   float: left;
-   width: 90%;
-    border: 1px solid #d3d3d3;
+  width: 90%;
+  border: 1px solid #d3d3d3;
 }
 
 
@@ -74,6 +74,7 @@ body {
 
 .exsistingStudent {
   margin-top: 40px;
+  margin-left: 10px;
 }
 
 
@@ -128,8 +129,8 @@ body {
 
 .operation {
   position: absolute;
-  top: 82px;
-  left:600px;
+  top: -40px;
+  left:400px;
   min-height: 150px;
   width: 300px;
  /* box-shadow: 3px 4px;

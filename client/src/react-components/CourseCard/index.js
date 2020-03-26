@@ -1,30 +1,27 @@
 
 import '../User/styles.css';
 import React from "react";
+import {deleteCourse} from "../../actions/adminOperation"
+import {updateCourse} from "../../actions/adminOperation"
+import { searchCourse } from "../../actions/adminOperation"
 
 class Card extends React.Component {
      constructor(props) {
         super(props);
         this.state = {
         newName:'',
-        newPassword:'',
-        operation:this.props.flag
+        newCode:'',
+        operation:false
     }
      // const { student, usercomponents } = this.props;
    }
 
     // here we need a server call to delete the course
-    delete = (student,user) => {
-       const deletestudent = user.state.courses.filter(s => {
-        return s !== student;
-        });
 
-        user.setState({
-        courses: deletestudent,
-        pop:true
-         });
 
-    }
+    change= (e) => {
+        this.setState({operation:!e})
+     }
 
     handleNChange= (event) => {
          this.setState({newName: event.target.value});
@@ -32,27 +29,24 @@ class Card extends React.Component {
 
     }
 
-    //we will need serve call to update the correspoding courses name.
-    updateName = () => {
-        const user = this.props.usercomponents;
-        const student = this.props.student;
-        const array = user.state.courses;
-        for(let i = 0; i<array.length; i ++) {
-            console.log(array.length);
-            if(array[i].id === student.id ) {
-                if(this.state.newName.length <=0 || this.state.newName.length >6) {
-                     alert("type the correct format of courses code, ie CSC309");
-                }else {
-                  array[i].name = this.state.newName;
-                   user.setState({
-                        courses: array,
-                        pop:true
-                    });
-                }
-               
-            }
-        } 
+     handleCChange= (event) => {
+         this.setState({newCode: event.target.value});
+         // console.log(this.props.usercomponents);
+
     }
+     close = () => {
+        this.props.course.setState({searchResult:false});
+     }
+
+     update = () => {
+        updateCourse(this,this.props.usercomponents)
+        this.props.course.setState({load : true});
+        if(this.props.course.state.searchResult == true) {
+             searchCourse(this.props.course,this.props.usercomponents)
+        }
+        this.setState({newName: ""});
+    }
+
 
 
     showOperation= (e) => {
@@ -64,19 +58,27 @@ class Card extends React.Component {
            <div className="coursebutton">
                 <form >
                      <label className = "bold">
-                        CourseName:
+                        CourseTitle:
                         <input type="text" value={this.state.newName} onChange={this.handleNChange} />
-                    </label><br/>
+                    </label>
                 </form> 
                 <div className = "text">
-                 <a onClick={this.updateName}>Change Name</a>
-                </div>
-                <div className="text">
-                    <a onClick={()=> {this.delete(this.props.student,this.props.usercomponents) }}>Delete Course</a>
+                 <a onClick={() => this.update()}>Change Title</a>
                 </div>
                 </div>
         );
     }
+
+    showBack = () => {
+         if (this.props.flag == false) {
+            return null;
+        }
+        else {
+            return (<div className = "coursebackbutton">
+                <i className="fas fa-backspace"  onClick={() => this.close()}></i>
+        </div>);
+        }
+     }
 
     render() {
         
@@ -85,13 +87,21 @@ class Card extends React.Component {
                 <div className="student">
                     <div className="profileStats">
                         <ul className = "list">
-                            <li className="number">Id:<span  className="profileStatsNumber">{this.props.student.id}</span></li>
-                            <li className="number">Name:<span className="profileStatsNumber">{this.props.student.name}</span></li>
+                            <li className="number">Id:<span  className="profileStatsNumber">{this.props.student._id}</span></li>
+                            <li className="number">Title:<span className="profileStatsNumber">{this.props.student.title}</span></li>
+                            <li className="number">Code:<span className="profileStatsNumber">{this.props.student.code}</span></li>
                             <li className="number">Number Studens:<span className="profileStatsNumber">{this.props.student.people}</span></li>
                         </ul>
                     </div>
                 </div>
-                 {this.showOperation(this.state.operation)}           
+                 {this.showOperation(this.state.operation)}
+                  <div className = "courseedit">
+                    <i className="far fa-edit" onClick={() => this.change(this.state.operation)}></i>
+                </div>
+                <div className = "courseedittwo">
+                    <i className="fas fa-trash-alt" onClick={() => deleteCourse(this,this.props.usercomponents)}></i>
+                </div>
+                 {this.showBack()}    
             </div>
         );
     }

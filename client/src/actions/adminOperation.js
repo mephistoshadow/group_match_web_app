@@ -20,6 +20,28 @@ export const showAllUsers = (users, app) => {
         });
 }
 
+export const showAllCourses = (courses, app) => {
+    const url = "http://localhost:5000/courses";
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get courses");
+            }
+        })
+        .then(json => {
+               courses.setState({ courses: json });
+               courses.setState({ load: false });
+            // the resolved promise with the JSON body
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+
 export const searchStudents = (users, app) => {
     if(users.state.searchId != "") {
 
@@ -45,6 +67,30 @@ export const searchStudents = (users, app) => {
         });
     }
 }
+export const searchCourse = (course, app) => {
+    if(course.state.searchId != "") {
+
+    const url = "/courses/" + course.state.searchId;
+    
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get students");
+            }
+        })
+        .then(json => {
+            if(json) {
+               course.setState({ searchOne: json });
+               course.setState({searchResult:true});
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+}
 
 
 export const deleteStudent = (studentCard, app) => {
@@ -57,6 +103,32 @@ export const deleteStudent = (studentCard, app) => {
         .then(function (res) {
             if (res.status === 200) {
                 studentCard.props.user.setState({load:true})
+            } else {
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export const deleteCourse = (courseCard, app) => {
+    const url = "/courses"
+    console.log(courseCard.props.student.code);
+    const request = new Request(url, {
+        method: "delete",
+        body: JSON.stringify({
+            code : courseCard.props.student.code
+        }),
+         headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    fetch(request)
+        .then(function (res) {
+            if (res.status === 200) {
+                courseCard.props.course.setState({load:true})
             } else {
             }
         })
@@ -162,6 +234,37 @@ export const addStudent = (comp, app) => {
 }
 
 
+export const addCourse = (comp, app) => {
+
+
+   const url = "/courses"
+   const course = {
+        title: comp.state.newName,
+        code:comp.state.newCode,
+        people:0
+   }
+   const request = new Request(url, {
+        method: "post",
+        body: JSON.stringify(course),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    fetch(request)
+        .then(function (res) {
+            if (res.status === 200) {
+                 comp.props.course.setState({load:true})
+            } else {
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+
 export const addUser = (comp, app) => {
 
    const url = "/users"
@@ -193,6 +296,40 @@ export const addUser = (comp, app) => {
             console.log(error);
         });
     }
+
+
+export const updateCourse = (comp, app) => {
+   
+    const url = "/courses/" + comp.props.student._id;
+
+    
+    const title = 
+    {
+        title:comp.state.newName
+    }
+
+   
+    const request = new Request(url, {
+        method: "PATCH",
+        body: JSON.stringify(title),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request)
+        .then(function (res) {
+            if (res.status === 200) {
+                  comp.props.course.setState({load:true})
+            } else {
+                console.log("failed")
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
 
 export const updateStudentUserName = (comp, app) => {
    

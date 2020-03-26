@@ -41,21 +41,16 @@ class User extends React.Component {
           this.setState({searchResult:false,load:true});
           this.showSearchResult();
          }
-         console.log(this.state.searchResult);
-         console.log();
-         console.log(this.state.seachId);
     }
 
 
    show=(e) =>{
       if(e) {
       showAllUsers(this,this.props.app);
-      console.log("1");
       }
    }
 
    showSearchResult = () => {
-    console.log(this.state.searchResult);
     if(this.state.searchResult == false) {
       return (
         <div className="exsistingStudent">
@@ -78,8 +73,8 @@ class User extends React.Component {
         return (
         <div>
          <Header app={app}/>
-         {this.show(this.state.load)}
-        <div className = "card">
+          <div className = "card">
+          {this.show(this.state.load)}
             <div className="Userheader">
                Users
             </div>
@@ -93,8 +88,8 @@ class User extends React.Component {
                 </div>
             </div>
             {this.showSearchResult()}
+            <Operation student = {this.state.students} usercomponents = {this.props.app} user = {this}/>
         </div>
-         <Operation student = {this.state.students} usercomponents = {this.props.app} user = {this}/>
         </div>
          
         );

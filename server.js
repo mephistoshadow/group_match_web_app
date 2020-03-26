@@ -546,6 +546,30 @@ app.post('/courses', (req, res) => {
 	})
 })
 
+
+// update course
+app.patch("/courses/:id", (req, res) => {
+    const id = req.params.id;
+    const {title} = req.body;
+    const body = {title};
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+    Course.findByIdAndUpdate(id, { $set: body }, { new: true })
+        .then(course => {
+            if (!course) {
+                res.status(404).send();
+            } else {
+                res.send(course);
+            }
+        })
+        .catch(error => {
+            res.status(400).send(); 
+        });
+});
+
 // get all courses
 app.get('/courses', (req, res) => {
 	Course.find().then((Course) => {
@@ -555,7 +579,7 @@ app.get('/courses', (req, res) => {
 	})
 })
 
-// Delete course
+
 app.delete('/courses', (req, res) => {
 	const courseCode = req.body.code
 
@@ -597,6 +621,22 @@ app.get('/:courseCode/students', (req, res) => {
 		res.status(500).send(error)
 	})
 })
+
+//get course by id
+app.get('/courses/:id', (req, res) => {
+	const courseid = req.params.id
+
+	Course.findById(courseid).then((course) => {
+		if (!course) {
+			res.status(404).send()
+		} else {
+			res.send(course)
+		}
+	}, (error) => {
+		res.status(400).send(error)
+	})
+})
+
 
 // Add post
 app.post('/posts', (req, res) => {
