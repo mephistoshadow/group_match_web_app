@@ -15,6 +15,7 @@ class Matches extends React.Component {
     state = {
             matches : [],
             courses: [],
+            coursesToMatches: [],
             currProfile: ""
     }
 
@@ -22,39 +23,29 @@ class Matches extends React.Component {
         const { app } = this.props
         await getAllMatches(this, app.state.currentUser)
         await getStudentCourses(this, app.state.currentUser)
-    }
-    
-    getMatchesForCourse(enrolledCourse) {
-        const matches = this.state.matches.filter((match) => match.courseCode === enrolledCourse);
-        return matches.map()
+        this.updateCoursesToMatches()
     }
 
-//    testDelete(a,b,c,d) {
-//        console.log(b,c,d)
-//    }
-
-    linkMatchProfile(profile) {
-        //Sets the state currProfile to the Json student obj
-        getStudentObj(this,
-        console.log("FJDLASF: ", this.state.currProfile)
-        
-        //TODO: Get ID from currProfile, Link to page
-        
-    }
-
-	render() {
+    async componentDidUpdate(prevProps, prevState, snapshot) {
         const { app } = this.props
-        console.log('courses', this.state.courses)
-        console.log('matches', this.state.matches)
+        if (prevState.matches !== this.state.matches) { // Match is deleted
+            await getAllMatches(this, app.state.currentUser)
+            this.updateCoursesToMatches()
+        }
+    }
 
+    updateCoursesToMatches() {
         const coursesToMatches = []
         this.state.courses.forEach((course) => 
             coursesToMatches.push(
                 {'course': course, 'matches': this.state.matches.filter((match) => match.courseCode === course)}
             )
         )
+        this.setState({coursesToMatches: coursesToMatches})
+    }
 
-        console.log('courses to matches', coursesToMatches)
+	render() {
+        const { app, history } = this.props
 
 		return (
                 <div>
@@ -63,7 +54,7 @@ class Matches extends React.Component {
 
                     <div id="matchesContainer">
 
-                    {coursesToMatches.map((obj) =>
+                    {this.state.coursesToMatches.map((obj) =>
                             <div className="outerMatchesContainer">
                             <h3 className="h3Header">Your matches in {obj.course}</h3>
                             {
@@ -73,6 +64,7 @@ class Matches extends React.Component {
                                     {obj.matches.map((match) =>
                                     <MatchBox
                                         match={match}
+                                        history={history}
                                         deleteMatch={() => deleteMatch(this, match.courseCode, match.sender, match.receiver)}
                                         linkMatchProfile={() => this.linkMatchProfile(match.receiver)}
                                         />)}

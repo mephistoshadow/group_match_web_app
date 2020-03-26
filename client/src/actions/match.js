@@ -1,14 +1,14 @@
 export const getStudentObj = (matchComp, currentUser) => {
-    const url = '/students/username/' + currentUser
+    const url = `/students/username/${currentUser}`
+
     fetch(url).then((result) => {
         if (result.status === 200) {
             return result.json()
         }
     }).then((json) => {
-        console.log("JSON: ", json)
+        console.log("student json: ", json)
         if (json) {
-            
-            matchComp.setState({currProfile: json})
+            matchComp.setState({studentObject: json})
         }
     }).catch((error) => {
         console.log(error)
