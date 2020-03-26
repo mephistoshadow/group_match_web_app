@@ -34,7 +34,10 @@ class Student extends React.Component {
         updateStudentUserName(this, this.props.usercomponents);
         this.setState({name: this.state.newName});
         this.props.user.setState({load : true});
-        searchStudents(this.props.user, this.props.usercomponents)
+        if(this.props.user.state.searchResult == true) {
+             searchStudents(this.props.user, this.props.usercomponents)
+        }
+        console.log(this.props.user.searchResult);
         this.setState({newName: ""});
     }
 
@@ -48,7 +51,9 @@ class Student extends React.Component {
     password = () => {
         updateUserPassword(this, this.props.usercomponents)
         this.props.user.setState({load : true});
-        searchStudents(this.props.user, this.props.usercomponents)
+        if(this.props.user.searchResult == true) {
+             searchStudents(this.props.user, this.props.usercomponents)
+        }
         this.setState({newPassword:""});
     }
 
