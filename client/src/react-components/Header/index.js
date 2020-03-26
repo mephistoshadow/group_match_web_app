@@ -179,14 +179,6 @@ class Header extends React.Component {
                                 {this.getDropdownCourses.bind(this)()}
                             </div>
                         </div>
-
-                        <div id='notificationBell'>
-                            <i className='fas fa-bell'></i>
-                            <span className='notificationCounter'>1</span>
-                            <div id='notificationDropdown'>
-                                <span>Mark Z. has invited you to connect for CSC309</span>
-                            </div>
-                        </div>
                     </div>}
 
                     {isAdmin &&

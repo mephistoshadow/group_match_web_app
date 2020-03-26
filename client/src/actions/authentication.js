@@ -9,8 +9,12 @@ export const readCookie = (app) => {
             }
         })
         .then((json) => {
-            if (json && json.currentUser) {
-                app.setState({ currentUser: json.currentUser })
+            if (json && json.currentId !== undefined && json.currentUser !== undefined && json.isAdmin !== undefined) {
+                app.setState({
+                    currentId: json.currentId,
+                    currentUser: json.currentUser,
+                    isAdmin: json.isAdmin
+                })
             }
         })
         .catch((error) => {
@@ -40,8 +44,12 @@ export const login = (loginComp, app) => {
             }
         })
         .then((json) => {
-            if (json.currentUser !== undefined) {
-                app.setState({ currentId: json.currentId, currentUser: json.currentUser, isAdmin: json.isAdmin })
+            if (json.currentId !== undefined && json.currentUser !== undefined && json.isAdmin !== undefined) {
+                app.setState({
+                    currentId: json.currentId,
+                    currentUser: json.currentUser,
+                    isAdmin: json.isAdmin
+                })
             }
         })
         .catch((error) => {
@@ -54,7 +62,7 @@ export const logout = (app) => {
 
     fetch(url)
         .then((result) => {
-            app.setState({currentUser: null, isAdmin: null})
+            app.setState({currentId: null, currentUser: null, isAdmin: null})
         })
         .catch((error) => {
             console.log(error)

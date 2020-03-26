@@ -121,7 +121,7 @@ app.post('/users', (req, res) => {
 		email: req.body.email,
 		isAdmin: req.body.isAdmin
 	})
-	console.log(user);
+
 	user.save().then((user) => {
 		res.send(user)
 	}, (error) => {
@@ -137,13 +137,38 @@ app.post('/users/login', (req, res) => {
     // Use the static method on the User model to find a user
     // by their email and password
     User.findByUsernamePassword(username, password).then((user) => {
-            // Add username and isAdmin to the session cookie
-            req.session.user = user.username
+            req.session.currentId = user._id
+            req.session.currentUser = user.username
             req.session.isAdmin = user.isAdmin
             res.send({currentId: user._id, currentUser: user.username, isAdmin: user.isAdmin})
     }).catch(error => {
             res.status(400).send()
     })
+})
+
+// A route to logout a user
+app.get('/users/logout', (req, res) => {
+    // Remove the session
+    req.session.destroy((error) => {
+        if (error) {
+            res.status(500).send(error)
+        } else {
+            res.send()
+        }
+    })
+})
+
+// A route to check if a use is logged in on the session cookie
+app.get('/users/check-session', (req, res) => {
+    if (req.session.currentId !== undefined && req.session.currentUser !== undefined && req.session.isAdmin !== undefined) {
+        res.send({
+        	currentId: req.session.currentId,
+        	currentUser: req.session.currentUser,
+        	isAdmin: req.session.isAdmin
+        })
+    } else {
+        res.status(401).send()
+    }
 })
 
 app.post('/users/signup', (req, res) => {
@@ -240,8 +265,6 @@ app.put('/users/update/:id',(req, res) => {
 		if (!fields.includes(key)) {delete req.body[key]}
 	})
 
-	console.log(userId, req.body)
-
 	User.findByIdAndUpdate(userId, { $set: req.body }, { new : true }).then((user) => {
 		if (!user) {
 			res.status(404).send()
@@ -249,7 +272,6 @@ app.put('/users/update/:id',(req, res) => {
 			res.send(user)
 		}
 	}).catch((error) => {
-		console.log(error)
 		res.status(400).send()
 	})
 })
@@ -267,8 +289,6 @@ app.put('/students/update/:id',(req, res) => {
 		if (!fields.includes(key)) {delete req.body[key]}
 	})
 
-	console.log(studentId, req.body)
-
 	Student.findByIdAndUpdate(studentId, { $set: req.body }, { new : true }).then((student) => {
 		if (!student) {
 			res.status(404).send()
@@ -276,30 +296,8 @@ app.put('/students/update/:id',(req, res) => {
 			res.send(student)
 		}
 	}).catch((error) => {
-		console.log(error)
 		res.status(400).send()
 	})
-})
-
-// A route to logout a user
-app.get('/users/logout', (req, res) => {
-    // Remove the session
-    req.session.destroy((error) => {
-        if (error) {
-            res.status(500).send(error)
-        } else {
-            res.send()
-        }
-    })
-})
-
-// A route to check if a use is logged in on the session cookie
-app.get('/users/check-session', (req, res) => {
-    if (req.session.user) {
-        res.send({currentUser: req.session.user})
-    } else {
-        res.status(401).send()
-    }
 })
 
 app.get('/users/:id', (req, res) => {

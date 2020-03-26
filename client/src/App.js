@@ -138,16 +138,16 @@ class App extends React.Component {
 						<Course state={this.state} app={this}/>
 					)}/>
 
-					<Route path='/profile/user/:id' render={({match}) => (
-						<Profile app={this} match={match}/>
+					<Route path='/profile/user/:id' render={({match, history}) => (
+						<Profile app={this} match={match} history={history}/>
 					)}/>
 
                     <Route path='/search/:courseCode' render={({match}) => (
                     	<Search app={this} match={match}/>
                     )}/>
 
-					<Route exact path='/matches' render={() => (
-						<Matches app={this}/>
+					<Route exact path='/matches' render={({match, history}) => (
+						<Matches app={this} match={match} history={history}/>
 					)}/>
 				</Switch>
 			</BrowserRouter></div>
