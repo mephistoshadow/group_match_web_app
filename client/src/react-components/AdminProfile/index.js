@@ -1,68 +1,39 @@
 import '../Profile/styles.css';
 import React from "react";
 import Header from "../Header"
-import { Link, Redirect } from 'react-router-dom'
-import { getObjectByName } from "../../actions/basicoperation";
+
+import { isEmailTaken } from '../../actions/signup'
+
+import { updateForm, updateCheckbox } from "../../actions/basicoperation"
+import { getUserById, updateUserById} from '../../actions/profile'
+import { getCourseNumber, getStudentNumber} from '../../actions/adminProfile'
+
 
 class AdminProfile extends React.Component {
 
    constructor(props) {
-    super(props);
-      this.state = {
-		  newName:"",
-          newEmail:"",
-          newYear:"",
-          newPassword:"",
-           user:"admin"
-      }
-   }
+    super(props)
+	}
 
-    handleNChange= (event) => {
-         this.setState({newName: event.target.value});
-         console.log(this.props.state);
-    }
+	state = {
+		username: '',
+		email: '', newEmail: '', emailError: '', // Need to keep track of both old and new email
+		password: '', passwordError: '',
+		course_num: 0,
+		student_num: 0
+	}
 
-    handleEChange= (event) => {
-         this.setState({newEmail: event.target.value});
-    }
-    handleYChange= (event) => {
-         this.setState({newYear: event.target.value});
-    }
-    handlePChange= (event) => {
-         this.setState({newPassword: event.target.value});
-    }
-    // here we need a server call to find the admin and update it's value then
-    // store it to server.
-    update = () => {
-         const user = this.props.app;
-         const array = user.state.students;
-         for(let i =0; i < array.length; i ++) {
-            if(array[i].id == this.props.state.students[0].id) {
-                if(this.state.newName){
-                     array[i].name = this.state.newName;
-                }
-                 if(this.state.newEmail){
-                     array[i].Email = this.state.newEmail;
-                }
-                if(this.state.newPassword){
-                     array[i].password = this.state.newPassword;
-                }
-                if(this.state.newYear){
-                     array[i].year = this.state.newYear;
-                }
-                user.setState({
-                    students:array,
-                    pop:true
-                })
-                // console.log(user);
-            }
-         }
+    
+	async componentDidMount() {
 
-    }
+		const {app} = this.props
+		const currentId = app.state.currentId
 
-    jump = () => {
-         return <Redirect to='/adminUser'/>;
-    }
+		await getUserById(this, currentId)
+		await getCourseNumber(this)
+		await getStudentNumber(this)
+
+	}
 
   // show= (e) => {
   //       if (!e) {
@@ -85,37 +56,94 @@ class AdminProfile extends React.Component {
   //   }
   // {this.show(this.props.state.pop)}
 
+	async validateStudentInfo() {
+
+		const email = this.state.email, newEmail = this.state.newEmail, password = this.state.password
+		const emailRegex = new RegExp('.+@.+\\..+')
+		let emailError = '', passwordError = ''
+
+		if (newEmail !== '') {
+			if (!emailRegex.test(newEmail)) {
+				emailError = 'Invalid email address'
+			} else {
+				await isEmailTaken(newEmail, this)
+			}
+		}
+
+		if (password !== '' && password.length < 6) {
+			passwordError = 'Password must be at least 6 characters long'
+		}
+
+		this.setState({
+			emailError: (this.state.emailError === '' ? emailError : this.state.emailError),
+			passwordError: passwordError
+		}, function () {
+			if (this.noErrors()) {
+				this.updateProfile()
+			}
+		})
+	}
+
+	noErrors() {
+		return (this.state.emailError === '' && this.state.passwordError === '')
+	}
+
+
+	async updateProfile() {
+		const { app } = this.props
+		const currentId = app.state.currentId
+
+		const inputs = document.querySelectorAll('input')
+		inputs.forEach((input) => input.value = '')
+
+		await updateUserById(this, currentId)
+	}
+
 
     render() {
-        // const jump = () => {
-        //     return <Redirect to="/admin-user"/>;
-        // }
         const {app} = this.props
 
+		const currentId = app.state.currentId
         return (
             <div>
-            <Header app={app}/>
-            <h2 className="h2Header">Admin Profile Page</h2>
-            <div className = "profileCard">
-                <div className = "profileIcon">
-                    <i className="far fa-user"></i>
-                </div>
-                <div className="inputList">
-                    <ul>
-                        <li>Id: <span>{this.props.state.students[0].id}</span> </li>
-                        <li>Name: <span>{this.props.state.students[0].name}</span> <input type="text" value={this.state.newName} onChange={this.handleNChange} /></li>
-                        <li>Email: <span>{this.props.state.students[0].Email}</span> <input type="text" value={this.state.newEmail} onChange={this.handleEChange} /></li>
-                        <li>Password: <span>{this.props.state.students[0].password}</span> <input type="text" value={this.state.newPassword} onChange={this.handlePChange} /></li>
-                        <li>Number of Students: <span>{this.props.state.students.length}</span></li>
-                        <li>Number of Courses: <span>{this.props.state.courses.length}</span></li>
-                        <button className="homeButton" onClick={this.update}>SAVE CHANGES</button>
-                    </ul>
-                    <span>More Options: <strong><Link to="/admin-user">Manage Users</Link></strong> <strong><Link to="/admin-course">Manage Courses</Link></strong></span>
-                </div>
+				<Header app={app}/>
+				<h2 className="h2Header">Admin Profile Page</h2>
+				<div className = "profileContainer">
+					<div className='profileField'>
+						<span>Username: {this.state.username}</span>
+					</div>
+
+			
+					<div className='profileField'>
+						<span>Password:</span>
+						<div>
+							<input type='password' name='password' placeholder='Enter new password' onChange={(e) => updateForm(this, e.target)} />
+							<span className='errorMessage'>{this.state.passwordError}</span>
+						</div>
+					</div>
+					
+
+					<div className='profileField'>
+						<span>Email:</span>
+						<div>
+							<input type='email' name='newEmail' placeholder={this.state.email} onChange={(e) => updateForm(this, e.target)} />
+							<span className='errorMessage'>{this.state.emailError}</span>
+						</div>
+						
+					</div>
+
+					<div className='profileField'>
+						<span>Course Number: {this.state.course_num}</span>
+					</div>
+
+					<div className='profileField'>
+						<span>Student Number: {this.state.student_num}</span>
+					</div>
+
+					<button className="profileActionButton" onClick={() => this.validateStudentInfo()}>SAVE CHANGES</button>
+
+				</div>
             </div>
-             
-            </div>
-        
         );
     }
 
