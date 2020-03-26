@@ -9,12 +9,12 @@ class MatchBox extends React.Component {
 	}
 
 	render () {
-        const { match, deleteMatch } = this.props
+        const { match, deleteMatch, linkMatchProfile } = this.props
 		return (
 			<div className="matchBox">
 				<span>Username: {this.props.match.receiver}</span>
 				<div className="matchOption">
-					<button className="matchBoxButton">VIEW PROFILE</button>
+					<button onClick={linkMatchProfile} className="matchBoxButton">VIEW PROFILE</button>
 					<button onClick={deleteMatch} className="matchBoxButton">REMOVE MATCH</button>
 				</div>
 			</div>

@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "../Header";
 import MatchBox from "../MatchBox"
-import { getAllMatches, getStudentCourses, deleteMatch} from "../../actions/match";
+import { getAllMatches, getStudentCourses, deleteMatch, getStudentObj} from "../../actions/match";
 
 import './styles.css';
 
@@ -14,7 +14,8 @@ class Matches extends React.Component {
     
     state = {
             matches : [],
-            courses: []
+            courses: [],
+            currProfile: ""
     }
 
     async componentDidMount() {
@@ -31,6 +32,15 @@ class Matches extends React.Component {
 //    testDelete(a,b,c,d) {
 //        console.log(b,c,d)
 //    }
+
+    linkMatchProfile(profile) {
+        //Sets the state currProfile to the Json student obj
+        getStudentObj(this,
+        console.log("FJDLASF: ", this.state.currProfile)
+        
+        //TODO: Get ID from currProfile, Link to page
+        
+    }
 
 	render() {
         const { app } = this.props
@@ -64,6 +74,7 @@ class Matches extends React.Component {
                                     <MatchBox
                                         match={match}
                                         deleteMatch={() => deleteMatch(this, match.courseCode, match.sender, match.receiver)}
+                                        linkMatchProfile={() => this.linkMatchProfile(match.receiver)}
                                         />)}
                                 </div>)
                             }
