@@ -117,7 +117,7 @@ class App extends React.Component {
 		return (
 			<div><BrowserRouter>
 				<Switch>
-					<Route exact path={["/", "/login", "/dashboard"]} render={() => (
+					<Route exact path={["/", "/login", "/dashboard", "/admin-profile"]} render={() => (
 						!currentUser ? <Login app={this}/> : (
 						!isAdmin ? <HomePage app={this}/> : <AdminProfile app={this}/>
 					))}/>
