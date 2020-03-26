@@ -72,6 +72,16 @@
     border-top: 1px solid #d3d3d3;
 }
 
+.profileContainer a {
+    color: white;
+    text-decoration: none;
+}
+
+.profileContainer a:hover {
+    color: white;
+    text-decoration: none;
+}
+
 .profileField {
     margin-top: 20px;
     font-family: inherit;
@@ -93,13 +103,13 @@
     border-radius: 5px;
 }
 
-.profileField .errorMessage {
-    margin-left: 10px;
-}
-
 .profileField input:focus {
     outline: none;
     border: 1px solid orange;
+}
+
+.profileField .errorMessage {
+    margin-left: 10px;
 }
 
 .profileFieldValue {
@@ -122,6 +132,18 @@
     transition: background 0.5s;
 }
 
+#profileBackButton {
+    display: block;
+    position: absolute;
+    font-size: 22px;
+    top: 75px;
+    left: 175px;
+}
+
+#profileBackButton:hover {
+    color: orange;
+}
+
 .profileActionButton:hover {
     background: orange;
 }
@@ -130,6 +152,6 @@
     outline: none;
 }
 
-::placeholder {
+.profileContainer ::placeholder {
     color: black;
 }
