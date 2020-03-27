@@ -2,20 +2,9 @@
 const mongoose = require('mongoose')
 
 const MatchSchema = new mongoose.Schema({
-	sender: {
-        type: String,
-		required: true,
-	},
-	receiver: {
-        type: String,
-		required: true
-	},
-	courseCode: {
-		type: String,
-		required: true,
-		uppercase: true,
-		maxlength: 6
-	}
+	sender: mongoose.Types.ObjectId,
+	receiver: mongoose.Types.ObjectId
+	course: mongoose.Types.ObjectId
 })
 
 const Match = mongoose.model('Match', MatchSchema)

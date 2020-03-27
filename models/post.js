@@ -2,22 +2,14 @@
 const mongoose = require('mongoose')
 
 const PostSchema = new mongoose.Schema({
-	courseCode: {
-		type: String,
-		required: true,
-		uppercase: true,
-		maxlength: 6
-	},
+	course: mongoose.Types.ObjectId,
 	content :{
 		type: String,
 		required: true,
 		trim: true,
 		maxlength: 280
 	},
-	author: {
-		type: String,
-		required: true
-	}
+	author: mongoose.Types.ObjectId
 })
 
 PostSchema.index({'author': -1, 'courseCode': -1}, {unique: true})
