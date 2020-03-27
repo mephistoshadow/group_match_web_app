@@ -10,8 +10,14 @@ import { withStyles } from '@material-ui/core/styles'
 import { orange } from '@material-ui/core/colors'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-
 import './styles.css';
+
+//test checkbox
+
+//const handleChange = event => {
+//    console.log("FILTER CHANGE")
+//    console.log(event)
+//}
 
 const OrangeCheckbox = withStyles({
     root: {
@@ -25,15 +31,23 @@ const OrangeCheckbox = withStyles({
 
 class Search extends React.Component {
 	constructor(props) {
-		super(props); 
+		super(props);
+        
+        this.state = {
+            posts: [],
+            sentMatches: [],
+            postError: '',
+            madePost: false,
+            filterYear: [],
+            filterCGPA: [],
+            filterCommuter: [],
+        }
+        
+        this.labelSelect = this.labelSelect.bind(this);
+        
 	}
 
-    state = {
-        posts: [],
-        sentMatches: [],
-        postError: '',
-        madePost: false
-    }
+    
 
     async componentDidMount() {
         const { app, match } = this.props
@@ -81,6 +95,40 @@ class Search extends React.Component {
             }
         })
     }
+    
+
+    
+    async labelSelect(e) {
+        console.log("FILTER SELECTED")
+        
+        if (e.target.checked){
+            //YEAR
+            if (e.target.name.includes("year")){
+                const yrInt = e.target.name.substr(e.target.name.length - 1)
+                await this.setState({ filterYear: [...this.state.filterYear, yrInt]})
+
+            }
+            
+            
+        }
+        
+        else{
+            //YEAR
+            if (e.target.name.includes("year")){
+                const yrInt = e.target.name.substr(e.target.name.length - 1)
+                await this.setState({filterYear: this.state.filterYear.filter(function(year) {
+                    return year !== yrInt
+                })})
+            }
+
+
+        }
+        
+        console.log("YEAR: ",this.state.filterYear)
+        console.log("CGPA: ",this.state.filterCGPA)
+        console.log("COMMUTER: ",this.state.filterCommuter)
+        
+    }
 
 	render() {
         console.log('props', this.props)
@@ -97,7 +145,7 @@ class Search extends React.Component {
                 <span className="errorMessage">{this.state.postError}</span>
             </div>
         )
-
+        
 		return (
 			<div>
 				<Header app={app}/>
@@ -125,10 +173,10 @@ class Search extends React.Component {
                 <div className="filterBar">
                     <strong className="filterBarTitle">FILTER BY</strong>
                     <div className="filterCriteria">
-                        <FormControlLabel control={<OrangeCheckbox name="year1"/>} label="Year 1"/>
-                        <FormControlLabel control={<OrangeCheckbox name="year3"/>} label="Year 3"/>
-                        <FormControlLabel control={<OrangeCheckbox name="year2"/>} label="Year 2"/>
-                        <FormControlLabel control={<OrangeCheckbox name="year4"/>} label="Year 4"/>
+                        <FormControlLabel onChange={this.labelSelect} control={<OrangeCheckbox name="year1"/>} label="Year 1"/>
+                        <FormControlLabel onChange={this.labelSelect}control={<OrangeCheckbox name="year3"/>} label="Year 3"/>
+                        <FormControlLabel onChange={this.labelSelect}control={<OrangeCheckbox name="year2"/>} label="Year 2"/>
+                        <FormControlLabel onChange={this.labelSelect}control={<OrangeCheckbox name="year4"/>} label="Year 4"/>
                     </div>
 
                     <div className="filterCriteria">
