@@ -1,6 +1,6 @@
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
-import { readCookie } from "./actions/authentication"
+import { readCookie } from './actions/authentication'
 
 import User from './react-components/User';
 import Course from './react-components/Course';
@@ -19,106 +19,23 @@ class App extends React.Component {
 		super(props)
 		readCookie(this)
 	}
-
+	
 	state = {
+		currentId: '',
   		currentUser: '',
-  		currentId: '',
-		isAdmin: false,
-        notificationCounter: 1,
-		countCourse: 3,
-		countStudent: 4,
-		courses: [
-			{ id: 1, name: "CSC373", people: 123 },
-			{ id: 2, name: "CSC309", people: 35 },
-			{ id: 3, name: "CSC369", people: 300 },
-		],
-		students: [
-			{
-				id: 1,
-				name: "admin",
-				password: "admin",
-				Email: "admin@mail.utoronto.ca",
-				current_courses: [],
-				past_courses: []
-			},
-			{
-				id: 2,
-				name: "user",
-				password: "user",
-				Email: "user@mail.utoronto.ca",
-				year:1,
-				current_courses: ["CSC309"],
-				past_courses: ["CSC369", "CSC301", "CSC401"]
-			},
-			{
-				id: 3,
-				name: "happy",
-				Email: "happy@mail.utoronto.ca",
-				year:2,
-				password: "1235",
-				current_courses: ["CSC373", "CSC301"],
-				past_courses: ["CSC369", "CSC301", "CSC401"]
-			},
-			{
-				id: 4,
-				name: "jerry",
-				Email: "jerry@mail.utoronto.ca",
-				year:3,
-				password: "user",
-				current_courses: ["CSC369", "CSC301", "CSC401"],
-				past_courses: []
-			}
-		],
-		pop: false,
-		enrolledCourses: ['CSC309'],
-		current_course: 'CSC309',
-		posts: [
-			{
-				name: 'CSC309',
-				posts: [
-					{
-						id: 1,
-						name: "happy",
-						email: "happy@mail.utoronto.ca",
-						isAuthored: false,
-						content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem" +
-							"por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
-							" nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a" +
-							"ute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pa" +
-							"riatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mo" +
-							"llit anim id est laborum."
-					},
-					{
-						id: 2,
-						name: "jerry",
-						email: "jerry@mail.utoronto.ca",
-						isAuthored: false,
-						content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem" +
-							"por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis" +
-							" nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis a" +
-							"ute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pa" +
-							"riatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mo" +
-							"llit anim id est laborum."
-					}
-				]
-			},
-			{
-				name: 'CSC373', posts: []
-			},
-			{
-				name: 'CSC369', posts: []
-			}
-		]
+		isAdmin: false
 	}
 
 	render() {
-		const {currentUser, isAdmin} = this.state
+		const {currentId, currentUser, isAdmin} = this.state
+		const authorized = (currentUser !== '' && currentId !== '')
+		const emptyPage = <div></div>
 
 		return (
 			<div><BrowserRouter>
 				<Switch>
-					<Route exact path={["/", "/login", "/dashboard", "/admin-profile"]} render={() => (
-						!currentUser ? <Login app={this}/> : (
+					<Route exact path={['/', '/login', '/dashboard', '/admin-profile']} render={() => (
+						!authorized ? <Login app={this}/> : (
 						!isAdmin ? <HomePage app={this}/> : <AdminProfile app={this}/>
 					))}/>
 
@@ -126,28 +43,24 @@ class App extends React.Component {
 						<SignUp history={history} app={this}/>
 					)}/>
 
-					<Route exact path="/dashboard" render={() => (
-						<HomePage app={this} />
-					)}/>
-
 					<Route exact path='/admin-user' render={() => (
-						<User state={this.state} app={this}/>
+						authorized ? <User state={this.state} app={this}/> : emptyPage
 					)}/>
 
 					<Route exact path='/admin-course' render={() => (
-						<Course state={this.state} app={this}/>
+						authorized ? <Course state={this.state} app={this}/> : emptyPage
 					)}/>
 
 					<Route path='/profile/user/:id' render={({match, history}) => (
-						<Profile app={this} match={match} history={history}/>
+						authorized ? <Profile app={this} match={match} history={history}/> : emptyPage
 					)}/>
 
                     <Route path='/search/:courseCode' render={({match}) => (
-                    	<Search app={this} match={match}/>
+                    	authorized ? <Search app={this} match={match}/> : emptyPage
                     )}/>
 
 					<Route exact path='/matches' render={({match, history}) => (
-						<Matches app={this} match={match} history={history}/>
+						authorized ? <Matches app={this} match={match} history={history}/> : emptyPage
 					)}/>
 				</Switch>
 			</BrowserRouter></div>
