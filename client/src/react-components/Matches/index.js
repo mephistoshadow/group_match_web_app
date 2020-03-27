@@ -14,38 +14,40 @@ class Matches extends React.Component {
     
     state = {
             matches : [],
-            courses: [],
-            coursesToMatches: [],
-            currProfile: ""
+            courses: []
     }
 
     async componentDidMount() {
         const { app } = this.props
         await getAllMatches(this, app.state.currentUser)
         await getStudentCourses(this, app.state.currentUser)
-        this.updateCoursesToMatches()
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         const { app } = this.props
-        if (prevState.matches !== this.state.matches) { // Match is deleted
+
+        const updatedMatches = JSON.stringify(prevState.matches) !== JSON.stringify(this.state.matches)
+
+        if (updatedMatches) { // Match is deleted
             await getAllMatches(this, app.state.currentUser)
-            this.updateCoursesToMatches()
+            await getStudentCourses(this, app.state.currentUser)
         }
     }
 
-    updateCoursesToMatches() {
+    getCoursesToMatches() {
         const coursesToMatches = []
         this.state.courses.forEach((course) => 
             coursesToMatches.push(
                 {'course': course, 'matches': this.state.matches.filter((match) => match.courseCode === course)}
             )
         )
-        this.setState({coursesToMatches: coursesToMatches})
+        return coursesToMatches
     }
 
 	render() {
         const { app, history } = this.props
+
+        console.log(this.state)
 
 		return (
                 <div>
@@ -54,7 +56,7 @@ class Matches extends React.Component {
 
                     <div id="matchesContainer">
 
-                    {this.state.coursesToMatches.map((obj) =>
+                    {this.getCoursesToMatches().map((obj) =>
                             <div className="outerMatchesContainer">
                             <h3 className="h3Header">Your matches in {obj.course}</h3>
                             {
