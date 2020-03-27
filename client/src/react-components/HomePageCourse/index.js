@@ -19,7 +19,7 @@ class HomePageCourse extends React.Component {
 				<div className="homePageText">Course title: <span className="HomePageStateText">{this.props.title}</span></div>
 				<div className="homePageText">Course code: <span className="HomePageStateText">{this.props.code}</span></div>
 				<div className="homePageText">No. of students: <span className="HomePageStateText">{this.state.people}</span></div>
-				{this.props.studentCourses.includes(this.props.code) ? dropButton : joinButton}
+				{this.props.studentCourses.includes(this.props.id) ? dropButton : joinButton}
 			</div>
 		);
 	}

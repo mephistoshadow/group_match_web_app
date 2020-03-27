@@ -2,7 +2,7 @@ import React from 'react'
 
 import './styles.css'
 
-import { getStudentCourses, openHamburgerMenu, closeHamburgerMenu } from '../../actions/header'
+import { getAllCourses, getStudentCourses, openHamburgerMenu, closeHamburgerMenu } from '../../actions/header'
 import { logout } from '../../actions/authentication'
 import { Link } from 'react-router-dom'
 
@@ -13,7 +13,8 @@ class Header extends React.Component {
 
     state = {
         hamburgerMenuIsOpen: false,
-        courses: []
+        studentCourses: [],
+        allCourses: []
     }
 
 	hamburgerMenuClick() {
@@ -29,28 +30,37 @@ class Header extends React.Component {
     }
 
     async componentDidMount() {
-        const { app, courses } = this.props
+        const { app, studentCourses } = this.props
         const isAdmin = app.state.isAdmin
-        const currentUser = app.state.currentUser
+        const currentId = app.state.currentId
 
-        if (!isAdmin && courses === undefined) { // Header is not provided courses reference in props
-            await getStudentCourses(this, currentUser) // Set courses in state variable
-    	}
+        if (!isAdmin) {
+            await getAllCourses(this)
+
+            if (studentCourses === undefined) { // Header is not provided courses reference in props
+                await getStudentCourses(this, currentId) // Set courses in state variable
+            }
+        }
     }
 
     getDropdownCourses() {
-        const { courses } = this.props
-        const makeDropdownCourse = function(course) {
+        const { studentCourses } = this.props
+
+        console.log('get dropdown courses', this.state)
+
+        const makeDropdownCourse = function(courseId) {
+            const courseObj = this.state.allCourses.filter((courseObj) => courseObj._id === courseId)[0]
+            console.log('course obj', courseObj)
             return <Link to={
-                {pathname: `/search/${course}`, state: {course: course}}
-            } className='navbarDropdownCourse'>{course}</Link>
+                {pathname: `/search/${courseObj.code}`, state: {course: courseObj}}
+            } className='navbarDropdownCourse'>{courseObj.code}</Link>
         }
 
         let dropdownCourses
-        if (courses === undefined) { // Header is not provided courses reference in props
-            dropdownCourses = this.state.courses.map(makeDropdownCourse) // Get courses from state
+        if (studentCourses === undefined) { // Header is not provided courses reference in props
+            dropdownCourses = this.state.studentCourses.map(makeDropdownCourse.bind(this)) // Get courses from state
         } else {
-            dropdownCourses = this.props.courses.map(makeDropdownCourse) // Get courses from props
+            dropdownCourses = this.props.studentCourses.map(makeDropdownCourse.bind(this)) // Get courses from props
         }
 
         return dropdownCourses
@@ -124,7 +134,7 @@ class Header extends React.Component {
                         <div id='navbarDropdownMenu'>
                             <span id='navbarDropdownButton'>COURSES <i className='fas fa-chevron-down'></i></span>
                             <div id='navbarDropdownContent' ref='navbarDropdownContent'>
-                                {this.getDropdownCourses.bind(this)()}
+                                {this.getDropdownCourses()}
                             </div>
                         </div>
 

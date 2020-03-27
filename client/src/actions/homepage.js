@@ -14,8 +14,8 @@ export const getAllCourses = (homeComp) => {
 	})
 }
 
-export const getStudentCourses = (homeComp, currentUser) => {
-	const url = `/students/username/${currentUser}`
+export const getStudentCourses = (homeComp, currentId) => {
+	const url = `/students/${currentId}`
 
 	fetch(url).then((result) => {
 		if (result.status === 200) {
@@ -30,12 +30,12 @@ export const getStudentCourses = (homeComp, currentUser) => {
 	})
 }
 
-export const joinCourse = (homeComp, courseComp, courseCode, studentUsername) => {
+export const joinCourse = (homeComp, courseComp, courseId, studentId) => {
 	const request = new Request("/students/add-course", {
         method: "post",
         body: JSON.stringify({
-        	courseCode: courseCode,
-        	studentUsername: studentUsername
+        	courseId: courseId,
+        	studentId: studentId
         }),
         headers: {
             Accept: "application/json, text/plain, */*",
@@ -48,8 +48,9 @@ export const joinCourse = (homeComp, courseComp, courseCode, studentUsername) =>
     		return result.json()
     	}
     }).then((jsons) => {
-    	if (jsons.course && jsons.student) {
+    	if (jsons && jsons.course && jsons.student) {
     		console.log('setting state', jsons.course, jsons.student)
+
     		homeComp.setState({studentCourses: jsons.student.courses})
     		courseComp.setState({people: jsons.course.people})
     	}
@@ -58,12 +59,12 @@ export const joinCourse = (homeComp, courseComp, courseCode, studentUsername) =>
     })
 }
 
-export const dropCourse = (homeComp, courseComp, courseCode, studentUsername) => {
+export const dropCourse = (homeComp, courseComp, courseId, studentId) => {
 	const request = new Request("/students/remove-course", {
         method: "post",
         body: JSON.stringify({
-        	courseCode: courseCode,
-        	studentUsername: studentUsername
+        	courseId: courseId,
+            studentId: studentId
         }),
         headers: {
             Accept: "application/json, text/plain, */*",
@@ -77,7 +78,7 @@ export const dropCourse = (homeComp, courseComp, courseCode, studentUsername) =>
     		return result.json()
     	}
     }).then((jsons) => {
-    	if (jsons.course && jsons.student) {
+    	if (jsons && jsons.course && jsons.student) {
 			console.log('setting state', jsons.course, jsons.student)
     		homeComp.setState({studentCourses: jsons.student.courses})
     		courseComp.setState({people: jsons.course.people})

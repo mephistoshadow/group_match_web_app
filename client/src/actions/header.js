@@ -10,16 +10,32 @@ export const closeHamburgerMenu = (hamburgerIcon, hamburgerMenu, hamburgerCollap
 	hamburgerCollapsedMenu.style.marginLeft = "0px";
 }
 
-export const getStudentCourses = (header, currentUser) => {
-	const url = `/students/username/${currentUser}`
+export const getStudentCourses = (header, currentId) => {
+	const url = `/students/${currentId}`
 
 	fetch(url).then((result) => {
 		if (result.status === 200) {
 			return result.json()
 		}
-	}).then((json) => {
-		if (json) {
-			header.setState({courses: json.courses})
+	}).then((student) => {
+		if (student) {
+			header.setState({studentCourses: student.courses})
+		}
+	}).catch((error) => {
+		console.log(error)
+	})
+}
+
+export const getAllCourses = (header) => {
+	const url = '/courses'
+
+	fetch(url).then((result) => {
+		if (result.status === 200) {
+			return result.json()
+		}
+	}).then((courses) => {
+		if (courses) {
+			header.setState({allCourses: courses})
 		}
 	}).catch((error) => {
 		console.log(error)

@@ -435,20 +435,6 @@ app.patch("/students/admin/:id", (req, res) => {
         .catch(error => {
             res.status(400).send(); 
         });
-});
-
-app.get('/students/username/:username', (req, res) => {
-	const studentUsername = req.params.username
-
-	Student.findOne({username: studentUsername}).then((student) => {
-		if (!student) {
-			res.status(404).send()
-		} else {
-			res.send(student)
-		}
-	}).catch((error) => {
-		res.status(400).send(error)
-	})
 })
 
 // Delete student by ID
@@ -476,16 +462,16 @@ app.delete('/students/:id', (req, res) => {
 
 // Add student to course
 app.post('/students/add-course', (req, res) => {
-    const courseCode = req.body.courseCode
-    const studentUsername = req.body.studentUsername
+    const courseId = req.body.courseId
+    const studentId = req.body.studentId
 
-  	Promise.all([Course.findOne({code: courseCode}), Student.findOne({username: studentUsername})]).then((results) => {
+  	Promise.all([Course.findById(courseId), Student.findById(studentId)]).then((results) => {
   		const course = results[0], student = results[1]
 
   		if (course && student) {
-  			if (!student.courses.includes(course.code)) {
+  			if (!student.courses.includes(course._id)) {
   				course.people += 1
-  				student.courses.push(course.code)
+  				student.courses.push(course._id)
 
   				Promise.all([course.save(), student.save()]).then((results) => {
   					res.send({course: results[0], student: results[1]})
@@ -505,16 +491,16 @@ app.post('/students/add-course', (req, res) => {
 
 // Remove student from course
 app.post('/students/remove-course', (req, res) => {
-    const courseCode = req.body.courseCode
-    const studentUsername = req.body.studentUsername
+    const courseId = req.body.courseId
+    const studentId = req.body.studentId
 
-  	Promise.all([Course.findOne({code: courseCode}),Student.findOne({username: studentUsername})]).then((results) => {
+  	Promise.all([Course.findById(courseId), Student.findById(studentId)]).then((results) => {
   		const course = results[0], student = results[1]
 
   		if (course && student) {
-  			if (student.courses.includes(course.code)) {
+  			if (student.courses.includes(course._id)) {
   				course.people -= 1
-  				student.courses = student.courses.filter((courseCode) => courseCode !== course.code)
+  				student.courses = student.courses.filter((courseId) => !courseId.equals(course._id))
 
   				Promise.all([course.save(), student.save()]).then((results) => {
   					res.send({course: results[0], student: results[1]})
@@ -569,15 +555,6 @@ app.patch("/courses/:id", (req, res) => {
             res.status(400).send(); 
         });
 });
-
-// get all courses
-app.get('/courses', (req, res) => {
-	Course.find().then((Course) => {
-		res.send(Course) 
-	}, (error) => {
-		res.status(500).send(error)
-	})
-})
 
 
 app.delete('/courses', (req, res) => {

@@ -27,7 +27,7 @@ const Student = mongoose.model('Student', {
 		maxvalue: 4,
 		required: true
 	},
-	courses: [String],
+	courses: [mongoose.Types.ObjectId],
 	CGPA: {
 		type: Number,
 		minvalue: 0.0,
