@@ -146,18 +146,17 @@ class Profile extends React.Component {
         const userToFetch = match.params.id
         const currentId = app.state.currentId
 
+        const canEdit = (userToFetch === currentId)
+
         return (
             <div>
                 <Header app={app}/>
                 <i class="fas fa-chevron-left" id="profileBackButton" onClick={() => history.goBack()}></i>
-                <h2 className='h2Header'>User Profile Page</h2>
+                <h2 className='h2Header'>User {this.state.username}</h2>
                 <div className='profileContainer'>
-                    <div className='profileField'>
-                        <span>Username: {this.state.username}</span>
-                    </div>
 
                     {
-                    userToFetch === currentId && // Only show password on current user profile
+                    canEdit && // Only show password on current user profile
                     <div className='profileField'>
                         <span>Password:</span>
 	                        <div>
@@ -170,7 +169,7 @@ class Profile extends React.Component {
                     <div className='profileField'>
                         <span>First name:</span>
                         {
-                            userToFetch === currentId ?
+                            canEdit ?
                             (<div>
                             	<input type='text' name='firstName' placeholder={this.state.firstName} onChange={(e) => updateForm(this, e.target)}/>
                             	<span className='errorMessage'>{this.state.firstNameError}</span>
@@ -180,7 +179,7 @@ class Profile extends React.Component {
 
                         <span>Last name:</span>
                         {
-                            userToFetch === currentId ?
+                            canEdit ?
                             (<div>
                             	<input type='text' name='lastName' placeholder={this.state.lastName} onChange={(e) => updateForm(this, e.target)}/>
                             	<span className='errorMessage'>{this.state.lastNameError}</span>
@@ -192,7 +191,7 @@ class Profile extends React.Component {
                     <div className='profileField'>
                         <span>Email:</span>
                         {
-                            userToFetch === currentId ?
+                            canEdit ?
                             (<div>
                             	<input type='email' name='newEmail' placeholder={this.state.email} onChange={(e) => updateForm(this, e.target)}/>
                             	<span className='errorMessage'>{this.state.emailError}</span>
@@ -204,7 +203,7 @@ class Profile extends React.Component {
                     <div className='profileField'>
                         <span>Year:</span>
                         {
-                            userToFetch === currentId ?
+                            canEdit ?
                             (<div className='profileInput'>
                             	<input type='number' min='1' max='4' step='1' name='year' placeholder={this.state.year} onChange={(e) => updateForm(this, e.target)}/>
                             	<span className='errorMessage'>{this.state.yearError}</span>
@@ -214,7 +213,7 @@ class Profile extends React.Component {
 
                         <span>CGPA:</span>
                         {
-                            userToFetch === currentId ?
+                            canEdit ?
                             (<div> 
                             	<input type='number' min='0' max='4' step='0.25' name='CGPA' placeholder={this.state.CGPA} onChange={(e) => updateForm(this, e.target)}/>
                             	<span className='errorMessage'>{this.state.CGPAError}</span>
@@ -226,14 +225,14 @@ class Profile extends React.Component {
                     <div className='profileField'>
                         <span>Commuter:</span>
                         {
-                            userToFetch === currentId ?
+                            canEdit ?
                             <OrangeCheckbox name='isCommuter' value={this.state.isCommuter} onClick={() => this.toggleCommuterState()}/> :
                             <OrangeCheckbox name='isCommuter' checked={this.state.isCommuter}/>
                         }
                     </div>
 
                     {
-                        userToFetch === currentId ?
+                        canEdit ?
                         <button className="profileActionButton" onClick={() => this.validateStudentInfo()}>SAVE CHANGES</button> :
                         <button className="profileActionButton"><a href={`mailto:${this.state.email}`}>CONTACT THIS USER</a></button>
                     }
