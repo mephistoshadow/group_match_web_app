@@ -1,3 +1,21 @@
+export const addStudentObj = (searchComp, currentUser) => {
+    const url = `/students/username/${currentUser}`
+
+    fetch(url).then((result) => {
+        if (result.status === 200) {
+            return result.json()
+        }
+    }).then((json) => {
+        if (json) {
+            if (!searchComp.state.studentObjList.includes(JSON.stringify(json))){
+                searchComp.setState({ studentObjList: [...searchComp.state.studentObjList, json]})
+            }
+        }
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
 export const getCoursePosts = (searchComp, courseCode, currentUser) => {
 	const url = `/posts/${courseCode}`
 

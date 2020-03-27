@@ -123,3 +123,15 @@
     outline: none;
     border: 1px solid orange;
 }
+
+#clearFilterButton{
+    font-family: inherit;
+	font-size: 18px;
+	font-weight: 500;
+	background-color: orange;
+	padding: 10px;
+	color: white;
+	border: none;
+	transition: opacity 0.5s;
+	margin-left: 40px;
+}
