@@ -77,8 +77,12 @@
   font-weight: 700;
   color: #d3d3d3;
   text-align: center;
-  cursor: default;
   transform: translateX(50vw);
+  transition: color 0.5s;
+}
+
+#navbarLogo:hover {
+  color: orange;
 }
 
 #userOptions {
@@ -88,7 +92,6 @@
 #navbarDropdownMenu {
 	display: inline-block;
   color: #d3d3d3;
-  min-width: 150px;
   padding: 15px;
 }
 
@@ -122,7 +125,6 @@
 .navbarLink {
   display: inline-block;
   color: #d3d3d3;
-  padding: 15px;
 }
 
 #navbarDropdownMenu:hover #navbarDropdownButton {
@@ -138,101 +140,13 @@
     color: #333;
 }
 
-#notificationBell {
-    display: inline-block;
-    color: #d3d3d3;
-    cursor: pointer;
-    padding: 15px;
-    margin: -15px;
-}
-
-#notificationBell:hover{
-    color:orange;
-    transition: all 0.3s ease;
-    text-shadow: 0 0 15px orange;
-
-}
-
-#notificationDropdown {
-    display: none;
-    margin-top: 15px;
-    position: absolute;
-    z-index: 1;
-    right:0px;
-    background:#333;
-    padding:10px;
-    text-align:right;
-    color:#d3d3d3;
-    border:1px solid #333;
-    
-}
-
-#notificationDropdown span{
-    margin-right: 10px;
-}
-
-#notificationDropdown:hover{
-    border:1px solid orange;
-    color:#d3d3d3;
-}
-
-#notificationBell:hover #notificationDropdown {
-    padding: 15px;
-    display: block;
-    text-shadow: 0 0 0px;
-
-}
-
-.notificationDropdownButton{
-    cursor:pointer;
-    background-color: #333;
-    border: none;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-    outline: none;
-
-}
-
-.notificationDropdownButton:hover{
-    color: orange;
-
-}
-
 /* FONT AWESOME STYLING */
 
 .hamburger-toggle {
   cursor: pointer;
-  transition-duration: 0.5s;
+  transition: color 0.5s;
 }
 
 .hamburger-toggle:hover {
   color: orange;
 }
-
-.notificationCounter {
-
-    color: orange;
-    font-size:15px;
-    position: relative;
-    bottom: 10px;
-    right:5px;
-
-}
-
-/*.fas.fa-bell:after {*/
-/*  content: "2";*/
-/*  text-align: center;*/
-/*  font-family: "Roboto", sans-serif;*/
-/*  font-size: 10px;*/
-/**/
-/*  position: relative;*/
-/*  bottom: 12px;*/
-/*  right: 5px;*/
-/**/
-/*  border-radius: 50%;*/
-/*  padding: 2.5px;*/
-/**/
-/*  background-color: orange;*/
-/*  color: #333;*/
-/*}*/

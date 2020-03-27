@@ -42,7 +42,7 @@ class HomePage extends React.Component {
 		const { app } = this.props
 
 		return (
-			<div className="homePageContainer"> 
+			<div> 
 				<Header app={app} courses={this.state.studentCourses}></Header>
 				<h2 className="h2Header">Manage Your Courses Below</h2>
 

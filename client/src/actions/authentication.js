@@ -44,7 +44,7 @@ export const login = (loginComp, app) => {
             }
         })
         .then((json) => {
-            if (json.currentId !== undefined && json.currentUser !== undefined && json.isAdmin !== undefined) {
+            if (json && json.currentId !== undefined && json.currentUser !== undefined && json.isAdmin !== undefined) {
                 app.setState({
                     currentId: json.currentId,
                     currentUser: json.currentUser,
@@ -62,7 +62,7 @@ export const logout = (app) => {
 
     fetch(url)
         .then((result) => {
-            app.setState({currentId: null, currentUser: null, isAdmin: null})
+            app.setState({currentId: '', currentUser: '', isAdmin: false})
         })
         .catch((error) => {
             console.log(error)

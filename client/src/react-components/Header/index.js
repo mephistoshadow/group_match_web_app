@@ -28,61 +28,6 @@ class Header extends React.Component {
         })
     }
 
-	// We need server call to get information about current user's Notifications
-	// This can be done with other pages pass the notification information to Headers
-	// Once the student click yes/no, the reaction should be saved into our database 
-	// by another server call
-    // handleNotificationCounter = () => {
-    //     const notifCounter = document.querySelector('.notificationCounter')
-    //     const notifBell = document.querySelector('#notificationBell').children[0]
-    //     const notifText = document.querySelector('#notificationDropdown').children[0]
-    //     const notifButtons = document.querySelectorAll('.notificationDropdownButton')
-
-    //     if (notifCounter.innerText == 0){
-    //         notifCounter.style.display = 'none'
-    //         notifBell.style.color = null
-            
-    //         //Check for 0 notifications
-    //         notifText.innerText = '0 Notifications'
-    //         notifButtons[0].style.display = 'none'
-    //         notifButtons[1].style.display = 'none'
-    //     } else {
-    //         notifCounter.style.display = 'visible'
-    //         notifBell.style.color = 'orange'
-            
-    //         //Grab notofications here
-    //         notifText.innerText = 'Mark Z. has invited you to connect for CSC309'
-    //         notifButtons[0].style.display = 'visible'
-    //         notifButtons[1].style.display = 'visible'
-    //     }
-    // }
-    
-    // handleNotifClickYes = () => {
-    //     const notifButtons = document.querySelectorAll('.notificationDropdownButton')
-    //     const notifText = document.querySelector('#notificationDropdown').children[0]
-    //     notifText.innerText = 'Accepted'
-    //     notifButtons[0].style.display = 'none'
-    //     notifButtons[1].style.display = 'none'
-        
-    //     //Hardcoded so far
-    //     const notifCounter = document.querySelector('.notificationCounter')
-    //     notifCounter.innerText -= 1
-    //     setTimeout(this.handleNotificationCounter, 1000);
-    // }
-    
-    // handleNotifClickNo = () => {
-    //     const notifButtons = document.querySelectorAll('.notificationDropdownButton')
-    //     const notifText = document.querySelector('#notificationDropdown').children[0]
-    //     notifText.innerText = 'Declined'
-    //     notifButtons[0].style.display = 'none'
-    //     notifButtons[1].style.display = 'none'
-        
-    //     //Hardcoded so far
-    //     const notifCounter = document.querySelector('.notificationCounter')
-    //     notifCounter.innerText -= 1
-    //     setTimeout(this.handleNotificationCounter, 1000); 
-    // }
-
     async componentDidMount() {
         const { app, courses } = this.props
         const isAdmin = app.state.isAdmin
@@ -141,6 +86,9 @@ class Header extends React.Component {
 
 	render() {
         const { app } = this.props
+
+        const currentId = app.state.currentId
+        const currentUser = app.state.currentUser
         const isAdmin = app.state.isAdmin
 
         const links = this.getHamburgerMenuLinks(app)
@@ -167,7 +115,7 @@ class Header extends React.Component {
                 </div>
 
 			    <div id='navbar'>
-                    <span id='navbarLogo'>GROUPIE</span>
+                    <Link to='/' id='navbarLogo'>GROUPIE</Link>
 		        	
                     {!isAdmin &&
                     <div id='userOptions'>
@@ -179,6 +127,8 @@ class Header extends React.Component {
                                 {this.getDropdownCourses.bind(this)()}
                             </div>
                         </div>
+
+                        <Link to={`/profile/user/${currentId}`} className='navbarLink'>{currentUser}</Link>
                     </div>}
 
                     {isAdmin &&
