@@ -35,6 +35,14 @@ class SearchPost extends React.Component {
     	)
     }
 
+    testDelete() {
+        console.log("DELETE")
+    }
+    
+    testAdd() {
+        console.log("ADD")
+    }
+
 	render() {
 		const { id, author, authored, content, isMatch } = this.props
 		const { deletePost, addMatch, deleteMatch } = this.props
@@ -55,7 +63,9 @@ class SearchPost extends React.Component {
         const { username, year, CGPA, isCommuter } = this.state.student
 
 		return (
-			<li className='post' title={`${this.state.student.username}-post`} style={{display: this.checkFilters() ? 'block' : 'none'}}>
+			<li className={isMatch ? 'post-selected' : 'post'}
+                
+                title={`${this.state.student.username}-post`} style={{display: this.checkFilters() ? 'block' : 'none'}}>
 				<div className='postHeader'>
 					<i className='far fa-user' />
 					<span className='postUser'>{username}</span>

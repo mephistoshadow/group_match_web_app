@@ -5,7 +5,12 @@
     background: rgba(50,50,50,0.05)
 }
 
-
+.post-selected {
+    padding-right:15px;
+    margin-bottom: 10px;
+    border-left: 5px solid orange;
+    background: rgba(255,169,82,0.1)
+}
 
 .post:hover {
     border-left: 5px solid orange;
