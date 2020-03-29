@@ -44,15 +44,11 @@ app.use(
 
 // Add a match
 app.post('/matches', (req, res) => {
-    // Matches are done by username
     const match = new Match({
         sender: req.body.sender,
         receiver: req.body.receiver,
-        courseCode: req.body.courseCode
+        course: req.body.course
     })
-    
-    //TODO: check if sender/ receiver usernames exist
-    //TODO: check if course exists
  
     match.save().then((match) => {
         res.send(match)
@@ -66,9 +62,9 @@ app.post('/matches', (req, res) => {
 app.delete('/matches', (req, res) => {
     const sender = req.body.sender
     const receiver = req.body.receiver
-    const courseCode = req.body.courseCode
+    const course = req.body.course
 
-    Match.findOneAndRemove({sender: sender, receiver: receiver, courseCode: courseCode}).then((match) => {
+    Match.findOneAndRemove({sender: sender, receiver: receiver, course: course}).then((match) => {
     	if (!match) {
     		res.status(404).send()
     	} else {
@@ -80,19 +76,19 @@ app.delete('/matches', (req, res) => {
 })
 
 // Get matches for a user
-app.get('/matches/:username', (req, res) => {
-    const username = req.params.username
+app.get('/matches/:userId', (req, res) => {
+    const userId = req.params.userId
 
     // Suppress _id and __v from queries
-    Promise.all([Match.find({sender: username}, {_id: 0, __v: 0}), Match.find({receiver: username}, {_id: 0, __v: 0})]).then((results) => {
+    Promise.all([Match.find({sender: userId}, {_id: 0, __v: 0}), Match.find({receiver: userId}, {_id: 0, __v: 0})]).then((results) => {
     	const senderMatches = results[0], receiverMatches = results[1]
 
     	const twoWayMatches = senderMatches.filter((senderMatch) =>
     		// Check if corresponding receiver match exists
     		receiverMatches.some((receiverMatch) => (
-    			receiverMatch.sender === senderMatch.receiver &&
-    			receiverMatch.receiver === senderMatch.sender &&
-    			receiverMatch.courseCode === senderMatch.courseCode
+    			senderMatch.sender.equals(receiverMatch.receiver) &&
+    			senderMatch.receiver.equals(receiverMatch.sender) &&
+    			senderMatch.course.equals(receiverMatch.course)
     		))
     	)
     	
@@ -103,11 +99,11 @@ app.get('/matches/:username', (req, res) => {
 })
 
 // Get matches sent by a user in a course
-app.get('/matches/sent/:username/:courseCode', (req, res) => {
-	const username = req.params.username
-	const courseCode = req.params.courseCode
+app.get('/matches/sent/:userId/:courseId', (req, res) => {
+	const userId = req.params.userId
+	const courseId = req.params.courseId
 
-	Match.find({sender: username, courseCode: courseCode}).then((sentMatches) => {
+	Match.find({sender: userId, course: courseId}).then((sentMatches) => {
 		res.send(sentMatches)
 	}).catch((error) => {
 		res.status(400).send(error)
@@ -618,9 +614,9 @@ app.get('/courses/:id', (req, res) => {
 // Add post
 app.post('/posts', (req, res) => {
 	const post = new Post({
-		courseCode: req.body.courseCode,
+		course: req.body.course,
 		content: req.body.content,
-		author: req.body.author // Is a username
+		author: req.body.author
 	})
 
 	post.save().then((result) => {
@@ -631,10 +627,10 @@ app.post('/posts', (req, res) => {
 })
 
 // Get all posts in course
-app.get('/posts/:courseCode', (req, res) => {
-	const courseCode = req.params.courseCode
+app.get('/posts/:courseId', (req, res) => {
+	const courseId = req.params.courseId
 
-	Post.find({courseCode: courseCode}).then((posts) => {
+	Post.find({course: courseId}).then((posts) => {
 		if (!posts) {
 			res.status(404).send()
 		} else {
@@ -646,11 +642,11 @@ app.get('/posts/:courseCode', (req, res) => {
 })
 
 // Delete post in course by author
-app.delete('/posts/:courseCode/', (req, res) => {
-	const courseCode = req.params.courseCode
+app.delete('/posts/:courseId/', (req, res) => {
+	const courseId = req.params.courseId
 	const author = req.body.author // Is a username
 
-	Post.findOneAndRemove({courseCode: courseCode, author: author}).then((post) => {
+	Post.findOneAndRemove({course: courseId, author: author}).then((post) => {
 		if (!post) {
 			res.status(404).send()
 		} else {
@@ -662,11 +658,11 @@ app.delete('/posts/:courseCode/', (req, res) => {
 })
 
 // Get post in course by author
-app.get('/posts/:courseCode/:author', (req, res) => {
-	const courseCode = req.params.courseCode
+app.get('/posts/:courseId/:author', (req, res) => {
+	const courseId = req.params.courseId
 	const author = req.params.author // Is a username
 
-	Post.findOne({courseCode : courseCode, author: author}).then((post) => {
+	Post.findOne({course: courseId, author: author}).then((post) => {
 		if (!post) {
 			res.status(404).send()
 		} else {

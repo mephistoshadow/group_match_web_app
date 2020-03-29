@@ -55,8 +55,8 @@ class App extends React.Component {
 						authorized ? <Profile app={this} match={match} history={history}/> : emptyPage
 					)}/>
 
-                    <Route path='/search/:courseCode' render={({match}) => (
-                    	authorized ? <Search app={this} match={match}/> : emptyPage
+                    <Route path='/search/course/:id' render={({match, location}) => (
+                    	authorized ? <Search app={this} match={match} location={location}/> : emptyPage
                     )}/>
 
 					<Route exact path='/matches' render={({match, history}) => (

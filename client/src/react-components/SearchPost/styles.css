@@ -1,59 +1,45 @@
-
 .postHeader {
     font-size: 30px;
+    display: flex;
 }
 
-.postDesc {
+.postContent {
 	font-size: 18px;
     margin-top: 20px;
     font-style: italic;
 }
 
-.posterName {
+.postInfo {
 	display: inline-block;
 	margin-left: 20px;
-	margin-right: 20px;
-}
-
-.posterInfo {
-    display: inline-block;
-    margin-left: 20px;
-	margin-right: 20px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.posterEmail {
-	display: inline-block;
-	color: gray;
+	font-size: 20px;
+	line-height: 30px;
 }
 
 .fa-star.noMatch {
 	position: absolute;
+	cursor: pointer;
 	color: black;
 	right: 0px;
-	cursor: pointer;
 }
 
 .fa-star.noMatch:hover {
-    color:orange;
-
+    color: orange;
 }
 
 .fa-star.match {
 	position: absolute;
+	cursor: pointer;
 	color: orange;
 	right: 0px;
-	cursor: pointer;
 }
 
 .fa-trash-alt.trash {
+	position: absolute;
     cursor: pointer;
-    position: absolute;
     right: 0px;
 }
 
 .fa-trash-alt.trash:hover {
-    color:orange;
+    color: orange;
 }
-

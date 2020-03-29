@@ -137,14 +137,14 @@
 
 .navbarDropdownCourse:hover {
 	background-color: orange;
-    color: #333;
+  color: #333;
 }
 
 /* FONT AWESOME STYLING */
 
 .hamburger-toggle {
   cursor: pointer;
-  transition: color 0.5s;
+  transition: 0.5s;
 }
 
 .hamburger-toggle:hover {

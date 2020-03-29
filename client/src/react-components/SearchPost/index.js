@@ -1,6 +1,8 @@
-import React from "react";
+import React from 'react';
+
+import { getStudent } from "../../actions/search"
+
 import './styles.css';
-import { getStudentObj } from "../../actions/match" //for now we'll use the one from match lol
 
 class SearchPost extends React.Component {
 	constructor(props) {
@@ -8,42 +10,59 @@ class SearchPost extends React.Component {
 	}
  
 	state = {
-		studentObject: {}
+		student: {}
 	}
  
     async componentDidMount() {
-        const {author} = this.props
-        await getStudentObj(this, author)
-        
+        const { author } = this.props
+        await getStudent(this, author)
+    }
+
+    checkFilters() {
+    	const { yearFilter, minCGPAFilter, maxCGPAFilter, commuterFilter } = this.props
+    	const { year, CGPA, isCommuter } = this.state.student
+
+    	const meetYearCriteria = yearFilter.length > 0 ? yearFilter.includes(year) : true
+    	const meetMinCGPACriteria = minCGPAFilter <= CGPA
+    	const meetMaxCGPACriteria = CGPA <= maxCGPAFilter
+    	const meetCommuterCriteria = commuterFilter === true ? (commuterFilter === isCommuter) : true
+
+    	return (
+    		meetYearCriteria &&
+    		meetMinCGPACriteria &&
+    		meetMaxCGPACriteria &&
+    		meetCommuterCriteria
+    	)
     }
 
 	render() {
 		const { id, author, authored, content, isMatch } = this.props
 		const { deletePost, addMatch, deleteMatch } = this.props
 
-		const deleteButton = <i className="fas fa-trash-alt trash" onClick={() => deletePost()}></i>
+		const deleteButton = <i className='fas fa-trash-alt trash' onClick={() => deletePost()}></i>
 		const matchButton = (
 			isMatch ? 
-			<i className="fas fa-star match" onClick={() => deleteMatch()}></i> :
-			<i className="far fa-star noMatch" onClick={() => addMatch()}></i>
+			<i className='fas fa-star match' onClick={() => deleteMatch()}></i> :
+			<i className='far fa-star noMatch' onClick={() => addMatch()}></i>
 		)
   
-        const commuterState = this.state.studentObject.isCommuter
-        const isCommuter =  <span className="posterInfo">Is a Commuter</span>
-        const notCommuter =  <span className="posterInfo">Not a Commuter</span>
+        const commuter =  <span className='postInfo'>Commuter</span>
+        const notCommuter =  <span className='postInfo'>Not a Commuter</span>
+
+        const { username, year, CGPA, isCommuter } = this.state.student
 
 		return (
-			<li className="post" title={`${author}-post`}>
-				<div className="postHeader">
-					<i className="far fa-user" />
-					<span className="posterName">{author}</span>
-                    <span className="posterInfo">Year: {this.state.studentObject.year}</span>
-                    <span className="posterInfo">CGPA: {this.state.studentObject.CGPA}</span>
-                    {commuterState ? isCommuter : notCommuter}
+			<li className='post' title={`${this.state.student.username}-post`} style={{display: this.checkFilters() ? 'block' : 'none'}}>
+				<div className='postHeader'>
+					<i className='far fa-user' />
+					<span className='postInfo'>{username}</span>
+                    <span className='postInfo'>Year {year}</span>
+                    <span className='postInfo'>CGPA {CGPA}</span>
+                    {isCommuter ? commuter : notCommuter}
 					{authored ? deleteButton : matchButton}
 				</div>
-				<div className="postContent">
-					<p className="postDesc">{content}</p>
+				<div>
+					<p className='postContent'>{content}</p>
 				</div>
 			</li>
 		)

@@ -46,14 +46,14 @@ class Header extends React.Component {
     getDropdownCourses() {
         const { studentCourses } = this.props
 
-        console.log('get dropdown courses', this.state)
-
         const makeDropdownCourse = function(courseId) {
             const courseObj = this.state.allCourses.filter((courseObj) => courseObj._id === courseId)[0]
-            console.log('course obj', courseObj)
-            return <Link to={
-                {pathname: `/search/${courseObj.code}`, state: {course: courseObj}}
-            } className='navbarDropdownCourse'>{courseObj.code}</Link>
+            return <Link className='navbarDropdownCourse' to={{
+                pathname: `/search/course/${courseObj._id}`,
+                state: {
+                    course: courseObj
+                }
+            }}>{courseObj.code}</Link>
         }
 
         let dropdownCourses

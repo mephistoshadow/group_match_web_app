@@ -1,6 +1,5 @@
 #posts {
     display: inline-block;
-    padding-top: 25px;
     margin-left: 200px;
     width: 900px;
 }
@@ -51,6 +50,7 @@
 
 #studentList {
     padding: 0px;
+    margin: 0px;
 }
 
 #studentList li {
@@ -64,7 +64,7 @@
     display: inline-block;
     position: absolute;
     width: 250px;
-    margin: 25px;
+    margin-left: 25px;
     z-index: 0;
 }
 
@@ -124,14 +124,27 @@
     border: 1px solid orange;
 }
 
-#clearFilterButton{
+#filterButtonContainer {
+    padding-top: 15px;
+    border-top: 1px solid #d3d3d3;
+}
+
+#clearFilterButton {
     font-family: inherit;
 	font-size: 18px;
-	font-weight: 500;
+	font-weight: 700;
+    color: white;
 	background-color: orange;
+    width: 100%;
 	padding: 10px;
-	color: white;
 	border: none;
 	transition: opacity 0.5s;
-	margin-left: 40px;
+}
+
+#clearFilterButton:hover {
+    opacity: 0.7;
+}
+
+#clearFilterButton:focus {
+    outline: none;
 }
