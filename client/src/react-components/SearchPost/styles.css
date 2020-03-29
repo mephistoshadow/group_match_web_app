@@ -1,19 +1,49 @@
+.post {
+    padding-right:15px;
+    margin-bottom: 10px;
+    border-left: 5px solid black;
+    background: rgba(50,50,50,0.05)
+}
+
+
+
+.post:hover {
+    border-left: 5px solid orange;
+    background: rgba(255,169,82,0.1)
+}
+
 .postHeader {
     font-size: 30px;
     display: flex;
+    padding-left: 15px;
 }
 
 .postContent {
 	font-size: 18px;
     margin-top: 20px;
     font-style: italic;
+    padding-left: 15px;
 }
 
 .postInfo {
 	display: inline-block;
 	margin-left: 20px;
+    margin-right: 12px;
 	font-size: 20px;
 	line-height: 30px;
+/*    font-weight:bold;*/
+
+}
+
+.postUser {
+	display: inline-block;
+	margin-left: 20px;
+    margin-right: 10px;
+	font-size: 25px;
+	line-height: 30px;
+    font-weight: bold;
+    
+/*    color:orange;*/
 }
 
 .fa-star.noMatch {
@@ -21,10 +51,12 @@
 	cursor: pointer;
 	color: black;
 	right: 0px;
+    padding-right: 15px;
 }
 
 .fa-star.noMatch:hover {
     color: orange;
+    padding-right: 15px;
 }
 
 .fa-star.match {
@@ -32,14 +64,17 @@
 	cursor: pointer;
 	color: orange;
 	right: 0px;
+     padding-right: 15px;
 }
 
 .fa-trash-alt.trash {
 	position: absolute;
     cursor: pointer;
     right: 0px;
+    padding-right: 15px;
 }
 
 .fa-trash-alt.trash:hover {
     color: orange;
+    padding-right: 15px;
 }

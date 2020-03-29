@@ -46,8 +46,11 @@ class SearchPost extends React.Component {
 			<i className='far fa-star noMatch' onClick={() => addMatch()}></i>
 		)
   
-        const commuter =  <span className='postInfo'>Commuter</span>
-        const notCommuter =  <span className='postInfo'>Not a Commuter</span>
+//        const commuter =  <span className='postInfo'>Commuter</span>
+//        const notCommuter =  <span className='postInfo'>Not a Commuter</span>
+        const commuter =  <i class="fas fa-car-alt postInfo"></i>
+        const notCommuter = <i class="fas fa-walking postInfo"></i>
+
 
         const { username, year, CGPA, isCommuter } = this.state.student
 
@@ -55,10 +58,10 @@ class SearchPost extends React.Component {
 			<li className='post' title={`${this.state.student.username}-post`} style={{display: this.checkFilters() ? 'block' : 'none'}}>
 				<div className='postHeader'>
 					<i className='far fa-user' />
-					<span className='postInfo'>{username}</span>
-                    <span className='postInfo'>Year {year}</span>
-                    <span className='postInfo'>CGPA {CGPA}</span>
+					<span className='postUser'>{username}</span>
                     {isCommuter ? commuter : notCommuter}
+                    <span className='postInfo'>Year {year}</span>
+                    <span className='postInfo'>CGPA - {CGPA}</span>
 					{authored ? deleteButton : matchButton}
 				</div>
 				<div>
