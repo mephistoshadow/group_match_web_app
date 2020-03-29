@@ -1,62 +1,61 @@
-export const getStudentObj = (matchComp, currentUser) => {
-    const url = `/students/username/${currentUser}`
+export const getStudent = (matchComp, currentId) => {
+    const url = `/students/${currentId}`
 
     fetch(url).then((result) => {
         if (result.status === 200) {
             return result.json()
         }
-    }).then((json) => {
-        console.log("student json: ", json)
-        if (json) {
-            matchComp.setState({studentObject: json})
+    }).then((student) => {
+        if (student._id === currentId) {
+        	matchComp.setState({student: student})
         }
     }).catch((error) => {
         console.log(error)
     })
 }
 
-export const getAllMatches = (matchComp, currentUser) => {
-    const url = '/matches/' + currentUser
-    fetch(url).then((result) => {
-        if (result.status === 200) {
-            return result.json()
-        }
-    }).then((json) => {
-        if (json) {
-            console.log("JSON: ", json)
-            matchComp.setState({matches: json})
-        }
-    }).catch((error) => {
-        console.log(error)
-    })
+export const getStudentCourses = (matchComp, currentId) => {
+	const url = `/students/courses/${currentId}`
 
-}
-
-export const getStudentCourses = (matchComp, currentUser) => {
-	const url = `/students/username/${currentUser}`
-
+	console.log()
 	fetch(url).then((result) => {
 		if (result.status === 200) {
 			return result.json()
 		}
-	}).then((json) => {
-		if (json) {
-			matchComp.setState({courses: json.courses})
+	}).then((courses) => {
+		if (courses) {
+			matchComp.setState({courses: courses})
 		}
 	}).catch((error) => {
 		console.log(error)
 	})
 }
 
-export const deleteMatch = (matchComp, courseCode, sender, receiver) => {
-	const url = `/matches`
+export const getStudentMatches = (matchComp, currentId) => {
+    const url = `/matches/${currentId}`
+
+    fetch(url).then((result) => {
+        if (result.status === 200) {
+            return result.json()
+        }
+    }).then((matches) => {
+        if (matches) {
+        	matchComp.setState({matches: matches})
+        }
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
+export const deleteMatch = (matchComp, courseId, sender, receiver) => {
+	const url = '/matches'
 
 	const deleteRequest = new Request(url, {
 		method: "delete",
 		body: JSON.stringify({
 			sender: sender,
 			receiver: receiver,
-			courseCode: courseCode
+			course: courseId
 		}),
 		headers: {
             Accept: "application/json, text/plain, */*",
@@ -69,13 +68,13 @@ export const deleteMatch = (matchComp, courseCode, sender, receiver) => {
 			return result.json()
 		}
 	}).then((json) => {
-            
-		matchComp.setState({
-			matches: matchComp.state.matches.filter((match) => JSON.stringify(match) !== JSON.stringify({sender: json.sender, receiver: json.receiver, courseCode: json.courseCode}))
-		})
+		if (json) {
+			const deletedMatch = {sender: json.sender, receiver: json.receiver, course: json.course}
+			matchComp.setState({
+				matches: matchComp.state.matches.filter((match) => JSON.stringify(match) !== JSON.stringify(deletedMatch))
+			})
+		}
 	}).catch((error) => {
 		console.log(error)
 	})
 }
-
-

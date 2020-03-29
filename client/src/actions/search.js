@@ -95,9 +95,8 @@ export const deletePost = (searchComp, courseId, author) => {
 
 export const getSentMatches = (searchComp, courseId, currentId) => {
 	const url = `/matches/sent/${currentId}/${courseId}`
-	console.log('url', url)
+	
 	fetch(url).then((result) => {
-		console.log('sent matches result', result)
 		if (result.status === 200) {
 			return result.json()
 		}

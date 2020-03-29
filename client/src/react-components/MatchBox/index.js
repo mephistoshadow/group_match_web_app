@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getStudentObj } from "../../actions/match"
+import { getStudent } from "../../actions/match"
 import { Link } from 'react-router-dom'
 
 import './styles.css';
@@ -11,18 +11,13 @@ class MatchBox extends React.Component {
 	}
 
 	state = {
-		studentObject: {}
+		student: {}
 	}
 
 	async componentDidMount() {
-		await getStudentObj(this, this.props.match.receiver)
-	}
+		const { course, sender, receiver } = this.props.match
 
-	async componentDidUpdate(prevProps, prevState, snapshot) {
-		if (prevProps.match.receiver !== this.props.match.receiver) {
-			console.log('CHANGED MATCH BOX RECEIVER')
-			await getStudentObj(this, this.props.match.receiver)
-		}
+		await getStudent(this, receiver)
 	}
 
 	render () {
@@ -30,9 +25,9 @@ class MatchBox extends React.Component {
 
 		return (
 			<div className="matchBox">
-				<span>Username: {this.props.match.receiver}</span>
+				<span>Username: {this.state.student.username}</span>
 				<div className="matchOption">
-					<button className="matchBoxButton" onClick={() => history.push(`/profile/user/${this.state.studentObject._id}`)}>VIEW PROFILE</button>
+					<button className="matchBoxButton" onClick={() => { history.push(`/profile/user/${match.receiver}`) }}>VIEW PROFILE</button>
 					<button onClick={deleteMatch} className="matchBoxButton">REMOVE MATCH</button>
 				</div>
 			</div>

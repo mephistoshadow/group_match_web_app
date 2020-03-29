@@ -410,6 +410,31 @@ app.get('/students/:id', (req, res) => {
 	})
 })
 
+// Get courses of student by ID
+app.get('/students/courses/:id', (req, res) => {
+	const studentId = req.params.id
+
+	if (!ObjectID.isValid(studentId)) {
+		res.status(400).send()
+	}
+
+	Student.findById(studentId).then((student) => {
+		if (!student) {
+			res.status(404).send()
+		} else {
+			const courses = student.courses
+
+			Course.find({_id: {$in : courses}}).then((courses) => {
+				res.send(courses)
+			}).catch((error) => {
+				res.status(500).send(error)
+			})
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+})
+
 /// update the student username by admin part
 app.patch("/students/admin/:id", (req, res) => {
     const id = req.params.id;
@@ -528,6 +553,29 @@ app.post('/courses', (req, res) => {
 	})
 })
 
+// Get all courses
+app.get('/courses', (req, res) => {
+	Course.find().then((courses) => {
+		res.send(courses)
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+})
+
+//get course by id
+app.get('/courses/:id', (req, res) => {
+	const courseid = req.params.id
+
+	Course.findById(courseid).then((course) => {
+		if (!course) {
+			res.status(404).send()
+		} else {
+			res.send(course)
+		}
+	}, (error) => {
+		res.status(400).send(error)
+	})
+})
 
 // update course
 app.patch("/courses/:id", (req, res) => {
@@ -568,45 +616,6 @@ app.delete('/courses', (req, res) => {
 		}
 	}).catch((error) => {
 		res.status(500).send(error)
-	})
-})
-
-// Get all courses
-app.get('/courses', (req, res) => {
-	Course.find().then((courses) => {
-		res.send(courses)
-	}).catch((error) => {
-		res.status(500).send(error)
-	})
-})
-
-// Get all students in course
-app.get('/:courseCode/students', (req, res) => {
-	const courseCode = req.params.courseCode
-
-	Student.find({courses: {$in: [courseCode]}}).then((students) => {
-		if (!students) {
-			res.status(404).send()
-		} else {
-			res.send(students)
-		}
-	}).catch((error) => {
-		res.status(500).send(error)
-	})
-})
-
-//get course by id
-app.get('/courses/:id', (req, res) => {
-	const courseid = req.params.id
-
-	Course.findById(courseid).then((course) => {
-		if (!course) {
-			res.status(404).send()
-		} else {
-			res.send(course)
-		}
-	}, (error) => {
-		res.status(400).send(error)
 	})
 })
 
