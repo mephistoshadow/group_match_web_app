@@ -12,7 +12,7 @@ const PostSchema = new mongoose.Schema({
 	author: mongoose.Types.ObjectId
 })
 
-PostSchema.index({'author': -1, 'courseCode': -1}, {unique: true})
+PostSchema.index({'author': -1, 'course': -1}, {unique: true})
 
 const Post = mongoose.model('Post', PostSchema) 
 module.exports = { Post }

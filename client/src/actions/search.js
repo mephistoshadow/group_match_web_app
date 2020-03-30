@@ -6,7 +6,7 @@ export const getStudent = (searchPostComp, author) => {
 			return result.json()
 		}
 	}).then((student) => {
-		if (student._id === author) {
+		if (student && student._id === author) {
 			searchPostComp.setState({student: student})
 		}
 	}).catch((error) => {
@@ -55,10 +55,12 @@ export const addPost = (searchComp, courseId, content, author) => {
     			return result.json()
     		}
     	}).then((json) => {
-    		searchComp.setState({
-    			madePost: true,
-    			posts: searchComp.state.posts.concat([json])
-    		})
+    		if (json) {
+    			searchComp.setState({
+	    			madePost: true,
+	    			posts: searchComp.state.posts.concat([json])
+	    		})
+    		}
     	}).catch((error) => {
     		console.log(error)
     	})
@@ -84,10 +86,12 @@ export const deletePost = (searchComp, courseId, author) => {
     		return result.json()
     	}
     }).then((json) => {
-    	searchComp.setState({
-    		madePost: false,
-    		posts: searchComp.state.posts.filter((post) => JSON.stringify(post) !== JSON.stringify(json))
-    	})
+    	if (json) {
+			searchComp.setState({
+	    		madePost: false,
+	    		posts: searchComp.state.posts.filter((post) => JSON.stringify(post) !== JSON.stringify(json))
+	    	})
+    	}
     }).catch((error) => {
     	console.log(error)
     })
@@ -101,9 +105,11 @@ export const getSentMatches = (searchComp, courseId, currentId) => {
 			return result.json()
 		}
 	}).then((matches) => {
-		searchComp.setState({
-			sentMatches: matches
-		})
+		if (matches) {
+			searchComp.setState({
+				sentMatches: matches
+			})
+		}
 	})
 }
 
@@ -128,9 +134,11 @@ export const addMatch = (searchComp, courseId, sender, receiver) => {
 			return result.json()
 		}
 	}).then((json) => {
-		searchComp.setState({
-			sentMatches: searchComp.state.sentMatches.concat([json])
-		})
+		if (json) {
+			searchComp.setState({
+				sentMatches: searchComp.state.sentMatches.concat([json])
+			})
+		}
 	}).catch((error) => {
 		console.log(error)
 	})
@@ -157,9 +165,11 @@ export const deleteMatch = (searchComp, courseId, sender, receiver) => {
 			return result.json()
 		}
 	}).then((json) => {
-		searchComp.setState({
-			sentMatches: searchComp.state.sentMatches.filter((match) => JSON.stringify(match) !== JSON.stringify(json))
-		})
+		if (json) {
+			searchComp.setState({
+				sentMatches: searchComp.state.sentMatches.filter((match) => JSON.stringify(match) !== JSON.stringify(json))
+			})
+		}
 	}).catch((error) => {
 		console.log(error)
 	})

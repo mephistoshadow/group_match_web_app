@@ -622,11 +622,19 @@ app.delete('/courses', (req, res) => {
 
 // Add post
 app.post('/posts', (req, res) => {
+	const course = req.body.course
+	const content = req.body.content
+	const author = req.body.author
+
 	const post = new Post({
-		course: req.body.course,
-		content: req.body.content,
-		author: req.body.author
+		course: course,
+		content: content,
+		author: author
 	})
+
+	if (!ObjectID.isValid(course) || !ObjectID.isValid(author)) {
+		res.status(400).send()
+	}
 
 	post.save().then((result) => {
 		res.send(result)
