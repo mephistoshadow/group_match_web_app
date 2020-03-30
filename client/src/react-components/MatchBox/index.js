@@ -20,6 +20,17 @@ class MatchBox extends React.Component {
 		await getStudent(this, receiver)
 	}
 
+	async componentDidUpdate(prevProps, prevState, snapshot) {
+		const { match } = this.props
+		const { course, sender, receiver } = this.props.match
+
+		const updatedMatch = prevProps.match !== match
+
+		if (updatedMatch) {
+			await getStudent(this, receiver)
+		}
+	}
+
 	render () {
         const { match, history, deleteMatch } = this.props
 

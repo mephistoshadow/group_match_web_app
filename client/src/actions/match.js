@@ -78,3 +78,16 @@ export const deleteMatch = (matchComp, courseId, sender, receiver) => {
 		console.log(error)
 	})
 }
+
+export const getCoursesToMatches = (matchComp) => {
+    const coursesToMatches = []
+    matchComp.state.courses.forEach((course) => 
+        coursesToMatches.push(
+            {
+                'course': course,
+                'matches': matchComp.state.matches.filter((match) => match.course === course._id)
+            }
+        )
+    )
+    return coursesToMatches
+}

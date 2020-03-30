@@ -35,14 +35,6 @@ class SearchPost extends React.Component {
     	)
     }
 
-    testDelete() {
-        console.log("DELETE")
-    }
-    
-    testAdd() {
-        console.log("ADD")
-    }
-
 	render() {
 		const { id, author, authored, content, isMatch } = this.props
 		const { deletePost, addMatch, deleteMatch } = this.props
@@ -53,19 +45,17 @@ class SearchPost extends React.Component {
 			<i className='fas fa-star match' onClick={() => deleteMatch()}></i> :
 			<i className='far fa-star noMatch' onClick={() => addMatch()}></i>
 		)
-  
-//        const commuter =  <span className='postInfo'>Commuter</span>
-//        const notCommuter =  <span className='postInfo'>Not a Commuter</span>
+
         const commuter =  <i class="fas fa-car-alt postInfo"></i>
         const notCommuter = <i class="fas fa-walking postInfo"></i>
-
 
         const { username, year, CGPA, isCommuter } = this.state.student
 
 		return (
 			<li className={isMatch ? 'post-selected' : 'post'}
-                
-                title={`${this.state.student.username}-post`} style={{display: this.checkFilters() ? 'block' : 'none'}}>
+                title={`${this.state.student.username}-post`}
+                style={{display: this.checkFilters() ? 'block' : 'none'}}>
+
 				<div className='postHeader'>
 					<i className='far fa-user' />
 					<span className='postUser'>{username}</span>
@@ -74,9 +64,11 @@ class SearchPost extends React.Component {
                     <span className='postInfo'>CGPA - {CGPA}</span>
 					{authored ? deleteButton : matchButton}
 				</div>
+
 				<div>
 					<p className='postContent'>{content}</p>
 				</div>
+                
 			</li>
 		)
 	}

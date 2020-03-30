@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "../Header";
 import MatchBox from "../MatchBox"
-import { getStudentCourses, getStudentMatches, deleteMatch } from "../../actions/match";
+import { getStudentCourses, getStudentMatches, getCoursesToMatches, deleteMatch } from "../../actions/match";
 
 import './styles.css';
 
@@ -38,19 +38,6 @@ class Matches extends React.Component {
         }
     }
 
-    getCoursesToMatches() {
-        const coursesToMatches = []
-        this.state.courses.forEach((course) => 
-            coursesToMatches.push(
-                {
-                    'course': course,
-                    'matches': this.state.matches.filter((match) => match.course === course._id)
-                }
-            )
-        )
-        return coursesToMatches
-    }
-
 	render() {
         const { app, history } = this.props
 
@@ -64,7 +51,7 @@ class Matches extends React.Component {
 
                     <div id="matchesContainer">
 
-                    {this.getCoursesToMatches().map((obj) =>
+                    {getCoursesToMatches(this).map((obj) =>
                             <div className="outerMatchesContainer">
                             <h3 className="h3Header">Your matches in {obj.course.code}: {obj.course.title}</h3>
                             {
