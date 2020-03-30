@@ -152,7 +152,7 @@ class Profile extends React.Component {
             <div>
                 <Header app={app}/>
                 <i class="fas fa-chevron-left" id="profileBackButton" onClick={() => history.goBack()}></i>
-                <h2 className='h2Header'>User {this.state.username}</h2>
+                <h2 className='h2Header'>User: {this.state.username}</h2>
                 <div className='profileContainer'>
 
                     {
