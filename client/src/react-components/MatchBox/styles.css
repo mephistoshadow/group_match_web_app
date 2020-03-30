@@ -32,3 +32,24 @@
 .matchBoxButton:focus {
 	outline: none;
 }
+
+.removeBoxButton {
+	font-family: inherit;
+	font-size: 18px;
+	font-weight: 500;
+	background-color: orange;
+	padding: 10px;
+	color: white;
+	border: none;
+	transition: opacity 0.5s;
+	margin-top: 15px;
+}
+
+.removeBoxButton:hover {
+/*	opacity: 0.5;*/
+    background:red;
+}
+
+.removeBoxButton:focus {
+	outline: none;
+}

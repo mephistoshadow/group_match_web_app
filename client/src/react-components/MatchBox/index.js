@@ -28,7 +28,7 @@ class MatchBox extends React.Component {
 				<span>Username: {this.state.student.username}</span>
 				<div className="matchOption">
 					<button className="matchBoxButton" onClick={() => { history.push(`/profile/user/${match.receiver}`) }}>VIEW PROFILE</button>
-					<button onClick={deleteMatch} className="matchBoxButton">REMOVE MATCH</button>
+					<button onClick={() => { if (window.confirm('Are you sure you want to remove this match?')) deleteMatch() }} className="removeBoxButton">REMOVE MATCH</button>
 				</div>
 			</div>
 		)
