@@ -1,9 +1,9 @@
 
-import '../User/styles.css';
+import './styles.css';
 import React from "react";
 import {deleteCourse} from "../../actions/adminOperation"
 import {updateCourse} from "../../actions/adminOperation"
-import { searchCourse } from "../../actions/adminOperation"
+import { searchCourse, getEnrolledStudent } from "../../actions/adminOperation"
 
 class Card extends React.Component {
      constructor(props) {
@@ -11,17 +11,28 @@ class Card extends React.Component {
         this.state = {
         newName:'',
         newCode:'',
-        operation:false
+		operation: false,
+		showDropDownlist: false,
+		enrolledStudents : []
     }
      // const { student, usercomponents } = this.props;
    }
 
     // here we need a server call to delete the course
 
+	async componentDidMount() {
 
-    change= (e) => {
+		const courseId = this.props.student._id
+		await getEnrolledStudent(this, courseId);
+	}
+
+	change = (e) => {
         this.setState({operation:!e})
-     }
+    }
+
+	changeDropDownState= (e) => {
+		this.setState({ showDropDownlist: !e })
+	}
 
     handleNChange= (event) => {
          this.setState({newName: event.target.value});
@@ -80,18 +91,40 @@ class Card extends React.Component {
         }
      }
 
-    render() {
-        
+
+	getDropdownStudents() {
+		const makeDropdownStudent = (student) => {
+			return (
+				<ul className="list" id="DropDownContent">
+					<li className="number" id="DropDownContent">id:<span className="profileStatsNumber">{student._id}</span></li>
+					<li className="number" id="DropDownContent">Username :<span className="profileStatsNumber">{student.username}</span></li>
+				</ul>
+			)
+		}
+		const students = this.state.enrolledStudents
+		let dropdownStudents = this.state.showDropDownlist ? students.map(makeDropdownStudent.bind(this)) : null
+		return dropdownStudents
+	}
+
+	render() {
+		console.log("In course")
+		console.log(this.state.enrolledStudents)
         return (
-            <div className="Courseouter">
+            <div className="CourseCardOuter">
                 <div className="student">
                     <div className="profileStats">
                         <ul className = "list">
                             <li className="number">Id:<span  className="profileStatsNumber">{this.props.student._id}</span></li>
                             <li className="number">Title:<span className="profileStatsNumber">{this.props.student.title}</span></li>
                             <li className="number">Code:<span className="profileStatsNumber">{this.props.student.code}</span></li>
-                            <li className="number">Number Studens:<span className="profileStatsNumber">{this.props.student.people}</span></li>
-                        </ul>
+							<li className="number">
+								<span onClick={() => this.changeDropDownState(this.state.showDropDownlist)}>
+									{this.state.showDropDownlist ? <i className="fas fa-chevron-down" /> : <i className="fas fa-chevron-right" />}
+									Number Students: <span className="profileStatsNumber">{this.props.student.people}</span>
+								</span>
+								{this.getDropdownStudents()}
+							</li>
+						</ul>
                     </div>
                 </div>
                  {this.showOperation(this.state.operation)}

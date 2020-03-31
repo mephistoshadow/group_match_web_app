@@ -437,7 +437,21 @@ export const updateUserPassword = (comp, app) => {
         });
 };
 
-
+export const getEnrolledStudent = (comp, id) => {
+	let url = '/students'
+	fetch(url).then((result) => {
+		if (result.status == 200) {
+			return result.json()
+		}
+	}).then((json) => {
+		const enrolledStudents = json.filter((student) => {
+			return student.courses.indexOf(id) !== -1
+		})
+		comp.setState({ enrolledStudents: enrolledStudents })
+	}).catch((e) => {
+		console.log(e)
+	})
+}
 
 
 

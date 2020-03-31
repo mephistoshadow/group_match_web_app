@@ -1,0 +1,16 @@
+.CourseCardOuter {
+	margin-top: 0px;
+	margin-left: -50px;
+	min-height: 190px;
+	float: left;
+	width: 107%;
+	border: 1px solid #d3d3d3;
+}
+
+.CourseDropDownList {
+	margin-left: 10px;
+}
+
+#DropDownContent {
+	font-size: 90%;
+}
