@@ -9,11 +9,21 @@ body {
 .outer {
 
   margin-left: -10px;
-  height: 200px;
+  min-height: 200px;
   float: left;
   width: 90%;
+
   border: 1px solid #d3d3d3;
 }
+
+
+
+#StudentDropDownContent {
+  margin-top: 10px;
+  font-size: 90%;
+}
+
+
 
 
 .Userheader{
@@ -29,6 +39,21 @@ body {
   font-size: 50px;
   margin-top: 50px;
   margin-left: 900px;
+}
+
+.studentprofileStats{
+ margin-left: 20px;
+}
+
+.studentprofileStats ul {
+  margin-top: -10px;
+  margin-bottom: 0px;
+}
+.studentprofileStats ul li {
+  padding: 5px;
+  font-size: 120%;
+  font-weight: bold;
+  list-style: none; 
 }
 
 .edit:hover {
@@ -48,7 +73,7 @@ body {
 .backbutton {
   margin-top: -170px;
   font-size: 50px;
-  margin-left: 940px;
+  margin-left: 930px;
 }
 
 .backbutton:hover {
@@ -66,7 +91,7 @@ body {
 .button {
   position: absolute;
   margin-top: 45px;
-  margin-left: 450px;
+  margin-left: 430px;
   text-align: center;
   transition: transform .3s;
 }

@@ -7,6 +7,8 @@ import { updateStudentUserName } from "../../actions/adminOperation"
 import { updateUserPassword } from "../../actions/adminOperation"
 import { updateUserName } from "../../actions/adminOperation"
 import { searchStudents } from "../../actions/adminOperation"
+import { getEnrolledCourses } from "../../actions/adminOperation"
+import { remove } from "../../actions/adminOperation"
 
 class Student extends React.Component {
     constructor(props) {
@@ -15,11 +17,17 @@ class Student extends React.Component {
         newName:"",
         newPassword:"",
         operation:false,
-        name:""
+        name:"",
+        showDropDownlist: false,
+        enrollCourses : []
     }
      const { student, usercomponents } = this.props;
     
    }
+
+   changeDropDownState= (e) => {
+        this.setState({ showDropDownlist: !e })
+    }
 
     handleNChange= (event) => {
          this.setState({newName: event.target.value});
@@ -42,6 +50,7 @@ class Student extends React.Component {
     }
 
     delete = () => {
+        remove(this,this.props.usercomponents);
         deleteStudent(this,this.props.usercomponents)
         deleteUser(this,this.props.usercomponents)
         this.setState({name:""});
@@ -55,6 +64,15 @@ class Student extends React.Component {
              searchStudents(this.props.user, this.props.usercomponents)
         }
         this.setState({newPassword:""});
+    }
+
+    finalUpdate = () => {
+        if(this.state.newPassword!= "") {
+            this.password();
+        }
+        if(this.state.newName != "") {
+            this.update();
+        }
     }
 
     showOperation= (e) => {
@@ -74,12 +92,8 @@ class Student extends React.Component {
                     </label><br/>
                 </form> 
                 <div className = "text">
-                 <a onClick={() => this.update()}>Change Name</a>
+                 <a onClick={() => this.finalUpdate()}>Update Changes</a>
                 </div>
-                <div className = "text">
-                 <a onClick={() => this.password()}> Change Password</a>
-                </div>
-                
                 </div>
           
         );
@@ -104,6 +118,27 @@ class Student extends React.Component {
      }
 
 
+     getDropdownStudents() {
+        const makeDropdownStudent = (courses) => {
+            return (
+                <ul className="Studentlist" id="StudentDropDownContent">
+                    <li className="number" id="DropDownContent">id:<span className="profileStatsNumber">{courses._id}</span></li>
+                     <li className="number" id="DropDownContent">title:<span className="profileStatsNumber">{courses.title}</span></li>
+                    <li className="number" id="DropDownContent">code:<span className="profileStatsNumber">{courses.code}</span></li>
+                </ul>
+            )
+        }
+        const courses = this.state.enrollCourses
+        console.log(courses)
+        let dropdownStudents = this.state.showDropDownlist ? courses.map(makeDropdownStudent.bind(this)) : null
+        return dropdownStudents
+    }
+    async componentDidMount() {
+        const coursesId = this.props.student.courses
+        await getEnrolledCourses(this, coursesId);
+    }
+
+
     render() {
         
         return (
@@ -112,13 +147,20 @@ class Student extends React.Component {
                     <div className="icon">
                         <i className="far fa-user"></i>
                     </div>
-                    <div className="profileStats">
+                    <div className="studentprofileStats">
                         <ul>
                             <li className="number">UserId:<span  className="profileStatsNumber">{this.props.student._id}</span></li>
                             <li className="number">UserName:<span className="profileStatsNumber">{this.props.student.username}</span></li>
                             <li className="number">Full Name:<span className="profileStatsNumber">{this.props.student.firstName+" " + this.props.student.lastName}</span></li>
                             <li className="number">Year:<span className="profileStatsNumber">{this.props.student.year}</span></li>
                             <li className="number">CGPA:<span className="profileStatsNumber">{this.props.student.CGPA}</span></li>
+                            <li className="number">
+                                <span onClick={() => this.changeDropDownState(this.state.showDropDownlist)}>
+                                    {this.state.showDropDownlist ? <i className="fas fa-chevron-down" /> : <i className="fas fa-chevron-right" />}
+                                    Number Courses: <span className="profileStatsNumber">{this.props.student.courses.length}</span>
+                                </span>
+                                {this.getDropdownStudents()}
+                            </li>
                         </ul>
                     </div>
                 </div>

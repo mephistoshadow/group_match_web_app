@@ -95,7 +95,7 @@ class Card extends React.Component {
 	getDropdownStudents() {
 		const makeDropdownStudent = (student) => {
 			return (
-				<ul className="list" id="DropDownContent">
+				<ul className="courseList" id="CourseDropDownContent">
 					<li className="number" id="DropDownContent">id:<span className="profileStatsNumber">{student._id}</span></li>
 					<li className="number" id="DropDownContent">Username :<span className="profileStatsNumber">{student.username}</span></li>
 				</ul>

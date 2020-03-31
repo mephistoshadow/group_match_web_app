@@ -13,4 +13,9 @@
 
 #DropDownContent {
 	font-size: 90%;
+	border: 1px solid #d3d3d3;
+}
+
+#CourseDropDownContent {
+	font-size: 90%;
 }

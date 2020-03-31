@@ -467,15 +467,11 @@ app.delete('/students/:id', (req, res) => {
 	}
 
 	Student.deleteOne({_id: studentId}).then((result) => {
-		if (result.deletedCount === 1) {
-			Post.deleteMany({author: studentId}).then((result) => {
+			Promise.all([Match.deleteMany({sender: studentId}),Post.deleteMany({author: studentId}),Match.deleteMany({receiver: studentId})]).then((result) => {
 				res.send()
 			}).catch((error) => {
 				res.status(500).send(error)
 			})
-		} else {
-			res.status(404).send()
-		}
 	}).catch((error) => {
 		res.status(500).send(error)
 	})
@@ -528,6 +524,35 @@ app.post('/students/remove-course', (req, res) => {
   				}).catch((error) => {
   					res.status(500).send(error)
   				})
+  			} else {
+  				res.status(400).send()
+  			}
+  		} else {
+  			res.status(404).send()
+  		}
+  	}).catch((error) => {
+  		res.status(500).send(error)
+  	})
+})
+
+
+app.post('/students/delete-course', (req, res) => {
+    const courseId = req.body.courseId
+    const studentId = req.body.studentId
+
+  	Promise.all([Course.findById(courseId), Student.findById(studentId)]).then((results) => {
+  		const course = results[0], student = results[1]
+
+  		if (course && student) {
+  			if (student.courses.includes(course._id)) {
+  				course.people -= 1
+  				student.courses = student.courses.filter((courseId) => !courseId.equals(course._id))
+
+  					course.save().then((result) => {
+		res.send(result)
+	}, (error) => {
+		res.status(400).send(error)
+	})
   			} else {
   				res.status(400).send()
   			}
