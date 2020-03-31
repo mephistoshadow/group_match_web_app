@@ -602,11 +602,11 @@ app.patch("/courses/:id", (req, res) => {
 
 
 app.delete('/courses', (req, res) => {
-	const courseCode = req.body.code
+	const courseID = req.body.code
 
-	Course.deleteOne({code: courseCode}).then((result) => {
+	Course.deleteOne({_id: courseID}).then((result) => {
 		if (result.deletedCount === 1) {
-			Promise.all([Student.updateMany({}, {$pull: {courses: courseCode}}), Post.deleteMany({courseCode: courseCode})]).then((result) => {
+			Promise.all([Student.updateMany({}, { $pull: { courses: courseID } }), Post.deleteMany({ course: courseID})]).then((result) => {
 				res.send()
 			}).catch((error) => {
 				res.status(500).send(error)

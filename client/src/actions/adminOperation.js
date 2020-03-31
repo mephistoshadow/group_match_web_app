@@ -117,7 +117,7 @@ export const deleteCourse = (courseCard, app) => {
     const request = new Request(url, {
         method: "delete",
         body: JSON.stringify({
-            code : courseCard.props.student.code
+            code : courseCard.props.student._id
         }),
          headers: {
             Accept: "application/json, text/plain, */*",
