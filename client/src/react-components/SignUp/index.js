@@ -57,8 +57,8 @@ class SignUp extends React.Component {
 			usernameError = 'Username is required'
 		}
 
-		if (password.length < 6) {
-			passwordError = 'Password must be at least 6 characters long'
+		if (password.length < 4) {
+			passwordError = 'Password must be at least 4 characters long'
 		}
 
 		if (emailError === '') {
@@ -106,7 +106,9 @@ class SignUp extends React.Component {
 			yearError = 'Year must be an integer between 1 and 4'
 		}
 
-		if (CGPA && (CGPA < 0.0 || CGPA > 4.0)) {
+		if (!CGPA) {
+			CGPAError = 'CGPA must be a number'
+		} else if (CGPA < 0.0 || CGPA > 4.0) {
 			CGPAError = 'CGPA must be a number between 0.0 and 4.0'
 		}
 

@@ -31,7 +31,8 @@ const Student = mongoose.model('Student', {
 	CGPA: {
 		type: Number,
 		minvalue: 0.0,
-		maxvalue: 4.0
+		maxvalue: 4.0,
+		required: true
 	},
 	isCommuter: Boolean
 })
