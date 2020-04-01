@@ -2,7 +2,7 @@
 import './styles.css';
 import React from "react";
 import {deleteCourse} from "../../actions/adminOperation"
-import {updateCourse} from "../../actions/adminOperation"
+import { updateCourse, updateCourseCode} from "../../actions/adminOperation"
 import { searchCourse, getEnrolledStudent } from "../../actions/adminOperation"
 
 class Card extends React.Component {
@@ -49,7 +49,7 @@ class Card extends React.Component {
         this.props.course.setState({searchResult:false});
      }
 
-     update = () => {
+     updateTitle = () => {
         updateCourse(this,this.props.usercomponents)
         this.props.course.setState({load : true});
         if(this.props.course.state.searchResult == true) {
@@ -58,7 +58,23 @@ class Card extends React.Component {
         this.setState({newName: ""});
     }
 
+	 updatePassword = () => {
+		updateCourseCode(this, this.props.usercomponents)
+		this.props.course.setState({load : true});
+        if(this.props.course.state.searchResult == true) {
+             searchCourse(this.props.course,this.props.usercomponents)
+        }
+		this.setState({ newCode: ""});
+	 }
 
+	update = () => {
+		if (this.state.newName != "") {
+			this.updateTitle();
+		}
+		if (this.state.newCode != "") {
+			this.updatePassword();
+		}
+	}
 
     showOperation= (e) => {
         if (!e) {
@@ -66,15 +82,19 @@ class Card extends React.Component {
         }
 
         return (
-           <div className="coursebutton">
+           <div className="button">
                 <form >
-                     <label className = "bold">
+                     <label className="bold">
                         CourseTitle:
                         <input type="text" value={this.state.newName} onChange={this.handleNChange} />
-                    </label>
+					</label><br/>
+					<label className="bold">
+						CourseCode:
+                        <input type="text" value={this.state.newCode} onChange={this.handleCChange} />
+					</label><br/>
                 </form> 
                 <div className = "text">
-                 <a onClick={() => this.update()}>Change Title</a>
+					<a onClick={() => this.update()}>SAVE CHANGES</a>
                 </div>
                 </div>
         );

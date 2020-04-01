@@ -602,17 +602,21 @@ app.get('/courses/:id', (req, res) => {
 	})
 })
 
-// update course
+// update course Title
 app.patch("/courses/:id", (req, res) => {
-    const id = req.params.id;
-    const {title} = req.body;
-    const body = {title};
+	const id = req.params.id;
+	const fields = ['title', 'code']
 
+	// Keep only relevant fields in request body
+	Object.keys(req.body).forEach((key) => {
+		if (!fields.includes(key)) { delete req.body[key] }
+	})
+	
     if (!ObjectID.isValid(id)) {
         res.status(404).send();
         return;
     }
-    Course.findByIdAndUpdate(id, { $set: body }, { new: true })
+    Course.findByIdAndUpdate(id, { $set: req.body }, { new: true })
         .then(course => {
             if (!course) {
                 res.status(404).send();
@@ -631,8 +635,9 @@ app.delete('/courses', (req, res) => {
 
 	Course.deleteOne({_id: courseID}).then((result) => {
 		if (result.deletedCount === 1) {
-			Promise.all([Student.updateMany({}, { $pull: { courses: courseID } }), Post.deleteMany({ course: courseID})]).then((result) => {
-				res.send()
+			Promise.all([Student.updateMany({}, { $pull: { courses: courseID } }), Post.deleteMany({ course: courseID }), Match.deleteMany({ course: courseID })]).
+				then((result) => {
+					res.send()
 			}).catch((error) => {
 				res.status(500).send(error)
 			})
