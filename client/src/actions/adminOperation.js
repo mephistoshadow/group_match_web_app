@@ -1,5 +1,5 @@
 export const showAllUsers = (users, app) => {
-    const url = "http://localhost:5000/students";
+    const url = "/students";
 
     fetch(url)
         .then(res => {
@@ -21,7 +21,7 @@ export const showAllUsers = (users, app) => {
 }
 
 export const showAllCourses = (courses, app) => {
-    const url = "http://localhost:5000/courses";
+    const url = "/courses";
 
     fetch(url)
         .then(res => {
@@ -329,13 +329,11 @@ export const updateCourse = (comp, app) => {
    
     const url = "/courses/" + comp.props.student._id;
 
-    
     const title = 
     {
         title:comp.state.newName
     }
 
-   
     const request = new Request(url, {
         method: "PATCH",
         body: JSON.stringify(title),
@@ -357,6 +355,30 @@ export const updateCourse = (comp, app) => {
         });
 };
 
+export const updateCourseCode = (comp, app) => {
+	const url = "/courses/" + comp.props.student._id
+	const code = { code: comp.state.newCode }
+
+	const request = new Request(url, {
+		method: "PATCH",
+		body: JSON.stringify(code),
+		headers: {
+			Accept: "application/json, text/plain, */*",
+			"Content-Type": "application/json"
+		}
+	});
+	fetch(request)
+		.then(function (res) {
+			if (res.status === 200) {
+				comp.props.course.setState({ load: true })
+			} else {
+				console.log("failed")
+			}
+		})
+		.catch(error => {
+			console.log(error);
+		});
+}
 
 export const updateStudentUserName = (comp, app) => {
    
@@ -398,7 +420,6 @@ export const updateUserName = (comp, app) => {
         url = "/users/admin/" + comp.state.name;
     }
 
-   
     // const url = "/users/admin/" + comp.props.student.username;
     const info = 
     {
@@ -436,8 +457,6 @@ export const updateUserPassword = (comp, app) => {
     }
 
     console.log(comp.state.name);
-    
-
     
     const info = 
     {
@@ -479,7 +498,6 @@ export const getEnrolledStudent = (comp, id) => {
 		console.log(e)
 	})
 }
-
 
 export const getEnrolledCourses = (comp, ids) => {
    

@@ -92,7 +92,7 @@ class Student extends React.Component {
                     </label><br/>
                 </form> 
                 <div className = "text">
-                 <a onClick={() => this.finalUpdate()}>Update Changes</a>
+                 <a onClick={() => this.finalUpdate()}>SAVE CHANGES</a>
                 </div>
                 </div>
           
