@@ -200,7 +200,7 @@ app.post('/users/signup', (req, res) => {
 app.delete('/users/:username', (req, res) => {
 	const username = req.params.username
 
-	User.deleteOne({username: username}).then((result) => {
+	User.deleteOne({_id: username}).then((result) => {
 		if (!result) {
 			res.status(404).send();
 		} else {
@@ -215,7 +215,7 @@ app.patch("/users/admin/:user", (req, res) => {
     const {username,email} = req.body;
     const body = {username,email};
 
-    User.findOneAndUpdate({username:req.params.user}, { $set: body }, { new: true })
+    User.findOneAndUpdate({_id:req.params.user}, { $set: body }, { new: true })
         .then(student => {
             if (!student) {
                 res.status(404).send();

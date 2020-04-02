@@ -140,11 +140,8 @@ export const deleteCourse = (courseCard, app) => {
 
 export const deleteUser = (studentCard, app) => {
     let url = ""
-    if(studentCard.state.name=="") {
-         url = "/users/" + studentCard.props.student.username;
-    } else {
-        url = "/users/" + studentCard.state.name;
-    }
+    
+    url = "/users/" + studentCard.props.student._id;
     const request = new Request(url, {
         method: "delete",
     });
@@ -414,11 +411,8 @@ export const updateStudentUserName = (comp, app) => {
 
 export const updateUserName = (comp, app) => {
     let url = ""
-    if(comp.state.name=="") {
-         url = "/users/admin/" + comp.props.student.username;
-    } else {
-        url = "/users/admin/" + comp.state.name;
-    }
+   
+    url = "/users/admin/" + comp.props.student._id;
 
     // const url = "/users/admin/" + comp.props.student.username;
     const info = 
