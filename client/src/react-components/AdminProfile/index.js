@@ -133,11 +133,11 @@ class AdminProfile extends React.Component {
 					</div>
 
 					<div className='profileField'>
-						<span>Course Number: {this.state.course_num}</span>
+						<span>Number of Courses: {this.state.course_num}</span>
 					</div>
 
 					<div className='profileField'>
-						<span>Student Number: {this.state.student_num}</span>
+						<span>Number of Students: {this.state.student_num}</span>
 					</div>
 
 					<button className="profileActionButton" onClick={() => this.validateStudentInfo()}>SAVE CHANGES</button>
