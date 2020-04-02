@@ -179,3 +179,12 @@ body {
 }
 
 
+.searchText {
+  margin-left: 5px;
+  border: 1px solid #d3d3d3;
+}
+
+.searchText:focus {
+  border: 1px solid orange;
+  outline: none;
+}

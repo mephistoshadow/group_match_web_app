@@ -149,15 +149,15 @@ class Student extends React.Component {
                     </div>
                     <div className="studentprofileStats">
                         <ul>
-                            <li className="number">UserId:<span  className="profileStatsNumber">{this.props.student._id}</span></li>
-                            <li className="number">UserName:<span className="profileStatsNumber">{this.props.student.username}</span></li>
-                            <li className="number">Full Name:<span className="profileStatsNumber">{this.props.student.firstName+" " + this.props.student.lastName}</span></li>
-                            <li className="number">Year:<span className="profileStatsNumber">{this.props.student.year}</span></li>
-                            <li className="number">CGPA:<span className="profileStatsNumber">{this.props.student.CGPA}</span></li>
+                            <li className="number">User ID: <span  className="profileStatsNumber">{this.props.student._id}</span></li>
+                            <li className="number">Username: <span className="profileStatsNumber">{this.props.student.username}</span></li>
+                            <li className="number">Full Name: <span className="profileStatsNumber">{this.props.student.firstName+" " + this.props.student.lastName}</span></li>
+                            <li className="number">Year: <span className="profileStatsNumber">{this.props.student.year}</span></li>
+                            <li className="number">CGPA: <span className="profileStatsNumber">{this.props.student.CGPA}</span></li>
                             <li className="number">
                                 <span onClick={() => this.changeDropDownState(this.state.showDropDownlist)}>
                                     {this.state.showDropDownlist ? <i className="fas fa-chevron-down" /> : <i className="fas fa-chevron-right" />}
-                                    Number Courses: <span className="profileStatsNumber">{this.props.student.courses.length}</span>
+                                    Number of Courses: <span className="profileStatsNumber">{this.props.student.courses.length}</span>
                                 </span>
                                 {this.getDropdownStudents()}
                             </li>

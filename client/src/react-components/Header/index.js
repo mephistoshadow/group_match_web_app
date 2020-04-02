@@ -43,6 +43,18 @@ class Header extends React.Component {
         }
     }
 
+    async componentDidUpdate(prevProps, prevState, snapshot) { 
+        const { app, studentCourses } = this.props
+        const isAdmin = app.state.isAdmin
+        const currentId = app.state.currentId
+
+        const changedCourses = prevState.studentCourses !== studentCourses
+
+        if (changedCourses) {
+            await getStudentCourses(this, currentId)
+        }
+    }
+
     getDropdownCourses() {
         const { studentCourses } = this.props
 

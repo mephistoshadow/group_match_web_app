@@ -519,7 +519,11 @@ app.post('/students/remove-course', (req, res) => {
   				course.people -= 1
   				student.courses = student.courses.filter((courseId) => !courseId.equals(course._id))
 
-  				Promise.all([course.save(), student.save()]).then((results) => {
+  				Promise.all([
+  					course.save(), student.save(),
+  					Post.deleteMany({author: studentId}),
+  					Match.deleteMany({$or: [{sender: studentId}, {receiver: studentId}]})
+  				]).then((results) => {
   					res.send({course: results[0], student: results[1]})
   				}).catch((error) => {
   					res.status(500).send(error)

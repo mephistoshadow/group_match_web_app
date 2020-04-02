@@ -135,6 +135,7 @@ class Search extends React.Component {
                             <SearchPost
                                 app={app}
                                 match={match}
+                                location={location}
                                 id={post._id}
                                 author={post.author}
                                 authored={currentId === post.author}

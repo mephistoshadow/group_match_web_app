@@ -72,7 +72,7 @@ class Course extends React.Component {
             </div>
              <div className = "searchCourse">
                 <form className = "courseFrom">
-                    <label className = "labelText">CoursesID:</label>
+                    <label className = "labelText">Course ID:</label>
                     <input className="searchText" type="text" onChange={this.handleSearch}></input>
                 </form>
                 <div className = "button5">

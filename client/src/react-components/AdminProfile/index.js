@@ -70,8 +70,8 @@ class AdminProfile extends React.Component {
 			}
 		}
 
-		if (password !== '' && password.length < 6) {
-			passwordError = 'Password must be at least 6 characters long'
+		if (password !== '' && password.length < 4) {
+			passwordError = 'Password must be at least 4 characters long'
 		}
 
 		this.setState({

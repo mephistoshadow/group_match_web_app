@@ -52,7 +52,7 @@ class Operation extends React.Component {
             <div className="newStudent">
                 <div className="studentinfo">
                     <ul>
-                        <li className="numberone">UserName:<input className="searchText" type="text" onChange={this.handleNChange} ></input></li>
+                        <li className="numberone">Username:<input className="searchText" type="text" onChange={this.handleNChange} ></input></li>
                         <li className="numberone">Password:<input className="searchText" type="text"  onChange={this.handlePChange}></input></li>
                     </ul>
                 </div>

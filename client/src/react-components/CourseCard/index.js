@@ -85,11 +85,11 @@ class Card extends React.Component {
            <div className="button">
                 <form >
                      <label className="bold">
-                        CourseTitle:
+                        Course Title:
                         <input type="text" value={this.state.newName} onChange={this.handleNChange} />
 					</label><br/>
 					<label className="bold">
-						CourseCode:
+						Course Code:
                         <input type="text" value={this.state.newCode} onChange={this.handleCChange} />
 					</label><br/>
                 </form> 
@@ -116,8 +116,8 @@ class Card extends React.Component {
 		const makeDropdownStudent = (student) => {
 			return (
 				<ul className="courseList" id="CourseDropDownContent">
-					<li className="number" id="DropDownContent">id:<span className="profileStatsNumber">{student._id}</span></li>
-					<li className="number" id="DropDownContent">Username :<span className="profileStatsNumber">{student.username}</span></li>
+					<li className="number" id="DropDownContent">ID: <span className="profileStatsNumber">{student._id}</span></li>
+					<li className="number" id="DropDownContent">Username: <span className="profileStatsNumber">{student.username}</span></li>
 				</ul>
 			)
 		}
@@ -134,13 +134,13 @@ class Card extends React.Component {
                 <div className="student">
                     <div className="profileStats">
                         <ul className = "list">
-                            <li className="number">Id:<span  className="profileStatsNumber">{this.props.student._id}</span></li>
-                            <li className="number">Title:<span className="profileStatsNumber">{this.props.student.title}</span></li>
-                            <li className="number">Code:<span className="profileStatsNumber">{this.props.student.code}</span></li>
+                            <li className="number">Course ID: <span  className="profileStatsNumber">{this.props.student._id}</span></li>
+                            <li className="number">Course Title: <span className="profileStatsNumber">{this.props.student.title}</span></li>
+                            <li className="number">Course Code: <span className="profileStatsNumber">{this.props.student.code}</span></li>
 							<li className="number">
 								<span onClick={() => this.changeDropDownState(this.state.showDropDownlist)}>
 									{this.state.showDropDownlist ? <i className="fas fa-chevron-down" /> : <i className="fas fa-chevron-right" />}
-									Number Students: <span className="profileStatsNumber">{this.props.student.people}</span>
+									Number of Students: <span className="profileStatsNumber">{this.props.student.people}</span>
 								</span>
 								{this.getDropdownStudents()}
 							</li>

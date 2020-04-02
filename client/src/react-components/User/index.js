@@ -7,8 +7,6 @@ import Header from "../Header"
 import { uid } from "react-uid";
 import { showAllUsers } from "../../actions/adminOperation"
 import { searchStudents } from "../../actions/adminOperation"
-// import { getObjectByName } from "../../actions/basicoperation";
-
 
 
 class User extends React.Component {
@@ -80,7 +78,7 @@ class User extends React.Component {
             </div>
             <div className="search">
                 <form className="searchForm">
-                    <label className = "labelText">UserID:</label>
+                    <label className = "labelText">User ID:</label>
                     <input className="searchText" type="text" onChange={this.handleSearch}></input>
                 </form>
                 <div className="button4">
