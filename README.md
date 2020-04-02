@@ -1,5 +1,5 @@
 
-# team15 :sparkles:
+# Team 15 :sparkles:
 
 ## Deployed URL
 
