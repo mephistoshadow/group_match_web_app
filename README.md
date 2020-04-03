@@ -1,3 +1,5 @@
+
+
 # Team 15
 
 ## Deployed URL
@@ -18,7 +20,7 @@ We have two additional pre-configured standard users available:
 
 ## Sign Up
 
-The sign up page provides the ability to create a new standard user account. It includes error checks for the email and username fields, that is, they must not already be in use. Once the form includes a valid email, username, and password, the user can then specify their personal information. Standard error checks are in place to make sure none of the fields are left blank and contain valid data. Once the sign up form is correct and complete, the user is re-directed to the login page to sign in with their new account.
+The sign up page provides the ability to create a new standard user account. It includes error checks for the email and username fields, that is, they must not already be in use. Once the form includes a valid email, username, and password, the user can then specify their personal infromation. Standard error checks are in place to make sure none of the fields are left blank and contain valid data. Once the sign up form is correct and complete, the user is re-directed to the login page to sign in with their new account.
 
 *Note that it is not available to create an admin account through the sign up form.*
 
@@ -57,7 +59,7 @@ The *Users* page allows an admin to view and manipulate all the students in the 
 - Edit the login credentials, username and password, of a user
 - Delete a user from the database
 
-An admin is able to add a new standard user to the database by specifying a unique username and corresponding password. Note that the personal information fields (full name, year, CGPA, commuter status) of the newly added user are initialized to default 'empty' values.
+An admin is able to add a new standard user to the database by specifying a unique username and corresponding password. Note that the personal information fields (full name, year, CGPA, commuter status) of the newly-added user are initialized to default 'empty' values.
 
 An admin is able to query the database for a particular user by their assigned user ID.
 
@@ -75,15 +77,51 @@ An admin is able to query the database for a particular course by their assigned
 ## Routes
 
 ### Authentication Routes
+POST: */users/login*
+POST: */users/logout*
+POST: */users/check-session*
 
 ### User Routes
+POST: */users*
+POST: */users/signup*
+POST: */users/admin/password/:username*
+GET: */users/:id*
+GET:  */users/username/:username*
+GET: */users/username/:email*
+DELETE: */users/:username*
+PATCH: */users/admin/:user*
+PUT: */users/update/:id*
 
 ### Admin Routes
+POST: */admin*
+GET: */admin*
 
 ### Student Routes
+POST: */students*
+POST: */students/add-course*
+POST: */students/remove-course*
+lGET: */students*
+GET */students/:id*
+GET: */students/courses/:id*
+DELETE: */students/:id*
+PATCH: */students/admin/:id*
+PUT: */students/update/:id*
 
 ### Course Routes
+POST: */courses*
+GET: */courses*
+GET: */courses/:id*
+DELETE: */courses*
+PATCH: */courses/:id*
 
 ### Post Routes
+POST: */posts*
+GET: */posts/:courseId*
+GET: */posts/:courseId/:author*
+DELETE: */posts/:courseId*
 
 ### Match Routes
+POST: */matches*
+GET:  */matches*
+GET: */matches/sent/user-id/course-id*
+DELETE: */matches*
