@@ -34,13 +34,19 @@ class SearchPost extends React.Component {
     }
 
     checkFilters() {
-    	const { yearFilter, minCGPAFilter, maxCGPAFilter, commuterFilter } = this.props
+    	const { yearFilter, minCGPAFilter, maxCGPAFilter, isCommuterFilter, isNotCommuterFilter } = this.props
     	const { year, CGPA, isCommuter } = this.state.student
 
     	const meetYearCriteria = yearFilter.length > 0 ? yearFilter.includes(year) : true
     	const meetMinCGPACriteria = minCGPAFilter <= CGPA
     	const meetMaxCGPACriteria = CGPA <= maxCGPAFilter
-    	const meetCommuterCriteria = commuterFilter === true ? (commuterFilter === isCommuter) : true
+    	
+        let meetCommuterCriteria
+        if (isCommuterFilter || isNotCommuterFilter) {
+            meetCommuterCriteria = (isCommuterFilter === true && isCommuter === true) || (isNotCommuterFilter === true && isCommuter === false)
+        } else {
+            meetCommuterCriteria = true;
+        }
 
     	return (
     		meetYearCriteria &&

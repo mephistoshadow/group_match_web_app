@@ -53,7 +53,13 @@ export const updateMaxCGPA = (searchComp, field) => {
 }
 
 export const updateCommuterCheckbox = (searchComp, checkBox) => {
-	searchComp.setState({
-		commuterFilter: checkBox.checked
-	})
+	if (checkBox.name === 'isCommuter') {
+		searchComp.setState({
+			isCommuterFilter: checkBox.checked
+		})
+	} else if (checkBox.name === 'isNotCommuter') {
+		searchComp.setState({
+			isNotCommuterFilter: checkBox.checked
+		})
+	}
 }

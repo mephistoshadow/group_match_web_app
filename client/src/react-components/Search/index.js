@@ -37,7 +37,8 @@ class Search extends React.Component {
             yearFilter: [],
             minCGPAFilter: 0,
             maxCGPAFilter: 4,
-            commuterFilter: false,
+            isCommuterFilter: false,
+            isNotCommuterFilter: false,
 
             minCGPAError: '',
             maxCGPAError: ''
@@ -89,7 +90,8 @@ class Search extends React.Component {
             yearFilter: [],
             minCGPAFilter: 0,
             maxCGPAFilter: 4,
-            commuterFilter: false
+            isCommuterFilter: false,
+            isNotCommuterFilter: false
         })
     }
 
@@ -118,9 +120,10 @@ class Search extends React.Component {
                 <span className='errorMessage'>{this.state.postError}</span>
             </div>
         )
-
-        console.log('search state', this.state)
         
+        const commuter =  <i class="fas fa-car-alt postInfo"></i>
+        const notCommuter = <i class="fas fa-walking postInfo"></i>
+
 		return (
 			<div>
 				<Header app={app}/>
@@ -147,7 +150,8 @@ class Search extends React.Component {
                                 yearFilter={this.state.yearFilter}
                                 minCGPAFilter={this.state.minCGPAFilter}
                                 maxCGPAFilter={this.state.maxCGPAFilter}
-                                commuterFilter={this.state.commuterFilter}
+                                isCommuterFilter={this.state.isCommuterFilter}
+                                isNotCommuterFilter={this.state.isNotCommuterFilter}
                             />)}
 					</ul>
                 </div>
@@ -176,7 +180,8 @@ class Search extends React.Component {
                     </div>
 
                     <div className='filterCriteria'>
-                        <FormControlLabel control={<OrangeCheckbox name='commuter' checked={this.state.commuterFilter} onChange={(e) => updateCommuterCheckbox(this, e.target)}/>} label='Commuter'/>
+                        <FormControlLabel control={<OrangeCheckbox name='isCommuter' checked={this.state.isCommuterFilter} onChange={(e) => updateCommuterCheckbox(this, e.target)}/>} label=<span>Commuter{commuter}</span>/>
+                        <FormControlLabel control={<OrangeCheckbox name='isNotCommuter' checked={this.state.isNotCommuterFilter} onChange={(e) => updateCommuterCheckbox(this, e.target)}/>} label=<span>Not Commuter{notCommuter}</span>/>
                     </div>
 
                     <div id='filterButtonContainer'>
