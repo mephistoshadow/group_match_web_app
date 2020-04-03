@@ -83,7 +83,7 @@ class Student extends React.Component {
            <div className="button">
                 <form >
                      <label className = "bold">
-                        UserName:
+                        Username:
                         <input type="text" value={this.state.newName} onChange={this.handleNChange} />
                     </label><br/>
                     <label className = "bold">
