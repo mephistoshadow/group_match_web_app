@@ -158,33 +158,6 @@ export const deleteUser = (studentCard, app) => {
         });
 }
 
-
-export const remove = (comp, app) => {
-    const student = comp.props.student
-    const courses = comp.props.student.courses
-
-     courses.map((courseid) => {
-         const request = new Request("/students/delete-course", {
-        method: 'post',
-        body: JSON.stringify({
-            courseId:courseid,
-            studentId:student._id
-        }),
-        headers:{
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    })
-
-    fetch(request).then((res) => {
-        if (res.status === 200) {
-        }
-    }).catch((error) => {
-        console.log(error)
-    })
-    });
-}
-
 export const addNew = (comp, app) => {
     const request = new Request("/users/signup", {
         method: 'post',

@@ -197,20 +197,6 @@ app.post('/users/signup', (req, res) => {
 	})
 })
 
-app.delete('/users/:username', (req, res) => {
-	const username = req.params.username
-
-	User.deleteOne({_id: username}).then((result) => {
-		if (!result) {
-			res.status(404).send();
-		} else {
-			res.send(result);
-		}
-	}).catch((error) => {
-		res.status(500).send(error)
-	})
-})
-
 app.patch("/users/admin/:user", (req, res) => {
     const {username,email} = req.body;
     const body = {username,email};
@@ -466,9 +452,15 @@ app.delete('/students/:id', (req, res) => {
 		res.status(400).send()
 	}
 
-	Student.deleteOne({_id: studentId}).then((result) => {
-			Promise.all([Match.deleteMany({sender: studentId}),Post.deleteMany({author: studentId}),Match.deleteMany({receiver: studentId})]).then((result) => {
-				res.send()
+	Student.findByIdAndRemove(studentId).then((student) => {
+			Promise.all([
+				User.deleteOne({_id : studentId}),
+				Course.updateMany({_id: { $in: student.courses }}, {$inc : { people: -1 }}),
+				Match.deleteMany({sender: studentId}),
+				Match.deleteMany({receiver: studentId}),
+				Post.deleteMany({author: studentId})
+			]).then((result) => {
+				res.send(student)
 			}).catch((error) => {
 				res.status(500).send(error)
 			})
@@ -528,35 +520,6 @@ app.post('/students/remove-course', (req, res) => {
   				}).catch((error) => {
   					res.status(500).send(error)
   				})
-  			} else {
-  				res.status(400).send()
-  			}
-  		} else {
-  			res.status(404).send()
-  		}
-  	}).catch((error) => {
-  		res.status(500).send(error)
-  	})
-})
-
-
-app.post('/students/delete-course', (req, res) => {
-    const courseId = req.body.courseId
-    const studentId = req.body.studentId
-
-  	Promise.all([Course.findById(courseId), Student.findById(studentId)]).then((results) => {
-  		const course = results[0], student = results[1]
-
-  		if (course && student) {
-  			if (student.courses.includes(course._id)) {
-  				course.people -= 1
-  				student.courses = student.courses.filter((courseId) => !courseId.equals(course._id))
-
-  					course.save().then((result) => {
-		res.send(result)
-	}, (error) => {
-		res.status(400).send(error)
-	})
   			} else {
   				res.status(400).send()
   			}

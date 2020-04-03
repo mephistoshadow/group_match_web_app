@@ -8,7 +8,6 @@ import { updateUserPassword } from "../../actions/adminOperation"
 import { updateUserName } from "../../actions/adminOperation"
 import { searchStudents } from "../../actions/adminOperation"
 import { getEnrolledCourses } from "../../actions/adminOperation"
-import { remove } from "../../actions/adminOperation"
 
 class Student extends React.Component {
     constructor(props) {
@@ -50,7 +49,6 @@ class Student extends React.Component {
     }
 
     delete = () => {
-        remove(this,this.props.usercomponents);
         deleteStudent(this,this.props.usercomponents)
         deleteUser(this,this.props.usercomponents)
         this.setState({name:""});
