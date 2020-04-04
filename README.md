@@ -86,7 +86,7 @@ An admin is able to query the database for a particular course by their assigned
 
 | METHOD |ROUTE| DESCRIPTION|
 |:------:|:-------------------------------:|:----------------------------------------------------------------------:|
-|POST|/users |Add a user as specified in the request body field |
+|POST|/users |Add a user as specified in the request body |
 |POST|/users/signup| Create a standard user and corresponding student, sharing the same ID |
 |POST| /users/admin/password/:username |Update a student username and password|
 | GET|/users/:id | Get user by ID |
@@ -104,7 +104,7 @@ An admin is able to query the database for a particular course by their assigned
 ### Student Routes
 | METHOD |ROUTE|DESCRIPTION |
 |:------:|:-----------------------:|:----------------------------------------:|
-|POST|/students| Add a student as specified in the request body field|
+|POST|/students| Add a student as specified in the request body|
 | GET|/students| Get all students |
 | GET|/students/:id| Get a student by ID|
 | DELETE |/students/:id|Delete a student by ID|
