@@ -1,5 +1,3 @@
-
-
 # Team 15
 
 ## Deployed URL
@@ -77,51 +75,66 @@ An admin is able to query the database for a particular course by their assigned
 ## Routes
 
 ### Authentication Routes
-POST: */users/login*
-POST: */users/logout*
-POST: */users/check-session*
+
+| METHOD | ROUTE | DESCRIPTION |
+|:-:|:-:|:-:|
+| POST | */users/login*| Authenticate username and password, create session cookie to login the user |
+| POST | */users/logout* | Destroy session cookie to logout the user |
+| POST | */users/check-session* | Check session cookie to make sure the user is authenticated |
 
 ### User Routes
-POST: */users*
-POST: */users/signup*
-POST: */users/admin/password/:username*
-GET: */users/:id*
-GET:  */users/username/:username*
-GET: */users/username/:email*
-DELETE: */users/:username*
-PATCH: */users/admin/:user*
-PUT: */users/update/:id*
+
+| METHOD |ROUTE| DESCRIPTION|
+|:------:|:-------------------------------:|:----------------------------------------------------------------------:|
+|POST|/users |Add a user as specified in the request body field |
+|POST|/users/signup| Create a standard user and corresponding student document, sharing the same ID |
+|POST| /users/admin/password/:username |Update student username and password|
+| GET|/users/:id | Get user by ID |
+| GET|/users/username/:username|Get a user by username |
+| GET|/users/username/:email | Get a user by email |
+|PATCH |/users/admin/:user | Update student and user username and email |
+| PUT|/users/update/:id|Update user by ID, update any/all of the fields in the User model (as specified in the request body)|
 
 ### Admin Routes
-POST: */admin*
-GET: */admin*
+| METHOD |ROUTE |DESCRIPTION |
+|:------:|:------:|:------------:|
+|POST| /admin | Create an admin user |
+| GET| /admin |Get all admin users |
 
 ### Student Routes
-POST: */students*
-POST: */students/add-course*
-POST: */students/remove-course*
-lGET: */students*
-GET */students/:id*
-GET: */students/courses/:id*
-DELETE: */students/:id*
-PATCH: */students/admin/:id*
-PUT: */students/update/:id*
+| METHOD |ROUTE|DESCRIPTION |
+|:------:|:-----------------------:|:----------------------------------------:|
+|POST|/students| Add a student as specified in the request body field|
+| GET|/students| Get all students |
+| GET|/students/:id| Get a student by ID|
+| DELETE |/students/:id|Delete a student by ID|
+|PATCH | /students/admin/:id | Admin route to update the student username|
+| GET|/students/courses/:id| Get courses of a student by ID |
+| PUT| /students/update/:id| Update student by ID, update any/all of the fields in the Student model (as specified in the request body) |
+|POST| /students/add-course|Add a course ID to a student's array of courses (student and course IDs specified in the request body)|
+|POST| /students/remove-course | Remove a course ID from a student's array of courses (student and course IDs specified in the request body) |
 
 ### Course Routes
-POST: */courses*
-GET: */courses*
-GET: */courses/:id*
-DELETE: */courses*
-PATCH: */courses/:id*
+| METHOD | ROUTE | DESCRIPTION |
+|:------:|:------------:|:------------------------------------------:|
+| POST | /courses | Add a course as specified in the request body |
+| GET | /courses | Get all courses |
+| GET | /courses/:id | Get a course by ID |
+| DELETE | /courses | Delete a course by ID (specified in the request body) |
+| PATCH | /courses/:id | Update a course by ID, update course title and/or code (specified in the request body) |
 
 ### Post Routes
-POST: */posts*
-GET: */posts/:courseId*
-GET: */posts/:courseId/:author*
-DELETE: */posts/:courseId*
+| METHOD | ROUTE| DESCRIPTION|
+|:--------:|:--------------------------:|:------------------------------------:|
+| POST | /posts | Add a post as specified in the request body (course/author fields are specified by ID) |
+| GET| /posts/:courseId | Get all the posts in a course (identified by ID) |
+| DELETE | /posts/:courseId | Delete a post in a course by an author (course and author identified by ID) |
+| GET| /posts/:courseId/:author | Get a post in a course by an author (course and author identified by ID)|
 
 ### Match Routes
-POST: */matches*
-GET:  */matches*
-GET: */matches/sent/user-id/course-id*
-DELETE: */matches*
+| METHOD | ROUTE | DESCRIPTION|
+|:--------:|:-------------------------------:|:----------------------------------------:|
+| POST | /matches| Add a match as specified in the request body (sender/receiver/course fields are specified by ID) |
+| DELETE | /matches| Delete a match as specified in the request body (sender/receiver/course fields are specified by their IDs) |
+| GET| /matches/:userId| Get all two-way matches for a user (identified by ID)|
+| GET| /matches/sent/:userId/:courseId | Get all one-way matches sent by a user in a course (user and course identified by ID) |
