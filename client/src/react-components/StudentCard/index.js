@@ -50,7 +50,7 @@ class Student extends React.Component {
 
     delete = () => {
         deleteStudent(this,this.props.usercomponents)
-        deleteUser(this,this.props.usercomponents)
+        // deleteUser(this,this.props.usercomponents)
         this.setState({name:""});
         this.props.user.setState({load : true,searchResult:false});
     }
