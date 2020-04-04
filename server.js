@@ -215,7 +215,7 @@ app.patch("/users/admin/:user", (req, res) => {
 });
 
 app.post("/users/admin/password/:username", (req, res) => {
-  		User.findOne({username:req.params.username})
+  		User.findOne({_id:req.params.username})
         .then(student => {
             if (!student) {
                 res.status(404).send();

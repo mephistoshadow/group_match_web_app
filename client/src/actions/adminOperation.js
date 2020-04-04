@@ -411,11 +411,8 @@ export const updateUserName = (comp, app) => {
 
 export const updateUserPassword = (comp, app) => {
     let url = ""
-    if(comp.state.name=="") {
-         url = "/users/admin/password/" + comp.props.student.username;
-    } else {
-        url = "/users/admin/password/" + comp.state.name;
-    }
+   
+    url = "/users/admin/password/" + comp.props.student._id;
 
     console.log(comp.state.name);
     
