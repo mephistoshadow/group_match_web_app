@@ -596,6 +596,22 @@ app.patch("/courses/:id", (req, res) => {
         });
 });
 
+// update course code
+app.patch("/courses/code/:id", (req, res) => {
+	const id = req.params.id
+
+	Course.findByIdAndUpdate(id, { code: req.body.code }, { new: true })
+		.then(course => {
+			if (!course) {
+				res.status(404).send();
+			} else {
+				res.send(course);
+			}
+		})
+		.catch(error => {
+			res.status(400).send();
+		});   
+});
 
 app.delete('/courses', (req, res) => {
 	const courseID = req.body.code

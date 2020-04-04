@@ -1,9 +1,9 @@
 
 import './styles.css';
 import React from "react";
-import {deleteCourse} from "../../actions/adminOperation"
+import { deleteCourse} from "../../actions/adminOperation"
 import { updateCourse, updateCourseCode} from "../../actions/adminOperation"
-import { searchCourse, getEnrolledStudent } from "../../actions/adminOperation"
+import { searchCourse, getEnrolledStudent} from "../../actions/adminOperation"
 
 class Card extends React.Component {
      constructor(props) {
@@ -40,39 +40,43 @@ class Card extends React.Component {
 
     }
 
-     handleCChange= (event) => {
+    handleCChange= (event) => {
          this.setState({newCode: event.target.value});
          // console.log(this.props.usercomponents);
 
-    }
-     close = () => {
+	}
+
+    close = () => {
         this.props.course.setState({searchResult:false});
      }
 
-     updateTitle = () => {
-        updateCourse(this,this.props.usercomponents)
-        this.props.course.setState({load : true});
-        if(this.props.course.state.searchResult == true) {
-             searchCourse(this.props.course,this.props.usercomponents)
-        }
-        this.setState({newName: ""});
-    }
+	updateTitle = () => {
+		updateCourse(this, this.props.usercomponents)
+		this.props.course.setState({ load: true })
+		this.setState({ newName: "" })	
+	}
 
-	 updatePassword = () => {
-		updateCourseCode(this, this.props.usercomponents)
-		this.props.course.setState({load : true});
-        if(this.props.course.state.searchResult == true) {
-             searchCourse(this.props.course,this.props.usercomponents)
-        }
-		this.setState({ newCode: ""});
-	 }
+	updateCode = () => {
+		if (this.checkCodeValid()) {
+			updateCourseCode(this, this.props.usercomponents)
+			this.props.course.setState({ load: true })
+			this.setState({ newCode: "" })
+		}
+	}
+
+	checkCodeValid = () => {
+		return this.state.newCode.length == 6
+	}
 
 	update = () => {
-		if (this.state.newName != "") {
-			this.updateTitle();
+		if (this.state.newName !== "") {
+			this.updateTitle()
 		}
-		if (this.state.newCode != "") {
-			this.updatePassword();
+		if (this.state.newCode !== "") {
+			this.updateCode()
+		}
+		if (this.props.course.state.searchResult == true) {
+			searchCourse(this.props.course, this.props.usercomponents)
 		}
 	}
 
@@ -103,14 +107,13 @@ class Card extends React.Component {
     showBack = () => {
          if (this.props.flag == false) {
             return null;
-        }
-        else {
+         }
+         else {
             return (<div className = "coursebackbutton">
                 <i className="fas fa-backspace"  onClick={() => this.close()}></i>
-        </div>);
-        }
-     }
-
+         </div>);
+         }
+    }
 
 	getDropdownStudents() {
 		const makeDropdownStudent = (student) => {
@@ -127,8 +130,7 @@ class Card extends React.Component {
 	}
 
 	render() {
-		console.log("In course")
-		console.log(this.state.enrolledStudents)
+
         return (
             <div className="CourseCardOuter">
                 <div className="student">

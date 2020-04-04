@@ -41,7 +41,6 @@ export const showAllCourses = (courses, app) => {
         });
 }
 
-
 export const searchStudents = (users, app) => {
     if(users.state.searchId != "") {
 
@@ -67,31 +66,30 @@ export const searchStudents = (users, app) => {
         });
     }
 }
-export const searchCourse = (course, app) => {
-    if(course.state.searchId != "") {
 
-    const url = "/courses/" + course.state.searchId;
-    
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                alert("Could not get students");
-            }
-        })
-        .then(json => {
-            if(json) {
-               course.setState({ searchOne: json });
-               course.setState({searchResult:true});
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        });
+export const searchCourse = (course, app) => {
+
+	if (course.state.searchId !== "") {
+		const url = "/courses/" + course.state.searchId;
+		fetch(url)
+			.then(res => {
+				if (res.status === 200) {
+					return res.json();
+				} else {
+					alert("Could not get students");
+				}
+			})
+			.then(json => {
+				if(json) {
+				   course.setState({ searchOne: json });
+				   course.setState({searchResult:true});
+				}
+			})
+			.catch(error => {
+				console.log(error);
+			});
     }
 }
-
 
 export const deleteStudent = (studentCard, app) => {
     const url = "/students/" + studentCard.props.student._id;
@@ -136,7 +134,6 @@ export const deleteCourse = (courseCard, app) => {
             console.log(error);
         });
 }
-
 
 export const deleteUser = (studentCard, app) => {
     let url = ""
@@ -230,7 +227,6 @@ export const addStudent = (comp, app) => {
     }
 }
 
-
 export const addCourse = (comp, app) => {
 
 
@@ -260,7 +256,6 @@ export const addCourse = (comp, app) => {
             console.log(error);
         });
 }
-
 
 export const addUser = (comp, app) => {
 
@@ -294,7 +289,6 @@ export const addUser = (comp, app) => {
         });
     }
 
-
 export const updateCourse = (comp, app) => {
    
     const url = "/courses/" + comp.props.student._id;
@@ -326,7 +320,7 @@ export const updateCourse = (comp, app) => {
 };
 
 export const updateCourseCode = (comp, app) => {
-	const url = "/courses/" + comp.props.student._id
+	const url = "/courses/code/" + comp.props.student._id
 	const code = { code: comp.state.newCode }
 
 	const request = new Request(url, {

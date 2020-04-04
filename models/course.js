@@ -10,6 +10,7 @@ const courseSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		uppercase: true,
+		unique: true,
 		minlength: 6,
 		maxlength: 6
 	},
