@@ -11,7 +11,7 @@ The login credentials are as follows:
 - Standard user: username *user*, password *user*
 - Admin user: username *admin*, password *admin*
 
-We have two additional pre-configured standard users available:
+We have two additional preconfigured standard users available:
 
 - Username *janedoe*, password *password*
 - Username *johndoe*, password *password*
@@ -87,8 +87,8 @@ An admin is able to query the database for a particular course by their assigned
 | METHOD |ROUTE| DESCRIPTION|
 |:------:|:-------------------------------:|:----------------------------------------------------------------------:|
 |POST|/users |Add a user as specified in the request body field |
-|POST|/users/signup| Create a standard user and corresponding student document, sharing the same ID |
-|POST| /users/admin/password/:username |Update student username and password|
+|POST|/users/signup| Create a standard user and corresponding student, sharing the same ID |
+|POST| /users/admin/password/:username |Update a student username and password|
 | GET|/users/:id | Get user by ID |
 | GET|/users/username/:username|Get a user by username |
 | GET|/users/username/:email | Get a user by email |
