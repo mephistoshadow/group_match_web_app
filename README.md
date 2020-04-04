@@ -2,7 +2,7 @@
 
 ## Deployed URL
 
-https://rhubarb-pudding-41030.herokuapp.com/
+https://rhubarb-pudding-41030.herokuapp.com/ :seedling: :custard:
 
 ## Login
 
