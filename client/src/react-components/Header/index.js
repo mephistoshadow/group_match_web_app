@@ -50,7 +50,7 @@ class Header extends React.Component {
 
         const changedCourses = prevState.studentCourses !== studentCourses
 
-		if (changedCourses & !isAdmin) {
+		if (changedCourses && !isAdmin) {
             await getStudentCourses(this, currentId)
         }
     }
