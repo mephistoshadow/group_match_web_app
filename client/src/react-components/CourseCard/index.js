@@ -80,6 +80,11 @@ class Card extends React.Component {
 		}
 	}
 
+	delete = () => {
+		deleteCourse(this, this.props.usercomponents)
+		this.props.course.setState({ load: true, searchResult: false });
+	}
+
     showOperation= (e) => {
         if (!e) {
             return null;
@@ -154,7 +159,7 @@ class Card extends React.Component {
                     <i className="far fa-edit" onClick={() => this.change(this.state.operation)}></i>
                 </div>
                 <div className = "courseedittwo">
-                    <i className="fas fa-trash-alt" onClick={() => deleteCourse(this,this.props.usercomponents)}></i>
+                    <i className="fas fa-trash-alt" onClick={() => this.delete()}></i>
                 </div>
                  {this.showBack()}    
             </div>
