@@ -147,7 +147,7 @@ class Profile extends React.Component {
         const currentId = app.state.currentId
 
         const canEdit = (userToFetch === currentId)
-
+        
         return (
             <div>
                 <Header app={app}/>
@@ -226,7 +226,7 @@ class Profile extends React.Component {
                         <span>Commuter:</span>
                         {
                             canEdit ?
-                            <OrangeCheckbox name='isCommuter' value={this.state.isCommuter} onClick={() => this.toggleCommuterState()}/> :
+                            <OrangeCheckbox name='isCommuter' checked={this.state.isCommuter} onClick={() => this.toggleCommuterState()}/> :
                             <OrangeCheckbox name='isCommuter' checked={this.state.isCommuter}/>
                         }
                     </div>
